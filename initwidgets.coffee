@@ -10,3 +10,4 @@ db.collection('widgets').insert
   name: 'editor'
   code: fs.readFileSync('editor.js').toString()
   html: fs.readFileSync('editor.html').toString()
+  css:  fs.readFileSync('editor.css').toString()
