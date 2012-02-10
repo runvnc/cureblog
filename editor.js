@@ -5,12 +5,18 @@ $(document).ready(function() {
              html: $('#html').val(),
              css:  $('#css').val() };
 
-    now.dbinsert('widgets', data);            
+    var mode = $('#widgetname').data('mode');
+    if (mode == 'update') {
+      now.dbupdate('widgets', { name: data.name }, data);
+    } else {
+      now.dbinsert('widgets', data);             
+    }
   });
 
   now.ready(function() {
 
     function editWidget(widget) {
+      $('#widgetname').data('mode', 'update');
       $('#widgetname').val(widget.name);
       $('#code').val(widget.code);
       $('#html').val(widget.html);

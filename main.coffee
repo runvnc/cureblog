@@ -1,6 +1,7 @@
 loadwidget = (data) ->
   try
     $('#widgets').append data.html
+    $('head').append "<style>#{data.css}</style>"
     $('head').append "<script>#{data.code}</script>"
   catch e
     console.log e

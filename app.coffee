@@ -37,19 +37,20 @@ everyone = nowjs.initialize app
 everyone.now.dbinsert = (col, data) ->
   db.collection(col).insert data
 
+everyone.now.dbupdate = (col, criteria, data) ->
+  db.collection(col).find { query: criteria }, (err, doc) ->
+    db.collection('backups').insert { status: 'saved', col: col, modified: new Date(), data : doc }, (err, doc) ->
+      db.collection(col).findAndModify { query: criteria, update : data },  (err, doc) ->
+        console.log err
+        console.log doc
+
 everyone.now.dbfind = (col, callback) ->
   db.collection(col).find().toArray (err, data) ->
     callback data
 
+
 app.listen 3000
 
 
-###
-everyone.now.dbinsert = (name, data) ->
-  console.log "data is"
-  console.log data
-  db.collection(name).insert data           
-  console.log "tried to call whatever"
-###
 
 
