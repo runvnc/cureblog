@@ -6,8 +6,12 @@ db = server.db 'app'
 
 db.collection('widgets').remove()
 
-db.collection('widgets').insert
-  name: 'editor'
-  code: fs.readFileSync('editor.js').toString()
-  html: fs.readFileSync('editor.html').toString()
-  css:  fs.readFileSync('editor.css').toString()
+dirs = fs.readdirSync 'widgets'
+
+for dir in dirs
+  p = 'widgets/' + dir + '/' + dir
+  db.collection('widgets').insert
+    name: dir
+    code: fs.readFileSync(p + '.js').toString()
+    html: fs.readFileSync(p + '.html').toString()
+    css:  fs.readFileSync(p + '.css').toString()

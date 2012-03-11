@@ -1,0 +1,40 @@
+<!DOCTYPE html5>
+<html>
+<head>
+<title>Cure CMS</title>
+<style>
+#mainframe {
+  width: 100%;
+  height: 88%;
+  border: collapse;
+  position: relative;
+}
+
+#backups {
+  overflow: scroll;
+  height: 9%;
+  min-height: 100px;
+  width: 100%;
+  position: relative;
+  border: 1px solid red;
+}
+
+#backups ul {
+  position: relative;
+  overflow: auto;
+}
+ 
+
+</style>
+</head>
+<body>
+<div id="backups"></div>
+
+<iframe src="/main.html" id="mainframe"></iframe>
+
+<script src="jquery.min.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="/nowjs/now.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

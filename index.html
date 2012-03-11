@@ -2,14 +2,130 @@
 <html>
 <head>
 <title>Cure CMS</title>
+<link rel="stylesheet" type="text/css" href="jquery.contextMenu.css" />
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css" rel="stylesheet" /> 
+<link type="text/css" href="css/jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" href="../lib/codemirror.css">
+<link rel="stylesheet" href="../lib/util/dialog.css">
+
+<style>
+#objs {
+  border: 1px solid #000;
+  width: 10%;
+  float: left;
+}
+
+#page {
+  float: left;
+  border: 1px solid red;
+  width: 89%;
+  height: 100%;
+}
+
+#objlist {
+  list-style-type: none;
+}
+
+#objlist li {
+  border: 1px solid #aaa;
+  padding: 5px;
+}
+
+#code, #html, #css { 
+  width: 800px; 
+  height: 300px; 
+}
+
+.demo {
+  display: none; 
+  width: 800px;
+  height: 560px;
+}
+
+</style>
 </head>
 <body>
 
 <div id="widgets"></div>
 
+<div id="objs">
+<h3>Widgets</h3>
+
+<ul id="objlist"></ul>
+</div>
+
+
+
+<div class="demo">
+
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Code</a></li>
+    <li><a href="#tabs-2">HTML</a></li>
+    <li><a href="#tabs-3">CSS</a></li>
+  </ul>
+  <div id="tabs-1">
+    <input type="hidden" id="widgetname"/>
+    Code: <br/>
+    <textarea id="code"></textarea>
+  </div>
+  <div id="tabs-2">
+      HTML: <br/>
+      <textarea id="html"></textarea>
+  </div>
+  <div id="tabs-3">
+      CSS: <br/>
+      <textarea id="css"></textarea>
+  </div>
+</div>
+
+</div><!-- End demo -->
+
+<!--
+<div id="codedialog">
+
+ <div class="demo">
+  <div id="editortabs">
+    <ul>
+      <li><a href="#tabs-1">Code</a></li>
+      <li><a href="#tabs-2">HTML</a></li>
+      <li><a href="#tabs-3">Css</a></li>
+    </ul>
+    <div id="tabs-1">
+      <input type="hidden" id="widgetname"/>
+      Code: <br/>
+      <textarea id="code"></textarea>
+    </div>
+    <div id="tabs-2">
+      HTML: <br/>
+      <textarea id="html"></textarea>
+    </div>
+    <div id="tabs-3">
+      CSS: <br/>
+      <textarea id="css"></textarea>
+    </div>
+  </div>
+ </div>
+  <button id="savewidget">Save</button>
+</div>
+-->
+
+<div id="page"></div>
+<script src="handlebars.js"></script>
 <script src="jquery.min.js"></script>
-<script src="jquery-ui.min.js"></script>
+<script src="jquery-ui-1.8.18.custom.min.js"></script>
+<script src="jquery.ui.position.js"></script>
+<script src="jquery.contextMenu.js"></script>
+<script src="cm/lib/codemirror.js"></script>
+<script src="cm/mode/xml/xml.js"></script>
+<script src="cm/lib/util/dialog.js"></script>
+<script src="cm/lib/util/searchcursor.js"></script>
+<script src="cm/lib/util/search.js"></script>
+
 <script src="/nowjs/now.js"></script>
 <script src="main.js"></script>
+
 </body>
 </html>
