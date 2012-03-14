@@ -1,7 +1,13 @@
 (function() {
-  var editWidget, editor, loadwidget, loadwidgets, makeEditable, thing;
+  var editWidget, editor, editorcode, editorcss, editorhtml, loadwidget, loadwidgets, makeEditable, thing;
 
   editor = void 0;
+
+  editorhtml = void 0;
+
+  editorcode = void 0;
+
+  editorcss = void 0;
 
   loadwidget = function(data) {
     var deswidget;
@@ -50,9 +56,19 @@
               width: '900'
             });
             widgetdata = $(el).data('widget');
-            editor = CodeMirror.fromTextArea($("#html")[0], {
+            editorhtml = CodeMirror.fromTextArea($("#html")[0], {
               value: widgetdata.html,
               mode: "text/html",
+              lineNumbers: true
+            });
+            editorcode = CodeMirror.fromTextArea($("#code")[0], {
+              value: widgetdata.code,
+              mode: "text/javascript",
+              lineNumbers: true
+            });
+            editorcss = CodeMirror.fromTextArea($("#css")[0], {
+              value: widgetdata.css,
+              mode: "text/css",
               lineNumbers: true
             });
         }
@@ -75,23 +91,23 @@
     });
   };
 
-  /*
-    $('#savewidget').click(function() {
-      data = { name: $('#widgetname').val(),
-               code: $('#code').val(),
-               html: $('#html').val(),
-               css:  $('#css').val() };
-  
-      var mode = $('#widgetname').data('mode');
-      if (mode == 'update') {
-        now.dbupdate('widgets', { name: data.name }, data);
-      } else {
-        now.dbinsert('widgets', data);
-      }
-    });
-  
-    now.ready(function() {
-  */
+  $('#savewidget').click(function() {
+    var data, mode;
+    data = {
+      name: $('#widgetname').val(),
+      code: editorcode.getValue(),
+      html: editorhtml.getValue(),
+      css: editorcss.getValue()
+    };
+    mode = $('#widgetname').data('mode');
+    if (mode === 'update') {
+      return now.dbupdate('widgets', {
+        name: data.name
+      }, data);
+    } else {
+      return now.dbinsert('widgets', data);
+    }
+  });
 
   loadwidgets = function() {
     now.dbfind('widgets', function(widgets) {
@@ -126,7 +142,9 @@
   $(function() {
     $('#tabs').tabs({
       show: function(event, ui) {
-        if (editor != null) return editor.refresh();
+        if (editorhtml != null) editorhtml.refresh();
+        if (editorcode != null) editorcode.refresh();
+        if (editorcss != null) return editorcss.refresh();
       }
     });
     return now.ready(function() {

@@ -1,4 +1,7 @@
 editor = undefined
+editorhtml = undefined
+editorcode = undefined
+editorcss = undefined
 
 loadwidget = (data) ->
   try
@@ -40,10 +43,19 @@ makeEditable = ->
             height: '450'
             width: '900'
           widgetdata = $(el).data 'widget'  
-          editor = CodeMirror.fromTextArea $("#html")[0],
+          editorhtml = CodeMirror.fromTextArea $("#html")[0],
             value: widgetdata.html 
             mode: "text/html"
             lineNumbers: true
+          editorcode = CodeMirror.fromTextArea $("#code")[0],
+            value: widgetdata.code 
+            mode: "text/javascript"
+            lineNumbers: true
+          editorcss = CodeMirror.fromTextArea $("#css")[0],
+            value: widgetdata.css 
+            mode: "text/css"
+            lineNumbers: true
+
       true
    
     items:
@@ -51,24 +63,18 @@ makeEditable = ->
       "copy": {name: "Copy", icon: "copy"}
       "edit": {name: "Edit Code", icon: "edit"}
 
-###
-  $('#savewidget').click(function() {
-    data = { name: $('#widgetname').val(),
-             code: $('#code').val(),
-             html: $('#html').val(),
-             css:  $('#css').val() };
+$('#savewidget').click ->
+  data =
+    name: $('#widgetname').val()
+    code: editorcode.getValue()
+    html: editorhtml.getValue()
+    css:  editorcss.getValue()
 
-    var mode = $('#widgetname').data('mode');
-    if (mode == 'update') {
-      now.dbupdate('widgets', { name: data.name }, data);
-    } else {
-      now.dbinsert('widgets', data);
-    }
-  });
-
-  now.ready(function() {
-###
-
+  mode = $('#widgetname').data 'mode'
+  if mode is 'update'
+    now.dbupdate 'widgets', { name: data.name }, data
+  else
+    now.dbinsert 'widgets', data
 
 
 loadwidgets = ->
@@ -92,7 +98,9 @@ loadwidgets = ->
 $ ->
  $('#tabs').tabs
    show: (event, ui) ->
-     if editor? then editor.refresh()
+     if editorhtml? then editorhtml.refresh()
+     if editorcode? then editorcode.refresh()
+     if editorcss? then editorcss.refresh()
 
  now.ready ->
     loadwidgets()
