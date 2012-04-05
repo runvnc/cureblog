@@ -1,0 +1,7 @@
+nohup: ignoring input
+[debug] mongo://localhost:27017: Connected
+[debug] mongo://localhost:27017: Initialized as primary
+[info] mongo://localhost:27017: Connected to primary
+[debug] Finished scanning... primary? mongo://localhost:27017
+[debug] mongo://localhost:27017: Disconnected
+[warn] mongo://localhost:27017: Lost primary

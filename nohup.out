@@ -1,0 +1,4 @@
+[debug] mongo://localhost:27017: Connected
+[debug] mongo://localhost:27017: Initialized as primary
+[info] mongo://localhost:27017: Connected to primary
+[debug] Finished scanning... primary? mongo://localhost:27017
