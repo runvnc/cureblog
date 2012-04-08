@@ -2,9 +2,11 @@
   "name": "node-example",
   "version": "0.0.1",
   "dependencies": {
+    "vows": "",
     "express": "",
     "jade": "",
     "now":"",
-    "mongolian":""
+    "mongolian":"",
+    "shelljs": ""
   }
 }
