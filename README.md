@@ -24,17 +24,59 @@ Editing or creating components does not require access to the server.  Developer
 
 Components
 ==========
-Components are probably the most important and useful architectural feature of Cureblog.  "Components" can mean a lot of different things to different people, but in this case components are a way of packaging back-end Node.js code (JavaScript or CoffeeScript) along with the HTML, CSS and JavaScript or CoffeeScript for the front-end.  On the front-end a component is a drag-and-drop widget with properties that can be modified in the property editor.  The back-end code for each component is there to support the front-end: saving data, security checks, sending emails, etc.
+Components are probably the most important and useful architectural feature of Cureblog.  "Components" can mean a lot of different things to different people, but in this case components are a way of packaging back-end Node.js code (JavaScript or CoffeeScript) along with the HTML, CSS and JavaScript or CoffeeScript for the front-end.  
 
-Example Component
------------------
+On the front-end a component is a drag-and-drop widget with properties that can be modified in the property editor.  The back-end code for each component is there to support the front-end: saving data, security checks, sending emails, etc.
 
+Components can require other components and also come with default data so they can effectively install themselves and work like plugins.
+
+Component Structure
+-------------------
+    loadorder        #a list of components to load in a specific order
+    public/
+      css/           #files are copied on build from same dirs in each component
+      js/            #files are copied on build from same dirs in each component
     components/
       example/
-        requires      #a (newline separated) list of other components this one depends on
-        styles        #a (newline separated) list of stylesheet filenames, e.g. 
-                 
+        requires      # a list of other components this one depends on
+        styles        # a list of stylesheet filenames
+        scripts       # a list of script filenames                 
+        html          # html inserted into index.html containing template for component
+        css/          # css file for each line in styles
+                      # and any other files that might be required by scripts
+                      # everything here copied into /public/css
+        scripts/      # javascript file for each line in scripts
+                      # and any other scripts that may be loaded by those scripts
 
+Build Process
+=============
+Each time the application or a component is modified the application rebuilds:
+
+* For each component, in the order specified by loadorder:
+  - copy the contents of the css directory into public/css
+  - create a list of css and js links to go in the `<head>`
+  - copy the contents of the js directory into public/js
+  - append the contents of the html file to the index body  
+
+* Construct a `<head>` element for the site with the links in the previous step
+* Place the index body text into index.html along with the `<head>` and other tags
+
+Server Start-up
+===============
+Each time the application is modified, after the build step, the server will be restarted.  When the server starts, the following happens for each component, in the order specified by the file loadorder
+
+* Require the file `./components/[name].coffee` 
+* Call the startup() function exported by that module
+* 
+
+
+
+Application Editor/Admin
+========================
+
+
+
+                      
 
 
 
