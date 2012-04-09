@@ -1,14 +1,10 @@
-This is (or will be) a front-end- friendly Node.js-based blog, CMS and component platform.
+This is (or will be) a front-end- friendly Node.js-based CMS and component platform.
 
 It is a framework and tool for building web sites and web applications of all types.
 
 Node.js
 =======
 Node.js is trendy (at the moment this framework is started) and has a number of advantages over other platforms, which at this point are so well hyped that I don't need to get into them.
-
-Blog
-====
-Blogging is probably the most ubiquitous type of web application, and we want a general purpose system with lots of users, so we will target blogging-type applications first.
 
 Front-End- Friendly
 ===================
@@ -69,18 +65,12 @@ Each time the application is modified, after the build step, the server will be 
 * Call the startup() function exported by that module
 * 
 
-
-
 Application Editor/Admin
 ========================
-Accessing /admin or Logging in displays the site in Edit mode.  There are two types of screens in edit mode: 
-the default page with editing enabled for all components so you can drag components around and edit their properties,
-and the brain screen where you configure your site and its components.  The brain screen is the equivalent of 
-the Admin section in WordPress.
+Logging in displays the site in Edit mode.  There are two types of screens in edit mode: the default page with editing enabled for all components so you can drag components around and edit their properties, and the brain screen where you configure your site and its components.  The brain screen is the equivalent of the Admin section in WordPress.  You will not usually need to visit the brain screen though since most of the site editing is done WYWIWYG style in inline edit mode.
 
+While in edit mode a toolbar appears at the top of the screen.  The built-in components are Text, Image and Block. 
 
-                      
-
-
+If you know HTML, CSS and/or CoffeeScript you can easily create your own components.  See Creating New Components.
 
 
