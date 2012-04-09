@@ -73,7 +73,10 @@ Each time the application is modified, after the build step, the server will be 
 
 Application Editor/Admin
 ========================
-
+Accessing /admin or Logging in displays the site in Edit mode.  There are two types of screens in edit mode: 
+the default page with editing enabled for all components so you can drag components around and edit their properties,
+and the brain screen where you configure your site and its components.  The brain screen is the equivalent of 
+the Admin section in WordPress.
 
 
                       
