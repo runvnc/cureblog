@@ -39,7 +39,6 @@ readstyles = (name) ->
     console.log "#{e.message}\n#{e.stack}"
 
 headcss = (toload) ->
-  # go into each components folder in the order from loadorder
   head = ''
   for component in toload 
     if component? and component.length > 0
@@ -86,6 +85,7 @@ vows
         'returns a link element to the test.css': (topic) ->
           console.log util.inspect topic
           assert.equal topic, '<link type="text/css" href="public/css/test.css"/>\n'
-
+    
+    
 
   .export module
