@@ -6,12 +6,10 @@ sh = require 'shelljs'
 
 console.log "Hello from thing"
 
-getorder = -> 
-  loadstr = fs.readFileSync 'loadorder', 'utf8' 
+getorder = (fname) -> 
+  loadstr = fs.readFileSync fname, 'utf8' 
   loadstr.split '\n' 
  
-toload = getorder() 
-
 head = ''
 
 trim = (string) ->
@@ -38,29 +36,68 @@ readstyles = (name) ->
   catch e
     console.log "#{e.message}\n#{e.stack}"
 
+readscripts = (name) ->
+  try
+    list = listfile "components/#{name}/scripts"
+    str = ''
+    for fname in list
+      str += '<link type="text/javascript" href="public/js/' + fname + '"/>\n'
+    
+    if path.existsSync "components/#{name}/js" 
+      console.log "Copying files from components/#{name}/js to public/js" 
+      sh.cp '-Rf', "components/#{name}/js/*", 'public/js'
+    str 
+    
+  catch e
+    console.log "#{e.message}\n#{e.stack}"
+
+readbody = (name) ->
+  try     
+    if path.existsSync "components/#{name}/#{name}.html" 
+      return fs.readFileSync "components/#{name}/#{name}.html", 'utf8' 
+    else
+      return ''
+  catch e
+    console.log "#{e.message}\n#{e.stack}"
+
 headcss = (toload) ->
   head = ''
   for component in toload 
     if component? and component.length > 0
       head += readstyles component
+  head
 
-headjs = ->  
-  #build head scripts
-  # go into each components folder in order
-  #  read list of scripts from scripts  
-  #    put js in head
-  #    copy js/* into public/js
+headjs = (toload) ->  
+  head = ''
+  for component in toload 
+    if component? and component.length > 0
+      head += readscripts component
+  head
 
-build = ->
-  css = headcss()
-  scripts = headjs()
-  fs.writeFileSync "public/index.html", css + scripts, 'utf8'
+loadbody = (toload) ->
+  body = ''
+  for component in toload 
+    if component? and component.length > 0
+      body += readbody component
+  body
 
-startup = ->
-  build()
-  # go into each components folder in the order from loadorder
-  #  require componentname.coffee
-  #    call component.startup app
+build = (toload) ->
+  css = headcss toload
+  scripts = headjs toload
+  body = loadbody toload
+  "<!doctype html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
+
+writebuild = (source) ->
+  fs.writeFileSync "public/index.html", source, 'utf8'
+
+exports.startup = (file) ->
+  toload = listfile file
+  html = build toload
+  writebuild html
+  comps = {}
+  for component in toload
+    comps[component] = require "./components/#{component}/#{component}"
+    comps[component]?.startup?()
 
 vows = require 'vows'
 assert = require 'assert'
@@ -85,7 +122,16 @@ vows
         'returns a link element to the test.css': (topic) ->
           console.log util.inspect topic
           assert.equal topic, '<link type="text/css" href="public/css/test.css"/>\n'
-    
+
+      'read test scripts':
+        topic: -> readscripts 'test'
+        
+        'returns a link element to the test.js': (topic) ->
+          console.log util.inspect topic
+          assert.equal topic, '<link type="text/javascript" href="public/js/test.js"/>\n'
+        
+        'build html from test data':
+          topic: -> build 'testload'
     
 
   .export module
