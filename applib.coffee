@@ -26,7 +26,7 @@ readstyles = (name) ->
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
-      str += '<link type="text/css" href="public/css/' + fname + '"/>\n'
+      str += '<link type="text/css" href="css/' + fname + '"/>\n'
     
     if path.existsSync "components/#{name}/css" 
       console.log "Copying files from components/#{name}/css to public/css" 
@@ -41,7 +41,7 @@ readscripts = (name) ->
     list = listfile "components/#{name}/scripts"
     str = ''
     for fname in list
-      str += '<link type="text/javascript" href="public/js/' + fname + '"/>\n'
+      str += '<script type="text/javascript" src="js/' + fname + '"></script>\n'
     
     if path.existsSync "components/#{name}/js" 
       console.log "Copying files from components/#{name}/js to public/js" 
@@ -96,6 +96,7 @@ exports.startup = (file) ->
   writebuild html
   comps = {}
   for component in toload
+    console.log "Starting #{component}"
     comps[component] = require "./components/#{component}/#{component}"
     comps[component]?.startup?()
 
