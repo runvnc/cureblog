@@ -17,7 +17,6 @@ trim = (string) ->
 
 listfile = (fname) ->
   str = fs.readFileSync fname, 'utf8'
-  console.log "Loaded #{str}"
   list = str.split '\n'
   (trim item for item in list when item? and trim(item).length>0)
   
@@ -26,10 +25,9 @@ readstyles = (name) ->
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
-      str += '<link type="text/css" href="css/' + fname + '"/>\n'
+      str += '<link rel="stylesheet" type="text/css" href="css/' + fname + '"/>\n'
     
     if path.existsSync "components/#{name}/css" 
-      console.log "Copying files from components/#{name}/css to public/css" 
       sh.cp '-Rf', "components/#{name}/css/*", 'public/css'
     str 
     
@@ -41,10 +39,13 @@ readscripts = (name) ->
     list = listfile "components/#{name}/scripts"
     str = ''
     for fname in list
-      str += '<script type="text/javascript" src="js/' + fname + '"></script>\n'
+      if fname.indexOf('/') is 0
+        prefix = ''
+      else
+        prefix = 'js/'
+      str += '<script type="text/javascript" src="' + prefix + fname + '"></script>\n'
     
     if path.existsSync "components/#{name}/js" 
-      console.log "Copying files from components/#{name}/js to public/js" 
       sh.cp '-Rf', "components/#{name}/js/*", 'public/js'
     str 
     
@@ -85,7 +86,7 @@ build = (toload) ->
   css = headcss toload
   scripts = headjs toload
   body = loadbody toload
-  "<!doctype html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
+  "<!doctype html><html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
 
 writebuild = (source) ->
   fs.writeFileSync "public/index.html", source, 'utf8'
@@ -96,9 +97,12 @@ exports.startup = (file) ->
   writebuild html
   comps = {}
   for component in toload
-    console.log "Starting #{component}"
-    comps[component] = require "./components/#{component}/#{component}"
-    comps[component]?.startup?()
+    try
+      console.log "Starting #{component}"
+      comps[component] = require "./components/#{component}/#{component}"
+      comps[component]?.startup?()
+    catch e
+      console.log util.inspect e
 
 vows = require 'vows'
 assert = require 'assert'
@@ -110,7 +114,6 @@ vows
       topic: -> (listfile 'datatest/list1')                
 
       'returns two items': (topic) ->
-        console.log util.inspect topic
         assert.equal topic.length, 2
         
       'they are apples and orange': (topic) ->
@@ -121,15 +124,13 @@ vows
         topic: -> readstyles 'test'
 
         'returns a link element to the test.css': (topic) ->
-          console.log util.inspect topic
-          assert.equal topic, '<link type="text/css" href="public/css/test.css"/>\n'
+          assert.equal topic, '<link type="text/css" href="css/test.css"/>\n'
 
       'read test scripts':
         topic: -> readscripts 'test'
         
         'returns a link element to the test.js': (topic) ->
-          console.log util.inspect topic
-          assert.equal topic, '<link type="text/javascript" href="public/js/test.js"/>\n'
+          assert.equal topic, '<script type="text/javascript" src="js/test.js"></script>\n'
         
         'build html from test data':
           topic: -> build 'testload'

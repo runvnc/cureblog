@@ -1,0 +1,6 @@
+lib/codemirror.js
+mode/xml/xml.js
+lib/util/dialog.js
+lib/util/searchcursor.js
+lib/util/search.js
+front.js

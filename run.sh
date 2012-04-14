@@ -1,2 +1,2 @@
 #!/bin/bash
-node app.js
+coffee runapp.coffee

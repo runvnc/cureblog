@@ -1,3 +1,3 @@
 applib = require './applib'
 
-applib.startup 'testorder'
+applib.startup 'loadorder'

@@ -1,2 +1,2 @@
 window.testloaded = true;
-alert(window.testloaded);
+console.log('testloaded');

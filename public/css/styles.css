@@ -1,0 +1,37 @@
+body {
+  background-color: red;
+}
+
+#objs {
+  border: 1px solid #000;
+  width: 10%;
+  float: left;
+}
+
+#page {
+  float: left;
+  border: 1px solid red;
+  width: 89%;
+  height: 100%;
+}
+
+#objlist {
+  list-style-type: none;
+}
+
+#objlist li {
+  border: 1px solid #aaa;
+  padding: 5px;
+}
+
+#code, #html, #css { 
+  width: 800px; 
+  height: 300px; 
+}
+
+.demo {
+  display: none; 
+  width: 800px;
+  height: 560px;
+}
+ 
