@@ -52,6 +52,14 @@ readscripts = (name) ->
   catch e
     console.log "#{e.message}\n#{e.stack}"
 
+copyimages = (name) ->
+  try
+    if path.existsSync "components/#{name}/images" 
+      sh.cp '-Rf', "components/#{name}/images/*", 'public/images'
+  catch e
+    console.log "#{e.message}\n#{e.stack}"
+
+
 readbody = (name) ->
   try     
     if path.existsSync "components/#{name}/#{name}.html" 
@@ -86,6 +94,9 @@ build = (toload) ->
   css = headcss toload
   scripts = headjs toload
   body = loadbody toload
+  for component in toload
+    copyimages component
+
   "<!doctype html><html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
 
 writebuild = (source) ->
@@ -93,9 +104,15 @@ writebuild = (source) ->
 
 exports.startup = (file) ->
   toload = listfile file
-  html = build toload
-  writebuild html
   comps = {}
+  for component in toload
+    try
+      console.log "Building #{component}"
+      comps[component] = require "./components/#{component}/#{component}"
+      comps[component]?.build?()
+    catch e
+      console.log util.inspect e
+
   for component in toload
     try
       console.log "Starting #{component}"
@@ -103,6 +120,9 @@ exports.startup = (file) ->
       comps[component]?.startup?()
     catch e
       console.log util.inspect e
+
+  html = build toload
+  writebuild html
 
 vows = require 'vows'
 assert = require 'assert'

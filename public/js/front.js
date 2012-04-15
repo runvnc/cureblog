@@ -1,5 +1,5 @@
 (function() {
-  var editWidget, editor, editorcode, editorcss, editorhtml, loadwidget, loadwidgets, makeEditable, thing;
+  var editWidget, editor, editorcode, editorcss, editorhtml, loadwidgets, makeEditable, thing;
 
   editor = void 0;
 
@@ -8,21 +8,6 @@
   editorcode = void 0;
 
   editorcss = void 0;
-
-  loadwidget = function(data) {
-    var deswidget;
-    try {
-      $('#widgets').append(data.html);
-      $('head').append("<style>" + data.css + "</style>");
-      $('head').append("<script>" + data.code + "</script>");
-      deswidget = $("<li class=\"deswidget\">" + data.name + "</li>");
-      deswidget.data('name', data.name);
-      deswidget.data('widget', data);
-      return $('#objlist').append(deswidget);
-    } catch (e) {
-      return console.log(e);
-    }
-  };
 
   thing = function() {};
 
@@ -36,7 +21,7 @@
 
   makeEditable = function() {
     return $.contextMenu({
-      selector: '.deswidget',
+      selector: '.designwidget',
       trigger: 'right',
       callback: function(key, options, e) {
         var el, name, widgetdata;
@@ -110,22 +95,18 @@
   });
 
   loadwidgets = function() {
-    $('.deswidget').draggable({
-      helper: 'clone'
-    });
+    console.log('inside of loadwidgets');
+    console.log($('.designwidget'));
     $('#page').droppable({
       drop: function(ev, ui) {
         var name;
-        name = ui.draggable.text();
+        console.log('inside of drop');
+        console.log(ui);
+        name = ui.draggable.data('name');
         console.log('name is ' + name);
-        $('head').append("<script>window.newobj = new " + name + "</script>");
-        window.newobj.init({
-          parent: $('#page'),
-          data: {
-            test: 'blah'
-          }
-        });
-        return window.newobj.render();
+        if (window.drophandlers[name] != null) {
+          return window.drophandlers[name](ev, ui, this);
+        }
       }
     });
     return makeEditable();
@@ -141,6 +122,7 @@
       }
     });
     return now.ready(function() {
+      console.log('now.ready fired');
       return loadwidgets();
     });
   });

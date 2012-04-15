@@ -3,18 +3,6 @@ editorhtml = undefined
 editorcode = undefined
 editorcss = undefined
 
-loadwidget = (data) ->
-  try
-    $('#widgets').append data.html
-    $('head').append "<style>#{data.css}</style>"
-    $('head').append "<script>#{data.code}</script>"
-    deswidget = $("<li class=\"deswidget\">#{data.name}</li>")
-    deswidget.data 'name', data.name
-    deswidget.data 'widget', data
-    $('#objlist').append deswidget
-  catch e
-    console.log e
-
 thing = () ->
 
 editWidget = (widget) ->
@@ -27,7 +15,7 @@ editWidget = (widget) ->
   
 makeEditable = ->
   $.contextMenu
-    selector: '.deswidget'
+    selector: '.designwidget'
     trigger: 'right'
     callback: (key, options, e) ->
       el = window.lastMenuEvent.currentTarget
@@ -78,18 +66,18 @@ $('#savewidget').click ->
 
 
 loadwidgets = ->
-  $('.deswidget').draggable
-    helper: 'clone'
+  console.log 'inside of loadwidgets'
+  console.log $('.designwidget')
+
   $('#page').droppable
     drop: (ev, ui) ->
-      name = ui.draggable.text()
+      console.log 'inside of drop'
+      console.log ui
+      name = ui.draggable.data 'name'
       console.log 'name is ' + name
-      $('head').append("<script>window.newobj = new #{name}</script>")
-      window.newobj.init
-        parent: $('#page')
-        data: {test:'blah'} 
-      window.newobj.render()
-
+      if window.drophandlers[name]?
+        window.drophandlers[name] ev, ui, @
+      
   makeEditable()
 
 $ ->
@@ -101,5 +89,6 @@ $ ->
      if editorcss? then editorcss.refresh()
 
  now.ready ->
+    console.log 'now.ready fired'
     loadwidgets()
 

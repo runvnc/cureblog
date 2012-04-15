@@ -13,6 +13,9 @@ ObjectId.prototype.toJSON = ->
 db = server.db 'app'
 
 app = express.createServer()
+
+process.app = app
+
 app.use express.cookieParser()
 app.use express.session { secret: 'burrito13' }
 app.use express.static("public")
@@ -26,6 +29,8 @@ app.get '/', (request, response) ->
 
 nowjs = require 'now'
 everyone = nowjs.initialize app
+
+process.everyone = everyone
 
 everyone.now.dbinsert = (col, data) ->
   db.collection(col).insert data
