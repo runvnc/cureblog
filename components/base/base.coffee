@@ -5,6 +5,9 @@ server = new MongolianDeadBeef
 nowjs = require 'now'
 fs = require 'fs'
 util = require 'util'
+request = require 'request'
+childproc = require 'child_process'
+
 
 ObjectId = MongolianDeadBeef.ObjectId
 ObjectId.prototype.toJSON = ->
@@ -24,13 +27,28 @@ app.set 'view options', { layout: false }
 app.register('.html', require('jade'));
 
 app.get '/', (request, response) ->
-  index = fs.readFileSync 'public/index.html', 'utf8'
+  console.log 'getting page'
+  index = fs.readFileSync 'static/index.html', 'utf8'
+  page = fs.readFileSync 'static/page', 'utf8'
+  index = index.replace '{{page}}', page
+
   response.send index
 
 nowjs = require 'now'
 everyone = nowjs.initialize app
 
 process.everyone = everyone
+
+everyone.now.restartServer = ->
+  request 'http://127.0.0.1:' + process.config.restarterport + '/'
+
+everyone.now.saveStatic = (name, html, callback) ->
+  fs.writeFile "static/#{name}", html, (err) ->
+    if err
+      console.log err
+      if callback? then callback false
+    else
+      if callback? then callback true  
 
 everyone.now.dbinsert = (col, data) ->
   db.collection(col).insert data

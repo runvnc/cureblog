@@ -1,29 +1,47 @@
+console.log 'hello from text component'
+
 $ ->
   console.log 'text comp'
-  widget = $("<li class=\"designwidget texticon\" data-name=\"text\">text</li>")
-  widget.data 'name', 'text'
+  widgethtml = $('#texttemplate').html()
+  widget = $(widgethtml)
+  btn = widget.find '.designwidget'
+  btn.data 'name', 'text'
   data = 
     name: 'text'
-  widget.data 'widget', data
+  btn.data 'widget', data
 
   if not window.drophandlers?
     window.drophandlers = {}
 
+  id = guid()
+    
   window.drophandlers['text'] = (ev, ui, droppedon) ->
-    console.log 'DROP HANDLER'
-    console.log ev
-    console.log ui
-    newel = $('<div contenteditable="true">text</div>')
+    newel = $('<div class="widgetcontainer"><div class="textwidget" contenteditable="false" id ="'+id+'">text</div></div>')
+    idx = '#' + id
     $(droppedon).append newel
-    newel.css 'position', 'relative'
-    newel.css 'display', 'inline-block'
-    newel.css
-      position: 'absolute'
-      top: ui.position.top + 'px'
-      left: ui.position.left + 'px'
-    console.log @
-        
 
+    #newel.css
+    #  position: 'absolute'
+    #  top: ui.position.top + 'px'
+    #  left: ui.position.left + 'px'
+
+    
+    window.savePage()
+    console.log @
+  
+  $('.textwidget').live 'click', ->
+    console.log 'clicked live'
+    $(this).find('.textwidget').attr 'contenteditable', true
+    
+  $('.textwidget').blur ->  
+    window.savePage()
+    
+  $('.widgetcontainer').draggable()
+    
+  console.log 'objlist is'
+  console.log $('#objlist')
+  console.log 'widget is '
+  console.log widget    
   $('#objlist').append widget  
   console.log 'appended'
 

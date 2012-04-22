@@ -1,31 +1,40 @@
 (function() {
 
+  console.log('hello from text component');
+
   $(function() {
-    var data, widget;
+    var btn, data, id, widget, widgethtml;
     console.log('text comp');
-    widget = $("<li class=\"designwidget texticon\" data-name=\"text\">text</li>");
-    widget.data('name', 'text');
+    widgethtml = $('#texttemplate').html();
+    widget = $(widgethtml);
+    btn = widget.find('.designwidget');
+    btn.data('name', 'text');
     data = {
       name: 'text'
     };
-    widget.data('widget', data);
+    btn.data('widget', data);
     if (!(window.drophandlers != null)) window.drophandlers = {};
+    id = guid();
     window.drophandlers['text'] = function(ev, ui, droppedon) {
-      var newel;
-      console.log('DROP HANDLER');
-      console.log(ev);
-      console.log(ui);
-      newel = $('<div contenteditable="true">text</div>');
+      var idx, newel;
+      newel = $('<div class="widgetcontainer"><div class="textwidget" contenteditable="false" id ="' + id + '">text</div></div>');
+      idx = '#' + id;
       $(droppedon).append(newel);
-      newel.css('position', 'relative');
-      newel.css('display', 'inline-block');
-      newel.css({
-        position: 'absolute',
-        top: ui.position.top + 'px',
-        left: ui.position.left + 'px'
-      });
+      window.savePage();
       return console.log(this);
     };
+    $('.textwidget').live('click', function() {
+      console.log('clicked live');
+      return $(this).find('.textwidget').attr('contenteditable', true);
+    });
+    $('.textwidget').blur(function() {
+      return window.savePage();
+    });
+    $('.widgetcontainer').draggable();
+    console.log('objlist is');
+    console.log($('#objlist'));
+    console.log('widget is ');
+    console.log(widget);
     $('#objlist').append(widget);
     console.log('appended');
     return $('.texticon').draggable({

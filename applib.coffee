@@ -3,6 +3,9 @@ util = require 'util'
 path = require 'path'
 proc = require 'child_process'
 sh = require 'shelljs'
+config = require './config'
+
+process.config = config
 
 console.log "Hello from thing"
 
@@ -100,7 +103,7 @@ build = (toload) ->
   "<!doctype html><html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
 
 writebuild = (source) ->
-  fs.writeFileSync "public/index.html", source, 'utf8'
+  fs.writeFileSync "static/index.html", source, 'utf8'
 
 exports.startup = (file) ->
   toload = listfile file
@@ -116,7 +119,9 @@ exports.startup = (file) ->
   for component in toload
     try
       console.log "Starting #{component}"
-      comps[component] = require "./components/#{component}/#{component}"
+      key = "./components/#{component}/#{component}"
+      if key in require.cache then delete require.cache[key]
+      comps[component] = require key
       comps[component]?.startup?()
     catch e
       console.log util.inspect e

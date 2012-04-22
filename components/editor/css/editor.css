@@ -26,6 +26,7 @@
 .demo {
   display: none; 
   width: 800px;
-  height: 560px;
+  height: 580px;
+  overflow: hidden;
 }
  

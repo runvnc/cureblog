@@ -13,15 +13,18 @@
 <script type="text/javascript" src="js/jquery.ui.position.js"></script>
 <script type="text/javascript" src="js/jquery.contextMenu.js"></script>
 <script type="text/javascript" src="/nowjs/now.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="js/lib/codemirror.js"></script>
 <script type="text/javascript" src="js/mode/xml/xml.js"></script>
+<script type="text/javascript" src="js/mode/css/css.js"></script>
+<script type="text/javascript" src="js/mode/coffeescript/coffeescript.js"></script>
 <script type="text/javascript" src="js/lib/util/dialog.js"></script>
 <script type="text/javascript" src="js/lib/util/searchcursor.js"></script>
 <script type="text/javascript" src="js/lib/util/search.js"></script>
-<script type="text/javascript" src="js/front.js"></script>
+<script type="text/javascript" src="js/editor.js"></script>
 <script type="text/javascript" src="js/text.js"></script>
 </head><body><div id = "page">
-
+{{page}}
 </div> 
 <div id="editorui">
 
@@ -43,7 +46,7 @@
   <div id="tabs-1">
     <input type="hidden" id="widgetname"/>
     Code: <br/>
-    <textarea id="code"></textarea>
+    <textarea id="coffee"></textarea>
   </div>
   <div id="tabs-2">
       HTML: <br/>
@@ -59,5 +62,14 @@
 </div><!-- End demo -->
 
 </div> <!-- editorui -->
-<!-- test2 html -->
+<!-- trees -->
+<script type="text/template" id="texttemplate">
+  <li>
+    <div class="designwidget toolbutton">
+      <div class="texticon" data-name="text"></div>
+      text
+    </div>
+  </li>
+</script>
+
 </body></html>

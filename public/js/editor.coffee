@@ -8,7 +8,7 @@ thing = () ->
 editWidget = (widget) ->
   $('#widgetname').data 'mode', 'update'
   $('#widgetname').val widget.name
-  $('#code').val widget.code
+  $('#coffee').val widget.coffee
   $('#html').val widget.html
   $('#css').val widget.css
 
@@ -32,16 +32,16 @@ makeEditable = ->
           now.getWidgetData name, (widgetdata) -> 
             editWidget widgetdata
             $('.demo').dialog
-              height: '450'
+              height: 'auto'
               width: '900'
             widgetdata = $(el).data 'widget'  
             editorhtml = CodeMirror.fromTextArea $("#html")[0],
               value: widgetdata.html 
               mode: "text/html"
               lineNumbers: true
-            editorcode = CodeMirror.fromTextArea $("#code")[0],
-              value: widgetdata.code 
-              mode: "text/javascript"
+            editorcode = CodeMirror.fromTextArea $("#coffee")[0],
+              value: widgetdata.coffee
+              mode: "coffeescript"
               lineNumbers: true
             editorcss = CodeMirror.fromTextArea $("#css")[0],
               value: widgetdata.css 
@@ -55,30 +55,14 @@ makeEditable = ->
       "copy": {name: "Copy", icon: "copy"}
       "edit": {name: "Edit Code", icon: "edit"}
 
-$('#savewidget').click ->
-  data =
-    name: $('#widgetname').val()
-    code: editorcode.getValue()
-    html: editorhtml.getValue()
-    css:  editorcss.getValue()
-
-  mode = $('#widgetname').data 'mode'
-  if mode is 'update'
-    now.dbupdate 'widgets', { name: data.name }, data
-  else
-    now.dbinsert 'widgets', data
-
+window.savePage = ->
+  console.log 'saving html: ' + $('#page').html()
+  now.saveStatic 'page', $('#page').html()
 
 loadwidgets = ->
-  console.log 'inside of loadwidgets'
-  console.log $('.designwidget')
-
   $('#page').droppable
     drop: (ev, ui) ->
-      console.log 'inside of drop'
-      console.log ui
       name = ui.draggable.data 'name'
-      console.log 'name is ' + name
       if window.drophandlers[name]?
         window.drophandlers[name] ev, ui, @
       
@@ -91,6 +75,19 @@ $ ->
      if editorhtml? then editorhtml.refresh()
      if editorcode? then editorcode.refresh()
      if editorcss? then editorcss.refresh()
+
+  $('#savewidget').click ->
+    console.log 'you clicked savewidget' 
+    data =
+      name: $('#widgetname').val()
+      coffee: editorcode.getValue()
+      html: editorhtml.getValue()
+      css:  editorcss.getValue()
+
+    now.saveWidgetData data, ->
+      alert 'Saved'
+
+    now.restartServer()
 
  now.ready ->
     console.log 'now.ready fired'

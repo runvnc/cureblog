@@ -14,7 +14,7 @@
   editWidget = function(widget) {
     $('#widgetname').data('mode', 'update');
     $('#widgetname').val(widget.name);
-    $('#code').val(widget.code);
+    $('#coffee').val(widget.coffee);
     $('#html').val(widget.html);
     return $('#css').val(widget.css);
   };
@@ -41,7 +41,7 @@
             now.getWidgetData(name, function(widgetdata) {
               editWidget(widgetdata);
               $('.demo').dialog({
-                height: '450',
+                height: 'auto',
                 width: '900'
               });
               widgetdata = $(el).data('widget');
@@ -50,9 +50,9 @@
                 mode: "text/html",
                 lineNumbers: true
               });
-              editorcode = CodeMirror.fromTextArea($("#code")[0], {
-                value: widgetdata.code,
-                mode: "text/javascript",
+              editorcode = CodeMirror.fromTextArea($("#coffee")[0], {
+                value: widgetdata.coffee,
+                mode: "coffeescript",
                 lineNumbers: true
               });
               return editorcss = CodeMirror.fromTextArea($("#css")[0], {
@@ -81,34 +81,16 @@
     });
   };
 
-  $('#savewidget').click(function() {
-    var data, mode;
-    data = {
-      name: $('#widgetname').val(),
-      code: editorcode.getValue(),
-      html: editorhtml.getValue(),
-      css: editorcss.getValue()
-    };
-    mode = $('#widgetname').data('mode');
-    if (mode === 'update') {
-      return now.dbupdate('widgets', {
-        name: data.name
-      }, data);
-    } else {
-      return now.dbinsert('widgets', data);
-    }
-  });
+  window.savePage = function() {
+    console.log('saving html: ' + $('#page').html());
+    return now.saveStatic('page', $('#page').html());
+  };
 
   loadwidgets = function() {
-    console.log('inside of loadwidgets');
-    console.log($('.designwidget'));
     $('#page').droppable({
       drop: function(ev, ui) {
         var name;
-        console.log('inside of drop');
-        console.log(ui);
         name = ui.draggable.data('name');
-        console.log('name is ' + name);
         if (window.drophandlers[name] != null) {
           return window.drophandlers[name](ev, ui, this);
         }
@@ -125,6 +107,20 @@
         if (editorcode != null) editorcode.refresh();
         if (editorcss != null) return editorcss.refresh();
       }
+    });
+    $('#savewidget').click(function() {
+      var data;
+      console.log('you clicked savewidget');
+      data = {
+        name: $('#widgetname').val(),
+        coffee: editorcode.getValue(),
+        html: editorhtml.getValue(),
+        css: editorcss.getValue()
+      };
+      now.saveWidgetData(data, function() {
+        return alert('Saved');
+      });
+      return now.restartServer();
     });
     return now.ready(function() {
       console.log('now.ready fired');

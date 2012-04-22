@@ -6,6 +6,7 @@
     "express": "",
     "jade": "",
     "now":"",
+    "request":"",
     "mongolian":"",
     "shelljs": ""
   }
