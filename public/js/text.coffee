@@ -16,35 +16,41 @@ $ ->
   id = guid()
     
   window.drophandlers['text'] = (ev, ui, droppedon) ->
-    newel = $('<div class="widgetcontainer"><div class="textwidget" contenteditable="false" id ="'+id+'">text</div></div>')
+    newel = $('<div class="textwidget" contenteditable="true" id ="'+id+'">text</div>')
     idx = '#' + id
     $(droppedon).append newel
 
-    #newel.css
-    #  position: 'absolute'
-    #  top: ui.position.top + 'px'
-    #  left: ui.position.left + 'px'
+    newel.css
+      position: 'absolute'
+      top: ui.position.top + 'px'
+      left: ui.position.left + 'px'
 
     
     window.savePage()
     console.log @
   
+  ###
   $('.textwidget').live 'click', ->
     console.log 'clicked live'
+    #$(this).parent('.widgetcontainer').draggable('disable')
+    #$(this).find('.widgetcontainer').draggable('disable');
+    #$(this).draggable('disable');
     $(this).find('.textwidget').attr 'contenteditable', true
-    
+    #$(this).find('.textwidget').focus()
+  ###
+  
   $('.textwidget').blur ->  
     window.savePage()
     
-  $('.widgetcontainer').draggable()
-    
-  console.log 'objlist is'
-  console.log $('#objlist')
-  console.log 'widget is '
-  console.log widget    
+  $('.textwidget').draggable().bind 'click', ->
+    $(this).focus()
+  
+      
   $('#objlist').append widget  
   console.log 'appended'
 
+  
+  
   $('.texticon').draggable
     helper: 'clone'
       

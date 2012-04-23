@@ -17,24 +17,32 @@
     id = guid();
     window.drophandlers['text'] = function(ev, ui, droppedon) {
       var idx, newel;
-      newel = $('<div class="widgetcontainer"><div class="textwidget" contenteditable="false" id ="' + id + '">text</div></div>');
+      newel = $('<div class="textwidget" contenteditable="true" id ="' + id + '">text</div>');
       idx = '#' + id;
       $(droppedon).append(newel);
+      newel.css({
+        position: 'absolute',
+        top: ui.position.top + 'px',
+        left: ui.position.left + 'px'
+      });
       window.savePage();
       return console.log(this);
     };
-    $('.textwidget').live('click', function() {
-      console.log('clicked live');
-      return $(this).find('.textwidget').attr('contenteditable', true);
-    });
+    /*
+      $('.textwidget').live 'click', ->
+        console.log 'clicked live'
+        #$(this).parent('.widgetcontainer').draggable('disable')
+        #$(this).find('.widgetcontainer').draggable('disable');
+        #$(this).draggable('disable');
+        $(this).find('.textwidget').attr 'contenteditable', true
+        #$(this).find('.textwidget').focus()
+    */
     $('.textwidget').blur(function() {
       return window.savePage();
     });
-    $('.widgetcontainer').draggable();
-    console.log('objlist is');
-    console.log($('#objlist'));
-    console.log('widget is ');
-    console.log(widget);
+    $('.textwidget').draggable().bind('click', function() {
+      return $(this).focus();
+    });
     $('#objlist').append(widget);
     console.log('appended');
     return $('.texticon').draggable({
