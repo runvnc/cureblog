@@ -7,8 +7,6 @@ config = require './config'
 
 process.config = config
 
-console.log "Hello from thing"
-
 getorder = (fname) -> 
   loadstr = fs.readFileSync fname, 'utf8' 
   loadstr.split '\n' 

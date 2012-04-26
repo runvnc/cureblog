@@ -1,5 +1,5 @@
 (function() {
-  var editWidget, editor, editorcode, editorcss, editorhtml, loadwidgets, makeEditable, thing;
+  var editWidget, editor, editorcode, editorcss, editorhtml, initeditortabs, initialized, loadwidgets, makeEditable, thing;
 
   editor = void 0;
 
@@ -9,6 +9,8 @@
 
   editorcss = void 0;
 
+  initialized = false;
+
   thing = function() {};
 
   editWidget = function(widget) {
@@ -17,6 +19,25 @@
     $('#coffee').val(widget.coffee);
     $('#html').val(widget.html);
     return $('#css').val(widget.css);
+  };
+
+  initeditortabs = function(widgetdata) {
+    initialized = true;
+    editorhtml = CodeMirror.fromTextArea($("#html")[0], {
+      value: widgetdata.html,
+      mode: "text/html",
+      lineNumbers: true
+    });
+    editorcode = CodeMirror.fromTextArea($("#coffee")[0], {
+      value: widgetdata.coffee,
+      mode: "coffeescript",
+      lineNumbers: true
+    });
+    return editorcss = CodeMirror.fromTextArea($("#css")[0], {
+      value: widgetdata.css,
+      mode: "text/css",
+      lineNumbers: true
+    });
   };
 
   makeEditable = function() {
@@ -34,37 +55,23 @@
             console.log(el);
             break;
           case 'edit':
-            console.log('el is ');
-            console.log(el);
             name = $(el).data('name');
-            console.log('editing name is ' + name);
             now.getWidgetData(name, function(widgetdata) {
-              var editorjs;
               editWidget(widgetdata);
               $('.demo').dialog({
+                title: name + ' component - Code Editor',
+                position: 'top',
                 height: 'auto',
                 width: '900'
               });
               widgetdata = $(el).data('widget');
-              editorhtml = CodeMirror.fromTextArea($("#html")[0], {
-                value: widgetdata.html,
-                mode: "text/html",
-                lineNumbers: true
-              });
-              editorcode = CodeMirror.fromTextArea($("#coffee")[0], {
-                value: widgetdata.coffee,
-                mode: "coffeescript",
-                lineNumbers: true
-              });
-              editorcss = CodeMirror.fromTextArea($("#css")[0], {
-                value: widgetdata.css,
-                mode: "text/css",
-                lineNumbers: true
-              });
-              return editorjs = CodeMirror.fromTextArea($("#js")[0], {
-                mode: "javascript",
-                lineNumbers: true
-              });
+              if (!initialized) {
+                return initeditortabs(widgetdata);
+              } else {
+                editorcode.setValue(widgetdata.coffee);
+                editorhtml.setValue(widgetdata.html);
+                return editorcss.setValue(widgetdata.css);
+              }
             });
         }
         return true;
@@ -96,9 +103,7 @@
       drop: function(ev, ui) {
         var name;
         name = ui.draggable.data('name');
-        if (window.drophandlers[name] != null) {
-          return window.drophandlers[name](ev, ui, this);
-        }
+        return $('#page').trigger('drop', [ev, ui, this]);
       }
     });
     return makeEditable();

@@ -3,6 +3,8 @@ editorhtml = undefined
 editorcode = undefined
 editorcss = undefined
 
+initialized = false
+
 thing = () ->
 
 editWidget = (widget) ->
@@ -12,7 +14,21 @@ editWidget = (widget) ->
   $('#html').val widget.html
   $('#css').val widget.css
 
-  
+initeditortabs = (widgetdata) ->
+  initialized = true
+  editorhtml = CodeMirror.fromTextArea $("#html")[0],
+    value: widgetdata.html 
+    mode: "text/html"
+    lineNumbers: true
+  editorcode = CodeMirror.fromTextArea $("#coffee")[0],
+    value: widgetdata.coffee
+    mode: "coffeescript"
+    lineNumbers: true
+  editorcss = CodeMirror.fromTextArea $("#css")[0],
+    value: widgetdata.css 
+    mode: "text/css"
+    lineNumbers: true
+
 makeEditable = ->
   $.contextMenu
     selector: '.designwidget'
@@ -25,34 +41,21 @@ makeEditable = ->
         when 'copy'
           console.log el
         when 'edit' 
-          console.log 'el is '
-          console.log el
           name = $(el).data 'name'
-          console.log 'editing name is ' + name
           now.getWidgetData name, (widgetdata) -> 
             editWidget widgetdata
             $('.demo').dialog
+              title: name + ' component - Code Editor' 
+              position: 'top'
               height: 'auto'
               width: '900'
             widgetdata = $(el).data 'widget'  
-            editorhtml = CodeMirror.fromTextArea $("#html")[0],
-              value: widgetdata.html 
-              mode: "text/html"
-              lineNumbers: true
-            editorcode = CodeMirror.fromTextArea $("#coffee")[0],
-              value: widgetdata.coffee
-              mode: "coffeescript"
-              lineNumbers: true
-            editorcss = CodeMirror.fromTextArea $("#css")[0],
-              value: widgetdata.css 
-              mode: "text/css"
-              lineNumbers: true
-            editorjs = CodeMirror.fromTextArea $("#js")[0],
-              #value: widgetdata.css 
-              mode: "javascript"
-              lineNumbers: true
-
-
+            if not initialized
+              initeditortabs widgetdata
+            else
+              editorcode.setValue widgetdata.coffee
+              editorhtml.setValue widgetdata.html
+              editorcss.setValue widgetdata.css
       true
    
     items:
@@ -68,8 +71,7 @@ loadwidgets = ->
   $('#page').droppable
     drop: (ev, ui) ->
       name = ui.draggable.data 'name'
-      if window.drophandlers[name]?
-        window.drophandlers[name] ev, ui, @
+      $('#page').trigger 'drop', [ev, ui, @];
       
   makeEditable()
 

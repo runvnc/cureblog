@@ -24,9 +24,11 @@
 <script type="text/javascript" src="js/lib/util/search.js"></script>
 <script type="text/javascript" src="js/editor.js"></script>
 <script type="text/javascript" src="js/text.js"></script>
-</head><body><div id = "page">
-{{page}}
-</div> 
+</head><body><!-- <div id="container"> -->
+  <div id = "page">
+    {{page}}
+  </div> 
+<!-- </div> -->
 <div id="editorui">
 
 <div id="widgets"></div>
@@ -43,7 +45,6 @@
     <li><a href="#tabs-1">Code</a></li>
     <li><a href="#tabs-2">HTML</a></li>
     <li><a href="#tabs-3">CSS</a></li>
-    <li><a href="#tabs-4">JS test</a></li>
   </ul>
   <div id="tabs-1">
     <input type="hidden" id="widgetname"/>
@@ -57,10 +58,6 @@
   <div id="tabs-3">
       CSS: <br/>
       <textarea id="css"></textarea>
-  </div>
-  <div id="tabs-4">
-      JS: <br/>
-      <textarea id="js"></textarea>
   </div>
 </div>
 <button id="savewidget">Save</button>
