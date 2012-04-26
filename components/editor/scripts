@@ -2,6 +2,7 @@ lib/codemirror.js
 mode/xml/xml.js
 mode/css/css.js
 mode/coffeescript/coffeescript.js
+mode/javascript/javascript.js
 lib/util/dialog.js
 lib/util/searchcursor.js
 lib/util/search.js

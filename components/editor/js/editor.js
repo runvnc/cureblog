@@ -39,6 +39,7 @@
             name = $(el).data('name');
             console.log('editing name is ' + name);
             now.getWidgetData(name, function(widgetdata) {
+              var editorjs;
               editWidget(widgetdata);
               $('.demo').dialog({
                 height: 'auto',
@@ -55,9 +56,13 @@
                 mode: "coffeescript",
                 lineNumbers: true
               });
-              return editorcss = CodeMirror.fromTextArea($("#css")[0], {
+              editorcss = CodeMirror.fromTextArea($("#css")[0], {
                 value: widgetdata.css,
                 mode: "text/css",
+                lineNumbers: true
+              });
+              return editorjs = CodeMirror.fromTextArea($("#js")[0], {
+                mode: "javascript",
                 lineNumbers: true
               });
             });
@@ -101,6 +106,7 @@
 
   $(function() {
     $('body').prepend($('#editorui'));
+    $('#objs').height($(window).height());
     $('#tabs').tabs({
       show: function(event, ui) {
         if (editorhtml != null) editorhtml.refresh();

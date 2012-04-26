@@ -1,3 +1,8 @@
 #!/bin/bash
-#kill -2 `pgrep -f restarter.coffee`
+if [ `pgrep -f restarter.coffee` ]; then
+  echo 'Restarter already running.'  
+else
+  echo 'Starting restarter'
+  nohup coffee restarter.coffee &
+fi
 coffee runapp.coffee

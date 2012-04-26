@@ -1,6 +1,6 @@
 (function() {
 
-  console.log('hello from text component');
+  console.log('test from text component');
 
   $(function() {
     var btn, data, id, widget, widgethtml;
@@ -15,6 +15,9 @@
     btn.data('widget', data);
     if (!(window.drophandlers != null)) window.drophandlers = {};
     id = guid();
+    $('.texttool').live('click', function() {
+      return $('.texttool.toolbutton').css('boxShadow', 'none');
+    });
     window.drophandlers['text'] = function(ev, ui, droppedon) {
       var idx, newel;
       newel = $('<div class="textwidget" contenteditable="true" id ="' + id + '">text</div>');
@@ -28,15 +31,6 @@
       window.savePage();
       return console.log(this);
     };
-    /*
-      $('.textwidget').live 'click', ->
-        console.log 'clicked live'
-        #$(this).parent('.widgetcontainer').draggable('disable')
-        #$(this).find('.widgetcontainer').draggable('disable');
-        #$(this).draggable('disable');
-        $(this).find('.textwidget').attr 'contenteditable', true
-        #$(this).find('.textwidget').focus()
-    */
     $('.textwidget').blur(function() {
       return window.savePage();
     });

@@ -18,6 +18,7 @@
 <script type="text/javascript" src="js/mode/xml/xml.js"></script>
 <script type="text/javascript" src="js/mode/css/css.js"></script>
 <script type="text/javascript" src="js/mode/coffeescript/coffeescript.js"></script>
+<script type="text/javascript" src="js/mode/javascript/javascript.js"></script>
 <script type="text/javascript" src="js/lib/util/dialog.js"></script>
 <script type="text/javascript" src="js/lib/util/searchcursor.js"></script>
 <script type="text/javascript" src="js/lib/util/search.js"></script>
@@ -30,7 +31,7 @@
 
 <div id="widgets"></div>
 
-<div id="objs">
+<div id="objs" class="grad1">
 
 <ul id="objlist"></ul>
 </div>
@@ -42,6 +43,7 @@
     <li><a href="#tabs-1">Code</a></li>
     <li><a href="#tabs-2">HTML</a></li>
     <li><a href="#tabs-3">CSS</a></li>
+    <li><a href="#tabs-4">JS test</a></li>
   </ul>
   <div id="tabs-1">
     <input type="hidden" id="widgetname"/>
@@ -56,6 +58,10 @@
       CSS: <br/>
       <textarea id="css"></textarea>
   </div>
+  <div id="tabs-4">
+      JS: <br/>
+      <textarea id="js"></textarea>
+  </div>
 </div>
 <button id="savewidget">Save</button>
 
@@ -65,7 +71,7 @@
 <!-- trees -->
 <script type="text/template" id="texttemplate">
   <li>
-    <div class="designwidget toolbutton">
+    <div class="texttool designwidget toolbutton">
       <div class="texticon" data-name="text"></div>
       text
     </div>

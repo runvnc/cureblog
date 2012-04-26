@@ -47,6 +47,11 @@ makeEditable = ->
               value: widgetdata.css 
               mode: "text/css"
               lineNumbers: true
+            editorjs = CodeMirror.fromTextArea $("#js")[0],
+              #value: widgetdata.css 
+              mode: "javascript"
+              lineNumbers: true
+
 
       true
    
@@ -70,6 +75,7 @@ loadwidgets = ->
 
 $ ->
  $('body').prepend $('#editorui')
+ $('#objs').height($(window).height());
  $('#tabs').tabs
    show: (event, ui) ->
      if editorhtml? then editorhtml.refresh()

@@ -1,4 +1,4 @@
-console.log 'hello from text component'
+console.log 'test from text component'
 
 $ ->
   console.log 'text comp'
@@ -15,6 +15,9 @@ $ ->
 
   id = guid()
     
+  $('.texttool').live 'click', ->
+    $('.texttool.toolbutton').css 'boxShadow', 'none';
+  
   window.drophandlers['text'] = (ev, ui, droppedon) ->
     newel = $('<div class="textwidget" contenteditable="true" id ="'+id+'">text</div>')
     idx = '#' + id
@@ -29,15 +32,6 @@ $ ->
     window.savePage()
     console.log @
   
-  ###
-  $('.textwidget').live 'click', ->
-    console.log 'clicked live'
-    #$(this).parent('.widgetcontainer').draggable('disable')
-    #$(this).find('.widgetcontainer').draggable('disable');
-    #$(this).draggable('disable');
-    $(this).find('.textwidget').attr 'contenteditable', true
-    #$(this).find('.textwidget').focus()
-  ###
   
   $('.textwidget').blur ->  
     window.savePage()
@@ -48,7 +42,6 @@ $ ->
       
   $('#objlist').append widget  
   console.log 'appended'
-
   
   
   $('.texticon').draggable
