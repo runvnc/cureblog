@@ -53,6 +53,9 @@
             break;
           case 'copy':
             console.log(el);
+            now.copyComponent($(el).data('name'), function() {
+              return window.location.reload();
+            });
             break;
           case 'edit':
             name = $(el).data('name');
@@ -82,7 +85,7 @@
           icon: "delete"
         },
         "copy": {
-          name: "Copy",
+          name: "Make a Copy",
           icon: "copy"
         },
         "edit": {

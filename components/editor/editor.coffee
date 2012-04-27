@@ -2,6 +2,7 @@ everyone = process.everyone
 fs = require 'fs'
 util = require 'util'
 childproc = require 'child_process'
+sh = require 'shelljs'
 
 everyone.now.getWidgetData = (name, callback) ->
   data =
@@ -24,3 +25,13 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
   callback()  
+
+everyone.now.copyComponent = (name, callback) ->
+  n = 1
+  callback()
+  #numarr = name.match /[0-9]+$/m  
+  #if numarr? then n = numarr[0]+1
+  #newname = name + (n.toString())
+  #sh.cp '-Rf', "components/#{name}", "components/#{newname}" 
+  #add to loadorder 
+ 

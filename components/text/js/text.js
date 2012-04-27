@@ -80,7 +80,13 @@
   })();
 
   $(function() {
-    return window.textTool = new TextTool();
+    window.textTool = new TextTool();
+    return $('.textwidget').each(function() {
+      var text, x, y;
+      x = $(this).position().left;
+      y = $(this).position().top;
+      return text = new TextWidget($('#page'), x, y, $(this).attr('id'));
+    });
   });
 
 }).call(this);

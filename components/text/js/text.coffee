@@ -56,4 +56,8 @@ class TextTool
     
 $ ->
   window.textTool = new TextTool()
-  
+  $('.textwidget').each ->
+    x = $(this).position().left
+    y = $(this).position().top
+    text = new TextWidget($('#page'), x, y, $(this).attr('id'))
+                                        

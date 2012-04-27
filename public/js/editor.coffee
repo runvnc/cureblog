@@ -40,6 +40,7 @@ makeEditable = ->
           
         when 'copy'
           console.log el
+          now.copyComponent($(el).data('name'), -> window.location.reload())
         when 'edit' 
           name = $(el).data 'name'
           now.getWidgetData name, (widgetdata) -> 
@@ -60,7 +61,7 @@ makeEditable = ->
    
     items:
       "delete": {name: "Delete", icon: "delete"}
-      "copy": {name: "Copy", icon: "copy"}
+      "copy": {name: "Make a Copy", icon: "copy"}
       "edit": {name: "Edit Code", icon: "edit"}
 
 window.savePage = ->
