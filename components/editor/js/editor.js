@@ -14,27 +14,26 @@
   thing = function() {};
 
   editWidget = function(widget) {
+    console.log('inside of editwidget');
+    console.log(widget);
     $('#widgetname').data('mode', 'update');
     $('#widgetname').val(widget.name);
-    $('#coffee').val(widget.coffee);
-    $('#html').val(widget.html);
-    return $('#css').val(widget.css);
+    editorcode.setValue(widget.coffee);
+    editorhtml.setValue(widget.html);
+    return editorcss.setValue(widget.css);
   };
 
-  initeditortabs = function(widgetdata) {
+  initeditortabs = function() {
     initialized = true;
     editorhtml = CodeMirror.fromTextArea($("#html")[0], {
-      value: widgetdata.html,
       mode: "text/html",
       lineNumbers: true
     });
     editorcode = CodeMirror.fromTextArea($("#coffee")[0], {
-      value: widgetdata.coffee,
       mode: "coffeescript",
       lineNumbers: true
     });
     return editorcss = CodeMirror.fromTextArea($("#css")[0], {
-      value: widgetdata.css,
       mode: "text/css",
       lineNumbers: true
     });
@@ -109,6 +108,20 @@
         return $('#page').trigger('drop', [ev, ui, this]);
       }
     });
+    now.listComponents(function(components) {
+      var component, str, _i, _len;
+      str = '';
+      for (_i = 0, _len = components.length; _i < _len; _i++) {
+        component = components[_i];
+        str += "<li>" + component + "</li>";
+      }
+      $('#components').html(str);
+      return $('#components li').click(function() {
+        return now.getWidgetData($(this).text(), function(widgetdata) {
+          return editWidget(widgetdata);
+        });
+      });
+    });
     return makeEditable();
   };
 
@@ -137,8 +150,17 @@
       return now.restartServer();
     });
     return now.ready(function() {
-      console.log('now.ready fired');
-      return loadwidgets();
+      var btn;
+      loadwidgets();
+      btn = $('#objs').prepend('<a href="#" class="button white">Code Editor</a>');
+      return btn.click(function() {
+        return $('.demo').dialog({
+          title: name + ' component - Code Editor',
+          position: 'top',
+          height: 'auto',
+          width: $(window).width() * .7
+        }, initeditortabs());
+      });
     });
   });
 

@@ -26,12 +26,22 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
   callback()  
 
+everyone.now.listComponents = (callback) ->
+  fs.readdir 'components', (err, files) ->
+    callback files 
+
 everyone.now.copyComponent = (name, callback) ->
   n = 1
-  callback()
-  #numarr = name.match /[0-9]+$/m  
-  #if numarr? then n = numarr[0]+1
-  #newname = name + (n.toString())
-  #sh.cp '-Rf', "components/#{name}", "components/#{newname}" 
+  numarr = name.match /[0-9]+$/m  
+  if numarr? then n = numarr[0]+1
+  newname = name + (n.toString())
+  sh.mkdir '-p', "components/#{newname}"
+  sh.cp '-R', "components/#{name}/*", "components/#{newname}" 
+  #sh.mv '', "components/#{newname}/#{name}.coffee", "components/#{newname}/#{newname}.coffee"
+  #sh.mv '', "components/#{newname}/#{name}.html", "components/#{newname}/#{newname}.html"
+  #sh.mv '', "components/#{newname}/css/#{name}.css", "components/#{newname}/css/#{newname}.css"
+  #sh.mv '', "components/#{newname}/js/#{name}.coffee", "components/#{newname}/js/#{newname}.coffee"
+  #childproc.exec "coffee -o components/#{newname}/js -c components/#{newname}/js/#{newname}.coffee", (er, o, e) ->
+  #  callback()  
   #add to loadorder 
  

@@ -8,28 +8,36 @@
 </div>
 
 <div class="demo">
+  <div id="nav">
+    Select a component to edit:
+    <ul id="components">    
+    </ul>
+  </div> 
 
-<div id="tabs">
-  <ul>
-    <li><a href="#tabs-1">Code</a></li>
-    <li><a href="#tabs-2">HTML</a></li>
-    <li><a href="#tabs-3">CSS</a></li>
-  </ul>
-  <div id="tabs-1">
-    <input type="hidden" id="widgetname"/>
-    Code: <br/>
-    <textarea id="coffee"></textarea>
-  </div>
-  <div id="tabs-2">
-      HTML: <br/>
-      <textarea id="html"></textarea>
-  </div>
-  <div id="tabs-3">
-      CSS: <br/>
-      <textarea id="css"></textarea>
-  </div>
-</div>
-<button id="savewidget">Save</button>
+  <div id="dialogcontent">
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1">Code</a></li>
+        <li><a href="#tabs-2">HTML</a></li>
+        <li><a href="#tabs-3">CSS</a></li>
+      </ul>
+      <div id="tabs-1">
+        <input type="hidden" id="widgetname"/>
+        Code: <br/>
+        <textarea id="coffee"></textarea>
+      </div>
+      <div id="tabs-2">
+          HTML: <br/>
+          <textarea id="html"></textarea>
+      </div>
+      <div id="tabs-3">
+          CSS: <br/>
+          <textarea id="css"></textarea>
+      </div>
+    </div>
+  </div> <!-- dialogcontent -->
+
+  <button id="savewidget">Save</button>
 
 </div><!-- End demo -->
 

@@ -8,24 +8,23 @@ initialized = false
 thing = () ->
 
 editWidget = (widget) ->
+  console.log 'inside of editwidget'
+  console.log widget
   $('#widgetname').data 'mode', 'update'
   $('#widgetname').val widget.name
-  $('#coffee').val widget.coffee
-  $('#html').val widget.html
-  $('#css').val widget.css
+  editorcode.setValue widget.coffee
+  editorhtml.setValue widget.html
+  editorcss.setValue widget.css
 
-initeditortabs = (widgetdata) ->
+initeditortabs =  ->
   initialized = true
   editorhtml = CodeMirror.fromTextArea $("#html")[0],
-    value: widgetdata.html 
     mode: "text/html"
     lineNumbers: true
   editorcode = CodeMirror.fromTextArea $("#coffee")[0],
-    value: widgetdata.coffee
     mode: "coffeescript"
     lineNumbers: true
   editorcss = CodeMirror.fromTextArea $("#css")[0],
-    value: widgetdata.css 
     mode: "text/css"
     lineNumbers: true
 
@@ -73,17 +72,26 @@ loadwidgets = ->
     drop: (ev, ui) ->
       name = ui.draggable.data 'name'
       $('#page').trigger 'drop', [ev, ui, @];
-      
+
+  now.listComponents (components) ->
+    str = ''
+    for component in components
+      str += "<li>#{component}</li>"
+    $('#components').html str  
+    $('#components li').click ->
+      now.getWidgetData $(@).text(), (widgetdata) -> 
+        editWidget widgetdata
+  
   makeEditable()
 
 $ ->
- $('body').prepend $('#editorui')
- $('#objs').height($(window).height());
- $('#tabs').tabs
-   show: (event, ui) ->
-     if editorhtml? then editorhtml.refresh()
-     if editorcode? then editorcode.refresh()
-     if editorcss? then editorcss.refresh()
+  $('body').prepend $('#editorui')
+  $('#objs').height($(window).height());
+  $('#tabs').tabs
+    show: (event, ui) ->
+      if editorhtml? then editorhtml.refresh()
+      if editorcode? then editorcode.refresh()
+      if editorcss? then editorcss.refresh()
 
   $('#savewidget').click ->
     console.log 'you clicked savewidget' 
@@ -98,7 +106,25 @@ $ ->
 
     now.restartServer()
 
- now.ready ->
-    console.log 'now.ready fired'
+  now.ready ->
     loadwidgets()
+    btn = $('#objs').prepend '<a href="#" class="button white">Code Editor</a>'
+    btn.click ->
+      #name = 'text'
+      #now.getWidgetData name, (widgetdata) -> 
+      #editWidget widgetdata
+      $('.demo').dialog
+        title: name + ' component - Code Editor' 
+        position: 'top'
+        height: 'auto'
+        width: $(window).width() * .7
+        initeditortabs()
+       
+        #widgetdata = $(el).data 'widget'  
+        #if not initialized
+        #  initeditortabs widgetdata
+        #else
+        #  editorcode.setValue widgetdata.coffee
+        #  editorhtml.setValue widgetdata.html
+        #  editorcss.setValue widgetdata.css
 
