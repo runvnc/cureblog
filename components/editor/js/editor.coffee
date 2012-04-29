@@ -1,68 +1,93 @@
+#testing
 editor = undefined
 editorhtml = undefined
-editorcode = undefined
+editorbrowser = undefined
+editornodejs = undefined
 editorcss = undefined
 
 initialized = false
 
 thing = () ->
 
-editWidget = (widget) ->
-  console.log 'inside of editwidget'
-  console.log widget
+editWidget = (widget) -> 
   $('#widgetname').data 'mode', 'update'
   $('#widgetname').val widget.name
-  editorcode.setValue widget.coffee
+  window.createCookie 'lastScreen', widget.name
+  $('.demo').dialog 'option', 'title', widget.name
+  editorbrowser.setValue widget.browser
+  editornodejs.setValue widget.nodejs
   editorhtml.setValue widget.html
   editorcss.setValue widget.css
 
 initeditortabs =  ->
+  if initialized then return
   initialized = true
   editorhtml = CodeMirror.fromTextArea $("#html")[0],
     mode: "text/html"
     lineNumbers: true
-  editorcode = CodeMirror.fromTextArea $("#coffee")[0],
+  editorbrowser = CodeMirror.fromTextArea $("#browser")[0],
+    mode: "coffeescript"
+    lineNumbers: true
+  editornodejs = CodeMirror.fromTextArea $("#nodejs")[0],
     mode: "coffeescript"
     lineNumbers: true
   editorcss = CodeMirror.fromTextArea $("#css")[0],
     mode: "text/css"
     lineNumbers: true
+  lastScreen = window.readCookie 'lastScreen'
+  if lastScreen?
+    now.getWidgetData lastScreen, (widgetdata, err) -> 
+      if err?
+        alert 'Error loading widget data: ' + err.message
+      else
+        editWidget widgetdata    
 
+  
 makeEditable = ->
   $.contextMenu
-    selector: '.designwidget'
-    trigger: 'right'
+    selector: '.compmenu'
+    trigger: 'hover'
+    autoHide: false
     callback: (key, options, e) ->
       el = window.lastMenuEvent.currentTarget
-      switch key
-        when 'delete' then console.log 'delete'
-          
-        when 'copy'
-          console.log el
-          now.copyComponent($(el).data('name'), -> window.location.reload())
-        when 'edit' 
-          name = $(el).data 'name'
-          now.getWidgetData name, (widgetdata) -> 
-            editWidget widgetdata
-            $('.demo').dialog
-              title: name + ' component - Code Editor' 
-              position: 'top'
-              height: 'auto'
-              width: '900'
-            widgetdata = $(el).data 'widget'  
-            if not initialized
-              initeditortabs widgetdata
-            else
-              editorcode.setValue widgetdata.coffee
-              editorhtml.setValue widgetdata.html
-              editorcss.setValue widgetdata.css
-      true
-   
-    items:
-      "delete": {name: "Delete", icon: "delete"}
-      "copy": {name: "Make a Copy", icon: "copy"}
-      "edit": {name: "Edit Code", icon: "edit"}
+      name = $(el).parent().find('.compname').text()
 
+      switch key
+        when 'delete'
+          if window.confirm "Delete #{name}? (Can't be undone!)"
+            now.deleteComponent name, (success, err) ->
+              if err?
+                alert 'Failed: ' + err.message
+              else
+                $('.demo').html 'Component was deleted.  Reloading application..'
+                window.delay 2000, -> window.location.reload()
+                now.restartServer()
+          
+          else
+            console.log "Not deleting"
+          
+        when 'copy'          
+          now.copyComponent name, (success, err) ->
+            if not err?
+              $('.demo').html "#{name} copied successfully. Reloading application."              
+              window.delay 2000, -> window.location.reload()
+            else
+              alert 'Error copying component: ' + err.message
+            
+        when 'edit' 
+          now.getWidgetData name, (widgetdata, err) ->      
+            if err?
+              alert 'Error loading widget data: ' + err.message
+            else
+              editWidget widgetdata
+
+      true
+
+    items:
+      "edit": {name: "Edit Code", icon: "edit"}    
+      "copy": {name: "Make a Copy", icon: "copy"}
+      "delete": {name: "Delete", icon: "delete"}
+      
 window.savePage = ->
   console.log 'saving html: ' + $('#page').html()
   now.saveStatic 'page', $('#page').html()
@@ -76,55 +101,57 @@ loadwidgets = ->
   now.listComponents (components) ->
     str = ''
     for component in components
-      str += "<li>#{component}</li>"
+      str += "<li><span class=\"compname\">#{component}</span><span class=\"compmenu\">▼</span></li>"
     $('#components').html str  
-    $('#components li').click ->
-      now.getWidgetData $(@).text(), (widgetdata) -> 
-        editWidget widgetdata
+    $('.compname').click ->
+      now.getWidgetData $(@).text(), (widgetdata, err) ->      
+        if err?
+          alert 'Error loading widget data: ' + err.message
+        else
+          editWidget widgetdata
   
   makeEditable()
 
 $ ->
   $('body').prepend $('#editorui')
-  $('#objs').height($(window).height());
+  $('#objs').height $(window).height()
+  
   $('#tabs').tabs
     show: (event, ui) ->
       if editorhtml? then editorhtml.refresh()
-      if editorcode? then editorcode.refresh()
+      if editorbrowser? then editorbrowser.refresh()
       if editorcss? then editorcss.refresh()
+      if editornodejs? then editornodejs.refresh()
 
-  $('#savewidget').click ->
-    console.log 'you clicked savewidget' 
+  $('#savewidget').click -> 
     data =
       name: $('#widgetname').val()
-      coffee: editorcode.getValue()
+      browser: editorbrowser.getValue()
       html: editorhtml.getValue()
       css:  editorcss.getValue()
+      nodejs:  editornodejs.getValue()
 
     now.saveWidgetData data, ->
-      alert 'Saved'
+      $('.demo').html 'Your edits have been saved.  Reloading application..'
+      setTimeout ( -> window.location.reload() ), 2000
 
     now.restartServer()
 
   now.ready ->
     loadwidgets()
-    btn = $('#objs').prepend '<a href="#" class="button white">Code Editor</a>'
+    btn = $('#objs').prepend '<button class="button white">Code Editor</button>'
     btn.click ->
-      #name = 'text'
-      #now.getWidgetData name, (widgetdata) -> 
-      #editWidget widgetdata
       $('.demo').dialog
         title: name + ' component - Code Editor' 
         position: 'top'
-        height: 'auto'
+        height: $(window).height() * .9
         width: $(window).width() * .7
-        initeditortabs()
-       
-        #widgetdata = $(el).data 'widget'  
-        #if not initialized
-        #  initeditortabs widgetdata
-        #else
-        #  editorcode.setValue widgetdata.coffee
-        #  editorhtml.setValue widgetdata.html
-        #  editorcss.setValue widgetdata.css
+
+      window.delay 500, ->      
+        $(".ui-tabs-panel").height $(window).height() * .7
+        $(".CodeMirror").height $(window).height() * .65
+        window.delay 500, ->
+          $(".CodeMirror-scroll").height $(window).height() * .7
+          
+      initeditortabs()
 

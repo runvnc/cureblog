@@ -113,10 +113,8 @@
         base = 1;
       else if (obj.className == "function") {
         if (window.jQuery != null && (obj.string == '$' || obj.string == 'jQuery') &&
-            (typeof window.jQuery == 'function'))
-          base = window.jQuery();
-        else if (window._ != null && (obj.string == '_') && (typeof window._ == 'function'))
-          base = window._();
+            (typeof jQuery == 'function')) base = jQuery();
+        else if (window._ != null && (obj.string == '_') && (typeof _ == 'function')) base = _();
       }
       while (base != null && context.length)
         base = base[context.pop().string];

@@ -1,3 +1,4 @@
+#dogs  dsfgsdfg
 class TextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?

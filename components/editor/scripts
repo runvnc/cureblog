@@ -1,6 +1,8 @@
 lib/codemirror.js
 mode/xml/xml.js
 mode/css/css.js
+lib/util/simple-hint.js
+lib/util/javascript-hint.js
 mode/coffeescript/coffeescript.js
 mode/javascript/javascript.js
 lib/util/dialog.js

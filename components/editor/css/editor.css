@@ -16,7 +16,7 @@
 
 #objs {
   border: 1px solid #000;
-  width: 11%;
+  width: 13%;
   height: 100%;
   float: left; 
 }
@@ -24,11 +24,11 @@
 #page {
   position: relative;
   border: 1px dotted #aaa;
-  width: 88%;
+  width: 86%;
   height: 100%;
   min-height: 700px; 
   top: 0%;
-  left: 10%;
+  left: 13%;
 }
 
 #objlist {
@@ -48,7 +48,7 @@
 .demo {
   display: none; 
   width: 800px;
-  height: 580px;
+  height: 800px;
   overflow: hidden;
   position: relative;
 }
@@ -127,7 +127,12 @@
   background: -moz-linear-gradient(top,  #fff,  #ededed);
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
 }
-.white:hover {
+.white:hover {.CodeMirror-scroll {
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+  width: 100%
+}
   background: #ededed;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
   background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
@@ -142,11 +147,43 @@
 
 #nav {
   float: left;
-  width: 10%;
+  width: 20%;
 }
 
 #dialogcontent {
-  width: 89%;
+  width: 79%;
   float: left;  
+  position: relative;
+  height: 100%;
+}
+
+#components li {
+  border-bottom: 1px dotted blue;
+  cursor: pointer;
+  margin-right: 40px;
+  margin-bottom: 10px;
+}
+
+#components li:hover {
+  background-color: #eee;
+}
+
+#selectedcomponent {
+  margin-bottom: 10px; 
+}
+
+.editornotes {
+  font-size: 10pt; 
+}
+
+.compmenu {
+  float: right; 
+
+}
+
+#savewidget {
+  position: absolute;
+  top: 90%;
+  left: 12%;
 }
 

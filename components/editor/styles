@@ -1,3 +1,5 @@
 lib/codemirror.css
+coffeescript.css
+lib/util/simple-hint.css
 lib/util/dialog.css
 editor.css
