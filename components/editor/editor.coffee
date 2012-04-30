@@ -33,9 +33,26 @@ everyone.now.saveWidgetData = (data, callback) ->
   callback()  
 
 everyone.now.listComponents = (callback) ->
-  fs.readdir 'components', (err, files) ->
-    callback files 
+  active = process.listfile 'loadorder'
+  fs.readdir 'components', (err, dirs) ->
+    ret = []
+    for comp in active
+      ret.push
+        name: comp
+        active: true
+    for dir in dirs
+      if not (dir in active)
+        ret.push
+          name: dir
+          active: (dir in active)
+    callback ret
 
+everyone.now.setActiveComponents = (list, callback) ->
+  str = list.join '\n'
+  fs.writeFile 'loadorder', str, 'utf8', (err) ->
+    callback err
+    
+    
 everyone.now.deleteComponent = (name, callback) ->
   try
     sh.rm '-Rf', "components/#{name}"
@@ -53,6 +70,10 @@ everyone.now.copyComponent = (name, callback) ->
   fs.rename "components/#{newname}/#{name}.coffee", "components/#{newname}/#{newname}.coffee"
   fs.rename "components/#{newname}/#{name}.html", "components/#{newname}/#{newname}.html"
   fs.rename "components/#{newname}/css/#{name}.css", "components/#{newname}/css/#{newname}.css"
+  scripts = fs.readFile "components/#{newname}/scripts", 'utf8', (err, data) ->
+    scripts = data.replace /^name\.js$/m, newname
+    fs.writeFile "components/#{newname}/scripts", scripts, 'utf8'
+    
   fs.rename "components/#{newname}/js/#{name}.coffee", "components/#{newname}/js/#{newname}.coffee", (err) ->
     if not err?
       childproc.exec "coffee -o components/#{newname}/js -c components/#{newname}/js/#{newname}.coffee", (er, o, e) ->

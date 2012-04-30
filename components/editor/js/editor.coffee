@@ -101,7 +101,10 @@ loadwidgets = ->
   now.listComponents (components) ->
     str = ''
     for component in components
-      str += "<li><span class=\"compname\">#{component}</span><span class=\"compmenu\">▼</span></li>"
+      checked = ''
+      if component.active then checked = 'checked="checked"'
+      check = '<input type="checkbox" ' + checked + '/>'
+      str += "<li>#{check}&nbsp;<span class=\"compname\">#{component.name}</span><span class=\"compmenu\">▼</span></li>"
     $('#components').html str  
     $('.compname').click ->
       now.getWidgetData $(@).text(), (widgetdata, err) ->      
@@ -135,12 +138,18 @@ $ ->
       $('.demo').html 'Your edits have been saved.  Reloading application..'
       setTimeout ( -> window.location.reload() ), 2000
 
+    active = []
+    $('#components li').each ->
+      if $(@).find('input').is(':checked')
+        active.push $(@).find('.compname').text()
+    now.setActiveComponents active                                          
+      
     now.restartServer()
 
   now.ready ->
     loadwidgets()
-    btn = $('#objs').prepend '<button class="button white">Code Editor</button>'
-    btn.click ->
+    $('#objs').prepend '<button id="editcode" class="button white">Code Editor</button>'
+    $('#editcode').click ->
       $('.demo').dialog
         title: name + ' component - Code Editor' 
         position: 'top'

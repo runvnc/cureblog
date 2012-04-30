@@ -139,11 +139,14 @@
       }
     });
     now.listComponents(function(components) {
-      var component, str, _i, _len;
+      var check, checked, component, str, _i, _len;
       str = '';
       for (_i = 0, _len = components.length; _i < _len; _i++) {
         component = components[_i];
-        str += "<li><span class=\"compname\">" + component + "</span><span class=\"compmenu\">▼</span></li>";
+        checked = '';
+        if (component.active) checked = 'checked="checked"';
+        check = '<input type="checkbox" ' + checked + '/>';
+        str += "<li>" + check + "&nbsp;<span class=\"compname\">" + component.name + "</span><span class=\"compmenu\">▼</span></li>";
       }
       $('#components').html(str);
       return $('.compname').click(function() {
@@ -171,7 +174,7 @@
       }
     });
     $('#savewidget').click(function() {
-      var data;
+      var active, data;
       data = {
         name: $('#widgetname').val(),
         browser: editorbrowser.getValue(),
@@ -185,13 +188,19 @@
           return window.location.reload();
         }), 2000);
       });
+      active = [];
+      $('#components li').each(function() {
+        if ($(this).find('input').is(':checked')) {
+          return active.push($(this).find('.compname').text());
+        }
+      });
+      now.setActiveComponents(active);
       return now.restartServer();
     });
     return now.ready(function() {
-      var btn;
       loadwidgets();
-      btn = $('#objs').prepend('<button class="button white">Code Editor</button>');
-      return btn.click(function() {
+      $('#objs').prepend('<button id="editcode" class="button white">Code Editor</button>');
+      return $('#editcode').click(function() {
         $('.demo').dialog({
           title: name + ' component - Code Editor',
           position: 'top',
