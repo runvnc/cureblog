@@ -12,3 +12,7 @@
 .textwidget {
   margin: 10px; 
 }
+
+.topofwidget {
+  display: none; 
+}

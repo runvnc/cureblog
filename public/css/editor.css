@@ -74,6 +74,7 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
   background: -moz-linear-gradient(top,  #fff,  #ededed);
   filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed'); 
+  margin-left: 10px;
 }
 
 .toolbutton.active {
@@ -185,5 +186,9 @@
   position: absolute;
   top: 90%;
   left: 12%;
+}
+
+#editcode {
+  margin-left: 15px
 }
 

@@ -80,11 +80,16 @@ makeEditable = ->
               alert 'Error loading widget data: ' + err.message
             else
               editWidget widgetdata
+              
+        when 'rename'
+        	$(el).parent().find('.compname').attr('contenteditable', true).focus().select().blur ->
+              now.renameComponent name, $(el).parent().find('.compname').text()
 
       true
 
     items:
-      "edit": {name: "Edit Code", icon: "edit"}    
+      "edit": {name: "Edit Code", icon: "edit"}  
+      "rename": {name: "Rename", icon: "edit"}
       "copy": {name: "Make a Copy", icon: "copy"}
       "delete": {name: "Delete", icon: "delete"}
       

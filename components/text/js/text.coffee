@@ -2,7 +2,7 @@ class TextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
       @id = guid()
-      @el = $('<div class="textwidget" contenteditable="true" id ="'+@id+'">text</div>')
+      @el = $('<div class="textwidget" contenteditable="true" id ="'+@id+'"><div class="topofwidget">(      )</div>text</div>')
       idx = '#' + @id
       @parent.append @el
       @el.css
@@ -18,8 +18,10 @@ class TextWidget
   
     $('.textwidget').draggable(
       stop: ->
+        $(this).find('.topofwidget').hide()
         window.savePage()
     ).bind 'click', ->
+      $(this).find('.topofwidget').show().css('color', 'red')
       $(this).focus()
     
   
@@ -47,8 +49,14 @@ class TextTool
         
     
     $('#page').bind 'click', (ev) =>
+      if ev.offsetX?
+        x = ev.offsetX
+        y = ev.offsetY
+      else
+        x = ev.pageX - $('#page')[0].offsetLeft
+        y = ev.pageY - $('#page')[0].offsetTop
       if @active
-        text = new TextWidget($('#page'), ev.offsetX, ev.offsetY)
+        text = new TextWidget($('#page'), x, y)
         
     $('#objlist').append widget  
     console.log 'appended'

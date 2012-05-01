@@ -3,6 +3,9 @@ fs = require 'fs'
 util = require 'util'
 childproc = require 'child_process'
 sh = require 'shelljs'
+GitHubApi = require "github"
+request = require 'request'
+
 
 everyone.now.getWidgetData = (name, callback) ->
   try
@@ -71,8 +74,11 @@ everyone.now.copyComponent = (name, callback) ->
   fs.rename "components/#{newname}/#{name}.html", "components/#{newname}/#{newname}.html"
   fs.rename "components/#{newname}/css/#{name}.css", "components/#{newname}/css/#{newname}.css"
   scripts = fs.readFile "components/#{newname}/scripts", 'utf8', (err, data) ->
-    scripts = data.replace /^name\.js$/m, newname
+    scripts = data.replace "#{name}.js", "#{newname}.js"    
     fs.writeFile "components/#{newname}/scripts", scripts, 'utf8'
+  styles = fs.readFile "components/#{newname}/styles", 'utf8', (err, data) ->
+    styles = data.replace "#{name}.css", "#{newname}.css"    
+    fs.writeFile "components/#{newname}/styles", styles, 'utf8'
     
   fs.rename "components/#{newname}/js/#{name}.coffee", "components/#{newname}/js/#{newname}.coffee", (err) ->
     if not err?
@@ -81,4 +87,33 @@ everyone.now.copyComponent = (name, callback) ->
     else
       callback false, err
   #add to loadorder 
+
+everyone.now.renameComponent = (name, newname, callback) ->
+  console.log 'received rename for ' + name + ' to ' + newname
+  fs.rename "components/#{name}/#{name}.coffee", "components/#{name}/#{newname}.coffee"
+  fs.rename "components/#{name}/#{name}.html", "components/#{name}/#{newname}.html"
+  fs.rename "components/#{name}/css/#{name}.css", "components/#{name}/css/#{newname}.css"
+  scripts = fs.readFile "components/#{name}/scripts", 'utf8', (err, data) ->
+    scripts = data.replace "#{name}.js", "#{newname}.js"    
+    fs.writeFile "components/#{name}/scripts", scripts, 'utf8'
+  styles = fs.readFile "components/#{name}/styles", 'utf8', (err, data) ->
+    styles = data.replace "#{name}.css", "#{newname}.css"    
+    fs.writeFile "components/#{name}/styles", styles, 'utf8'
+    
+  fs.rename "components/#{name}/js/#{name}.coffee", "components/#{name}/js/#{newname}.coffee", (err) ->
+    if not err?
+      childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{newname}.coffee", (er, o, e) ->
+        fs.rename "components/#{name}", "components/#{newname}"
+        callback true
+    else
+      callback false, err
+
+###      
+#everyone.now.testGit = ->
+#  #GET /gists/:gist_id/comments
+#  options =
+#    method: 'GET'
+#    url: "https://api.github.com/gists/'
+###
+
 

@@ -105,12 +105,21 @@
                 return editWidget(widgetdata);
               }
             });
+            break;
+          case 'rename':
+            $(el).parent().find('.compname').attr('contenteditable', true).focus().select().blur(function() {
+              return now.renameComponent(name, $(el).parent().find('.compname').text());
+            });
         }
         return true;
       },
       items: {
         "edit": {
           name: "Edit Code",
+          icon: "edit"
+        },
+        "rename": {
+          name: "Rename",
           icon: "edit"
         },
         "copy": {

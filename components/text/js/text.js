@@ -11,7 +11,7 @@
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="textwidget" contenteditable="true" id ="' + this.id + '">text</div>');
+        this.el = $('<div class="textwidget" contenteditable="true" id ="' + this.id + '"><div class="topofwidget">(      )</div>text</div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({
@@ -28,9 +28,11 @@
       });
       $('.textwidget').draggable({
         stop: function() {
+          $(this).find('.topofwidget').hide();
           return window.savePage();
         }
       }).bind('click', function() {
+        $(this).find('.topofwidget').show().css('color', 'red');
         return $(this).focus();
       });
     }
@@ -66,10 +68,15 @@
         }
       });
       $('#page').bind('click', function(ev) {
-        var text;
-        if (_this.active) {
-          return text = new TextWidget($('#page'), ev.offsetX, ev.offsetY);
+        var text, x, y;
+        if (ev.offsetX != null) {
+          x = ev.offsetX;
+          y = ev.offsetY;
+        } else {
+          x = ev.pageX - $('#page')[0].offsetLeft;
+          y = ev.pageY - $('#page')[0].offsetTop;
         }
+        if (_this.active) return text = new TextWidget($('#page'), x, y);
       });
       $('#objlist').append(widget);
       console.log('appended');
