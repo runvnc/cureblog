@@ -135,8 +135,10 @@
   };
 
   window.savePage = function() {
-    console.log('saving html: ' + $('#page').html());
-    return now.saveStatic('page', $('#page').html());
+    $(document).trigger('savePage');
+    return window.delay(500, function() {
+      return now.saveStatic('page', $('#page').html());
+    });
   };
 
   loadwidgets = function() {

@@ -8,6 +8,7 @@ class Recycler
       drop: (ev, ui) ->
         name = ui.draggable.data 'name'
         ui.draggable.remove()
+        window.savePage()
         
 $ ->
   window.recycler = new Recycler()

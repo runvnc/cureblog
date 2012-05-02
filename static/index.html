@@ -8,8 +8,10 @@
 <link rel="stylesheet" type="text/css" href="css/lib/util/simple-hint.css"/>
 <link rel="stylesheet" type="text/css" href="css/lib/util/dialog.css"/>
 <link rel="stylesheet" type="text/css" href="css/editor.css"/>
-<link rel="stylesheet" type="text/css" href="css/text.css"/>
 <link rel="stylesheet" type="text/css" href="css/recycler.css"/>
+<link rel="stylesheet" type="text/css" href="css/jquery.cleditor.css"/>
+<link rel="stylesheet" type="text/css" href="css/ipwtext.css"/>
+<link rel="stylesheet" type="text/css" href="css/googlefonts.css"/>
 <script type="text/javascript" src="js/handlebars.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
@@ -28,8 +30,11 @@
 <script type="text/javascript" src="js/lib/util/searchcursor.js"></script>
 <script type="text/javascript" src="js/lib/util/search.js"></script>
 <script type="text/javascript" src="js/editor.js"></script>
-<script type="text/javascript" src="js/text.js"></script>
 <script type="text/javascript" src="js/recycler.js"></script>
+<script type="text/javascript" src="js/jquery.editable-1.3.3.js"></script>
+<script type="text/javascript" src="js/fckeditor.js"></script>
+<script type="text/javascript" src="js/jquery.ipweditor-1.2.1.js"></script>
+<script type="text/javascript" src="js/ipwtext.js"></script>
 </head><body><!-- <div id="container"> -->
   <div id = "page">
     {{page}}
@@ -40,8 +45,6 @@
 <div id="widgets"></div>
 
 <div id="objs" class="grad1">
-
-<button id="testgit">git test</button>
   
 <ul id="objlist"></ul>
 </div>
@@ -92,10 +95,10 @@
 
 </div> <!-- editorui -->
 <!-- trees -->
-<script type="text/template" id="texttemplate">
+<script type="text/template" id="ipwtexttemplate">
   <li>
-    <div class="texttool designwidget toolbutton">
-      <div class="texticon" data-name="text"></div>
+    <div class="ipwtexttool designwidget toolbutton">
+      <div class="ipwtexticon" data-name="text"></div>
       text
     </div>
   </li>

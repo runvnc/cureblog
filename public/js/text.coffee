@@ -2,7 +2,7 @@ class TextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
       @id = guid()
-      @el = $('<div class="textwidget" contenteditable="true" id ="'+@id+'"><div class="topofwidget">(      )</div>text</div>')
+      @el = $('<div class="textwidget" contenteditable="true" id ="'+@id+'">text</div>')
       idx = '#' + @id
       @parent.append @el
       @el.css
@@ -13,17 +13,32 @@ class TextWidget
     else
       @el = $(@id)
           
-    $('.textwidget').live 'blur', ->  
+    $('#'+@id).live 'blur', ->  
       window.savePage()
   
-    $('.textwidget').draggable(
+    eid = @id
+    $('#'+@id).draggable(
       stop: ->
-        $(this).find('.topofwidget').hide()
+        $(this).find('.topofwidget').remove()
         window.savePage()
-    ).bind 'click', ->
-      $(this).find('.topofwidget').show().css('color', 'red')
+    ).bind 'click', (ev) ->
+      if not (ev.target.id is eid)        
+        return
+      else
+        console.log 'its ok target id is ' + ev.target.id
+      console.log 'click event'
+      $(this).find('.topofwidget').remove()
+      $(this).prepend $('#fonttemplate').html()
+      $(this).find('.font').off 'change'
+      $(this).find('.font').on 'change', ->
+        console.log '4444444444444444 selected val is ' + $(this).val()
+        window.document.execCommand 'fontname',false, $(this).val()
+        ev.stopPropagation()
+        
       $(this).focus()
-    
+      ev.stopPropagation()
+      ev.preventDefault()
+      
   
 class TextTool
   constructor: ->
@@ -56,7 +71,9 @@ class TextTool
         x = ev.pageX - $('#page')[0].offsetLeft
         y = ev.pageY - $('#page')[0].offsetTop
       if @active
-        text = new TextWidget($('#page'), x, y)
+        text = new TextWidget($('#page'), x, y)      
+      $('.topofwidget').remove()
+      window.savePage()
         
     $('#objlist').append widget  
     console.log 'appended'

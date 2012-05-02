@@ -10,7 +10,8 @@
         drop: function(ev, ui) {
           var name;
           name = ui.draggable.data('name');
-          return ui.draggable.remove();
+          ui.draggable.remove();
+          return window.savePage();
         }
       });
     }

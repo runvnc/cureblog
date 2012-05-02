@@ -1,0 +1,147 @@
+<h1>In Place, WYSIWYG Editor with FCKeditor and Editable</h1>
+<p>
+In place editor, such as Editable, lets you seamlessly replace texts on web pages with inputs for on-the-spot editing (see <a href="#example1">example 1</a>). WYSIWYG editors, such as FCKeditor, provide easy, word-like editor on the web (see <a href="#example2">example 2</a>). Basically, the two are advance User-Interfaces JavaScript tools that help users edit content on the web in an easy, intuitive and productive way.
+</p>
+<p>Wouldn't it be great if we combine the two to create a really cool, web 2.0 user experience for editing content on the web? Unfortunately, they are not fully compatible and some tweaking is required to make them interoperate.
+</p>
+<p>In this article will demonstrate how, with little modification FCKeditor can be integrated into Editable to create an in place WYSIWYG editor (see <a href="#example3">example3</a>).
+</p>
+<a name="example1"></a>
+<h2>1) In-place Editor</h2>
+<p>
+In-place Edit (also known as Edit In Place) allows you to edit text on web pages without going to a separate page and filling out a form.
+</p>
+<h3>The text is replaced with an input as shown in this example:</h3>
+
+<script type="text/javascript" src="jquery-1.3.2.js"></script>
+<script type="text/javascript" src="jquery.editable-1.3.3.js"></script>
+<div style="border: solid thin gray; padding:5px;">
+<div class="myeditable"><b> Click me! I am editable!!! </b></div>
+</div>
+<script type="text/javascript">
+
+    $('.myeditable').editable(
+            {
+           type:'text',
+           submit:'save',
+           cancel:'cancel'
+            })
+
+</script>
+<h3>Here is how it looks behind the hood:</h3>
+<code>
+   &lt;script type="text/javascript" src="jquery-1.3.2.js">&lt;/script><br>
+&lt;script type="text/javascript" src="jquery.editable-1.3.3.js">&lt;/script><br>
+<br>
+&lt;div class="myeditable"> Click me! I am editable!!!  &lt;/div><br>
+<br>
+&lt;script type="text/javascript"><br>
+<br>
+    $('.myeditable').editable(<br>
+            {<br>
+           submit:'save'<br>
+            })<br>
+<br>
+&lt;/script><br>
+<br>
+</code>
+<a name="example2"></a>
+<h2>2) WYSIWYG Editor</h2>
+WYSIWYG , is an acronym for <i>What You See Is What You Get</i>, used in computing to describe a system in which content displayed during editing appears very similar to the final output.
+
+<h3>Example of a WYSIWYG HTML editor</h3>
+
+<script type="text/javascript" src="fckeditor/fckeditor.js"></script>
+<script type="text/javascript">
+window.onload = function()
+{
+var oFCKeditor = new FCKeditor( 'MyTextarea' ) ;
+oFCKeditor.BasePath = "./fckeditor/" ;
+oFCKeditor.ReplaceTextarea() ;
+
+        //alert(document.getElementById("MyTextarea").innerHTML)
+}
+</script>
+<textarea id="MyTextarea" name="MyTextarea">Look at me, I am <b>WYSIWYG!</b></textarea>
+
+<h3>Here is how it looks behind the hood:</h3>
+<code>
+    &lt;script type="text/javascript" src="fckeditor/fckeditor.js">&lt;/script> <br>
+&lt;script type="text/javascript"><br>
+window.onload = function()<br>
+{<br>
+var oFCKeditor = new FCKeditor( 'MyTextarea' ) ;<br>
+oFCKeditor.BasePath = "./fckeditor/" ;<br>
+oFCKeditor.ReplaceTextarea() ;<br>
+}<br>
+&lt;/script><br>
+&lt;textarea id="MyTextarea" name="MyTextarea">Look at me, I am &lt;b>WYSIWYG!&lt;/b>&lt;/textarea><br>
+<br>
+
+</code>
+
+<a name="example3"></a>
+<h2>3) In Place, WYSIWYG Editor with FCKeditor and Editable</h2>
+
+<p>In Place, WYSIWYG Editor is the best of both world- it provides an easy in place editing and adds a layer of WYSIWYG visual editor over it</p>
+
+<h3> IPWE Editor Example</h3>
+
+
+<script type="text/javascript" src="jquery.ipweditor-1.2.1.js"></script>
+<div style="border: solid thin gray; padding:5px;">
+<div  class="myipwe"><b> Click me! I am editable and WYSIWYG!!!</b>  </div>
+</div>
+
+<script type="text/javascript">
+    //set all the FCKeditor configuration here and pass it to the editable
+    var oFCKeditor = new FCKeditor( 'editor1') ;
+    oFCKeditor.BasePath = "./fckeditor/" ;
+            
+    $('.myipwe').editable(
+            {
+           type: 'wysiwyg',
+           editor: oFCKeditor,
+           onSubmit:function submitData(content){
+               alert(content.current)
+           },
+           submit:'save',
+           cancel:'cancel'
+            });
+
+</script>
+<br>
+<h3>Here is how it looks behind the hood:</h3>
+
+<code>
+    &lt;script type="text/javascript" src="jquery.ipweditor-1.2.1.js">&lt;/script><br>
+<br>
+&lt;div id="editable" class="myipwe"> Click me! I am editable and WYSIWYG!!!  &lt;/div><br>
+<br>
+&lt;script type="text/javascript"><br>
+    //set all the FCKeditor configuration here and pass it to the editable<br>
+    var oFCKeditor = new FCKeditor( 'editor1') ;<br>
+    oFCKeditor.BasePath = "/ipwe/fckeditor/" ;<br>
+            <br>
+    $('.myipwe').editable(<br>
+            {<br>
+           type: 'wysiwyg',<br>
+           editor: oFCKeditor,<br>
+           onSubmit:function submitData(content){<br>
+               alert(content.current)<br>
+           },<br>
+           submit:'save',<br>
+           cancel:'cancel'<br>
+            });<br>
+<br>
+&lt;/script><br>
+
+</code>
+
+<p>
+    What I have done here was to extent the Jquery Editable plugin and added a 'wysiwyg' type. </p>
+<p>    When you set the type to wysiwyg be sure to add an instance of FCKeditor as shown in the example.
+</p>
+
+<p>    Formal documentation and download can be found here.
+</p>

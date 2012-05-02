@@ -1,0 +1,16 @@
+.richtexticon {
+  background-image: url(/images/text.png);
+  width: 29px;
+  height: 26px;
+  margin: 3px;
+}
+
+.widgetcontainer {
+  border: 1px solid #aaa 
+}
+
+.richtextwidget {
+  margin: 10px; 
+  width: 300px;
+  height: 200px;
+}

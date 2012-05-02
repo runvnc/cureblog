@@ -94,8 +94,9 @@ makeEditable = ->
       "delete": {name: "Delete", icon: "delete"}
       
 window.savePage = ->
-  console.log 'saving html: ' + $('#page').html()
-  now.saveStatic 'page', $('#page').html()
+  $(document).trigger 'savePage'
+  window.delay 500, ->
+    now.saveStatic 'page', $('#page').html()
 
 loadwidgets = ->
   $('#page').droppable

@@ -14,5 +14,9 @@
 }
 
 .topofwidget {
-  display: none; 
+  width: 200px;
+  height: 25px;
+  position: absolute;
+  top: -20px;
+  background-color: white;
 }

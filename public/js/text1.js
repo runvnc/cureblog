@@ -4,7 +4,7 @@
   TextWidget = (function() {
 
     function TextWidget(parent, x, y, id) {
-      var idx;
+      var eid, idx;
       this.parent = parent;
       this.x = x;
       this.y = y;
@@ -23,15 +23,33 @@
       } else {
         this.el = $(this.id);
       }
-      $('.textwidget').live('blur', function() {
+      $('#' + this.id).live('blur', function() {
         return window.savePage();
       });
-      $('.textwidget').draggable({
+      eid = this.id;
+      $('#' + this.id).draggable({
         stop: function() {
+          $(this).find('.topofwidget').remove();
           return window.savePage();
         }
-      }).bind('click', function() {
-        return $(this).focus();
+      }).bind('click', function(ev) {
+        if (!(ev.target.id === eid)) {
+          return;
+        } else {
+          console.log('its ok target id is ' + ev.target.id);
+        }
+        console.log('click event');
+        $(this).find('.topofwidget').remove();
+        $(this).prepend($('#fonttemplate').html());
+        $(this).find('.font').off('change');
+        $(this).find('.font').on('change', function() {
+          console.log('4444444444444444 selected val is ' + $(this).val());
+          window.document.execCommand('fontname', false, $(this).val());
+          return ev.stopPropagation();
+        });
+        $(this).focus();
+        ev.stopPropagation();
+        return ev.preventDefault();
       });
     }
 
@@ -66,10 +84,17 @@
         }
       });
       $('#page').bind('click', function(ev) {
-        var text;
-        if (_this.active) {
-          return text = new TextWidget($('#page'), ev.offsetX, ev.offsetY);
+        var text, x, y;
+        if (ev.offsetX != null) {
+          x = ev.offsetX;
+          y = ev.offsetY;
+        } else {
+          x = ev.pageX - $('#page')[0].offsetLeft;
+          y = ev.pageY - $('#page')[0].offsetTop;
         }
+        if (_this.active) text = new TextWidget($('#page'), x, y);
+        $('.topofwidget').remove();
+        return window.savePage();
       });
       $('#objlist').append(widget);
       console.log('appended');

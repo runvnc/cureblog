@@ -4,14 +4,14 @@
   TextWidget = (function() {
 
     function TextWidget(parent, x, y, id) {
-      var idx;
+      var eid, idx;
       this.parent = parent;
       this.x = x;
       this.y = y;
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="textwidget" contenteditable="true" id ="' + this.id + '"><div class="topofwidget">(      )</div>text</div>');
+        this.el = $('<div class="textwidget" contenteditable="true" id ="' + this.id + '">text</div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({
@@ -23,17 +23,33 @@
       } else {
         this.el = $(this.id);
       }
-      $('.textwidget').live('blur', function() {
+      $('#' + this.id).live('blur', function() {
         return window.savePage();
       });
-      $('.textwidget').draggable({
+      eid = this.id;
+      $('#' + this.id).draggable({
         stop: function() {
-          $(this).find('.topofwidget').hide();
+          $(this).find('.topofwidget').remove();
           return window.savePage();
         }
-      }).bind('click', function() {
-        $(this).find('.topofwidget').show().css('color', 'red');
-        return $(this).focus();
+      }).bind('click', function(ev) {
+        if (!(ev.target.id === eid)) {
+          return;
+        } else {
+          console.log('its ok target id is ' + ev.target.id);
+        }
+        console.log('click event');
+        $(this).find('.topofwidget').remove();
+        $(this).prepend($('#fonttemplate').html());
+        $(this).find('.font').off('change');
+        $(this).find('.font').on('change', function() {
+          console.log('4444444444444444 selected val is ' + $(this).val());
+          window.document.execCommand('fontname', false, $(this).val());
+          return ev.stopPropagation();
+        });
+        $(this).focus();
+        ev.stopPropagation();
+        return ev.preventDefault();
       });
     }
 
@@ -76,7 +92,9 @@
           x = ev.pageX - $('#page')[0].offsetLeft;
           y = ev.pageY - $('#page')[0].offsetTop;
         }
-        if (_this.active) return text = new TextWidget($('#page'), x, y);
+        if (_this.active) text = new TextWidget($('#page'), x, y);
+        $('.topofwidget').remove();
+        return window.savePage();
       });
       $('#objlist').append(widget);
       console.log('appended');

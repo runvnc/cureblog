@@ -16,77 +16,7 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="ipwtextwidget ui-draggable" id="907e4bf2-2c62-9765-c8f4-16fdfb625b54" style="position: absolute; left: 44px; top: -9px; "></div>
   
   
   
@@ -96,55 +26,10 @@
   
   
   
-  <div class="textwidget ui-draggable" id="dfb546d7-c463-441c-1e4c-b3a263275b0c" style="position: absolute; left: 559px; top: 154px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="d90f4427-7c9d-1894-5b24-aae483f75b1c" style="position: absolute; left: 754px; top: 250px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="7bf77cdd-b905-26e3-4400-11f0aa9b030b" style="position: absolute; top: 228px; left: 286px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="f8ade6a7-1e1b-3d92-e0e6-587ec6012924" style="position: absolute; top: 259px; left: 270px; " contenteditable="true">text</div>
-  <div class="textwidget ui-draggable" id="bf99be5c-5a48-b74d-9238-de09aff4dfd7" style="position: absolute; left: 401px; top: 207px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="c5038e7c-53a0-aff9-2ffa-5b94c82aa1ea" style="position: absolute; left: 424px; top: 45px; " contenteditable="true">text</div>
-  <div class="textwidget ui-draggable" id="476f23eb-a76c-11a0-18a1-2ac8b4a7c172" style="position: absolute; top: 291px; left: 675px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="5c91d4cf-7716-10fc-3f28-e735349f2609" style="position: absolute; left: 588px; top: 224px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="eb69ae3b-ed78-dce9-b1d0-091db0907ccc" style="position: absolute; top: 233px; left: 937px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="63790524-feb5-8bf4-80a6-f302ac697242" style="position: absolute; top: 226px; left: 905px; " contenteditable="true">text</div>
+  <div class="ipwtextwidget ui-draggable" id="82d85007-75b2-f69f-b688-f3dcd195e73b" style="position: absolute; min-width: 550px; left: 140px; top: 80px; "><p></p></div><div class="ipwtextwidget ui-draggable" id="e8eae6ae-e37f-4bda-f1d4-8cf296ad8451" style="position: absolute; min-width: 550px; left: 44px; top: 34px; "><p></p></div>
   
-  <div class="textwidget ui-draggable" id="5e5e696b-8ab4-ac87-64fd-9aaf20dda27f" style="position: absolute; left: 221px; top: 195px; " contenteditable="true">text</div><div class="textwidget ui-draggable ui-draggable-dragging" id="a1d735b6-2af4-965d-e525-5c44b426c585" style="position: absolute; left: 384px; top: 299px; " contenteditable="true">text</div>
-  <div class="textwidget ui-draggable" id="c7f5aeb4-7cbe-ece2-43a8-bfca44693bf8" style="position: absolute; top: 226px; left: 502px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="8232c3ad-adb9-2634-27fe-034b05bc692f" style="position: absolute; left: 623px; top: 225px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="bd6d4567-8a77-e7c1-6484-35b97ec298d3" style="position: absolute; top: 258px; left: 393px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="4c024b8b-ba7c-2525-9033-7c8c5e7f7ec8" style="position: absolute; top: 209px; left: 318px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="02ea4de1-748a-7fb6-9ac4-4aa83e0e0f0e" style="position: absolute; top: 192px; left: 307px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="4e64937d-c9ff-645e-a6e0-79f21d880a89" style="position: absolute; top: 194px; left: 194px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="c2798f0d-67a3-086c-0c4b-c555a1ce0465" style="position: absolute; top: 110px; left: 909px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="8aab87e5-d14c-a402-4f9c-73dc43a6d9c4" style="position: absolute; left: 511px; top: 30px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="4a25105c-7251-fd81-5e9e-35a45ac359b0" style="position: absolute; left: 718px; top: 60px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="89815e19-b886-0e6a-397b-7d8da12489f8" style="position: absolute; top: 169px; left: 762px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="d3eba9fa-1f98-e4ec-32dc-b310ef455616" style="position: absolute; top: 183px; left: 751px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="858583a6-ccd9-0292-3385-691f65f98fab" style="position: absolute; top: 204px; left: 744px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="6d91a92e-a4d6-901b-2496-b0de7fb704cf" style="position: absolute; top: 227px; left: 742px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="2982ed4d-96ed-41e6-2f52-6538af6a3205" style="position: absolute; top: 255px; left: 731px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="7c2532fd-fedf-b9b5-57a7-da785c3e6ff7" style="position: absolute; top: 269px; left: 724px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="03043c0e-bc2a-70d2-0a0d-9b3d4619b751" style="position: absolute; top: 61px; left: 1092px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="7a3811b3-7be6-92ee-1b32-e9d9ca6f2820" style="position: absolute; left: 980px; top: 86px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="f35bc3d8-35a1-b2b2-a268-3d19d7b1935b" style="position: absolute; top: 139px; left: 1041px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="b11de819-8d92-fb10-feb7-f436217f0a88" style="position: absolute; left: 896px; top: 152px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="fa9652db-f252-576a-5333-f4f3c7fc7c57" style="position: absolute; top: 199px; left: 992px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="716f5f5b-79d2-d619-8878-9ba650bb9af9" style="position: absolute; top: 229px; left: 967px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="75e26db5-3a64-127f-4b67-a0d0a5168fe3" style="position: absolute; left: 1126px; top: 84px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="8772d405-0cd0-9065-3cd7-d6ba1fc35ff0" style="position: absolute; top: 144px; left: 1195px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="35e2b679-d6ce-8ddf-8043-edf69273f593" style="position: absolute; top: 155px; left: 1200px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="40b72d4d-f69f-4921-c3c2-ae4c469e72a0" style="position: absolute; top: 141px; left: 1176px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="62824800-b868-aae0-924d-7fffda081508" style="position: absolute; top: 128px; left: 825px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="f9356745-4fcf-bef1-141e-14c4c2f870db" style="position: absolute; top: 195px; left: 513px; " contenteditable="true">t</div><div class="textwidget ui-draggable" id="c10c16ff-81c4-4963-f22a-1bc96c2a57d0" style="position: absolute; left: 457px; top: 161px; " contenteditable="true">text</div><div class="textwidget ui-draggable ui-draggable-dragging" id="c223c69d-c5b4-0535-429b-d781c7a0267f" style="position: absolute; left: 812px; top: 188px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="2c0cd58c-460b-ce6a-efb1-2d182acb3745" style="position: absolute; left: 656px; top: 148px; " contenteditable="true">text</div>
   
-  <div class="textwidget ui-draggable" id="1135b03f-36ea-570b-fb2b-4ce2edafca0e" style="position: absolute; top: 337px; left: 300px; " contenteditable="true">text</div>
+  <div class="ipwtextwidget ui-draggable" id="42f29ce1-82f0-914e-a29f-d1027aa97d2d" style="position: absolute; left: 84px; top: 26px; min-width: 550px; "><p><span style="font-size: xx-large; "><span style="font-family: Vollkorn; ">Type <u><strong>text</strong></u> here.</span></span></p><p><span style="font-family: 'Hammersmith One'; ">&nbsp;asdf asdfasdfasdfasdf</span></p></div>
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="textwidget ui-draggable" id="88293218-3a4d-5c76-e087-2b7ec35cf9ad" style="position: absolute; top: 190px; left: 677px; " contenteditable="true">text</div>
-  
-  <div class="textwidget ui-draggable" id="ea8aa3c8-83e1-0cee-1321-22bdc3d0e420" style="position: absolute; top: 281px; left: 588px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="f096e93a-fe3c-fcd8-3cbb-cd245521f6a2" style="position: absolute; top: 274px; left: 222px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="2de3b76f-eede-756b-b03c-c41930b2f649" style="position: absolute; top: 32px; left: 826px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="2bcabe86-6a13-ee69-7925-565dc56943de" style="position: absolute; top: 18px; left: 984px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="005cf2d1-bb63-2d8a-bb8b-76eb0ca8674e" style="position: absolute; top: 24px; left: 849px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="4908173e-8618-0f6d-7469-171d0577d22a" style="position: absolute; top: 453px; left: 202px; " contenteditable="true">text</div>
-  
-  
-  
-  
-  
-  
-  <div class="textwidget ui-draggable" id="f1726b8e-9760-f8c3-79b6-79a1b0cc3963" style="position: absolute; top: 197px; left: 1100px; " contenteditable="true">text</div>
-  
-  <div class="textwidget ui-draggable" id="e7319bfd-0653-3cbb-1d54-443c82a1f4bd" style="position: absolute; top: 121px; left: 167px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="1ff89a74-e1a7-545c-443d-9da34d4214e6" style="position: absolute; top: 137px; left: 128px; " contenteditable="true">text</div><div class="textwidget ui-draggable" id="3befcedc-f1ca-118b-2eb4-9140446dfef7" style="position: absolute; left: 372px; top: 62px; " contenteditable="true">text</div>
-  <div class="textwidget ui-draggable" id="8441c549-52b0-e629-eb98-6fdcd94c2864" style="position: absolute; top: 234px; left: 93px; " contenteditable="true">text</div>
-  <div class="textwidget ui-draggable" id="fb4a6914-3348-5fe5-067a-7cfcb9ea6bc4" style="position: absolute; top: 166px; left: 46px; " contenteditable="true">ddfgtext</div><div class="textwidget ui-draggable" id="e47a1a28-6aba-748d-8196-c596d04e1eac" style="position: absolute; top: 71px; left: 249px; " contenteditable="true">sfsdftext</div><div class="textwidget ui-draggable" id="4b4191de-8420-0a0c-4d91-cefc5fbbe70b" style="position: absolute; top: 311px; left: 104px; " contenteditable="true">text</div>
-  
-  
-  <div class="textwidget ui-draggable" id="4497df70-2497-2662-22bc-feb934cdca79" style="position: absolute; top: 383px; left: 57px; " contenteditable="true">text</div>
-  <div class="textwidget ui-draggable" id="8a3f8515-105f-ffaa-73d7-455f2913a12c" style="position: absolute; top: 397px; left: 209px; " contenteditable="true">text</div>
-  <div style="position: absolute; left: 188.917px; top: 61.9167px;" class="textwidget ui-draggable" id="0a5e3c92-abbb-82b1-c932-6a775adddc6b" contenteditable="true">text</div>
-  
-  <div style="position: absolute; left: 67.9167px; top: 132.917px;" class="textwidget ui-draggable" id="036e4997-97fa-aa6c-f3e1-fb7871fcec2a" contenteditable="true">text</div><div style="position: absolute; left: 135.917px; top: 118.917px;" class="textwidget ui-draggable" id="379004ff-4c1a-6726-70a6-c3947f657426" contenteditable="true">text</div><div style="position: absolute; left: 271.917px; top: 16.9167px;" class="textwidget ui-draggable" id="466c01f1-3e6a-71f6-3733-1eb07e083a8c" contenteditable="true">text</div>
-  
-  
-  <div class="textwidget ui-draggable" id="71de85ab-23cb-3de6-eee6-d5f010b7582d" style="position: absolute; top: 474px; left: 417px; " contenteditable="true"><div class="topofwidget" style="display: block; color: red; ">(      )</div>text</div>
-  
-  
-  <div style="position: absolute; top: 150px; left: 463px;" class="textwidget ui-draggable" id="6d1cdd42-9ee4-e76f-5dcb-4109c3f16d9b" contenteditable="true"><div class="topofwidget">(      )</div>text</div><div style="position: absolute; top: 349px; left: 336px;" class="textwidget ui-draggable" id="79496bf9-6521-e26d-bd33-1625a828b1c1" contenteditable="true"><div class="topofwidget">(      )</div>text</div>
-  
-  
-  <div style="position: absolute; top: 120px; left: 482px;" class="textwidget ui-draggable" id="31668a83-6524-4181-3215-7846f00c8370" contenteditable="true"><div class="topofwidget">(      )</div>text</div><div style="position: absolute; top: 133px; left: 362px;" class="textwidget ui-draggable" id="f5c91313-ea1b-ae3e-b39c-6f4c98954e2b" contenteditable="true"><div class="topofwidget">(      )</div>text</div><div style="position: absolute; top: 109px; left: 340px;" class="textwidget ui-draggable" id="2c53e503-2dbe-2485-8b56-37fa0c4e827b" contenteditable="true"><div class="topofwidget">(      )</div>text</div><div style="position: absolute; left: -140px; top: 50px; " class="textwidget" id="3c454653-e0d9-1207-9472-63f6e2994247" contenteditable="true"><div class="topofwidget" style="color: red; display: none; ">(      )</div>text</div><div style="position: absolute; top: 73px; left: 596px;" class="textwidget ui-draggable" id="15b9790b-9729-4097-7e7e-b20787236433" contenteditable="true"><div class="topofwidget">(      )</div>text</div>
-  <div class="textwidget ui-draggable" contenteditable="true" id="4595fead-510d-16bd-5aea-42b311ba4e3a" style="position: absolute; top: 402px; left: 570px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="08bdfe33-ca9a-cbb2-bd90-dbc11c4b7b52" style="position: absolute; top: 346px; left: 828px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="9f5b2f06-18f4-c27e-0e64-fb0e10cae43f" style="position: absolute; top: 10px; left: 339px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="3990e1b3-91e6-e919-3f15-b39208139e4c" style="position: absolute; top: 6px; left: 317px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="ccc152bc-d5ba-7d7b-039a-83e5a48dbffa" style="position: absolute; top: 402px; left: 743px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="bcde3d56-99cd-6b68-9f27-990ace9169b5" style="position: absolute; top: 130px; left: 241px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="5235bcbb-9d90-3aad-b008-7b642699c651" style="position: absolute; top: 129px; left: 241px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="401fd682-a724-482a-5dc4-04f0773f931d" style="position: absolute; top: 169px; left: 32px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="22dde578-2af9-af5a-8804-eb596b85a831" style="position: absolute; top: 229px; left: 24px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="72a1e137-680e-426d-4350-4e4eb54138a0" style="position: absolute; top: 337px; left: 49px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="310970c0-a2bd-019c-6ce1-7a8eebe276f9" style="position: absolute; top: 346px; left: 206px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="13456da2-e48a-9c42-b3fa-92b228b6fe06" style="position: absolute; top: 68px; left: 914px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="b8b90841-13c3-e1bf-5cd0-6eaf65093b37" style="position: absolute; top: 2px; left: 249px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="e5080929-d005-1e39-6ac1-9ede3e334208" style="position: absolute; top: 41px; left: 646px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="02b3cf16-1fa4-8f30-2bde-4d616462b37b" style="position: absolute; top: 93px; left: 683px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="ba98581d-7a0a-5f71-3f28-c78e7a49b62a" style="position: absolute; top: 96px; left: 534px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="f4cbaa92-bfe4-dca9-9751-0d4f8f5ec4a4" style="position: absolute; top: 101px; left: 450px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="fb0da2fe-e865-5b07-2814-345e1ea8fce0" style="position: absolute; top: 106px; left: 769px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="7cf801b6-c5e4-9b91-e64c-45423300fb3e" style="position: absolute; top: 134px; left: 622px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="a0ddf2f3-74dd-07b9-0377-c47f17f6677d" style="position: absolute; top: 69px; left: 333px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="0771ec75-7744-0eb3-b77d-df54cf3cf58f" style="position: absolute; top: 542px; left: 118px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="b10d2e04-63ab-3955-3277-c5025e263384" style="position: absolute; top: 470px; left: 56px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="2f981b43-1a5a-8ea3-a46e-7d9fa0188910" style="position: absolute; top: 510px; left: 465px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="23b98169-c9c6-da21-8178-cbebed2b7edd" style="position: absolute; top: 495px; left: 466px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="e8f00cce-5506-8128-34cc-60181b897d08" style="position: absolute; top: 423px; left: 445px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="3c04d8b2-2997-b049-9c6f-0dc4301ffc49" style="position: absolute; top: 354px; left: 462px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="cb4e678d-79f9-1163-1003-6e1141c2d2eb" style="position: absolute; top: 185px; left: 261px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="708c6204-6c75-c610-4b8d-ee5ce28cb09a" style="position: absolute; top: 39px; left: 449px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="89639426-1d2b-11c4-5b1d-d90850853e3a" style="position: absolute; top: 385px; left: 641px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="fc226bed-f3a8-1339-61b6-0fca9fe0cd35" style="position: absolute; top: 309px; left: 517px; "><div class="topofwidget">(      )</div>text</div><div class="textwidget ui-draggable" contenteditable="true" id="1a0d7691-d95d-2f13-106e-6f964d33a3d9" style="position: absolute; top: 1px; left: 3px; "><div class="topofwidget">(      )</div>text</div>

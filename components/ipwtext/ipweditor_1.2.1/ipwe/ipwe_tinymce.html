@@ -1,0 +1,53 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="jquery-1.3.2.js"></script>
+        <script type="text/javascript" src="jquery.ipweditor-1.2.1.js"></script>
+
+        <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce_src.js"></script>
+        <script type="text/javascript">
+           
+
+$().ready(function() {
+                var ed = new tinymce.Editor('content', {
+                   some_setting : 1
+                });
+
+               // ed.render();
+
+               $('.myipwe').editable(
+                    {
+                   type: 'wysiwyg',
+                   editor: ed,
+                   onSubmit:function submitData(content){
+                       alert(content.current)
+                   },
+                   submit:'save',
+                   cancel:'cancel'
+                    });
+        });
+
+
+
+       </script>
+  </head>
+  <body>
+          
+<div style="border: solid thin gray; padding:5px;">
+<div  class="myipwe"><b> Click me! I am editable and WYSIWYG!!!</b>  </div>
+</div>
+<!--<form method="post" action="somepage">
+	<textarea id="content" name="content" style="width:100%">
+	</textarea>
+</form>
+
+ 
+-->
+  </body>
+</html>
