@@ -1,5 +1,5 @@
 (function() {
-  var editWidget, editor, editorbrowser, editorcss, editorhtml, editornodejs, initeditortabs, initialized, loadwidgets, makeEditable, thing;
+  var editWidget, editor, editorbrowser, editorcss, editorhtml, editornodejs, initeditortabs, initialized, loadwidgets, makeEditable, nowediting, publish, thing;
 
   editor = void 0;
 
@@ -11,6 +11,8 @@
 
   editorcss = void 0;
 
+  nowediting = '';
+
   initialized = false;
 
   thing = function() {};
@@ -18,6 +20,7 @@
   editWidget = function(widget) {
     $('#widgetname').data('mode', 'update');
     $('#widgetname').val(widget.name);
+    nowediting = widget.name;
     window.createCookie('lastScreen', widget.name);
     $('.demo').dialog('option', 'title', widget.name);
     editorbrowser.setValue(widget.browser);
@@ -173,6 +176,30 @@
     return makeEditable();
   };
 
+  publish = function() {
+    var auth, obj;
+    $('.pubmsg').html('Publishing..');
+    auth = {
+      user: $('#gituser').val(),
+      pass: $('#gitpassword').val()
+    };
+    obj = {
+      name: nowediting,
+      description: $('#publishdesc').text(),
+      repo: $('#gitrepo').val()
+    };
+    return now.publishComponent(nowediting, auth, obj, function(res) {
+      console.log(res);
+      if (res != null) {
+        if (res.message != null) {
+          return $('.pubmsg').html(res.message);
+        } else {
+          return $('.pubmsg').html('Success!');
+        }
+      }
+    });
+  };
+
   $(function() {
     $('body').prepend($('#editorui'));
     $('#objs').height($(window).height());
@@ -193,7 +220,7 @@
         css: editorcss.getValue(),
         nodejs: editornodejs.getValue()
       };
-      now.saveWidgetData(data, function() {
+      now.saveWidgetData(data, function(compileout) {
         $('.demo').html('Your edits have been saved.  Reloading application..');
         return setTimeout((function() {
           return window.location.reload();
@@ -211,7 +238,7 @@
     return now.ready(function() {
       loadwidgets();
       $('#objs').prepend('<button id="editcode" class="button white">Code Editor</button>');
-      return $('#editcode').click(function() {
+      $('#editcode').click(function() {
         $('.demo').dialog({
           title: name + ' component - Code Editor',
           position: 'top',
@@ -227,6 +254,7 @@
         });
         return initeditortabs();
       });
+      return $('#publish').click(publish);
     });
   });
 

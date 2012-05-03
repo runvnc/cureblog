@@ -60,7 +60,7 @@
     <br/>
     <ul id="components">    
     </ul>
-    <button id="savewidget">Save</button>
+    <button id="savewidget" class="button white">Save</button>
   </div> 
 
   <div id="dialogcontent">
@@ -70,6 +70,7 @@
         <li><a href="#tabs-2">HTML</a></li>
         <li><a href="#tabs-3">CSS</a></li>
         <li><a href="#tabs-4">Node.js</a></li>
+        <li><a href="#tabs-5">Publish</a></li>
       </ul>
       <div id="tabs-1">
         <input type="hidden" id="widgetname"/>
@@ -87,7 +88,28 @@
       <div id="tabs-4">
           CoffeeScript: <br/>
           <textarea id="nodejs"></textarea>
-      </div>      
+      </div>
+      <div id="tabs-5">
+        <strong>Publish Component</strong><br/><br/>
+        Description: <br/>
+        <textarea id="publishdesc" ></textarea> <br/><br/>
+        <div class="gituser">
+          GitHub username: <br/>
+          <input type="text" id="gituser"/> 
+        </div>
+        <div class="gitpass">
+          GitHub password:  <br/>
+          <input type="password" id="gitpassword"/>
+        </div>
+        <div class="gitrepo">
+          <br/>
+          Name of GitHub repo to create: (excluding username)<br/>
+          <input type="text" id="gitrepo"/>
+        </div>        
+        <div style="clear: both;"></div><br/>
+        <button id="publish" class="button white">Publish</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pubmsg"></span>
+      </div>        
     </div>
   </div> <!-- dialogcontent -->
 

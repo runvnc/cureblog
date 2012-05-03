@@ -1,4 +1,10 @@
 @font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Droid Serif'), local('DroidSerif'), url('http://themes.googleusercontent.com/static/fonts/droidserif/v3/0AKsP294HTD-nvJgucYTaJ0EAVxt0G0biEntp43Qt6E.ttf') format('truetype');
+}
+@font-face {
   font-family: 'Hammersmith One';
   font-style: normal;
   font-weight: normal;

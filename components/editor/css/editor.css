@@ -185,10 +185,44 @@
 #savewidget {
   position: absolute;
   top: 90%;
-  left: 12%;
+  left: 9%;
 }
 
 #editcode {
   margin-left: 15px
 }
+
+#publishdesc {
+  width: 400px;
+}
+
+#giturl {
+  width: 400px; 
+}
+
+.gituser {  
+  float: left;
+  display: inline-block;
+}
+
+.gitpass {
+  float: left;
+  display: inline-block;
+  padding-left: 25px;
+}
+
+.gitrepo {
+  clear: left;
+}
+
+#publish {
+  clear: left; 
+}
+
+#pubmsg {
+  margin-left: 35px;
+  display: inline-block;
+}
+
+
 

@@ -3,9 +3,8 @@ fs = require 'fs'
 util = require 'util'
 childproc = require 'child_process'
 sh = require 'shelljs'
-GitHubApi = require "github"
 request = require 'request'
-
+path = require 'path'
 
 everyone.now.getWidgetData = (name, callback) ->
   try
@@ -26,15 +25,16 @@ everyone.now.saveWidgetData = (data, callback) ->
   name = data.name
   fs.writeFileSync "components/#{name}/js/#{name}.coffee", data.browser, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
-  childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
+  childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->    
     console.log util.inspect er
     console.log o
     console.log e
+    callback o
     
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
-  callback()  
-
+  callback()
+  
 everyone.now.listComponents = (callback) ->
   active = process.listfile 'loadorder'
   fs.readdir 'components', (err, dirs) ->
@@ -108,12 +108,42 @@ everyone.now.renameComponent = (name, newname, callback) ->
     else
       callback false, err
 
-###      
-#everyone.now.testGit = ->
-#  #GET /gists/:gist_id/comments
-#  options =
-#    method: 'GET'
-#    url: "https://api.github.com/gists/'
-###
+  
+addgistcomment = (user, pass, id, body, callback) ->
+  options =
+    method: 'POST'
+    uri: "https://#{user}:#{pass}@api.github.com/gists/#{id}/comments"
+    json: body
+  request options, (err, res, body) ->
+    console.log err
+    console.log res
+    console.log body
+    if callback? then callback err, res, body  
+
+everyone.now.publishComponent = (name, auth, obj, callback) ->
+  if path.exists "components/#{name}/published"
+    callback 'Already published.'
+  else  
+    msg =
+      body: JSON.stringify obj
+    
+    addgistcomment auth.user, auth.pass, '2583031', msg, (err, res, body) ->
+      if err?
+        callback err
+      else
+        try
+          console.log 'BODY IS ' + body
+          console.log util.inspect body
+          comment = body
+          console.log 'PART 2'
+          if comment.message?
+            callback comment
+          else
+            obj.id = comment.id
+            fs.writeFile "components/#{name}/published", JSON.stringify obj, 'utf8', (err) ->
+              callback()
+        catch e
+          callback e + ' ' + body
+
 
 

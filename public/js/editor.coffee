@@ -5,6 +5,8 @@ editorbrowser = undefined
 editornodejs = undefined
 editorcss = undefined
 
+nowediting = ''
+
 initialized = false
 
 thing = () ->
@@ -12,6 +14,7 @@ thing = () ->
 editWidget = (widget) -> 
   $('#widgetname').data 'mode', 'update'
   $('#widgetname').val widget.name
+  nowediting = widget.name
   window.createCookie 'lastScreen', widget.name
   $('.demo').dialog 'option', 'title', widget.name
   editorbrowser.setValue widget.browser
@@ -51,7 +54,7 @@ makeEditable = ->
     callback: (key, options, e) ->
       el = window.lastMenuEvent.currentTarget
       name = $(el).parent().find('.compname').text()
-
+      
       switch key
         when 'delete'
           if window.confirm "Delete #{name}? (Can't be undone!)"
@@ -113,6 +116,7 @@ loadwidgets = ->
       str += "<li>#{check}&nbsp;<span class=\"compname\">#{component.name}</span><span class=\"compmenu\">▼</span></li>"
     $('#components').html str  
     $('.compname').click ->
+      
       now.getWidgetData $(@).text(), (widgetdata, err) ->      
         if err?
           alert 'Error loading widget data: ' + err.message
@@ -121,6 +125,27 @@ loadwidgets = ->
   
   makeEditable()
 
+
+publish = ->
+  $('.pubmsg').html 'Publishing..'
+  auth =
+    user: $('#gituser').val()
+    pass: $('#gitpassword').val()
+  
+  obj =
+    name: nowediting
+    description: $('#publishdesc').text()
+    repo: $('#gitrepo').val()
+    
+  now.publishComponent nowediting, auth, obj, (res) ->
+    console.log res
+    if res?
+      if res.message?
+        $('.pubmsg').html res.message
+      else
+        $('.pubmsg').html 'Success!'              
+  
+  
 $ ->
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()
@@ -140,7 +165,11 @@ $ ->
       css:  editorcss.getValue()
       nodejs:  editornodejs.getValue()
 
-    now.saveWidgetData data, ->
+    now.saveWidgetData data, (compileout) ->
+      #if compileout?
+      #  alert compileout
+      #  return
+      #else
       $('.demo').html 'Your edits have been saved.  Reloading application..'
       setTimeout ( -> window.location.reload() ), 2000
 
@@ -169,4 +198,6 @@ $ ->
           $(".CodeMirror-scroll").height $(window).height() * .7
           
       initeditortabs()
-
+    
+    $('#publish').click publish
+    
