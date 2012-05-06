@@ -21,5 +21,5 @@ fi
 git add --all
 git commit -m 'published plugin'
 git push -f origin master
-curl -d "githubuser=$2&githubrepo=$3" oic.io/addplugin
+curl -d "name=$1&githubuser=$2&githubrepo=$3" oic.io/addplugin
 

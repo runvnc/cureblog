@@ -120,30 +120,13 @@ addgistcomment = (user, pass, id, body, callback) ->
     console.log body
     if callback? then callback err, res, body  
 
-everyone.now.publishComponent = (name, auth, obj, callback) ->
+everyone.now.publishComponent = (name, auth, obj, callback) ->      
   if path.exists "components/#{name}/published"
     callback 'Already published.'
   else  
     msg =
       body: JSON.stringify obj
-    
-    addgistcomment auth.user, auth.pass, '2583031', msg, (err, res, body) ->
-      if err?
-        callback err
-      else
-        try
-          console.log 'BODY IS ' + body
-          console.log util.inspect body
-          comment = body
-          console.log 'PART 2'
-          if comment.message?
-            callback comment
-          else
-            obj.id = comment.id
-            fs.writeFile "components/#{name}/published", JSON.stringify obj, 'utf8', (err) ->
-              callback()
-        catch e
-          callback e + ' ' + body
-
+    #need to git init if necessary
+    #
 
 

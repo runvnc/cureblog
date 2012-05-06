@@ -86,11 +86,13 @@ class IPWTextTool
         text = new IPWTextWidget($('#page'), x, y)      
       window.savePage()
       
-    $(document).bind 'savePage', (ev) ->      
-      $('.ipwtextwidget button').remove()
-      $('#editor1___Frame').remove()
-      $('#editor1___Config').remove()
-      $('#editor1').remove()
+    $(document).bind 'savePage', (ev) ->
+      if ('.ipwtextwidget button')
+        return
+      #$('.ipwtextwidget button').remove()
+      #$('#editor1___Frame').remove()
+      #$('#editor1___Config').remove()
+      #$('#editor1').remove()
         
     $('#objlist').append widget  
     console.log 'appended'

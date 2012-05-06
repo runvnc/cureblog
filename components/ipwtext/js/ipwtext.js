@@ -97,10 +97,7 @@
         return window.savePage();
       });
       $(document).bind('savePage', function(ev) {
-        $('.ipwtextwidget button').remove();
-        $('#editor1___Frame').remove();
-        $('#editor1___Config').remove();
-        return $('#editor1').remove();
+        if ('.ipwtextwidget button') {}
       });
       $('#objlist').append(widget);
       console.log('appended');
