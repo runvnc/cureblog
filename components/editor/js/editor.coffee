@@ -116,6 +116,7 @@ loadwidgets = ->
       str += "<li>#{check}&nbsp;<span class=\"compname\">#{component.name}</span><span class=\"compmenu\">▼</span></li>"
     $('#components').html str  
     $('.compname').click ->
+      $('#gitrepo').val ''
       
       now.getWidgetData $(@).text(), (widgetdata, err) ->      
         if err?
@@ -128,25 +129,23 @@ loadwidgets = ->
 
 publish = ->
   $('.pubmsg').html 'Publishing..'
-  auth =
-    user: $('#gituser').val()
-    pass: $('#gitpassword').val()
-  
-  obj =
-    name: nowediting
-    description: $('#publishdesc').text()
-    repo: $('#gitrepo').val()
-    
-  now.publishComponent nowediting, auth, obj, (res) ->
-    console.log res
-    if res?
-      if res.message?
-        $('.pubmsg').html res.message
-      else
-        $('.pubmsg').html 'Success!'              
+  user= $('#gituser').val()
+  repo = $('#gitrepo').val()
+  name = nowediting
+  if not (user? and repo? and name?)
+    alert 'Please fill in all of the publish fields'
+  else    
+    now.publishComponent name, user, repo, (res) ->
+      console.log res
+      if res?
+        if res.message?
+          $('.pubmsg').html res.message
+        else
+          $('.pubmsg').html 'Success!'              
   
   
 $ ->
+  
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()
   

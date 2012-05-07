@@ -164,6 +164,7 @@
       }
       $('#components').html(str);
       return $('.compname').click(function() {
+        $('#gitrepo').val('');
         return now.getWidgetData($(this).text(), function(widgetdata, err) {
           if (err != null) {
             return alert('Error loading widget data: ' + err.message);
@@ -177,27 +178,25 @@
   };
 
   publish = function() {
-    var auth, obj;
+    var name, repo, user;
     $('.pubmsg').html('Publishing..');
-    auth = {
-      user: $('#gituser').val(),
-      pass: $('#gitpassword').val()
-    };
-    obj = {
-      name: nowediting,
-      description: $('#publishdesc').text(),
-      repo: $('#gitrepo').val()
-    };
-    return now.publishComponent(nowediting, auth, obj, function(res) {
-      console.log(res);
-      if (res != null) {
-        if (res.message != null) {
-          return $('.pubmsg').html(res.message);
-        } else {
-          return $('.pubmsg').html('Success!');
+    user = $('#gituser').val();
+    repo = $('#gitrepo').val();
+    name = nowediting;
+    if (!((user != null) && (repo != null) && (name != null))) {
+      return alert('Please fill in all of the publish fields');
+    } else {
+      return now.publishComponent(name, user, repo, function(res) {
+        console.log(res);
+        if (res != null) {
+          if (res.message != null) {
+            return $('.pubmsg').html(res.message);
+          } else {
+            return $('.pubmsg').html('Success!');
+          }
         }
-      }
-    });
+      });
+    }
   };
 
   $(function() {

@@ -33,6 +33,12 @@
     
     
     
+    
+    
+    
+    
+    
+    
   <div class="ipwtextwidget ui-draggable" id="907e4bf2-2c62-9765-c8f4-16fdfb625b54" style="position: absolute; left: 44px; top: -9px; "></div>
   
   
@@ -53,7 +59,7 @@
   
   
   
-  <div class="ipwtextwidget ui-draggable" id="54ed6052-2cc5-6d21-88b3-9259cf046691" style="position: absolute; min-width: 550px; left: 13px; top: 60px; "><p>&nbsp;<span style="font-size: large; "><span style="font-family: Ubuntu; ">Name of company</span></span></p></div><div class="ipwtextwidget ui-draggable" id="5b3a77e9-3545-61be-b3b6-e5d66549ff27" style="position: absolute; left: 10px; top: -11px; "></div><div class="ipwtextwidget ui-draggable" id="e130187d-7eb4-c6e1-a8ae-e98e1a4f3a15" style="position: absolute; left: 203px; top: 161px; min-width: 550px; "></div>
+  <div class="ipwtextwidget ui-draggable" id="54ed6052-2cc5-6d21-88b3-9259cf046691" style="position: absolute; min-width: 550px; left: 17px; top: 52px; "><p>&nbsp;<span style="font-size: large; "><span style="font-family: Ubuntu; ">Name of company</span></span></p></div><div class="ipwtextwidget ui-draggable" id="5b3a77e9-3545-61be-b3b6-e5d66549ff27" style="position: absolute; left: 10px; top: -11px; "></div><div class="ipwtextwidget ui-draggable" id="e130187d-7eb4-c6e1-a8ae-e98e1a4f3a15" style="position: absolute; left: 203px; top: 161px; min-width: 550px; "></div>
   
   
   <div class="ipwtextwidget ui-draggable" id="39b7ecb2-9941-cef4-39d0-d7b1eba79a83" style="position: absolute; min-width: 550px; left: 209px; top: 186px; "><p></p></div>
@@ -64,6 +70,12 @@
   
   
   
-  <div class="ipwtextwidget ui-draggable" id="36c51c8b-de2f-3964-2a18-c31f32e38b6e" style="position: absolute; min-width: 550px; left: 17px; top: 130px; "><p><span style="font-size: medium; "><span style="font-family: 'Droid Serif'; "><span style="line-height: 14px; text-align: justify; ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></span></p></div><div class="ipwtextwidget ui-draggable" id="a29b4688-ac6e-dc96-6963-790b151c44c4" style="position: absolute; min-width: 550px; left: 48px; top: 157px; "></div>
+  <div class="ipwtextwidget ui-draggable" id="36c51c8b-de2f-3964-2a18-c31f32e38b6e" style="position: absolute; min-width: 550px; left: 21px; top: 121px; "><p><span style="font-size: medium; "><span style="font-family: 'Droid Serif'; "><span style="line-height: 14px; text-align: justify; ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></span></p></div><div class="ipwtextwidget ui-draggable" id="a29b4688-ac6e-dc96-6963-790b151c44c4" style="position: absolute; min-width: 550px; left: 48px; top: 157px; "></div>
   
-  <div class="ipwtextwidget ui-draggable" id="e98a12b8-f5c5-8af4-9a12-76ceed530b35" style="position: absolute; min-width: 550px; left: 16px; top: -1px; "><p><strong><span style="font-size: x-large; "><span style="font-family: Ubuntu; ">Type text here.</span></span></strong></p></div>
+  <div class="ipwtextwidget ui-draggable" id="e98a12b8-f5c5-8af4-9a12-76ceed530b35" style="position: absolute; min-width: 550px; left: 14px; top: -1px; "><p><strong><span style="font-size: x-large; "><span style="font-family: Ubuntu; ">Type text here.</span></span></strong></p></div>
+  
+  
+  
+  
+  
+  

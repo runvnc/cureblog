@@ -129,36 +129,3 @@ exports.startup = (file) ->
   html = build toload
   writebuild html
 
-vows = require 'vows'
-assert = require 'assert'
-
-vows
-  .describe('CureBlog main app')
-  .addBatch
-    'listfile for list1':
-      topic: -> (listfile 'datatest/list1')                
-
-      'returns two items': (topic) ->
-        assert.equal topic.length, 2
-        
-      'they are apples and orange': (topic) ->
-        assert.equal topic[0], 'apples'
-        assert.equal topic[1], 'oranges'
-
-      'read test styles':
-        topic: -> readstyles 'test'
-
-        'returns a link element to the test.css': (topic) ->
-          assert.equal topic, '<link type="text/css" href="css/test.css"/>\n'
-
-      'read test scripts':
-        topic: -> readscripts 'test'
-        
-        'returns a link element to the test.js': (topic) ->
-          assert.equal topic, '<script type="text/javascript" src="js/test.js"></script>\n'
-        
-        'build html from test data':
-          topic: -> build 'testload'
-    
-
-  .export module

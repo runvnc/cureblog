@@ -108,25 +108,23 @@ everyone.now.renameComponent = (name, newname, callback) ->
     else
       callback false, err
 
-  
-addgistcomment = (user, pass, id, body, callback) ->
-  options =
-    method: 'POST'
-    uri: "https://#{user}:#{pass}@api.github.com/gists/#{id}/comments"
-    json: body
-  request options, (err, res, body) ->
-    console.log err
-    console.log res
-    console.log body
-    if callback? then callback err, res, body  
 
-everyone.now.publishComponent = (name, auth, obj, callback) ->      
+everyone.now.publishComponent = (name, user, repo, callback) ->      
   if path.exists "components/#{name}/published"
     callback 'Already published.'
   else  
-    msg =
-      body: JSON.stringify obj
-    #need to git init if necessary
-    #
-
+    options =
+      cwd: './'
+    childproc.exec "./plugadd #{name} #{user} #{repo}", (err, stdout, stderr) ->
+      console.log stderr
+      console.log stdout
+      if err?
+        console.log util.inspect(err)
+        callback err
+      else        
+        console.log 'No error.'  
+        pos = stdout.indexOf '{'
+        msg = stdout.substr pos
+        obj = JSON.parse msg
+        callback obj        
 
