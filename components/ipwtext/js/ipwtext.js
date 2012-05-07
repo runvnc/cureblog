@@ -11,7 +11,7 @@
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="ipwtextwidget" id ="' + this.id + '">Type text here.</div>');
+        this.el = $('<div class="ipwtextwidget" id ="' + this.id + '">The quick brown fox jumped.</div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({
@@ -44,11 +44,7 @@
           return window.savePage();
         }
       }).bind('click', function(ev) {
-        if (!(ev.target.id === eid)) {} else {
-          return window.delay(1400, function() {
-            return $('#' + eid).css('minWidth', '550px');
-          });
-        }
+        return $('#' + eid).css('minWidth', '550px');
       });
     }
 
@@ -97,7 +93,12 @@
         return window.savePage();
       });
       $(document).bind('savePage', function(ev) {
-        if ('.ipwtextwidget button') {}
+        if ('.ipwtextwidget button') {} else {
+          $('.ipwtextwidget button').remove();
+          $('#editor1___Frame').remove();
+          $('#editor1___Config').remove();
+          return $('#editor1').remove();
+        }
       });
       $('#objlist').append(widget);
       console.log('appended');

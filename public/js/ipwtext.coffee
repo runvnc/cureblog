@@ -2,7 +2,7 @@ class IPWTextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
       @id = guid()
-      @el = $('<div class="ipwtextwidget" id ="'+@id+'">Type text here.</div>')
+      @el = $('<div class="ipwtextwidget" id ="'+@id+'">The quick brown fox jumped.</div>')
       idx = '#' + @id
       @parent.append @el
       @el.css
@@ -37,10 +37,10 @@ class IPWTextWidget
         window.savePage()
     ) .bind 'click', (ev) ->
       
-      if not (ev.target.id is eid)        
-        return
-      else
-        window.delay 1400, ->
+      #if not (ev.target.id is eid)        
+      #  return
+      #else
+      #  window.delay 1400, ->
           $('#'+eid).css 'minWidth', '550px'
       #  console.log 'its ok target id is ' + ev.target.id
       #$(@).cleditor()
@@ -89,10 +89,11 @@ class IPWTextTool
     $(document).bind 'savePage', (ev) ->
       if ('.ipwtextwidget button')
         return
-      #$('.ipwtextwidget button').remove()
-      #$('#editor1___Frame').remove()
-      #$('#editor1___Config').remove()
-      #$('#editor1').remove()
+      else
+        $('.ipwtextwidget button').remove()
+        $('#editor1___Frame').remove()
+        $('#editor1___Config').remove()
+        $('#editor1').remove()
         
     $('#objlist').append widget  
     console.log 'appended'

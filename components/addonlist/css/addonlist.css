@@ -1,3 +1,14 @@
 #addons {
   margin-left: 15px; 
 }
+
+#inp, #matches {
+ width: 400px;   
+}
+#tosearch {
+ width: 400px;   
+ height: 150px;   
+}
+#matches {
+ border: 1px solid #000;   
+}​

@@ -130,7 +130,7 @@ body {font: 13px Helmet, Freesans, sans-serif;}
 	Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/ */
 
 /* we like off-black for text */
-body, select, input, textarea {color: #333;}
+/* body, select, input, textarea {color: #333;} */
 
 a {color: #03f;}
 a:hover {color: #69f;}
