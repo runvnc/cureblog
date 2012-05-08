@@ -257,14 +257,14 @@
         $('.demo').dialog({
           title: name + ' component - Code Editor',
           position: 'top',
-          height: $(window).height() * .9,
+          height: $(window).height() * .93,
           width: $(window).width() * .7
         });
         window.delay(500, function() {
           $(".ui-tabs-panel").height($(window).height() * .7);
           $(".CodeMirror").height($(window).height() * .65);
           return window.delay(500, function() {
-            return $(".CodeMirror-scroll").height($(window).height() * .7);
+            return $(".CodeMirror-scroll").height($(window).height() * .65);
           });
         });
         return initeditortabs();

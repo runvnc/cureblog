@@ -24,11 +24,7 @@
         idx = '#' + this.id;
       }
       $(idx).resizable();
-      $(idx).draggable()({
-        stop: function(ev) {
-          return ev.stopPropagation();
-        }
-      });
+      $(idx).draggable();
       oFCKeditor = new FCKeditor('editor1');
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";

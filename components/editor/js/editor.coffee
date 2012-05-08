@@ -196,14 +196,14 @@ $ ->
       $('.demo').dialog
         title: name + ' component - Code Editor' 
         position: 'top'
-        height: $(window).height() * .9
+        height: $(window).height() * .93
         width: $(window).width() * .7
 
       window.delay 500, ->      
         $(".ui-tabs-panel").height $(window).height() * .7
         $(".CodeMirror").height $(window).height() * .65
         window.delay 500, ->
-          $(".CodeMirror-scroll").height $(window).height() * .7
+          $(".CodeMirror-scroll").height $(window).height() * .65
           
       initeditortabs()
     

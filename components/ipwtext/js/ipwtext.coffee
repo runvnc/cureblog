@@ -18,8 +18,7 @@ class IPWTextWidget
     $(idx).resizable()
         
     $(idx).draggable()
-      stop: (ev) ->
-        ev.stopPropagation()
+      
     
     oFCKeditor = new FCKeditor('editor1')
     oFCKeditor.ToolbarSet = 'Simple'
