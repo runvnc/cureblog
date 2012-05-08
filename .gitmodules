@@ -1,0 +1,3 @@
+[submodule "oicplugins"]
+	path = oicplugins
+	url = git@github.com:ithkuil/oicplugins.git

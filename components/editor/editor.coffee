@@ -25,15 +25,11 @@ everyone.now.saveWidgetData = (data, callback) ->
   name = data.name
   fs.writeFileSync "components/#{name}/js/#{name}.coffee", data.browser, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
-  childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->    
-    console.log util.inspect er
-    console.log o
-    console.log e
-    callback o + "\n" + e
-    
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
-  callback()
+  childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->    
+    callback(o + "\n" + e)
+  
   
 everyone.now.listComponents = (callback) ->
   active = process.listfile 'loadorder'
@@ -53,7 +49,7 @@ everyone.now.listComponents = (callback) ->
 everyone.now.setActiveComponents = (list, callback) ->
   str = list.join '\n'
   fs.writeFile 'loadorder', str, 'utf8', (err) ->
-    callback err
+    if callback? then callback err
     
     
 everyone.now.deleteComponent = (name, callback) ->

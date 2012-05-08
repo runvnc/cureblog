@@ -149,10 +149,8 @@
       return;
     }
     unfiltered = $('#page').html();
-    console.log('unfiltered is ' + unfiltered);
     $('body').append('<div id="tofilter"></div>');
     $('#tofilter').html(unfiltered).hide();
-    console.log('tofilter html is ' + $('#tofilter').html());
     _ref = window.saveFilters;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       filter = _ref[_i];
@@ -251,6 +249,7 @@
           alert(compileout);
         } else {
           $('.demo').html('Your edits have been saved.  Reloading application..');
+          now.restartServer();
           return setTimeout((function() {
             return window.location.reload();
           }), 2000);
@@ -262,8 +261,7 @@
           return active.push($(this).find('.compname').text());
         }
       });
-      now.setActiveComponents(active);
-      return now.restartServer();
+      return now.setActiveComponents(active);
     });
     return now.ready(function() {
       loadwidgets();

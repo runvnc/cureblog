@@ -105,10 +105,9 @@ window.savePage = ->
     return
 
   unfiltered = $('#page').html()
-  console.log 'unfiltered is ' + unfiltered
+
   $('body').append('<div id="tofilter"></div>')
-  $('#tofilter').html(unfiltered).hide()
-  console.log('tofilter html is ' + $('#tofilter').html())              
+  $('#tofilter').html(unfiltered).hide()            
         
   for filter in window.saveFilters
     filter '#tofilter'
@@ -185,12 +184,13 @@ $ ->
       css:  editorcss.getValue()
       nodejs:  editornodejs.getValue()
 
-    now.saveWidgetData data, (compileout) ->
+    now.saveWidgetData data, (compileout) ->      
       if compileout? and compileout.length > 4
         alert compileout
         return
       else
-        $('.demo').html 'Your edits have been saved.  Reloading application..'
+        $('.demo').html 'Your edits have been saved.  Reloading application..'              
+        now.restartServer()
         setTimeout ( -> window.location.reload() ), 2000
 
     active = []
@@ -198,8 +198,6 @@ $ ->
       if $(@).find('input').is(':checked')
         active.push $(@).find('.compname').text()
     now.setActiveComponents active                                          
-      
-    now.restartServer()
 
   now.ready ->
     loadwidgets()
