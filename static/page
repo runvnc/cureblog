@@ -5,9 +5,33 @@
     
     
     
-  <div class="ipwtextwidget ui-draggable" id="ca258996-44d9-31c1-7455-b0cc6d72550c" style="position: absolute; left: 110px; top: 78px; min-width: 550px; "><p><span style="font-family: Lobster; "><span style="font-size: xx-large; ">The quick brown fox jumped.</span></span></p></div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   
   
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="widgetcontainer sizewidget ui-resizable ui-draggable" id="320683a7-9d8b-30ee-70ba-f66f1d6d056c" style="position: absolute; width: 231px; height: 101px; left: 143px; top: 57px; "><div class="ipwtextwidget"><div>The quick brown fox jumped. d</div></div></div>
+  <div class="widgetcontainer sizewidget ui-resizable ui-draggable" id="c95599f3-2ad5-1f6b-dc32-602c2529ff97" style="position: absolute; width: 282px; height: 76px; left: 250px; top: 224px; "><div class="ipwtextwidget">The quick brown fox jumped.</div></div>
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="1d29f244-72fc-fc20-396e-0e10d414e41f" style="position: absolute; top: 0px; left: 0px; width: 196px; height: 46px; "><div class="ipweditable">The quick brown fox jumped.</div></div>

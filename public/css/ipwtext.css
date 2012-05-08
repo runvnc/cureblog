@@ -5,8 +5,7 @@
   margin: 3px;
 }
 
-.widgetcontainer {
-  border: 1px solid #aaa 
+
+.sizewidget {
+  border: 1px dotted #ccc; 
 }
-
-

@@ -4,14 +4,14 @@
   IPWTextWidget = (function() {
 
     function IPWTextWidget(parent, x, y, id) {
-      var eid, idx, oFCKeditor;
+      var idx, oFCKeditor;
       this.parent = parent;
       this.x = x;
       this.y = y;
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="ipwtextwidget" id ="' + this.id + '">The quick brown fox jumped.</div>');
+        this.el = $('<div class="ipwtextwidget widgetcontainer sizewidget" id ="' + this.id + '"><div class="ipweditable">The quick brown fox jumped.</div></div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({
@@ -23,28 +23,20 @@
         this.el = $(this.id);
         idx = '#' + this.id;
       }
+      $(idx).resizable();
+      $(idx).draggable()({
+        stop: function(ev) {
+          return ev.stopPropagation();
+        }
+      });
       oFCKeditor = new FCKeditor('editor1');
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";
-      $(idx).editable({
+      $(idx).find('.ipweditable').editable({
         type: 'wysiwyg',
         editor: oFCKeditor,
-        onSubmit: function(content) {
-          $('#editor1').remove();
-          return window.delay(200, function() {
-            return window.savePage();
-          });
-        },
         submit: 'save',
         cancel: 'cancel'
-      });
-      eid = this.id;
-      $('#' + this.id).draggable({
-        stop: function() {
-          return window.savePage();
-        }
-      }).bind('click', function(ev) {
-        return $('#' + eid).css('minWidth', '550px');
       });
     }
 
@@ -92,14 +84,6 @@
         if (_this.active) text = new IPWTextWidget($('#page'), x, y);
         return window.savePage();
       });
-      $(document).bind('savePage', function(ev) {
-        if ('.ipwtextwidget button') {} else {
-          $('.ipwtextwidget button').remove();
-          $('#editor1___Frame').remove();
-          $('#editor1___Config').remove();
-          return $('#editor1').remove();
-        }
-      });
       $('#objlist').append(widget);
       console.log('appended');
     }
@@ -112,10 +96,24 @@
     window.IPWTextTool = new IPWTextTool();
     return $('.ipwtextwidget').each(function() {
       var text, x, y;
-      x = $(this).position().left;
-      y = $(this).position().top;
-      return text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'));
+      if ($(this) != null) {
+        console.log('creating IPWTextWidget');
+        x = $(this).position().left;
+        y = $(this).position().top;
+        return text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'));
+      } else {
+        return console.log('$(this)? false skipping');
+      }
     });
+  });
+
+  window.saveFilters.push(function(sel) {
+    console.log('saveFilter');
+    $(sel).find('.ui-resizable-handle').remove();
+    $(sel).find('.ipwtextwidget button').remove();
+    $(sel).find('#editor1___Frame').remove();
+    $(sel).find('#editor1___Config').remove();
+    return $(sel).find('#editor1').remove();
   });
 
 }).call(this);

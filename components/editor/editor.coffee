@@ -29,7 +29,7 @@ everyone.now.saveWidgetData = (data, callback) ->
     console.log util.inspect er
     console.log o
     console.log e
-    callback o
+    callback o + "\n" + e
     
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'

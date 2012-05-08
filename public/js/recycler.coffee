@@ -6,6 +6,7 @@ class Recycler
     
     $('#recycler').droppable
       drop: (ev, ui) ->
+        alert 'dropped on recycler'
         name = ui.draggable.data 'name'
         ui.draggable.remove()
         window.savePage()

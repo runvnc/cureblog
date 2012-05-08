@@ -11,6 +11,8 @@
 
   editorcss = void 0;
 
+  window.saveFilters = [];
+
   nowediting = '';
 
   initialized = false;
@@ -138,9 +140,19 @@
   };
 
   window.savePage = function() {
-    $(document).trigger('savePage');
+    var filter, unfiltered, _i, _len, _ref;
+    unfiltered = $('#page').html();
+    console.log('unfiltered is ' + unfiltered);
+    $('body').append('<div id="tofilter"></div>');
+    $('#tofilter').html(unfiltered).hide();
+    console.log('tofilter html is ' + $('#tofilter').html());
+    _ref = window.saveFilters;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      filter = _ref[_i];
+      filter('#tofilter');
+    }
     return window.delay(500, function() {
-      return now.saveStatic('page', $('#page').html());
+      return now.saveStatic('page', $('#tofilter').html());
     });
   };
 
@@ -220,10 +232,14 @@
         nodejs: editornodejs.getValue()
       };
       now.saveWidgetData(data, function(compileout) {
-        $('.demo').html('Your edits have been saved.  Reloading application..');
-        return setTimeout((function() {
-          return window.location.reload();
-        }), 2000);
+        if ((compileout != null) && compileout.length > 4) {
+          alert(compileout);
+        } else {
+          $('.demo').html('Your edits have been saved.  Reloading application..');
+          return setTimeout((function() {
+            return window.location.reload();
+          }), 2000);
+        }
       });
       active = [];
       $('#components li').each(function() {

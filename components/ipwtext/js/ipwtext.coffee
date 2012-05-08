@@ -2,46 +2,56 @@ class IPWTextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
       @id = guid()
-      @el = $('<div class="ipwtextwidget" id ="'+@id+'">The quick brown fox jumped.</div>')
+      @el = $('<div class="ipwtextwidget widgetcontainer sizewidget" id ="'+@id+'"><div class="ipweditable">The quick brown fox jumped.</div></div>')
       idx = '#' + @id
       @parent.append @el
       @el.css
         position: 'absolute'
         top: @y + 'px'
         left: @x + 'px'      
-        
+      
+    
     else
       @el = $(@id)
       idx = '#' + @id
-      
+    
+    $(idx).resizable()
+        
+    $(idx).draggable()
+      stop: (ev) ->
+        ev.stopPropagation()
+    
     oFCKeditor = new FCKeditor('editor1')
     oFCKeditor.ToolbarSet = 'Simple'
-    oFCKeditor.BasePath = "/js/"          
-    $(idx).editable
+    oFCKeditor.BasePath = "/js/"   
+    
+    $(idx).find('.ipweditable').editable
       type: 'wysiwyg'
-      editor: oFCKeditor
-      onSubmit: (content) ->
-        $('#editor1').remove()
-        window.delay 200, ->
-          window.savePage()
-        
+      editor: oFCKeditor       
       submit:'save',
-      cancel:'cancel'      
+      cancel:'cancel'
+      #onSubmit: (content) ->
+      #  #$('#editor1').remove()
+      #  #window.delay 200, ->
+      #  #  window.savePage()       
+      
           
     #$('#'+@id).live 'blur', ->  
     #  window.savePage()
   
-    eid = @id
-    $('#'+@id).draggable(
-      stop: ->
-        window.savePage()
-    ) .bind 'click', (ev) ->
-      
+
+    
+
+    #    console.log 'drag stop'
+    #    console.log 'saving page'
+    #    window.savePage()
+    #) .bind 'click', (ev) ->
+    
       #if not (ev.target.id is eid)        
       #  return
       #else
       #  window.delay 1400, ->
-          $('#'+eid).css 'minWidth', '550px'
+      #    $('#'+eid).css 'minWidth', '550px'
       #  console.log 'its ok target id is ' + ev.target.id
       #$(@).cleditor()
       #$(this).focus()
@@ -86,14 +96,6 @@ class IPWTextTool
         text = new IPWTextWidget($('#page'), x, y)      
       window.savePage()
       
-    $(document).bind 'savePage', (ev) ->
-      if ('.ipwtextwidget button')
-        return
-      else
-        $('.ipwtextwidget button').remove()
-        $('#editor1___Frame').remove()
-        $('#editor1___Config').remove()
-        $('#editor1').remove()
         
     $('#objlist').append widget  
     console.log 'appended'
@@ -101,8 +103,21 @@ class IPWTextTool
     
 $ ->
   window.IPWTextTool = new IPWTextTool()
-  $('.ipwtextwidget').each ->
-    x = $(this).position().left
-    y = $(this).position().top
-    text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'))
-                                        
+  
+  $('.ipwtextwidget').each ->    
+    if $(this)?
+      console.log 'creating IPWTextWidget'
+      x = $(this).position().left
+      y = $(this).position().top
+      text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'))
+    else
+      console.log '$(this)? false skipping'
+
+window.saveFilters.push (sel) ->      
+  console.log 'saveFilter'
+  $(sel).find('.ui-resizable-handle').remove()
+  $(sel).find('.ipwtextwidget button').remove()
+  $(sel).find('#editor1___Frame').remove()
+  $(sel).find('#editor1___Config').remove()
+  $(sel).find('#editor1').remove()
+        

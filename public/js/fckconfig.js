@@ -125,7 +125,7 @@ FCKConfig.ToolbarSets["Basic"] = [
   ['Bold','Italic','Underline','FontName','FontSize']
 ] ;
 
-FCKConfig.EnterMode = 'p' ;			// p | div | br
+FCKConfig.EnterMode = 'div'; //'p' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br
 
 FCKConfig.Keystrokes = [

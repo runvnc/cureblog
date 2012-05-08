@@ -4,6 +4,7 @@ editorhtml = undefined
 editorbrowser = undefined
 editornodejs = undefined
 editorcss = undefined
+window.saveFilters = []
 
 nowediting = ''
 
@@ -97,9 +98,17 @@ makeEditable = ->
       "delete": {name: "Delete", icon: "delete"}
       
 window.savePage = ->
-  $(document).trigger 'savePage'
+  unfiltered = $('#page').html()
+  console.log 'unfiltered is ' + unfiltered
+  $('body').append('<div id="tofilter"></div>')
+  $('#tofilter').html(unfiltered).hide()
+  console.log('tofilter html is ' + $('#tofilter').html())              
+        
+  for filter in window.saveFilters
+    filter '#tofilter'
+  
   window.delay 500, ->
-    now.saveStatic 'page', $('#page').html()
+    now.saveStatic 'page', $('#tofilter').html()
 
 loadwidgets = ->
   $('#page').droppable
@@ -165,12 +174,12 @@ $ ->
       nodejs:  editornodejs.getValue()
 
     now.saveWidgetData data, (compileout) ->
-      #if compileout?
-      #  alert compileout
-      #  return
-      #else
-      $('.demo').html 'Your edits have been saved.  Reloading application..'
-      setTimeout ( -> window.location.reload() ), 2000
+      if compileout? and compileout.length > 4
+        alert compileout
+        return
+      else
+        $('.demo').html 'Your edits have been saved.  Reloading application..'
+        setTimeout ( -> window.location.reload() ), 2000
 
     active = []
     $('#components li').each ->

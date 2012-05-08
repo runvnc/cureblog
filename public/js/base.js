@@ -6,8 +6,6 @@
   };
 
   window.delay = function(ms, func) {
-    console.log(ms);
-    console.log(func);
     return setTimeout(func, ms);
   };
 
