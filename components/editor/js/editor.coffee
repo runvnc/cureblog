@@ -207,7 +207,7 @@ $ ->
         title: name + ' component - Code Editor' 
         position: 'top'
         height: $(window).height() * .93
-        width: $(window).width() * .7
+        width: $(window).width() * .9
 
       window.delay 150, ->      
         $(".ui-tabs-panel").height $(window).height() * .7
