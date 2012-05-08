@@ -34,6 +34,9 @@ $.fn.editable = function(options){
 	var options = $.extend(defaults, options);
 	
 	options.toEditable = function(){
+    console.log('window.alreadyEditing is ' + window.alreadyEditing);
+    if (window.alreadyEditing) return;
+
 		$this = $(this);
 		$this.data('editable.current',$this.html());
 		opts = $this.data('editable.options');
@@ -100,6 +103,8 @@ $.fn.editable = function(options){
 $.editableFactory = {
 	'text': {
 		toEditable: function($this,options){
+      if (window.alreadyEditing) return;
+
 			$('<input/>').appendTo($this)
 						 .val($this.data('editable.current'));
 		},

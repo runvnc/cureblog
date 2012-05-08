@@ -46,7 +46,7 @@ $.fn.editable = function(options){
 				 .addClass(opts.editClass);
 		// Submit Event
 		if(opts.submit){
-			$('<button/>').appendTo($this)
+			$('<button style="position:relative; z-index:5000;"/>').appendTo($this)
 						.html(opts.submit)
 						.one('mouseup',function(){opts.toNonEditable($(this).parent(),true)});
 		}else
@@ -55,7 +55,7 @@ $.fn.editable = function(options){
 				 	.one(opts.submitBy,function(){opts.toNonEditable($(this).parent(),true)});
 		// Cancel Event
 		if(opts.cancel)
-			$('<button/>').appendTo($this)
+			$('<button style="position: relative; z-index: 5000;"/>').appendTo($this)
 						.html(opts.cancel)
 						.one('mouseup',function(){opts.toNonEditable($(this).parent(),false)});
 		// Call User Function
@@ -68,7 +68,6 @@ $.fn.editable = function(options){
 								);
 	}
 	options.toNonEditable = function($this,change){
-
 		opts = $this.data('editable.options');
 		// Configure events,styles for changed content
 
@@ -102,6 +101,7 @@ $.fn.editable = function(options){
 $.editableFactory = {
 	'text': {
 		toEditable: function($this,options){
+      if (window.alreadyEditing) return;
 			$('<input/>').appendTo($this)
 						 .val($this.data('editable.current'));
 		},

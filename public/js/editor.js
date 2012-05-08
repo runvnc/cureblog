@@ -141,6 +141,13 @@
 
   window.savePage = function() {
     var filter, unfiltered, _i, _len, _ref;
+    if (window.alreadyEditing) {
+      noty({
+        text: "Can't save while editing",
+        type: 'alert'
+      });
+      return;
+    }
     unfiltered = $('#page').html();
     console.log('unfiltered is ' + unfiltered);
     $('body').append('<div id="tofilter"></div>');
@@ -152,7 +159,15 @@
       filter('#tofilter');
     }
     return window.delay(500, function() {
-      return now.saveStatic('page', $('#tofilter').html());
+      return now.saveStatic('page', $('#tofilter').html(), function(success) {
+        if (success) {
+          return noty({
+            text: 'Page saved.',
+            type: 'success',
+            timeout: 1000
+          });
+        }
+      });
     });
   };
 
@@ -260,16 +275,20 @@
           height: $(window).height() * .93,
           width: $(window).width() * .7
         });
-        window.delay(500, function() {
+        window.delay(150, function() {
           $(".ui-tabs-panel").height($(window).height() * .7);
-          $(".CodeMirror").height($(window).height() * .65);
-          return window.delay(500, function() {
-            return $(".CodeMirror-scroll").height($(window).height() * .65);
+          $(".CodeMirror").height($(window).height() * .69);
+          return window.delay(150, function() {
+            return $(".CodeMirror-scroll").height($(window).height() * .68);
           });
         });
         return initeditortabs();
       });
-      return $('#publish').click(publish);
+      $('#publish').click(publish);
+      $('#objs').prepend('<button id="savepage" class="button white">Save Page</button>');
+      return $('#savepage').click(function() {
+        return window.savePage();
+      });
     });
   });
 

@@ -4,5 +4,7 @@ jquery-ui-1.8.18.custom.min.js
 jquery.ui.position.js
 jquery.contextMenu.js
 jquery.livequery.js
+jquery.noty.js
+promise.js
 /nowjs/now.js
 base.js

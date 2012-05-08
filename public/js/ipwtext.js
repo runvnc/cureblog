@@ -1,6 +1,8 @@
 (function() {
   var IPWTextTool, IPWTextWidget;
 
+  window.editorNum = 1;
+
   IPWTextWidget = (function() {
 
     function IPWTextWidget(parent, x, y, id) {
@@ -24,15 +26,28 @@
         idx = '#' + this.id;
       }
       $(idx).resizable();
-      $(idx).draggable();
-      oFCKeditor = new FCKeditor('editor1');
+      $(idx).draggable({
+        stop: function(ev) {
+          return ev.stopPropagation();
+        }
+      });
+      oFCKeditor = new FCKeditor('editor' + window.editorNum++);
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";
       $(idx).find('.ipweditable').editable({
         type: 'wysiwyg',
         editor: oFCKeditor,
         submit: 'save',
-        cancel: 'cancel'
+        cancel: 'cancel',
+        onEdit: function(content) {
+          return window.alreadyEditing = true;
+        },
+        onSubmit: function(content) {
+          return window.alreadyEditing = false;
+        },
+        onCancel: function(content) {
+          return window.alreadyEditing = false;
+        }
       });
     }
 
@@ -69,6 +84,7 @@
       $('#page').bind('click', function(ev) {
         var text, x, y;
         if (!ev.target === $('#page')[0]) return;
+        if (window.alreadyEditing) return;
         if ($('#editor1___Frame').is(':visible')) return;
         if (ev.offsetX != null) {
           x = ev.offsetX;
@@ -77,8 +93,7 @@
           x = ev.pageX - $('#page')[0].offsetLeft;
           y = ev.pageY - $('#page')[0].offsetTop;
         }
-        if (_this.active) text = new IPWTextWidget($('#page'), x, y);
-        return window.savePage();
+        if (_this.active) return text = new IPWTextWidget($('#page'), x, y);
       });
       $('#objlist').append(widget);
       console.log('appended');
@@ -109,7 +124,22 @@
     $(sel).find('.ipwtextwidget button').remove();
     $(sel).find('#editor1___Frame').remove();
     $(sel).find('#editor1___Config').remove();
-    return $(sel).find('#editor1').remove();
+    $(sel).find('#editor1').remove();
+    $(sel).find('#editor2___Frame').remove();
+    $(sel).find('#editor2___Config').remove();
+    $(sel).find('#editor2').remove();
+    $(sel).find('#editor3___Frame').remove();
+    $(sel).find('#editor3___Config').remove();
+    $(sel).find('#editor3').remove();
+    $(sel).find('#editor4___Frame').remove();
+    $(sel).find('#editor4___Config').remove();
+    $(sel).find('#editor4').remove();
+    $(sel).find('#editor5___Frame').remove();
+    $(sel).find('#editor5___Config').remove();
+    $(sel).find('#editor5').remove();
+    $(sel).find('#editor6___Frame').remove();
+    $(sel).find('#editor6___Config').remove();
+    return $(sel).find('#editor6').remove();
   });
 
 }).call(this);

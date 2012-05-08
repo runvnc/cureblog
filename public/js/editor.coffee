@@ -98,6 +98,12 @@ makeEditable = ->
       "delete": {name: "Delete", icon: "delete"}
       
 window.savePage = ->
+  if window.alreadyEditing
+    noty
+      text: "Can't save while editing"
+      type: 'alert'
+    return
+
   unfiltered = $('#page').html()
   console.log 'unfiltered is ' + unfiltered
   $('body').append('<div id="tofilter"></div>')
@@ -108,8 +114,14 @@ window.savePage = ->
     filter '#tofilter'
   
   window.delay 500, ->
-    now.saveStatic 'page', $('#tofilter').html()
-
+    now.saveStatic 'page', $('#tofilter').html(), (success) ->
+      if success
+        noty
+          text: 'Page saved.'
+          type: 'success'
+          timeout: 1000
+          
+          
 loadwidgets = ->
   $('#page').droppable
     drop: (ev, ui) ->
@@ -199,13 +211,18 @@ $ ->
         height: $(window).height() * .93
         width: $(window).width() * .7
 
-      window.delay 500, ->      
+      window.delay 150, ->      
         $(".ui-tabs-panel").height $(window).height() * .7
-        $(".CodeMirror").height $(window).height() * .65
-        window.delay 500, ->
-          $(".CodeMirror-scroll").height $(window).height() * .65
+        $(".CodeMirror").height $(window).height() * .69
+        window.delay 150, ->
+          $(".CodeMirror-scroll").height $(window).height() * .68
           
       initeditortabs()
     
     $('#publish').click publish
+    
+    $('#objs').prepend '<button id="savepage" class="button white">Save Page</button>'
+    $('#savepage').click ->
+      window.savePage()
+    
     

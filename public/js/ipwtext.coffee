@@ -1,3 +1,5 @@
+window.editorNum = 1
+
 class IPWTextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
@@ -8,19 +10,18 @@ class IPWTextWidget
       @el.css
         position: 'absolute'
         top: @y + 'px'
-        left: @x + 'px'      
-      
-    
+        left: @x + 'px'          
     else
       @el = $(@id)
       idx = '#' + @id
     
     $(idx).resizable()
         
-    $(idx).draggable()
-      
-    
-    oFCKeditor = new FCKeditor('editor1')
+    $(idx).draggable
+      stop: (ev) ->
+        ev.stopPropagation()
+          
+    oFCKeditor = new FCKeditor('editor' + window.editorNum++)
     oFCKeditor.ToolbarSet = 'Simple'
     oFCKeditor.BasePath = "/js/"   
     
@@ -29,34 +30,13 @@ class IPWTextWidget
       editor: oFCKeditor       
       submit:'save',
       cancel:'cancel'
-      #onSubmit: (content) ->
-      #  #$('#editor1').remove()
-      #  #window.delay 200, ->
-      #  #  window.savePage()       
-      
-          
-    #$('#'+@id).live 'blur', ->  
-    #  window.savePage()
-  
-
-    
-
-    #    console.log 'drag stop'
-    #    console.log 'saving page'
-    #    window.savePage()
-    #) .bind 'click', (ev) ->
-    
-      #if not (ev.target.id is eid)        
-      #  return
-      #else
-      #  window.delay 1400, ->
-      #    $('#'+eid).css 'minWidth', '550px'
-      #  console.log 'its ok target id is ' + ev.target.id
-      #$(@).cleditor()
-      #$(this).focus()
-      #ev.stopPropagation()
-      #ev.preventDefault()
-      
+      onEdit: (content) ->
+        window.alreadyEditing = true
+      onSubmit: (content) ->
+        window.alreadyEditing = false
+      onCancel: (content) ->
+        window.alreadyEditing = false
+              
   
 class IPWTextTool
   constructor: ->
@@ -84,6 +64,7 @@ class IPWTextTool
     
     $('#page').bind 'click', (ev) =>
       if not ev.target is $('#page')[0] then return
+      if window.alreadyEditing then return
       if $('#editor1___Frame').is(':visible') then return
       if ev.offsetX?
         x = ev.offsetX
@@ -92,8 +73,7 @@ class IPWTextTool
         x = ev.pageX - $('#page')[0].offsetLeft
         y = ev.pageY - $('#page')[0].offsetTop
       if @active
-        text = new IPWTextWidget($('#page'), x, y)      
-      window.savePage()
+        text = new IPWTextWidget($('#page'), x, y)            
       
         
     $('#objlist').append widget  
@@ -119,4 +99,19 @@ window.saveFilters.push (sel) ->
   $(sel).find('#editor1___Frame').remove()
   $(sel).find('#editor1___Config').remove()
   $(sel).find('#editor1').remove()
+  $(sel).find('#editor2___Frame').remove()
+  $(sel).find('#editor2___Config').remove()
+  $(sel).find('#editor2').remove()  
+  $(sel).find('#editor3___Frame').remove()
+  $(sel).find('#editor3___Config').remove()
+  $(sel).find('#editor3').remove()  
+  $(sel).find('#editor4___Frame').remove()
+  $(sel).find('#editor4___Config').remove()
+  $(sel).find('#editor4').remove()  
+  $(sel).find('#editor5___Frame').remove()
+  $(sel).find('#editor5___Config').remove()
+  $(sel).find('#editor5').remove()  
+  $(sel).find('#editor6___Frame').remove()
+  $(sel).find('#editor6___Config').remove()
+  $(sel).find('#editor6').remove()  
         
