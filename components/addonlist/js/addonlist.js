@@ -3,7 +3,7 @@
 
   allplugins = [];
 
-  plugitem = -1;
+  plugitem = 0;
 
   selectedplugin = '';
 
@@ -12,16 +12,15 @@
     _results = [];
     for (_i = 0, _len = strings.length; _i < _len; _i++) {
       str = strings[_i];
-      if (str.indexOf(search) === 0) _results.push(str);
+      if (str.indexOf(search) >= 0) _results.push(str);
     }
     return _results;
   };
 
   highlightSel = function() {
-    console.log('highlighting ' + plugitem);
     $('#matches li').css('backgroundColor', '#fff');
-    selectedplugin = $('#matches').eq(plugitem).text();
-    return $('#matches').eq(plugitem).css('backgroundColor', '#EEDAF5');
+    selectedplugin = $('#matches li').eq(plugitem).text();
+    return $('#matches li').eq(plugitem).css('backgroundColor', '#EEDAF5');
   };
 
   $(function() {
@@ -33,46 +32,53 @@
         height: $(window).height() * .93,
         width: $(window).width() * .7
       });
-      $('#inp').keyup(function(e) {
-        var list, matches, str, _i, _len;
-        if ($('#inp').val() === '') {
-          matches = [];
-        } else {
-          matches = complete($('#inp').val().toLowerCase(), allplugins);
-        }
-        console.log('matches:');
-        console.log(matches);
-        list = '';
-        for (_i = 0, _len = matches.length; _i < _len; _i++) {
-          str = matches[_i];
-          list += '<li>' + str + '</li>';
-        }
-        $('#matches').html(list);
-        if (matches.length === 1) {
-          plugitem = 1;
-          return setTimeout(highlightSel, 100);
-        }
-      });
-      return $('#inp').keydown(function(e) {
+      return $('#inp').keyup(function(e) {
+        var list, matches, str, toks, _i, _len;
         switch (e.which) {
           case 40:
-            console.log('hi there plugitem is ' + plugitem);
-            if (plugitem < allplugins.length) {
+            if (plugitem < matches.length - 1) {
               plugitem++;
+              console.log('plugitem is now ' + plugitem);
               return highlightSel();
+            } else {
+              return console.log('40 no plugitem is ' + plugitem + ' matches is ' + matches.length);
             }
             break;
           case 38:
-            if (plugitem > -1) {
+            if (plugitem > 0) {
               plugitem--;
               return highlightSel();
+            } else {
+              return console.log('38 no plugitem is ' + plugitem + ' matches is ' + matches.length);
             }
             break;
           case 13:
-            return noty({
+            toks = selectedplugin.split(' ');
+            selectedplugin = toks[0];
+            noty({
               text: 'Installing plugin ' + selectedplugin,
               type: 'information'
             });
+            return now.installPlugin(selectedplugin, function(msg) {
+              return $('#installmsg').html(msg);
+            });
+          default:
+            if ($('#inp').val() === '') {
+              matches = [];
+            } else {
+              matches = complete($('#inp').val().toLowerCase(), allplugins);
+            }
+            list = '';
+            for (_i = 0, _len = matches.length; _i < _len; _i++) {
+              str = matches[_i];
+              list += '<li>' + str + '</li>';
+            }
+            plugitem = -1;
+            $('#matches').html(list);
+            if (matches.length === 1) {
+              plugitem = 0;
+              return setTimeout(highlightSel, 100);
+            }
         }
       });
     });

@@ -18,8 +18,10 @@
     
     
     
+    
+    
   
-  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="2cd16ea0-171e-3338-79c1-41e1c24a52b9" style="position: absolute; width: 342px; height: 47px; left: 36px; top: 15px; "><div class="ipweditable"><div><strong><span style="font-size: x-large; "><span style="font-family: Ubuntu; ">OIC</span></span></strong></div></div></div>
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="2cd16ea0-171e-3338-79c1-41e1c24a52b9" style="position: absolute; width: 342px; height: 47px; left: 43px; top: 14px; "><div class="ipweditable"><div><font face="Ubuntu" size="6"><b>OIC<span style="font-size: large; ">.</span>IO</b></font></div></div></div>
   
   
   
@@ -35,5 +37,7 @@
   
   
   
-  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="05eb7bd7-78fd-0f41-bad4-f6e418cdaf63" style="position: absolute; width: 347px; height: 38px; left: 41px; top: 109px; "><div class="ipweditable"><div><span style="font-size: medium; "><span style="font-family: 'Droid Sans'; ">The quick brown fox jumped.</span></span></div></div></div>
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="05eb7bd7-78fd-0f41-bad4-f6e418cdaf63" style="position: absolute; width: 347px; height: 38px; left: 41px; top: 109px; "><div class="ipweditable"><div><strong><span style="font-size: large; "><span style="font-family: Ubuntu; ">The quick brown fox jumped</span></span></strong></div></div></div>
+  
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="fe87549d-6042-21b1-4377-b9e45639dfad" style="position: absolute; width: 27px; height: 19px; left: 91px; top: 21px; "><div class="ipweditable"><div><span style="font-size: small; ">.</span></div></div></div><div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="6127b729-3cf0-3967-73de-cc38853e6d9c" style="position: absolute; width: 23px; height: 35px; left: 54px; top: 21px; "><div class="ipweditable"><div><span style="font-size: small; ">.</span></div></div></div>
   
