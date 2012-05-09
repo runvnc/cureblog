@@ -15,10 +15,15 @@
 }
 
 #objs {
-  border: 1px solid #000;
+  border: 1px solid #666;
+  box-shadow: 
   width: 13%;
   height: 100%;
   float: left; 
+  padding-right: 10px;
+  -moz-box-shadow: inset -5px -5px 5px #888;
+  -webkit-box-shadow: inset 10px -5px 5px #888;
+  box-shadow: inset -5px 0px 5px #888;  
 }
 
 #page {
@@ -55,6 +60,7 @@
 
 .toolbutton {
   background-color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   border: 1px solid #aaa;
   border-radius: 3px;
@@ -229,4 +235,15 @@
   margin-top: 5px;
   margin-bottom: 5px;
 }
+
+#savepage img {
+  float: left; 
+  margin-left: -20px;
+}
+
+#editcode img {
+  float: left; 
+  margin-left: -20px;
+}
+
 

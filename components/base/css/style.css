@@ -61,10 +61,10 @@ hr {display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 
 input, select {vertical-align: middle;}
 
 pre {
-	white-space: pre; /* CSS2 */
-	white-space: pre-wrap; /* CSS 2.1 */
-	white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
-	word-wrap: break-word; /* IE */
+	/* white-space: pre; */ /* CSS2 */
+	/* white-space: pre-wrap; */ /* CSS 2.1 */
+	/* white-space: pre-line; */ /* CSS 3 (and 2.1 as well, actually) */
+	/* word-wrap: break-word; */ /* IE */
 }
 
 input[type="radio"] {vertical-align: text-bottom;}

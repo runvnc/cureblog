@@ -265,7 +265,7 @@
     });
     return now.ready(function() {
       loadwidgets();
-      $('#objs').prepend('<button id="editcode" class="button white">Code Editor</button>');
+      $('#objs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
       $('#editcode').click(function() {
         $('.demo').dialog({
           title: name + ' component - Code Editor',
@@ -283,7 +283,7 @@
         return initeditortabs();
       });
       $('#publish').click(publish);
-      $('#objs').prepend('<button id="savepage" class="button white">Save Page</button>');
+      $('#objs').prepend('<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>');
       return $('#savepage').click(function() {
         return window.savePage();
       });

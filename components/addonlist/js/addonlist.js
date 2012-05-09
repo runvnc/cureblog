@@ -1,5 +1,5 @@
 (function() {
-  var allplugins, complete, highlightSel, plugitem, selectedplugin;
+  var allplugins, complete, highlightSel, matches, plugitem, selectedplugin;
 
   allplugins = [];
 
@@ -23,8 +23,10 @@
     return $('#matches li').eq(plugitem).css('backgroundColor', '#EEDAF5');
   };
 
+  matches = [];
+
   $(function() {
-    $('#objs').prepend('<button id="plugins" class="button white">Plugins..</button>');
+    $('#objs').prepend('<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>');
     $('#plugins').click(function() {
       $('#pluginauto').dialog({
         title: 'Add plugins',
@@ -33,7 +35,7 @@
         width: $(window).width() * .7
       });
       return $('#inp').keyup(function(e) {
-        var list, matches, str, toks, _i, _len;
+        var list, str, toks, _i, _len;
         switch (e.which) {
           case 40:
             if (plugitem < matches.length - 1) {
@@ -60,7 +62,8 @@
               type: 'information'
             });
             return now.installPlugin(selectedplugin, function(msg) {
-              return $('#installmsg').html(msg);
+              $('#installmsg').append(msg);
+              return $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight;
             });
           default:
             if ($('#inp').val() === '') {

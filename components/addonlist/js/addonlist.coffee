@@ -10,9 +10,10 @@ highlightSel = ->
   selectedplugin = $('#matches li').eq(plugitem).text()
   $('#matches li').eq(plugitem).css 'backgroundColor', '#EEDAF5'
   
-
+matches = []
+  
 $ ->    
-  $('#objs').prepend '<button id="plugins" class="button white">Plugins..</button>'
+  $('#objs').prepend '<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>'
 
   $('#plugins').click ->
     $('#pluginauto').dialog
@@ -44,8 +45,9 @@ $ ->
             text: 'Installing plugin ' + selectedplugin
             type: 'information'
 
-          now.installPlugin selectedplugin, (msg) ->
-            $('#installmsg').html msg
+          now.installPlugin selectedplugin, (msg) ->            
+            $('#installmsg').append msg
+            $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight
 
         else
           if $('#inp').val() is ''

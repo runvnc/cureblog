@@ -201,7 +201,7 @@ $ ->
 
   now.ready ->
     loadwidgets()
-    $('#objs').prepend '<button id="editcode" class="button white">Code Editor</button>'
+    $('#objs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
     $('#editcode').click ->
       $('.demo').dialog
         title: name + ' component - Code Editor' 
@@ -219,7 +219,7 @@ $ ->
     
     $('#publish').click publish
     
-    $('#objs').prepend '<button id="savepage" class="button white">Save Page</button>'
+    $('#objs').prepend '<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>'
     $('#savepage').click ->
       window.savePage()
     

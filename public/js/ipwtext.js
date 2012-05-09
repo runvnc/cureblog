@@ -119,7 +119,6 @@
   });
 
   window.saveFilters.push(function(sel) {
-    console.log('saveFilter');
     $(sel).find('.ui-resizable-handle').remove();
     $(sel).find('.ipwtextwidget button').remove();
     $(sel).find('#editor1___Frame').remove();

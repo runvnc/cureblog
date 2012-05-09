@@ -122,7 +122,7 @@ FCKConfig.ToolbarSets["Basic"] = [
 ] ;
 
  FCKConfig.ToolbarSets["Simple"] = [
-  ['Bold','Italic','Underline','FontName','FontSize']
+  ['Bold','Italic','Underline','FontName','FontSize', 'TextColor']
 ] ;
 
 FCKConfig.EnterMode = 'div'; //'p' ;			// p | div | br
@@ -160,8 +160,9 @@ FCKConfig.EnableMoreFontColors = true ;
 FCKConfig.FontColors = '000000,993300,333300,003300,003366,000080,333399,333333,800000,FF6600,808000,808080,008080,0000FF,666699,808080,FF0000,FF9900,99CC00,339966,33CCCC,3366FF,800080,999999,FF00FF,FFCC00,FFFF00,00FF00,00FFFF,00CCFF,993366,C0C0C0,FF99CC,FFCC99,FFFF99,CCFFCC,CCFFFF,99CCFF,CC99FF,FFFFFF' ;
 
 FCKConfig.FontFormats	= 'p;h1;h2;h3;h4;h5;h6;pre;address;div' ;
-FCKConfig.FontNames		= 'Droid Sans;Droid Serif;Ubuntu;Lobster;Hammersmith One;Vollkorn;Arial;Courier New;Tahoma;Times New Roman;Verdana' ;
-FCKConfig.FontSizes		= 'smaller;larger;xx-small;x-small;small;medium;large;x-large;xx-large' ;
+FCKConfig.FontNames		= 'Droid Sans;Droid Serif;Ubuntu;Lobster;Hammersmith One;Vollkorn;Arial,Helvetica,sans-serif;Georgia, serif;Courier New,Courier,monospace;Tahoma,Geneva,sans-serif;Times New Roman,Times,serif;Verdana,Geneva,sans-serif;Impact, Charcoal,sans-serif;Palatino Linotype, Book Antique,serif;Century Gothic,sans-serif;Lucida Sans Unicode, Lucida Grande, sans-serif;Arial Black, Gadget, sans-serif;Arial Narrow, sans-serif;Lucida Console, Monaco, monospace;Gill Sans, Gill Sans MT, sans-serif' ;
+//FCKConfig.FontSizes		= 'smaller;larger;xx-small;x-small;small;medium;large;x-large;xx-large' ;
+FCKConfig.FontSizes =  '8pt/8;9pt/9;10pt/10;11pt/11;12pt/12;14pt/14;16pt/16;18pt/18;19pt/19;20pt/20;22pt/22;24pt/24;26pt/26;28pt/28;30pt/30;34pt/34;36pt/36;42pt/42;60pt/60;72pt/72' ; 
 
 FCKConfig.StylesXmlPath		= FCKConfig.EditorPath + 'fckstyles.xml' ;
 FCKConfig.TemplatesXmlPath	= FCKConfig.EditorPath + 'fcktemplates.xml' ;

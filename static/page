@@ -20,24 +20,28 @@
     
     
     
+    
+    
   
-  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="2cd16ea0-171e-3338-79c1-41e1c24a52b9" style="position: absolute; width: 342px; height: 47px; left: 43px; top: 14px; "><div class="ipweditable"><div><font face="Ubuntu" size="6"><b>OIC<span style="font-size: large; ">.</span>IO</b></font></div></div></div>
-  
-  
-  
-  
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="2cd16ea0-171e-3338-79c1-41e1c24a52b9" style="position: absolute; top: 14px; left: 44px; width: 437px; height: 47px; "><div class="ipweditable"><div><font face="Ubuntu" size="6"><b>OIC</b><span style="color: rgb(192, 192, 192); "><b><span style="font-size: large; ">.</span></b></span><b>IO</b></font></div></div></div>
   
   
   
   
   
   
-  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="0b734bad-949c-e0d7-303a-88d47f564d4c" style="position: absolute; top: 196px; left: 40px; width: 1041px; height: 188px; "><div class="ipweditable"><div><span style="font-family: 'Droid Sans'; "><span style="font-size: medium; "><span style="line-height: 14px; text-align: justify; ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></span></div></div></div>
   
   
   
   
-  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="05eb7bd7-78fd-0f41-bad4-f6e418cdaf63" style="position: absolute; width: 347px; height: 38px; left: 41px; top: 109px; "><div class="ipweditable"><div><strong><span style="font-size: large; "><span style="font-family: Ubuntu; ">The quick brown fox jumped</span></span></strong></div></div></div>
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="0b734bad-949c-e0d7-303a-88d47f564d4c" style="position: absolute; width: 1041px; height: 188px; left: 34px; top: 189px; "><div class="ipweditable"><div><span style="font-family: 'Droid Sans'; "><span style="font-size: medium; "><span style="line-height: 14px; text-align: justify; ">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span></span></span></div></div></div>
+  
+  
+  
+  
+  <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="05eb7bd7-78fd-0f41-bad4-f6e418cdaf63" style="position: absolute; width: 374px; height: 38px; left: 35px; top: 107px; "><div class="ipweditable"><div><span style="font-size: 20pt; "><strong><span style="font-family: Ubuntu; ">The quick brown <span style="color: rgb(255, 51, 51); ">fox</span> jumped</span></strong></span></div></div></div>
   
   <div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="fe87549d-6042-21b1-4377-b9e45639dfad" style="position: absolute; width: 27px; height: 19px; left: 91px; top: 21px; "><div class="ipweditable"><div><span style="font-size: small; ">.</span></div></div></div><div class="ipwtextwidget widgetcontainer sizewidget ui-resizable ui-draggable" id="6127b729-3cf0-3967-73de-cc38853e6d9c" style="position: absolute; width: 23px; height: 35px; left: 54px; top: 21px; "><div class="ipweditable"><div><span style="font-size: small; ">.</span></div></div></div>
+  
+  
   

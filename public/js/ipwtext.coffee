@@ -84,16 +84,15 @@ $ ->
   window.IPWTextTool = new IPWTextTool()
   
   $('.ipwtextwidget').each ->    
-    if $(this)?
+    if $(@)?
       console.log 'creating IPWTextWidget'
-      x = $(this).position().left
-      y = $(this).position().top
-      text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'))
+      x = $(@).position().left
+      y = $(@).position().top
+      text = new IPWTextWidget($('#page'), x, y, $(@).attr('id'))
     else
       console.log '$(this)? false skipping'
 
 window.saveFilters.push (sel) ->      
-  console.log 'saveFilter'
   $(sel).find('.ui-resizable-handle').remove()
   $(sel).find('.ipwtextwidget button').remove()
   $(sel).find('#editor1___Frame').remove()
