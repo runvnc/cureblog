@@ -9,7 +9,6 @@
       $('#recycler').droppable({
         drop: function(ev, ui) {
           var name;
-          alert('dropped on recycler');
           name = ui.draggable.data('name');
           ui.draggable.remove();
           return window.savePage();

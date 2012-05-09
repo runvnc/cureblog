@@ -268,11 +268,13 @@
       $('#objs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
       $('#editcode').click(function() {
         $('.demo').dialog({
+          modal: true,
           title: name + ' component - Code Editor',
           position: 'top',
           height: $(window).height() * .93,
           width: $(window).width() * .9
         });
+        $('.transparent').css('background-color', '#eee');
         window.delay(150, function() {
           $(".ui-tabs-panel").height($(window).height() * .7);
           $(".CodeMirror").height($(window).height() * .69);
