@@ -2,3 +2,27 @@
 [debug] mongo://localhost:27017: Initialized as primary
 [info] mongo://localhost:27017: Connected to primary
 [debug] Finished scanning... primary? mongo://localhost:27017
+Restarter already running.
+Building base
+Warning: connection.session() MemoryStore is not
+designed for a production environment, as it will leak
+memory, and obviously only work within a single process.
+OIC listening on port 3001
+Building editor
+Building ipwtext
+Building recycler
+Starting base
+Starting editor
+Starting ipwtext
+Starting recycler
+[debug] mongo://localhost:27017: Connected
+[debug] mongo://localhost:27017: Initialized as primary
+[info] mongo://localhost:27017: Connected to primary
+[debug] Finished scanning... primary? mongo://localhost:27017
+getting page
+getting page
+getting page
+getting page
+getting page
+getting page
+getting page

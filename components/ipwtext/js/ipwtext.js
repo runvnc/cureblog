@@ -31,7 +31,7 @@
           return ev.stopPropagation();
         }
       });
-      oFCKeditor = new FCKeditor('editor' + window.editorNum++);
+      oFCKeditor = new FCKeditor('editor1');
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";
       $(idx).find('.ipweditable').editable({
@@ -58,8 +58,8 @@
   IPWTextTool = (function() {
 
     function IPWTextTool() {
-      var btn, data, widget, widgethtml,
-        _this = this;
+      var btn, data, widget, widgethtml;
+      var _this = this;
       this.active = false;
       widgethtml = $('#ipwtexttemplate').html();
       widget = $(widgethtml);

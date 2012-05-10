@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "dependencies": {
     "vows": "",
-    "express": "",
+    "zlib": "",
+    "connect" : "2.x",
+    "express": "2.x",
+    "gzippo" : "",
     "jade": "",
     "now":"",
     "request":"",

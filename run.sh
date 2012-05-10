@@ -5,4 +5,5 @@ else
   echo 'Starting restarter'
   nohup coffee restarter.coffee &
 fi
+export NODE_ENV=production
 coffee runapp.coffee

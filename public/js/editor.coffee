@@ -204,19 +204,17 @@ $ ->
     $('#objs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
     $('#editcode').click ->
       $('.demo').dialog
-        modal: true
         title: name + ' component - Code Editor' 
         position: 'top'
         height: $(window).height() * .93
         width: $(window).width() * .9      
-        
-      $('.transparent').css 'background-color','#eee'
       
       window.delay 150, ->      
         $(".ui-tabs-panel").height $(window).height() * .7
         $(".CodeMirror").height $(window).height() * .69
         window.delay 150, ->
           $(".CodeMirror-scroll").height $(window).height() * .68
+          $('.transparent').css 'backgroundColor', '#f2f2f2'
           
       initeditortabs()
     

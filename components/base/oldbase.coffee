@@ -1,4 +1,5 @@
-http = require 'http'
+express = require 'express'
+jade = require 'jade'
 MongolianDeadBeef = require 'mongolian'
 server = new MongolianDeadBeef
 nowjs = require 'now'
@@ -6,6 +7,7 @@ fs = require 'fs'
 util = require 'util'
 request = require 'request'
 childproc = require 'child_process'
+connect = require 'connect'
 cachefiles = require '../../cachefiles'
 
 ObjectId = MongolianDeadBeef.ObjectId
@@ -14,23 +16,33 @@ ObjectId.prototype.toJSON = ->
 
 db = server.db 'app'
 
-app = http.createServer()
+app = express.createServer()
 
 process.app = app
 
+app.use express.cookieParser()
+app.use express.session { secret: 'burrito13' }
 oneYear = 31557600000
+#app.use express.static 'public', { maxAge: oneYear }
+#app.enable 'view cache'
+#app.use connect.compress()
 
-cachefiles.setbase 'public'
+app.set 'view options', { layout: false }
+#app.register('.html', require('jade'));
 
-app.on 'request', (req, res) ->
-  if req.url is '/'
-    filepath = 'index.html'
-  else
-    filepath = req.url
-  if req.url is '/' or cachefiles.iscachefile filepath
-    cachefiles.get filepath, req, res, (success) ->
-      #if not success
- 
+#app.use cachefiles
+
+
+#app.get '*', (req, res) ->
+#  #console.log 'all'
+#  #console.log req.url
+#  res.end 'ok'
+
+cache = {}
+
+app.get '/', (request, response) ->
+  response.end 'ok'
+
   #if cache['/']?
   #  response.end cache['/']
   #else
@@ -42,6 +54,7 @@ app.on 'request', (req, res) ->
   #index = index.replace '{{page}}', page
 
   #response.send index
+
 
 nowjs = require 'now'
 everyone = nowjs.initialize app

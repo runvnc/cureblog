@@ -3,13 +3,17 @@ util = require 'util'
 path = require 'path'
 proc = require 'child_process'
 sh = require 'shelljs'
-config = require './config'
+
+if path.existsSync 'localconfig.coffee'
+  config = require './localconfig'
+else
+  config = require './config'
 
 process.config = config
 
-getorder = (fname) -> 
-  loadstr = fs.readFileSync fname, 'utf8' 
-  loadstr.split '\n' 
+getorder = (fname) ->
+  loadstr = fs.readFileSync fname, 'utf8'
+  loadstr.split '\n'
  
 head = ''
 
@@ -48,7 +52,7 @@ readscripts = (name) ->
         prefix = 'js/'
       str += '<script type="text/javascript" src="' + prefix + fname + '"></script>\n'
     
-    if path.existsSync "components/#{name}/js" 
+    if path.existsSync "components/#{name}/js"
       sh.cp '-Rf', "components/#{name}/js/*", 'public/js'
     str 
     
@@ -57,16 +61,16 @@ readscripts = (name) ->
 
 copyimages = (name) ->
   try
-    if path.existsSync "components/#{name}/images" 
+    if path.existsSync "components/#{name}/images"
       sh.cp '-Rf', "components/#{name}/images/*", 'public/images'
   catch e
     console.log "#{e.message}\n#{e.stack}"
 
 
 readbody = (name) ->
-  try     
-    if path.existsSync "components/#{name}/#{name}.html" 
-      return fs.readFileSync "components/#{name}/#{name}.html", 'utf8' 
+  try
+    if path.existsSync "components/#{name}/#{name}.html"
+      return fs.readFileSync "components/#{name}/#{name}.html", 'utf8'
     else
       return ''
   catch e
@@ -74,21 +78,21 @@ readbody = (name) ->
 
 headcss = (toload) ->
   head = ''
-  for component in toload 
+  for component in toload
     if component? and component.length > 0
       head += readstyles component
   head
 
-headjs = (toload) ->  
+headjs = (toload) ->
   head = ''
-  for component in toload 
+  for component in toload
     if component? and component.length > 0
       head += readscripts component
   head
 
 loadbody = (toload) ->
   body = ''
-  for component in toload 
+  for component in toload
     if component? and component.length > 0
       body += readbody component
   body

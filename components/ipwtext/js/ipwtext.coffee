@@ -21,7 +21,7 @@ class IPWTextWidget
       stop: (ev) ->
         ev.stopPropagation()
           
-    oFCKeditor = new FCKeditor('editor' + window.editorNum++)
+    oFCKeditor = new FCKeditor('editor1') # + window.editorNum++)
     oFCKeditor.ToolbarSet = 'Simple'
     oFCKeditor.BasePath = "/js/"   
     
