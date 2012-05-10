@@ -79,6 +79,11 @@ checkETag = (filepath, req) ->
   if req.headers['if-none-match'] is fdata.etag
     statCode = 304
     headerFields['Content-Length'] = 0
+  else if req.headers['if-modified-since']?
+    since = Date.parse req.headers['if-modified-since']
+    if Date.parse(fdata.modified) <= since
+      statCode = 304
+      headerFields['Content-Length'] = 0
   ret =
     headerFields: headerFields
     statCode: statCode
