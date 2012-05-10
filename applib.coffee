@@ -32,8 +32,6 @@ readstyles = (name) ->
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
-      if fname.indexOf('now') >= 0
-        console.log fname
       if fname.indexOf('/') is 0
         prefix = ''
       else
@@ -55,8 +53,6 @@ readscripts = (name) ->
     str = ''
     headscripts = ''
     for fname in list
-      if fname.indexOf('now') >= 0
-        console.log fname
       if fname.indexOf('/') is 0
         prefix = ''
         headscripts += "<script src=\"#{fname}\"></script>"

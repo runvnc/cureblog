@@ -12,7 +12,7 @@ initialized = false
 
 thing = () ->
 
-editWidget = (widget) -> 
+editWidget = (widget) ->
   $('#widgetname').data 'mode', 'update'
   $('#widgetname').val widget.name
   nowediting = widget.name
@@ -70,16 +70,16 @@ makeEditable = ->
           else
             console.log "Not deleting"
           
-        when 'copy'          
+        when 'copy'
           now.copyComponent name, (success, err) ->
             if not err?
-              $('.demo').html "#{name} copied successfully. Reloading application."              
+              $('.demo').html "#{name} copied successfully. Reloading application."
               window.delay 2000, -> window.location.reload()
             else
               alert 'Error copying component: ' + err.message
             
-        when 'edit' 
-          now.getWidgetData name, (widgetdata, err) ->      
+        when 'edit'
+          now.getWidgetData name, (widgetdata, err) ->
             if err?
               alert 'Error loading widget data: ' + err.message
             else
@@ -92,7 +92,7 @@ makeEditable = ->
       true
 
     items:
-      "edit": {name: "Edit Code", icon: "edit"}  
+      "edit": {name: "Edit Code", icon: "edit"}
       "rename": {name: "Rename", icon: "edit"}
       "copy": {name: "Make a Copy", icon: "copy"}
       "delete": {name: "Delete", icon: "delete"}
@@ -107,7 +107,7 @@ window.savePage = ->
   unfiltered = $('#page').html()
 
   $('body').append('<div id="tofilter"></div>')
-  $('#tofilter').html(unfiltered).hide()            
+  $('#tofilter').html(unfiltered).hide()
         
   for filter in window.saveFilters
     filter '#tofilter'
@@ -125,7 +125,7 @@ loadwidgets = ->
   $('#page').droppable
     drop: (ev, ui) ->
       name = ui.draggable.data 'name'
-      $('#page').trigger 'drop', [ev, ui, @];
+      $('#page').trigger 'drop', [ev, ui, @]
 
   now.listComponents (components) ->
     str = ''
@@ -134,11 +134,11 @@ loadwidgets = ->
       if component.active then checked = 'checked="checked"'
       check = '<input type="checkbox" ' + checked + '/>'
       str += "<li>#{check}&nbsp;<span class=\"compname\">#{component.name}</span><span class=\"compmenu\">▼</span></li>"
-    $('#components').html str  
+    $('#components').html str
     $('.compname').click ->
       $('#gitrepo').val ''
       
-      now.getWidgetData $(@).text(), (widgetdata, err) ->      
+      now.getWidgetData $(@).text(), (widgetdata, err) ->
         if err?
           alert 'Error loading widget data: ' + err.message
         else
@@ -154,21 +154,24 @@ publish = ->
   name = nowediting
   if not (user? and repo? and name?)
     alert 'Please fill in all of the publish fields'
-  else    
+  else
     now.publishComponent name, user, repo, (res) ->
       console.log res
       if res?
         if res.message?
           $('.pubmsg').html res.message
         else
-          $('.pubmsg').html 'Success!'              
+          $('.pubmsg').html 'Success!'
   
   
 $ ->
   
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()
-  
+
+  $('#objs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
+  $('#objs').prepend '<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>'
+
   $('#tabs').tabs
     show: (event, ui) ->
       if editorhtml? then editorhtml.refresh()
@@ -176,7 +179,7 @@ $ ->
       if editorcss? then editorcss.refresh()
       if editornodejs? then editornodejs.refresh()
 
-  $('#savewidget').click -> 
+  $('#savewidget').click ->
     data =
       name: $('#widgetname').val()
       browser: editorbrowser.getValue()
@@ -184,12 +187,12 @@ $ ->
       css:  editorcss.getValue()
       nodejs:  editornodejs.getValue()
 
-    now.saveWidgetData data, (compileout) ->      
+    now.saveWidgetData data, (compileout) ->
       if compileout? and compileout.length > 4
         alert compileout
         return
       else
-        $('.demo').html 'Your edits have been saved.  Reloading application..'              
+        $('.demo').html 'Your edits have been saved.  Reloading application..'
         now.restartServer()
         setTimeout ( -> window.location.reload() ), 2000
 
@@ -197,31 +200,29 @@ $ ->
     $('#components li').each ->
       if $(@).find('input').is(':checked')
         active.push $(@).find('.compname').text()
-    now.setActiveComponents active                                          
+    now.setActiveComponents active
+
+  $('#editcode').click ->
+    $('.demo').dialog
+      title: name + ' component - Code Editor'
+      position: 'top'
+      height: $(window).height() * .93
+      width: $(window).width() * .9
+    
+    window.delay 150, ->
+      $(".ui-tabs-panel").height $(window).height() * .7
+      $(".CodeMirror").height $(window).height() * .69
+      window.delay 150, ->
+        $(".CodeMirror-scroll").height $(window).height() * .68
+        $('.transparent').css 'backgroundColor', '#f2f2f2'
+        
+    initeditortabs()
+  
+  $('#publish').click publish
+  
+  $('#savepage').click ->
+    window.savePage()
 
   now.ready ->
     loadwidgets()
-    $('#objs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
-    $('#editcode').click ->
-      $('.demo').dialog
-        title: name + ' component - Code Editor' 
-        position: 'top'
-        height: $(window).height() * .93
-        width: $(window).width() * .9      
-      
-      window.delay 150, ->      
-        $(".ui-tabs-panel").height $(window).height() * .7
-        $(".CodeMirror").height $(window).height() * .69
-        window.delay 150, ->
-          $(".CodeMirror-scroll").height $(window).height() * .68
-          $('.transparent').css 'backgroundColor', '#f2f2f2'
-          
-      initeditortabs()
-    
-    $('#publish').click publish
-    
-    $('#objs').prepend '<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>'
-    $('#savepage').click ->
-      window.savePage()
-    
-    
+   

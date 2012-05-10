@@ -227,6 +227,8 @@
   $(function() {
     $('body').prepend($('#editorui'));
     $('#objs').height($(window).height());
+    $('#objs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
+    $('#objs').prepend('<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>');
     $('#tabs').tabs({
       show: function(event, ui) {
         if (editorhtml != null) editorhtml.refresh();
@@ -263,31 +265,29 @@
       });
       return now.setActiveComponents(active);
     });
+    $('#editcode').click(function() {
+      $('.demo').dialog({
+        title: name + ' component - Code Editor',
+        position: 'top',
+        height: $(window).height() * .93,
+        width: $(window).width() * .9
+      });
+      window.delay(150, function() {
+        $(".ui-tabs-panel").height($(window).height() * .7);
+        $(".CodeMirror").height($(window).height() * .69);
+        return window.delay(150, function() {
+          $(".CodeMirror-scroll").height($(window).height() * .68);
+          return $('.transparent').css('backgroundColor', '#f2f2f2');
+        });
+      });
+      return initeditortabs();
+    });
+    $('#publish').click(publish);
+    $('#savepage').click(function() {
+      return window.savePage();
+    });
     return now.ready(function() {
-      loadwidgets();
-      $('#objs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
-      $('#editcode').click(function() {
-        $('.demo').dialog({
-          title: name + ' component - Code Editor',
-          position: 'top',
-          height: $(window).height() * .93,
-          width: $(window).width() * .9
-        });
-        window.delay(150, function() {
-          $(".ui-tabs-panel").height($(window).height() * .7);
-          $(".CodeMirror").height($(window).height() * .69);
-          return window.delay(150, function() {
-            $(".CodeMirror-scroll").height($(window).height() * .68);
-            return $('.transparent').css('backgroundColor', '#f2f2f2');
-          });
-        });
-        return initeditortabs();
-      });
-      $('#publish').click(publish);
-      $('#objs').prepend('<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>');
-      return $('#savepage').click(function() {
-        return window.savePage();
-      });
+      return loadwidgets();
     });
   });
 

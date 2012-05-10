@@ -23,7 +23,6 @@ oneYear = 31557600000
 cachefiles.setbase 'public'
 
 app.on 'request', (req, res) ->
-  console.log req.url
   if req.url is '/'
     filepath = 'index.html'
   else
