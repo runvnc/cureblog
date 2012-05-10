@@ -3,6 +3,8 @@ util = require 'util'
 path = require 'path'
 proc = require 'child_process'
 sh = require 'shelljs'
+jsmin = require('jsmin').jsmin
+cssmin = require('cssmin').cssmin
 
 if path.existsSync 'localconfig.coffee'
   config = require './localconfig'
@@ -94,7 +96,10 @@ headcss = (toload) ->
   for component in toload
     if component? and component.length > 0
       head += readstyles component
-  fs.writeFile 'public/css/combined.css', head, 'utf8'
+  console.log "Minifying CSS: start #{head.length} characters"
+  head2 = cssmin head
+  console.log "CSS now has #{head2.length} characters"
+  fs.writeFile 'public/css/combined.css', head2, 'utf8'
   '<link rel="stylesheet" href="css/combined.css">'
   
 
@@ -106,6 +111,9 @@ headjs = (toload) ->
       ret = readscripts component
       head += ret.str
       headext += ret.headscripts
+  #console.log "Minifying JS code: start #{head.length} characters"
+  #head2 = jsmin head, 3
+  #console.log "JS code now #{head2.length} characters"
   fs.writeFile 'public/js/combined.js', head, 'utf8'
   headext #+ '<script src="js/combined.js"></script>'
  

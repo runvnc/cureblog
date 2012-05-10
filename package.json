@@ -1,7 +1,9 @@
 {
-  "name": "node-example",
+  "name": "oicplatform",
   "version": "0.0.1",
   "dependencies": {
+    "jsmin": "",
+    "cssmin": "",
     "vows": "",
     "zlib": "",
     "connect" : "2.x",
