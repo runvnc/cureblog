@@ -23,20 +23,17 @@ oneYear = 31557600000
 cachefiles.setbase 'public'
 
 app.on 'request', (req, res) ->
+  console.log req.url
   if req.url is '/'
     filepath = 'index.html'
+  else if req.url is '/socket.io/socket.io.js'
+    filepath = 'js/socket.io.js'
   else
     filepath = req.url
   if req.url is '/' or cachefiles.iscachefile filepath
     cachefiles.get filepath, req, res, (success) ->
       #if not success
  
-  #if cache['/']?
-  #  response.end cache['/']
-  #else
-  #  index = fs.readFile 'static/index.html', 'utf8', (err, data) ->
-  #    response.end data
-  #    cache['/'] = data
 
   #page = fs.readFileSync 'static/page', 'utf8'
   #index = index.replace '{{page}}', page
@@ -44,7 +41,14 @@ app.on 'request', (req, res) ->
   #response.send index
 
 nowjs = require 'now'
-everyone = nowjs.initialize app
+
+socketoptions =
+  socketio:
+    'browser client gzip' : true
+    'browser client etag' : true
+    'browser client cache' : true
+
+everyone = nowjs.initialize app, socketoptions
 
 process.everyone = everyone
 

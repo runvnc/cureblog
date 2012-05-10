@@ -7,4 +7,5 @@ jquery.livequery.js
 jquery.noty.js
 promise.js
 /nowjs/now.js
+socket.io.js
 base.js
