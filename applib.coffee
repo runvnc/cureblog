@@ -65,8 +65,10 @@ readscripts = (name) ->
         continue
       filepath = 'public/' + prefix + fname
       if path.existsSync filepath
-        str += fs.readFileSync filepath, 'utf8'
-    
+        filedat = fs.readFileSync filepath, 'utf8'
+        filedat = filedat.replace /^\uFEFF/g, ''
+        str += filedat
+
     if path.existsSync "components/#{name}/js"
       sh.cp '-Rf', "components/#{name}/js/*", 'public/js'
     return { str: str, headscripts: headscripts }
@@ -91,6 +93,8 @@ readbody = (name) ->
   catch e
     console.log "#{e.message}\n#{e.stack}"
 
+buildTime = null
+
 headcss = (toload) ->
   head = ''
   for component in toload
@@ -99,10 +103,9 @@ headcss = (toload) ->
   console.log "Minifying CSS: start #{head.length} characters"
   head2 = cssmin head
   console.log "CSS now has #{head2.length} characters"
-  fs.writeFile 'public/css/combined.css', head2, 'utf8'
-  '<link rel="stylesheet" href="css/combined.css">'
+  fs.writeFile "public/css/combined#{buildTime}.css", head2, 'utf8'
+  "<link rel=\"stylesheet\" href=\"css/combined#{buildTime}.css\">"
   
-
 headjs = (toload) ->
   head = ''
   headext = ''
@@ -114,7 +117,7 @@ headjs = (toload) ->
   #console.log "Minifying JS code: start #{head.length} characters"
   #head2 = jsmin head, 3
   #console.log "JS code now #{head2.length} characters"
-  fs.writeFile 'public/js/combined.js', head, 'utf8'
+  fs.writeFile "public/js/combined#{buildTime}.js", head, 'utf8'
   headext #+ '<script src="js/combined.js"></script>'
  
 
@@ -126,14 +129,15 @@ loadbody = (toload) ->
   body
 
 build = (toload) ->
+  buildTime = new Date().getTime()
   css = headcss toload
   scripts = headjs toload
   body = loadbody toload
-  body += '<script src="js/combined.js"></script>'
+  body += "<script src=\"js/combined#{buildTime}.js\"></script>"
   for component in toload
     copyimages component
 
-  "<!doctype html><html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
+  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{body}#{scripts}</body></html>"
 
 writebuild = (source) ->
   fs.writeFileSync "public/index.html", source, 'utf8'
