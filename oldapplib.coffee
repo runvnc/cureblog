@@ -32,15 +32,7 @@ readstyles = (name) ->
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
-      if fname.indexOf('now') >= 0
-        console.log fname
-      if fname.indexOf('/') is 0
-        prefix = ''
-      else
-        prefix = 'css/'
-      filepath = 'public/' + prefix + fname
-      if path.existsSync filepath
-        str += fs.readFileSync filepath, 'utf8'
+      str += '<link rel="stylesheet" type="text/css" href="css/' + fname + '"/>\n'
     
     if path.existsSync "components/#{name}/css"
       sh.cp '-Rf', "components/#{name}/css/*", 'public/css'
@@ -53,25 +45,17 @@ readscripts = (name) ->
   try
     list = listfile "components/#{name}/scripts"
     str = ''
-    headscripts = ''
     for fname in list
-      if fname.indexOf('now') >= 0
-        console.log fname
       if fname.indexOf('/') is 0
         prefix = ''
-        headscripts += "<script src=\"#{fname}\"></script>"
       else
         prefix = 'js/'
-      if fname.indexOf('//') is 0
-        headscripts += "<script src=\"#{fname}\"></script>"
-        continue
-      filepath = 'public/' + prefix + fname
-      if path.existsSync filepath
-        str += fs.readFileSync filepath, 'utf8'
+      filepath = prefix + fname
+      str += fs.readFileSync filepath, 'utf8'
     
     if path.existsSync "components/#{name}/js"
       sh.cp '-Rf', "components/#{name}/js/*", 'public/js'
-    return { str: str, headscripts: headscripts }
+    str
     
   catch e
     console.log "#{e.message}\n#{e.stack}"
@@ -98,20 +82,15 @@ headcss = (toload) ->
   for component in toload
     if component? and component.length > 0
       head += readstyles component
-  fs.writeFile 'public/css/combined.css', head, 'utf8'
-  '<link rel="stylesheet" href="css/combined.css">'
-  
+  head
 
 headjs = (toload) ->
   head = ''
-  headext = ''
   for component in toload
     if component? and component.length > 0
-      ret = readscripts component
-      head += ret.str
-      headext += ret.headscripts
-  fs.writeFile 'public/js/combined.js', head, 'utf8'
-  headext #+ '<script src="js/combined.js"></script>'
+      head += readscripts component
+  fs.writeFile 'public/js', head, 'utf8'
+  '<script src="js/combined.js"></script>'
  
 
 loadbody = (toload) ->
@@ -125,14 +104,13 @@ build = (toload) ->
   css = headcss toload
   scripts = headjs toload
   body = loadbody toload
-  body += '<script src="js/combined.js"></script>'
   for component in toload
     copyimages component
 
   "<!doctype html><html><head><title>Cure CMS</title>#{css}#{scripts}</head><body>#{body}</body></html>"
 
 writebuild = (source) ->
-  fs.writeFileSync "public/index.html", source, 'utf8'
+  fs.writeFileSync "static/index.html", source, 'utf8'
 
 exports.startup = (file) ->
   toload = listfile file

@@ -27,7 +27,7 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
-  childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->    
+  childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
     callback(o + "\n" + e)
   
   
@@ -61,19 +61,19 @@ everyone.now.deleteComponent = (name, callback) ->
     
 everyone.now.copyComponent = (name, callback) ->
   n = 1
-  numarr = name.match /[0-9]+$/m  
+  numarr = name.match /[0-9]+$/m
   if numarr? then n = numarr[0]+1
   newname = name + (n.toString())
   sh.mkdir '-p', "components/#{newname}"
-  sh.cp '-R', "components/#{name}/*", "components/#{newname}" 
+  sh.cp '-R', "components/#{name}/*", "components/#{newname}"
   fs.rename "components/#{newname}/#{name}.coffee", "components/#{newname}/#{newname}.coffee"
   fs.rename "components/#{newname}/#{name}.html", "components/#{newname}/#{newname}.html"
   fs.rename "components/#{newname}/css/#{name}.css", "components/#{newname}/css/#{newname}.css"
   scripts = fs.readFile "components/#{newname}/scripts", 'utf8', (err, data) ->
-    scripts = data.replace "#{name}.js", "#{newname}.js"    
+    scripts = data.replace "#{name}.js", "#{newname}.js"
     fs.writeFile "components/#{newname}/scripts", scripts, 'utf8'
   styles = fs.readFile "components/#{newname}/styles", 'utf8', (err, data) ->
-    styles = data.replace "#{name}.css", "#{newname}.css"    
+    styles = data.replace "#{name}.css", "#{newname}.css"
     fs.writeFile "components/#{newname}/styles", styles, 'utf8'
     
   fs.rename "components/#{newname}/js/#{name}.coffee", "components/#{newname}/js/#{newname}.coffee", (err) ->
@@ -90,10 +90,10 @@ everyone.now.renameComponent = (name, newname, callback) ->
   fs.rename "components/#{name}/#{name}.html", "components/#{name}/#{newname}.html"
   fs.rename "components/#{name}/css/#{name}.css", "components/#{name}/css/#{newname}.css"
   scripts = fs.readFile "components/#{name}/scripts", 'utf8', (err, data) ->
-    scripts = data.replace "#{name}.js", "#{newname}.js"    
+    scripts = data.replace "#{name}.js", "#{newname}.js"
     fs.writeFile "components/#{name}/scripts", scripts, 'utf8'
   styles = fs.readFile "components/#{name}/styles", 'utf8', (err, data) ->
-    styles = data.replace "#{name}.css", "#{newname}.css"    
+    styles = data.replace "#{name}.css", "#{newname}.css"
     fs.writeFile "components/#{name}/styles", styles, 'utf8'
     
   fs.rename "components/#{name}/js/#{name}.coffee", "components/#{name}/js/#{newname}.coffee", (err) ->
@@ -105,10 +105,10 @@ everyone.now.renameComponent = (name, newname, callback) ->
       callback false, err
 
 
-everyone.now.publishComponent = (name, user, repo, callback) ->      
+everyone.now.publishComponent = (name, user, repo, callback) ->
   if path.exists "components/#{name}/published"
     callback 'Already published.'
-  else  
+  else
     options =
       cwd: './'
     childproc.exec "./plugadd #{name} #{user} #{repo}", (err, stdout, stderr) ->
@@ -117,10 +117,10 @@ everyone.now.publishComponent = (name, user, repo, callback) ->
       if err?
         console.log util.inspect(err)
         callback err
-      else        
-        console.log 'No error.'  
+      else
+        console.log 'No error.'
         pos = stdout.indexOf '{'
         msg = stdout.substr pos
         obj = JSON.parse msg
-        callback obj        
+        callback obj
 
