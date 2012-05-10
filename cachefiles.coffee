@@ -65,7 +65,7 @@ filedata = {}
 cacheFileInfo = (filepath, callback) ->
   fs.stat filepath, (err, stat) ->
     filedata[filepath] =
-      modified: new Date(stat.mtime)
+      modified: new Date(stat.mtime).toUTCString()
       etag: "\"#{stat.ino}-#{stat.size}-#{Date.parse(stat.mtime)}\""
     callback filedata[filepath]
 
@@ -139,13 +139,17 @@ get = (filepath, req, res, callback) ->
     check = checkETag filepath, req
     if check.statCode is 304
       res.writeHead 304,
-        'Content-Length': 0
+        'ETag' : check.headerFields.ETag
+        'Date' : new Date().toUTCString()
+        'Last-Modified': check.headerFields['Last-Modified']
+        'Cache-Control': 'public, max-age=31540000'
       res.end()
     else
       if isbinary type
         res.writeHead 200,
           'Content-Type': type
           'ETag': check.headerFields.ETag
+          'Date': new Date().toUTCString()
           'Last-Modified': check.headerFields['Last-Modified']
           'Cache-Control': 'public, max-age=31540000'
         res.end cached[filepath], 'binary'
@@ -155,6 +159,7 @@ get = (filepath, req, res, callback) ->
         res.writeHead 200,
           'Content-Type': type
           'Content-Encoding': 'deflate'
+          'Date': new Date().toUTCString()
           'Content-Length': dat.length
           'ETag': check.headerFields.ETag
           'Last-Modified': check.headerFields['Last-Modified']
