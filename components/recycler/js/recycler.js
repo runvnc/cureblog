@@ -4,7 +4,6 @@
   Recycler = (function() {
 
     function Recycler() {
-      console.log('Recycler new');
       $('#objs').prepend('<div class="recycle"><div id="recycler">♻</div><div class="rectext">Recycle</div></div>');
       $('#recycler').droppable({
         drop: function(ev, ui) {

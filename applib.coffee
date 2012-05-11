@@ -38,7 +38,7 @@ readstyles = (name) ->
         prefix = ''
       else
         prefix = 'css/'
-      filepath = 'public/' + prefix + fname
+      filepath = "components/#{name}/#{prefix}#{fname}"
       if path.existsSync filepath
         str += fs.readFileSync filepath, 'utf8'
     
@@ -63,7 +63,7 @@ readscripts = (name) ->
       if fname.indexOf('//') is 0
         headscripts += "<script src=\"#{fname}\"></script>"
         continue
-      filepath = 'public/' + prefix + fname
+      filepath = "components/#{name}/#{prefix}#{fname}"
       if path.existsSync filepath
         filedat = fs.readFileSync filepath, 'utf8'
         filedat = filedat.replace /^\uFEFF/g, ''
