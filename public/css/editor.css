@@ -30,10 +30,10 @@
    background-color: #fff !important; 
 }
 
-/*
+
 .CodeMirror {
-  background-color: #fff; 
-} */
+  font-size: 10pt;
+} 
 
 #objs {
   border: 1px solid #666;

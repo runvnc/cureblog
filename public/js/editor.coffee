@@ -225,4 +225,4 @@ $ ->
 
   now.ready ->
     loadwidgets()
-   
+
