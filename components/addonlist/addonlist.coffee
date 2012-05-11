@@ -10,21 +10,22 @@ fs.readFile 'oicplugins/all.json', 'utf8', (err, data) ->
 everyone.now.getPluginIndex = (callback) ->
   callback allplugins
   
-everyone.now.installPlugin = (name, callback) ->
-  ls = childproc.spawn 'du', ['-h']
+everyone.now.installPlugin = (name, datacallback, donecallback) ->
+  install = childproc.spawn './installplugin', [name]
 
-  ls.stdout.on 'data', (data) ->
+  install.stdout.on 'data', (data) ->
     console.log '' + data
-    callback '' + data
+    datacallback '' + data
   
-  ls.stderr.on 'data', (data) ->
-    console.log 'stderr: ' + data
-    callback '' + data
+  install.stderr.on 'data', (data) ->
+    '' + data
+    datacallback '' + data
   
-  ls.on 'exit', (code) ->
-    console.log 'child process exited with code ' + code
-    callback 'child process exited with code ' + code
-    
+  install.on 'exit', (code) ->    
+    if code is 0
+      datacallback true
+    else
+      datacallback false
+      
   
-  #childproc.exec "./installplugin #{name}", (er, o, e) ->
     

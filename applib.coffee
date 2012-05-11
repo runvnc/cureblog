@@ -128,6 +128,27 @@ loadbody = (toload) ->
       body += readbody component
   body
 
+dropitem = (array, todrop) ->
+  dropnum = -1
+  for num in [0..array.length]
+    if array[num] is todrop
+      dropnum = num
+  if dropnum > -1
+    array.splice dropnum, 1
+  array
+
+checkcomponents = (toload) ->
+  console.log 'checkcomponents toload is'
+  console.log toload
+  for component in toload
+    if not path.existsSync "components/#{component}"
+      console.log 'not found so dropping ' + component
+      dropitem toload, component
+  str = toload.join "\n"
+  fs.writeFileSync 'loadorder', str
+  toload
+ 
+
 build = (toload) ->
   buildTime = new Date().getTime()
   css = headcss toload
@@ -144,6 +165,9 @@ writebuild = (source) ->
 
 exports.startup = (file) ->
   toload = listfile file
+  #toload = checkcomponents toload
+  console.log "toload is"
+  console.log toload
   comps = {}
   for component in toload
     try

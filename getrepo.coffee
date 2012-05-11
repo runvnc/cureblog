@@ -17,6 +17,6 @@ else
         console.log "Plugin not found."
         process.exit 1
       else
-        console.log "git@github.com:#{plugin.user}/$#{plugin.repo}.git"
+        console.log "git@github.com:#{plugin.user}/#{plugin.repo}.git"
         process.exit 0
  

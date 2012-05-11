@@ -11,7 +11,7 @@ fi
 set -e
 echo Installing plugin $1..
 
-cloneurl = `./getrepourl $1`
+cloneurl=`./getrepourl $1`
 
 cd components
 git clone $cloneurl $1
