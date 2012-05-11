@@ -11,10 +11,35 @@ highlightSel = ->
   $('#matches li').eq(plugitem).css 'backgroundColor', '#EEDAF5'
   
 matches = []
+
+currentlyinstalling = ''
+
+installmsg = (msg) ->
+  $('#installmsg').append msg
+  $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight
+  
+  
+installdone = (msg) ->
+  noty
+    text: currentlyinstalling ' finished installing.'
+    type: 'information'
+    layout: 'topRight'
+  
+
+install = (plugin) ->
+  currentlyinstalling = plugin
+  noty
+    text: 'Installing plugin ' + plugin
+    type: 'information'
+    layout: 'topRight'
+
+  $('#installmsg').show()  
+  now.installPlugin plugin, installmsg, installdone
+  
   
 $ ->    
-  $('#objs').prepend '<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>'
-
+  $('#objs').prepend '<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>'  
+  
   $('#plugins').click ->
     $('#pluginauto').dialog
       title: 'Add plugins' 
@@ -22,6 +47,7 @@ $ ->
       height: $(window).height() * .93
       width: $(window).width() * .7
 
+    $('#installmsg').hide()  
     $('#inp').keyup (e) ->
       switch e.which
         when 40
@@ -38,17 +64,11 @@ $ ->
           else
             console.log '38 no plugitem is ' + plugitem + ' matches is ' + matches.length
 
-        when 13
+        when 13          
           toks = selectedplugin.split ' '
           selectedplugin = toks[0]
-          noty
-            text: 'Installing plugin ' + selectedplugin
-            type: 'information'
-
-          now.installPlugin selectedplugin, (msg) ->            
-            $('#installmsg').append msg
-            $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight
-
+          install selectedplugin
+          
         else
           if $('#inp').val() is ''
              matches = [];    

@@ -111,7 +111,7 @@ everyone.now.publishComponent = (name, user, repo, callback) ->
   else
     options =
       cwd: './'
-    childproc.exec "./plugadd #{name} #{user} #{repo}", (err, stdout, stderr) ->
+    childproc.exec "./publishplugin #{name} #{user} #{repo}", (err, stdout, stderr) ->
       console.log stderr
       console.log stdout
       if err?

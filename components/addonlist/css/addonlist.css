@@ -14,6 +14,7 @@
 }​
 
 #installmsg, code {
+  display: none;
   font-family: Lucida Console, Monaco, monospace; 
   display: block;
   color: white;

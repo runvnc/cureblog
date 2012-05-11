@@ -1,5 +1,5 @@
 (function() {
-  var allplugins, complete, highlightSel, matches, plugitem, selectedplugin;
+  var allplugins, complete, currentlyinstalling, highlightSel, install, installdone, installmsg, matches, plugitem, selectedplugin;
 
   allplugins = [];
 
@@ -25,6 +25,32 @@
 
   matches = [];
 
+  currentlyinstalling = '';
+
+  installmsg = function(msg) {
+    $('#installmsg').append(msg);
+    return $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight;
+  };
+
+  installdone = function(msg) {
+    return noty({
+      text: currentlyinstalling(' finished installing.'),
+      type: 'information',
+      layout: 'topRight'
+    });
+  };
+
+  install = function(plugin) {
+    currentlyinstalling = plugin;
+    noty({
+      text: 'Installing plugin ' + plugin,
+      type: 'information',
+      layout: 'topRight'
+    });
+    $('#installmsg').show();
+    return now.installPlugin(plugin, installmsg, installdone);
+  };
+
   $(function() {
     $('#objs').prepend('<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>');
     $('#plugins').click(function() {
@@ -34,6 +60,7 @@
         height: $(window).height() * .93,
         width: $(window).width() * .7
       });
+      $('#installmsg').hide();
       return $('#inp').keyup(function(e) {
         var list, str, toks, _i, _len;
         switch (e.which) {
@@ -57,14 +84,7 @@
           case 13:
             toks = selectedplugin.split(' ');
             selectedplugin = toks[0];
-            noty({
-              text: 'Installing plugin ' + selectedplugin,
-              type: 'information'
-            });
-            return now.installPlugin(selectedplugin, function(msg) {
-              $('#installmsg').append(msg);
-              return $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight;
-            });
+            return install(selectedplugin);
           default:
             if ($('#inp').val() === '') {
               matches = [];
