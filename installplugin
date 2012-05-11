@@ -1,0 +1,24 @@
+#!/bin/bash
+EXPECTED_ARGS=1
+E_BADARGS=65
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: installplugin {name}"
+  exit $E_BADARGS
+fi
+
+set -e
+echo Installing plugin $1..
+
+cloneurl = `./getrepourl $1`
+
+cd components
+git clone $cloneurl $1
+
+cd $1
+npm install
+
+set +e
+
+
