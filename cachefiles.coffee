@@ -128,8 +128,18 @@ readtext = (filepath, type, res, callback) ->
            callback true
            cacheFileInfo filepath, ->
 
+set = (name, content, callback) ->
+  zlib.deflate content, (err, buffer) ->
+    cached[name] = buffer
+    filedata[name] =
+      modified: new Date().toUTCString()
+      etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
+
+    callback?()
+
  
 get = (filepath, req, res, callback) ->
+  console.log filepath
   filepath = dropquery filepath
   if filepath.substr(0) != '/'
     filepath = '/' + filepath
@@ -139,6 +149,7 @@ get = (filepath, req, res, callback) ->
   if notstatic[filepath]?
     callback false
   else if cached[filepath]
+    console.log 'cached ' + filepath
     type = contenttype filepath
 
     check = checkETag filepath, req
@@ -180,6 +191,7 @@ get = (filepath, req, res, callback) ->
 
 
 exports.get = get
+exports.set = set
 exports.setbase = setbase
 exports.iscachefile = iscachefile
 

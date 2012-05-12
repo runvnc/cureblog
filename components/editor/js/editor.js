@@ -157,7 +157,7 @@
       filter('#tofilter');
     }
     return window.delay(500, function() {
-      return now.saveStatic('page', $('#tofilter').html(), function(success) {
+      return now.savePage($('#tofilter').html(), function(success) {
         if (success) {
           return noty({
             text: 'Page saved.',

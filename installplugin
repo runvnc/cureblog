@@ -17,7 +17,12 @@ cd components
 git clone $cloneurl $1
 
 cd $1
+echo Running NPM install..
 npm install
 
 set +e
+
+echo '__SUCCESS__'
+
+exit 0
 

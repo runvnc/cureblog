@@ -1,5 +1,5 @@
 (function() {
-  var allplugins, complete, currentlyinstalling, highlightSel, install, installdone, installmsg, matches, plugitem, selectedplugin;
+  var allplugins, complete, currentlyinstalling, highlightSel, install, installdone, installmsg, listplugins, matches, plugitem, selectedplugin, updateActive;
 
   allplugins = [];
 
@@ -28,16 +28,64 @@
   currentlyinstalling = '';
 
   installmsg = function(msg) {
-    $('#installmsg').append(msg);
-    return $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight;
+    if (msg.indexOf('__SUCCESS__') >= 0) {
+      return installdone(true);
+    } else {
+      $('#installmsg').append(msg);
+      return $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight;
+    }
   };
 
-  installdone = function(msg) {
-    return noty({
-      text: currentlyinstalling(' finished installing.'),
-      type: 'information',
-      layout: 'topRight'
+  listplugins = function() {
+    return now.listComponents(function(components) {
+      var check, checked, component, str, _i, _len;
+      str = '';
+      for (_i = 0, _len = components.length; _i < _len; _i++) {
+        component = components[_i];
+        checked = '';
+        if (component.active) checked = 'checked="checked"';
+        check = '<input type="checkbox" ' + checked + '/>';
+        str += "<li>" + check + "&nbsp;<span class=\"compname\">" + component.name + "</span></li>";
+      }
+      return $('#pluginlist').html(str);
     });
+  };
+
+  updateActive = function() {
+    var active;
+    active = [];
+    $('#pluginlist li').each(function() {
+      if ($(this).find('input').is(':checked')) {
+        return active.push($(this).find('.compname').text());
+      }
+    });
+    return now.setActiveComponents(active);
+  };
+
+  installdone = function(success) {
+    var msg, type;
+    if (success) {
+      type = 'success';
+      msg = currentlyinstalling + ' finished installing.';
+      noty({
+        text: msg,
+        type: type,
+        layout: 'topRight'
+      });
+      $('#installmsg').hide();
+      $('#pluginlist').show();
+      $('#plugindonemsg').html('Installation complete.  Check the box to activate plugin');
+      $('#plugindonemsg').css('backgroundColor', 'white');
+      return listplugins();
+    } else {
+      type = 'error';
+      msg = 'Installation of plugin ' + currentlyinstalling + ' failed.  See log';
+      return noty({
+        text: msg,
+        type: type,
+        layout: 'topRight'
+      });
+    }
   };
 
   install = function(plugin) {
@@ -48,11 +96,13 @@
       layout: 'topRight'
     });
     $('#installmsg').show();
+    $('#pluginlist').hide();
     return now.installPlugin(plugin, installmsg, installdone);
   };
 
   $(function() {
     $('#objs').prepend('<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>');
+    $('#updateactive').click(updateActive);
     $('#plugins').click(function() {
       $('#pluginauto').dialog({
         title: 'Add plugins',
@@ -100,12 +150,18 @@
             $('#matches').html(list);
             if (matches.length === 1) {
               plugitem = 0;
-              return setTimeout(highlightSel, 100);
+              setTimeout(highlightSel, 100);
             }
+            return $('#matches li').click(function() {
+              toks = $(this).text().split(' ');
+              selectedplugin = toks[0];
+              return install(selectedplugin);
+            });
         }
       });
     });
     return now.ready(function() {
+      listplugins();
       return now.getPluginIndex(function(list) {
         var key, val, _results;
         _results = [];

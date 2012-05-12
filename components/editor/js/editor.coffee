@@ -113,7 +113,7 @@ window.savePage = ->
     filter '#tofilter'
   
   window.delay 500, ->
-    now.saveStatic 'page', $('#tofilter').html(), (success) ->
+    now.savePage $('#tofilter').html(), (success) ->
       if success
         noty
           text: 'Page saved.'

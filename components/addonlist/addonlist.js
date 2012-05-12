@@ -17,20 +17,23 @@
     return callback(allplugins);
   };
 
-  everyone.now.installPlugin = function(name, callback) {
-    var ls;
-    ls = childproc.spawn('du', ['-h']);
-    ls.stdout.on('data', function(data) {
+  everyone.now.installPlugin = function(name, datacallback, donecallback) {
+    var install;
+    install = childproc.spawn('./installplugin', [name]);
+    install.stdout.on('data', function(data) {
       console.log('' + data);
-      return callback('' + data);
+      return datacallback('' + data);
     });
-    ls.stderr.on('data', function(data) {
-      console.log('stderr: ' + data);
-      return callback('' + data);
+    install.stderr.on('data', function(data) {
+      '' + data;
+      return datacallback('' + data);
     });
-    return ls.on('exit', function(code) {
-      console.log('child process exited with code ' + code);
-      return callback('child process exited with code ' + code);
+    return install.on('exit', function(code) {
+      if (code === 0) {
+        return datacallback(true);
+      } else {
+        return datacallback(false);
+      }
     });
   };
 

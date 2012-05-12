@@ -14,7 +14,7 @@ CodeMirror.defineMode('coffeescript', function(conf) {
     var doubleOperators = new RegExp("^((\\+\\+)|(\\+\\=)|(\\-\\-)|(\\-\\=)|(\\*\\*)|(\\*\\=)|(\\/\\/)|(\\/\\=)|(==)|(!=)|(<=)|(>=)|(<>)|(<<)|(>>)|(//))");
     var doubleDelimiters = new RegExp("^((\->)|(\\.\\.)|(\\+=)|(\\-=)|(\\*=)|(%=)|(/=)|(&=)|(\\|=)|(\\^=))");
     var tripleDelimiters = new RegExp("^((\\.\\.\\.)|(//=)|(>>=)|(<<=)|(\\*\\*=))");
-    var identifiers = new RegExp("^[_A-Za-z][_A-Za-z0-9]*");
+    var identifiers = new RegExp("^[_A-Za-z\$][_A-Za-z0-9]*");
 
     var wordOperators = wordRegexp(['and', 'or', 'not',
                                     'is', 'isnt', 'in',

@@ -14,18 +14,21 @@ everyone.now.installPlugin = (name, datacallback, donecallback) ->
   install = childproc.spawn './installplugin', [name]
 
   install.stdout.on 'data', (data) ->
-    console.log '' + data
-    datacallback '' + data
+    if data.indexOf('__SUCCESS__') >= 0
+      donecallback true
+    else
+      datacallback '' + data
   
   install.stderr.on 'data', (data) ->
-    '' + data
     datacallback '' + data
   
-  install.on 'exit', (code) ->    
+  install.on 'exit', (code) ->
+    console.log 'exited'
+    console.log 'code is ' + code
     if code is 0
-      datacallback true
+      donecallback true
     else
-      datacallback false
+      donecallback false
       
   
     

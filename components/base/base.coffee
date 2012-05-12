@@ -32,7 +32,6 @@ app.on 'request', (req, res) ->
   if req.url is '/' or cachefiles.iscachefile filepath
     cachefiles.get filepath, req, res, (success) ->
       #if not success
- 
 
   #page = fs.readFileSync 'static/page', 'utf8'
   #index = index.replace '{{page}}', page
@@ -54,6 +53,19 @@ process.everyone = everyone
 everyone.now.restartServer = ->
   request 'http://127.0.0.1:' + process.config.restarterport + '/'
 
+
+everyone.now.savePage = (html, callback) ->
+  index = process.templates['index']
+  index = index.replace '{{page}}', html
+  cachefiles.set 'public/index.html', index
+  fs.writeFile "static/page.html", html, (err) ->
+    if err
+      console.log err
+      if callback? then callback false
+    else
+      if callback? then callback true
+  
+  
 everyone.now.saveStatic = (name, html, callback) ->
   fs.writeFile "static/#{name}", html, (err) ->
     if err
@@ -89,6 +101,17 @@ everyone.now.dbfind = (col, callback) ->
 everyone.now.saveFile = (filename, filedata, callback) ->
   fs.writeFile filename, filedata, 'utf8', (err) ->
     callback err
+    
+loadpage = ->
+  index = process.templates['index']
+  fs.readFile "static/page.html", 'utf8', (err, html) ->
+    if err? then console.log err
+    console.log 'page is ' + html
+    index = index.replace '{{page}}', html
+    console.log 'new index is ' + index
+    cachefiles.set 'public/index.html', index
+    
+loadpage()
     
 console.log "OIC listening on port #{process.config.port}"
 app.listen process.config.port

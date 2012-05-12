@@ -13,6 +13,8 @@ else
 
 process.config = config
 
+process.templates = {}
+
 getorder = (fname) ->
   loadstr = fs.readFileSync fname, 'utf8'
   loadstr.split '\n'
@@ -138,8 +140,6 @@ dropitem = (array, todrop) ->
   array
 
 checkcomponents = (toload) ->
-  console.log 'checkcomponents toload is'
-  console.log toload
   for component in toload
     if not path.existsSync "components/#{component}"
       console.log 'not found so dropping ' + component
@@ -161,14 +161,15 @@ build = (toload) ->
   "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{body}#{scripts}</body></html>"
 
 writebuild = (source) ->
+  process.templates['index'] = source
   fs.writeFileSync "public/index.html", source, 'utf8'
 
 exports.startup = (file) ->
   toload = listfile file
-  #toload = checkcomponents toload
-  console.log "toload is"
-  console.log toload
+  toload = checkcomponents toload
   comps = {}
+  html = build toload
+  writebuild html
   for component in toload
     try
       console.log "Building #{component}"
@@ -186,7 +187,4 @@ exports.startup = (file) ->
       comps[component]?.startup?()
     catch e
       console.log util.inspect e
-
-  html = build toload
-  writebuild html
 

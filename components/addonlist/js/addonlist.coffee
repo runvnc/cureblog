@@ -15,15 +15,53 @@ matches = []
 currentlyinstalling = ''
 
 installmsg = (msg) ->
-  $('#installmsg').append msg
-  $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight
+  if msg.indexOf('__SUCCESS__') >= 0
+    installdone true
+  else
+    $('#installmsg').append msg
+    $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight
+
   
+listplugins = ->
+  now.listComponents (components) ->
+    str = ''
+    for component in components
+      checked = ''
+      if component.active then checked = 'checked="checked"'
+      check = '<input type="checkbox" ' + checked + '/>'
+      str += "<li>#{check}&nbsp;<span class=\"compname\">#{component.name}</span></li>"
+    $('#pluginlist').html str
+    
+updateActive = ->    
+  active = []
+  $('#pluginlist li').each ->
+    if $(@).find('input').is(':checked')
+      active.push $(@).find('.compname').text()
+  now.setActiveComponents active    
   
-installdone = (msg) ->
-  noty
-    text: currentlyinstalling ' finished installing.'
-    type: 'information'
-    layout: 'topRight'
+installdone = (success) ->
+  if success
+    type = 'success'
+    msg = currentlyinstalling + ' finished installing.'    
+    noty
+      text: msg
+      type: type
+      layout: 'topRight'
+    $('#installmsg').hide()
+    
+    $('#pluginlist').show()
+    $('#plugindonemsg').html 'Installation complete.  Check the box to activate plugin'
+    $('#plugindonemsg').css 'backgroundColor', 'white'
+    listplugins()
+    
+  else
+    type = 'error'
+    msg = 'Installation of plugin ' + currentlyinstalling + ' failed.  See log'
+    
+    noty
+      text: msg
+      type: type
+      layout: 'topRight'
   
 
 install = (plugin) ->
@@ -33,12 +71,15 @@ install = (plugin) ->
     type: 'information'
     layout: 'topRight'
 
-  $('#installmsg').show()  
+  $('#installmsg').show()
+  $('#pluginlist').hide()
   now.installPlugin plugin, installmsg, installdone
   
   
 $ ->    
   $('#objs').prepend '<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>'  
+
+  $('#updateactive').click updateActive
   
   $('#plugins').click ->
     $('#pluginauto').dialog
@@ -83,12 +124,18 @@ $ ->
           $('#matches').html list
           if matches.length is 1
             plugitem = 0
-            setTimeout highlightSel, 100      
+            setTimeout highlightSel, 100  
+            
+          $('#matches li').click ->
+            toks = $(@).text().split ' '
+            selectedplugin = toks[0]
+            install selectedplugin
         
     
   now.ready ->
+    listplugins()
     now.getPluginIndex (list) ->      
       for key, val of list
         allplugins.push val.name + '  ' + val.description
-        
+    
         
