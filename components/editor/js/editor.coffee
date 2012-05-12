@@ -22,6 +22,8 @@ editWidget = (widget) ->
   editornodejs.setValue widget.nodejs
   editorhtml.setValue widget.html
   editorcss.setValue widget.css
+  $('#stylelist').text widget.styles
+  $('#scriptlist').text widget.scripts
 
 initeditortabs =  ->
   if initialized then return
@@ -119,7 +121,7 @@ window.savePage = ->
           text: 'Page saved.'
           type: 'success'
           timeout: 1000
-          
+  
           
 loadwidgets = ->
   $('#page').droppable

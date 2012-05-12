@@ -15,6 +15,8 @@ everyone.now.getWidgetData = (name, callback) ->
       js: fs.readFileSync "components/#{name}/js/#{name}.js", 'utf8'
       html: fs.readFileSync "components/#{name}/#{name}.html", 'utf8'
       css: fs.readFileSync "components/#{name}/css/#{name}.css", 'utf8'
+      scripts: fs.readFileSync "components/#{name}/scripts", 'utf8'
+      styles: fs.readFileSync "components/#{name}/styles", 'utf8'
     
     callback data
   catch e

@@ -15,6 +15,20 @@
   );
 }
 
+.scriptsdiv, .stylesdiv {
+  float: left;  
+}
+
+.stylesdiv {
+  margin-left: 40px; 
+}
+
+#scriptlist, #stylelist {
+  height: 300px; 
+  width: 350px;
+  overflow: scroll;
+}
+
 
 .ui-dialog, .ui-widget-content, .ui-widget {
    background-color: #f2f2f2 !important;

@@ -12,6 +12,9 @@ ObjectId = MongolianDeadBeef.ObjectId
 ObjectId.prototype.toJSON = ->
   return @toString()
 
+S4 = ->  (((1+Math.random())*0x10000)|0).toString(16).substring(1)
+process.guid = -> S4()+S4()+"-"+S4()+"-"+S4()+"-"+S4()+"-"+S4()+S4()+S4()
+
 db = server.db 'app'
 
 app = http.createServer()
@@ -23,20 +26,23 @@ oneYear = 31557600000
 cachefiles.setbase 'public'
 
 app.on 'request', (req, res) ->
-  if req.url is '/'
-    filepath = 'index.html'
-  else if req.url is '/socket.io/socket.io.js'
-    filepath = 'js/socket.io.js'
-  else
-    filepath = req.url
-  if req.url is '/' or cachefiles.iscachefile filepath
-    cachefiles.get filepath, req, res, (success) ->
-      #if not success
-
-  #page = fs.readFileSync 'static/page', 'utf8'
-  #index = index.replace '{{page}}', page
-
-  #response.send index
+  checkSession req, (session) ->
+    console.log 'session:'
+    console.log session
+    if req.url is '/'
+      filepath = 'index.html'
+    else if req.url is '/socket.io/socket.io.js'
+      filepath = 'js/socket.io.js'
+    else
+      filepath = req.url
+    if req.url is '/' or cachefiles.iscachefile filepath
+      cachefiles.get filepath, req, res, (success) ->
+        #if not success
+  
+    #page = fs.readFileSync 'static/page', 'utf8'
+    #index = index.replace '{{page}}', page
+  
+    #response.send index
 
 nowjs = require 'now'
 
@@ -53,7 +59,56 @@ process.everyone = everyone
 everyone.now.restartServer = ->
   request 'http://127.0.0.1:' + process.config.restarterport + '/'
 
+  
+sessions = {}
 
+process.getCookie = (req, name) ->
+  nameEQ = name + "="
+  ca = req.headers.cookie.split(";")
+  i = 0
+  while i < ca.length
+    c = ca[i]
+    c = c.substring(1, c.length)  while c.charAt(0) is " "
+    return c.substring(nameEQ.length, c.length)  if c.indexOf(nameEQ) is 0
+    i++
+  null
+
+checkSession = (req, callback) ->
+  if not req.headers.cookie?
+    callback undefined
+  else
+    id = process.getCookie req, 'myid'
+    if id?
+      getSession id, callback
+    else
+      callback undefined
+
+getSession = (id, callback) ->
+  if sessions[id]?
+    callback sessions[id]
+  else
+    criteria =
+      guid: id
+    db.collection('sessions').findOne criteria: criteria, (err, session) ->
+      if err?
+        callback null
+      else
+        callback session
+
+everyone.now.login = (user, pass, callback) ->
+  guid = process.guid()
+
+  session =
+    guid: guid
+    loggedin: new Date()
+    user: user
+  sessions[guid] = session
+  
+  db.collection('sessions').insert session
+    
+  callback guid  
+  
+  
 everyone.now.savePage = (html, callback) ->
   index = process.templates['index']
   index = index.replace '{{page}}', html
@@ -106,9 +161,7 @@ loadpage = ->
   index = process.templates['index']
   fs.readFile "static/page.html", 'utf8', (err, html) ->
     if err? then console.log err
-    console.log 'page is ' + html
     index = index.replace '{{page}}', html
-    console.log 'new index is ' + index
     cachefiles.set 'public/index.html', index
     
 loadpage()

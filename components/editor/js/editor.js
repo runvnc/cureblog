@@ -28,7 +28,9 @@
     editorbrowser.setValue(widget.browser);
     editornodejs.setValue(widget.nodejs);
     editorhtml.setValue(widget.html);
-    return editorcss.setValue(widget.css);
+    editorcss.setValue(widget.css);
+    $('#stylelist').text(widget.styles);
+    return $('#scriptlist').text(widget.scripts);
   };
 
   initeditortabs = function() {
