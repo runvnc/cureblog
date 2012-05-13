@@ -131,7 +131,7 @@ readtext = (filepath, type, res, callback) ->
            cacheFileInfo filepath, ->
  
 set = (name, content, callback) ->
-  zlib.gzip content, (err, buffer) ->
+  zlib.deflate content, (err, buffer) ->
     cached[name] = buffer
     filedata[name] =
       size: content.length
@@ -139,15 +139,6 @@ set = (name, content, callback) ->
       etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
 
     callback?()
-  ###
-
-  cached[name] = content
-  filedata[name] =
-    modified: new Date().toUTCString()
-    etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
-
-  callback?()
-  ###
 
 get = (filepath, req, res, callback) ->
   filepath = dropquery filepath
@@ -184,13 +175,12 @@ get = (filepath, req, res, callback) ->
         res.writeHead 200,
           'Vary': 'Accept-Encoding'
           'Content-Type': type
-          'Content-Encoding': 'gzip'
+          'Content-Encoding': 'deflate'
           'Date': new Date().toUTCString()
           'ETag': check.headerFields.ETag
           'Last-Modified': check.headerFields['Last-Modified']
           'Cache-Control': 'public, max-age=31540000'
-        res.write dat
-        res.end "0\r\n"
+        res.end dat
         callback true
   else
     type = contenttype filepath
