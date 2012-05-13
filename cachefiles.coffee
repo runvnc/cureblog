@@ -65,6 +65,7 @@ filedata = {}
 cacheFileInfo = (filepath, callback) ->
   fs.stat filepath, (err, stat) ->
     filedata[filepath] =
+      size: stat.size
       modified: new Date(stat.mtime).toUTCString()
       etag: "\"#{stat.ino}-#{stat.size}-#{Date.parse(stat.mtime)}\""
     callback filedata[filepath]
@@ -73,6 +74,7 @@ cacheFileInfo = (filepath, callback) ->
 checkETag = (filepath, req) ->
   fdata = filedata[filepath]
   headerFields = {}
+  headerFields['Content-Length'] = fdata.size
   headerFields['ETag'] = fdata.etag
   headerFields['Last-Modified'] = fdata.modified
   statCode = 200
@@ -120,26 +122,34 @@ readtext = (filepath, type, res, callback) ->
             res.end 'deflate error'
          else
            res.writeHead 200,
+             'Vary': 'Accept-Encoding'
              'Content-Type': type
              'Content-Encoding': 'deflate'
-             'Content-Length': buffer.length
            res.end buffer, 'binary'
            cached[filepath] = buffer
            callback true
            cacheFileInfo filepath, ->
-
+ 
 set = (name, content, callback) ->
-  zlib.deflate content, (err, buffer) ->
+  zlib.gzip content, (err, buffer) ->
     cached[name] = buffer
     filedata[name] =
+      size: content.length
       modified: new Date().toUTCString()
       etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
 
     callback?()
+  ###
 
- 
+  cached[name] = content
+  filedata[name] =
+    modified: new Date().toUTCString()
+    etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
+
+  callback?()
+  ###
+
 get = (filepath, req, res, callback) ->
-  console.log filepath
   filepath = dropquery filepath
   if filepath.substr(0) != '/'
     filepath = '/' + filepath
@@ -149,7 +159,6 @@ get = (filepath, req, res, callback) ->
   if notstatic[filepath]?
     callback false
   else if cached[filepath]
-    console.log 'cached ' + filepath
     type = contenttype filepath
 
     check = checkETag filepath, req
@@ -173,14 +182,15 @@ get = (filepath, req, res, callback) ->
       else
         dat = cached[filepath]
         res.writeHead 200,
+          'Vary': 'Accept-Encoding'
           'Content-Type': type
-          'Content-Encoding': 'deflate'
+          'Content-Encoding': 'gzip'
           'Date': new Date().toUTCString()
-          'Content-Length': dat.length
           'ETag': check.headerFields.ETag
           'Last-Modified': check.headerFields['Last-Modified']
           'Cache-Control': 'public, max-age=31540000'
-        res.end dat, 'binary'
+        res.write dat
+        res.end "0\r\n"
         callback true
   else
     type = contenttype filepath

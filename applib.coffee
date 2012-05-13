@@ -31,11 +31,19 @@ listfile = (fname) ->
 
 process.listfile = listfile
   
-readstyles = (name) ->
+readstyles = (name, which) ->
   try
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
+      if which is '' and fname.substr(fname.length-1,1) isnt '*'
+        console.log 'skipping ' + fname
+        continue #static/non-design mode doesn't include styles unless they end in *
+      else
+        console.log 'not skipping ' + fname
+        if fname.substr(fname.length-1, 1) is '*'
+          fname = fname.substr 0, fname.length-1
+      console.log 'its ' + fname
       if fname.indexOf('/') is 0
         prefix = ''
       else
@@ -51,12 +59,17 @@ readstyles = (name) ->
   catch e
     console.log "#{e.message}\n#{e.stack}"
 
-readscripts = (name) ->
+readscripts = (name, which) ->
   try
     list = listfile "components/#{name}/scripts"
     str = ''
     headscripts = ''
     for fname in list
+      if which is '' and fname.substr(fname.length-1,1) isnt '*'
+        continue #static/non-design mode doesn't include scripts unless they end in *
+      else
+        if fname.substr(fname.length-1, 1) is '*'
+          fname = fname.substr 0, fname.length-1
       if fname.indexOf('/') is 0
         prefix = ''
         headscripts += "<script src=\"#{fname}\"></script>"
@@ -97,23 +110,23 @@ readbody = (name) ->
 
 buildTime = null
 
-headcss = (toload) ->
+headcss = (toload, which) ->
   head = ''
   for component in toload
     if component? and component.length > 0
-      head += readstyles component
+      head += readstyles component, which
   console.log "Minifying CSS: start #{head.length} characters"
   head2 = cssmin head
   console.log "CSS now has #{head2.length} characters"
   fs.writeFile "public/css/combined#{buildTime}.css", head2, 'utf8'
   "<link rel=\"stylesheet\" href=\"css/combined#{buildTime}.css\">"
   
-headjs = (toload) ->
+headjs = (toload, which) ->
   head = ''
   headext = ''
   for component in toload
     if component? and component.length > 0
-      ret = readscripts component
+      ret = readscripts component, which
       head += ret.str
       headext += ret.headscripts
   #console.log "Minifying JS code: start #{head.length} characters"
@@ -149,27 +162,33 @@ checkcomponents = (toload) ->
   toload
  
 
-build = (toload) ->
+build = (toload, which) ->
   buildTime = new Date().getTime()
-  css = headcss toload
-  scripts = headjs toload
-  body = loadbody toload
+  css = headcss toload, which
+  scripts = headjs toload, which
+  body = loadbody toload, which
   body += "<script src=\"js/combined#{buildTime}.js\"></script>"
   for component in toload
     copyimages component
 
+  #addCss =  '<script>var headHTML = document.getElementsByTagName("head")[0].innerHTML;'
+  #addCss += 'headHTML+= \'' + css + '\';'
+  #addCss += 'document.getElementsByTagName("head")[0].innerHTML = headHTML;</script>'
   "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{body}#{scripts}</body></html>"
 
-writebuild = (source) ->
-  process.templates['index'] = source
-  fs.writeFileSync "public/index.html", source, 'utf8'
+writebuild = (source, which) ->
+  process.templates["#{which}index"] = source
+  fs.writeFileSync "public/#{which}index.html", source, 'utf8'
 
 exports.startup = (file) ->
   toload = listfile file
   toload = checkcomponents toload
   comps = {}
-  html = build toload
-  writebuild html
+  html = build toload, 'dev'
+  writebuild html, 'dev'
+  html2 = build toload, ''
+  writebuild html2, ''
+
   for component in toload
     try
       console.log "Building #{component}"

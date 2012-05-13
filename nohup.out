@@ -26,3 +26,14 @@ getting page
 getting page
 getting page
 getting page
+Error: Cannot find module 'connect'
+    at Function._resolveFilename (module.js:332:11)
+    at Function._load (module.js:279:25)
+    at Module.require (module.js:354:17)
+    at require (module.js:370:17)
+    at Object.<anonymous> (/home/cure/cureblog/node_modules/express/lib/express.js:7:15)
+    at Module._compile (module.js:441:26)
+    at Object..js (module.js:459:10)
+    at Module.load (module.js:348:31)
+    at Function._load (module.js:308:12)
+    at Module.require (module.js:354:17)

@@ -28,7 +28,11 @@ cachefiles.setbase 'public'
 app.on 'request', (req, res) ->
   checkSession req, (session) ->
     if req.url is '/'
-      filepath = 'index.html'
+      if session? and session.user is 'admin'
+        filepath = 'devindex.html'
+      else
+        filepath = 'index.html'
+    
     else if req.url is '/socket.io/socket.io.js'
       filepath = 'js/socket.io.js'
     else
@@ -83,19 +87,16 @@ checkSession = (req, callback) ->
 
 getSession = (id, callback) ->
   if sessions[id]?
-    console.log 'getSession return from memory ' + sessions[id]
     callback sessions[id]
   else
     criteria =
       guid: id
-    console.log 'inside of getSession for id ' + id
+    console.log 'searching databsae for session'
     db.collection('sessions').findOne criteria, (err, session) ->
       if err?
         console.log 'findOne returned error ' + err.message
         callback null
       else
-        
-        console.log 'findOne returned ' + session
         callback session
 
         
@@ -114,19 +115,15 @@ everyone.now.login = (user, pass, callback) ->
   
   
 everyone.now.logout = (id, callback) ->
-  console.log 'inside of logout'
   toremove =
     guid: id
-  console.log 'about to delete id ' + id
   delete sessions[id]
-  console.log 'deleted the id'
   db.collection('sessions').remove toremove, (err) ->
     if err?
       console.log "error in remove"
       console.log err
       callback?()
     else
-      console.log 'successfully deleted ' + id + ' from database'
       callback?()
     
 
@@ -139,9 +136,14 @@ everyone.now.getAccountInfo = (sessionid, callback) ->
   
   
 everyone.now.savePage = (html, callback) ->
+  index = process.templates['devindex']
+  index = index.replace '{{page}}', html
+  cachefiles.set 'public/devindex.html', index
+
   index = process.templates['index']
   index = index.replace '{{page}}', html
   cachefiles.set 'public/index.html', index
+
   fs.writeFile "static/page.html", html, (err) ->
     if err
       console.log err
@@ -187,11 +189,14 @@ everyone.now.saveFile = (filename, filedata, callback) ->
     callback err
     
 loadpage = ->
-  index = process.templates['index']
+  index = process.templates['devindex']
+  index2 = process.templates['index']
   fs.readFile "static/page.html", 'utf8', (err, html) ->
     if err? then console.log err
     index = index.replace '{{page}}', html
-    cachefiles.set 'public/index.html', index
+    cachefiles.set 'public/devindex.html', index
+    index2 = index2.replace '{{page}}', html
+    cachefiles.set 'public/index.html', index2
     
 loadpage()
     
