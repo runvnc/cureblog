@@ -227,6 +227,7 @@
   };
 
   $(function() {
+    $('#editorui').hide();
     $('body').prepend($('#editorui'));
     $('#objs').height($(window).height());
     $('#objs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
@@ -289,6 +290,28 @@
       return window.savePage();
     });
     return now.ready(function() {
+      var sessionid;
+      sessionid = window.readCookie('myid');
+      console.log('sessionid is ' + sessionid);
+      if (!(sessionid != null)) {
+        window.loggedIn = false;
+        console.log("Logged in is " + window.loggedIn);
+      } else {
+        now.getAccountInfo(sessionid, function(user) {
+          if (!(user != null)) {
+            window.loggedIn = false;
+            console.log("Logged in is " + window.loggedIn);
+            return $(document).trigger('sessionState', void 0);
+          } else {
+            window.loggedIn = true;
+            window.user = user;
+            console.log("Logged in is " + window.loggedIn);
+            console.log("user is " + window.user);
+            $('#editorui').show();
+            return $(document).trigger('sessionState', user);
+          }
+        });
+      }
       return loadwidgets();
     });
   });

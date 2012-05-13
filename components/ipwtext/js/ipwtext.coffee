@@ -4,7 +4,7 @@ class IPWTextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
       @id = guid()
-      @el = $('<div class="ipwtextwidget widgetcontainer sizewidget" id ="'+@id+'"><div class="ipweditable">The quick brown fox jumped.</div></div>')
+      @el = $('<div class="ipwtextwidget widgetcontainer" id ="'+@id+'"><div class="ipweditable">The quick brown fox jumped.</div></div>')
       idx = '#' + @id
       @parent.append @el
       @el.css
@@ -81,20 +81,23 @@ class IPWTextTool
     
     
 $ ->
-  window.IPWTextTool = new IPWTextTool()
-  
-  $('.ipwtextwidget').each ->    
-    if $(@)?
-      console.log 'creating IPWTextWidget'
-      x = $(@).position().left
-      y = $(@).position().top
-      text = new IPWTextWidget($('#page'), x, y, $(@).attr('id'))
-    else
-      console.log '$(this)? false skipping'
+  $(document).bind 'sessionState', (user) ->
+    if window.loggedIn
+      window.IPWTextTool = new IPWTextTool()
+      
+      $('.ipwtextwidget').each ->    
+        if $(@)?
+          console.log 'creating IPWTextWidget'
+          x = $(@).position().left
+          y = $(@).position().top
+          text = new IPWTextWidget($('#page'), x, y, $(@).attr('id'))
+        else
+          console.log '$(this)? false skipping'
 
 window.saveFilters.push (sel) ->      
   $(sel).find('.ui-resizable-handle').remove()
   $(sel).find('.ipwtextwidget button').remove()
+  $(sel).find('.sizewidget').removeClass 'sizewidget'
   $(sel).find('#editor1___Frame').remove()
   $(sel).find('#editor1___Config').remove()
   $(sel).find('#editor1').remove()

@@ -28,3 +28,8 @@ window.readCookie = (name) ->
   
 window.eraseCookie = (name) ->
   createCookie name, "", -1
+  
+      
+
+  
+  

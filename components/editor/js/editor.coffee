@@ -42,11 +42,11 @@ initeditortabs =  ->
     lineNumbers: true
   lastScreen = window.readCookie 'lastScreen'
   if lastScreen?
-    now.getWidgetData lastScreen, (widgetdata, err) -> 
+    now.getWidgetData lastScreen, (widgetdata, err) ->
       if err?
         alert 'Error loading widget data: ' + err.message
       else
-        editWidget widgetdata    
+        editWidget widgetdata
 
   
 makeEditable = ->
@@ -167,7 +167,7 @@ publish = ->
   
   
 $ ->
-  
+  $('#editorui').hide()
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()
 
@@ -226,5 +226,24 @@ $ ->
     window.savePage()
 
   now.ready ->
+    sessionid = window.readCookie 'myid'
+    console.log 'sessionid is ' + sessionid
+    if not sessionid?
+      window.loggedIn = false
+      console.log "Logged in is " + window.loggedIn
+    else
+      now.getAccountInfo sessionid, (user) ->
+        if not user?
+          window.loggedIn = false
+          console.log "Logged in is " + window.loggedIn
+          $(document).trigger 'sessionState', undefined
+        else
+          window.loggedIn = true
+          window.user = user
+          console.log "Logged in is " + window.loggedIn
+          console.log "user is " + window.user
+          $('#editorui').show()
+          $(document).trigger 'sessionState', user
+      
     loadwidgets()
 

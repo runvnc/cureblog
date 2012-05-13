@@ -13,7 +13,7 @@
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="ipwtextwidget widgetcontainer sizewidget" id ="' + this.id + '"><div class="ipweditable">The quick brown fox jumped.</div></div>');
+        this.el = $('<div class="ipwtextwidget widgetcontainer" id ="' + this.id + '"><div class="ipweditable">The quick brown fox jumped.</div></div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({
@@ -104,16 +104,20 @@
   })();
 
   $(function() {
-    window.IPWTextTool = new IPWTextTool();
-    return $('.ipwtextwidget').each(function() {
-      var text, x, y;
-      if ($(this) != null) {
-        console.log('creating IPWTextWidget');
-        x = $(this).position().left;
-        y = $(this).position().top;
-        return text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'));
-      } else {
-        return console.log('$(this)? false skipping');
+    return $(document).bind('sessionState', function(user) {
+      if (window.loggedIn) {
+        window.IPWTextTool = new IPWTextTool();
+        return $('.ipwtextwidget').each(function() {
+          var text, x, y;
+          if ($(this) != null) {
+            console.log('creating IPWTextWidget');
+            x = $(this).position().left;
+            y = $(this).position().top;
+            return text = new IPWTextWidget($('#page'), x, y, $(this).attr('id'));
+          } else {
+            return console.log('$(this)? false skipping');
+          }
+        });
       }
     });
   });
@@ -121,6 +125,7 @@
   window.saveFilters.push(function(sel) {
     $(sel).find('.ui-resizable-handle').remove();
     $(sel).find('.ipwtextwidget button').remove();
+    $(sel).find('.sizewidget').removeClass('sizewidget');
     $(sel).find('#editor1___Frame').remove();
     $(sel).find('#editor1___Config').remove();
     $(sel).find('#editor1').remove();
