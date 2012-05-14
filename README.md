@@ -1,3 +1,5 @@
+webchat <iframe src="http://webchat.freenode.net?randomnick=1&channels=oic&uio=d4" width="647" height="400"></iframe>
+
 This is (or will be) a front-end- friendly Node.js-based CMS and component platform.
 
 It is a framework and tool for building web sites and web applications of all types.

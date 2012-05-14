@@ -31,8 +31,10 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
   childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
     callback(o + "\n" + e)
+  fs.writeFileSync "components/#{name}/scripts", data.scripts, 'utf8'
+  fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'  
   
-  
+
 everyone.now.listComponents = (callback) ->
   active = process.listfile 'loadorder'
   fs.readdir 'components', (err, dirs) ->

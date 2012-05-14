@@ -164,8 +164,8 @@ publish = ->
           $('.pubmsg').html res.message
         else
           $('.pubmsg').html 'Success!'
-  
-  
+
+
 $ ->
   $('#editorui').hide()
   $('body').prepend $('#editorui')
@@ -188,6 +188,8 @@ $ ->
       html: editorhtml.getValue()
       css:  editorcss.getValue()
       nodejs:  editornodejs.getValue()
+      styles: $('#stylelist').text()
+      scripts: $('#scriptlist').text()
 
     now.saveWidgetData data, (compileout) ->
       if compileout? and compileout.length > 4
@@ -219,7 +221,7 @@ $ ->
         $('.transparent').css 'backgroundColor', '#f2f2f2'
         
     initeditortabs()
-  
+
   $('#publish').click publish
   
   $('#savepage').click ->

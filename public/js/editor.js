@@ -247,7 +247,9 @@
         browser: editorbrowser.getValue(),
         html: editorhtml.getValue(),
         css: editorcss.getValue(),
-        nodejs: editornodejs.getValue()
+        nodejs: editornodejs.getValue(),
+        styles: $('#stylelist').text(),
+        scripts: $('#scriptlist').text()
       };
       now.saveWidgetData(data, function(compileout) {
         if ((compileout != null) && compileout.length > 4) {

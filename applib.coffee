@@ -36,7 +36,7 @@ readstyles = (name, which) ->
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
-      if which is '' and fname.substr(fname.length-1,1) isnt '*'
+      if false and which is '' and fname.substr(fname.length-1,1) isnt '*'
         console.log 'skipping ' + fname
         continue #static/non-design mode doesn't include styles unless they end in *
       else
@@ -65,7 +65,7 @@ readscripts = (name, which) ->
     str = ''
     headscripts = ''
     for fname in list
-      if which is '' and fname.substr(fname.length-1,1) isnt '*'
+      if false and which is '' and fname.substr(fname.length-1,1) isnt '*'
         continue #static/non-design mode doesn't include scripts unless they end in *
       else
         if fname.substr(fname.length-1, 1) is '*'
