@@ -86,6 +86,7 @@ checkSession = (req, callback) ->
       callback undefined
 
 getSession = (id, callback) ->
+  return undefined
   if sessions[id]?
     callback sessions[id]
   else

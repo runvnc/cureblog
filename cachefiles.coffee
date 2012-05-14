@@ -70,6 +70,14 @@ cacheFileInfo = (filepath, callback) ->
       etag: "\"#{stat.ino}-#{stat.size}-#{Date.parse(stat.mtime)}\""
     callback filedata[filepath]
 
+cacheFileInfoGZ = (filepath, callback) ->
+  fs.stat filepath + '.gz', (err, stat) ->
+    filedata[filepath] =
+      size: stat.size
+      modified: new Date(stat.mtime).toUTCString()
+      etag: "\"#{stat.ino}-#{stat.size}-#{Date.parse(stat.mtime)}\""
+    callback? filedata[filepath]
+
 
 checkETag = (filepath, req) ->
   fdata = filedata[filepath]
@@ -103,9 +111,18 @@ readbinary = (filepath, type, res) ->
     else
       res.writeHead 200,
         'Content-Type': type
-      res.end data, encoding
+      res.end data #, encoding
       cached[filepath] = data
       cacheFileInfo filepath, ->
+
+readhtml = (filepath, type, res, callback) ->
+  encoding = 'utf8'
+  fs.readFile filepath, encoding, (err, data) ->
+    res.writeHead 200,
+      'Content-Type': type
+    res.end data, encoding
+    cached[filedpath] = data
+    cacheFileInfo filepath, ->
 
 readtext = (filepath, type, res, callback) ->
   encoding = 'utf8'
@@ -115,26 +132,35 @@ readtext = (filepath, type, res, callback) ->
       console.log err.message
       callback false
     else
-      zlib.deflate data, (err, buffer) ->
+      zlib.gzip data, (err, buffer) ->
         if err?
           res.writeHead 500,
             'Content-Type': type
-            res.end 'deflate error'
+          res.end 'deflate error'
          else
            res.writeHead 200,
-             'Vary': 'Accept-Encoding'
-             'Content-Type': type
-             'Content-Encoding': 'deflate'
-           res.end buffer, 'binary'
+             'Content-Encoding': 'gzip'
+             #'Content-Length': filedata[filepath].size
+             #'Vary': 'Accept-Encoding'
+             #'Content-Type': type
+             #res.end data, 'utf8' #buffer, 'binary' #'utf8'
+           res.end buffer
            cached[filepath] = buffer
            callback true
            cacheFileInfo filepath, ->
- 
+             
+   
 set = (name, content, callback) ->
-  zlib.deflate content, (err, buffer) ->
+  #cached[name] = content
+  #filedata[name] =
+  #  size: content.length
+  #  modified: new Date().toUTCString()
+  #  etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
+  #callback?()
+  zlib.gzip content, (err, buffer) ->
     cached[name] = buffer
     filedata[name] =
-      size: content.length
+      size: buffer.length
       modified: new Date().toUTCString()
       etag: "\"#{Math.random()*999}#{content.substring(0,3)}-#{content.length}-#{new Date().toUTCString()}\""
 
@@ -168,24 +194,33 @@ get = (filepath, req, res, callback) ->
           'Date': new Date().toUTCString()
           'Last-Modified': check.headerFields['Last-Modified']
           'Cache-Control': 'public, max-age=31540000'
-        res.end cached[filepath], 'binary'
+        res.end cached[filepath]
         callback true
+      #else if type is 'text/html'
+      #  res.writeHead 200,
+      #    'Content-Type': type
+      #  res.end cached[filepath]
       else
         dat = cached[filepath]
         res.writeHead 200,
-          'Vary': 'Accept-Encoding'
-          'Content-Type': type
-          'Content-Encoding': 'deflate'
+          'Content-Encoding': 'gzip'
           'Date': new Date().toUTCString()
           'ETag': check.headerFields.ETag
           'Last-Modified': check.headerFields['Last-Modified']
           'Cache-Control': 'public, max-age=31540000'
+          #'Content-Length': 1480 #check.headerFields['Content-Length']
+          #'Content-Type': type
         res.end dat
         callback true
+        #'Content-Type': type
+        #'Vary': 'Accept-Encoding'
+        #'Content-Length': check.headerFields['Content-Length']
   else
     type = contenttype filepath
     if isbinary type
       readbinary filepath, type, res
+    #else if type is 'text/html'
+    #  readhtml filepath, type, res
     else
       readtext filepath, type, res, callback
 

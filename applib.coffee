@@ -120,6 +120,17 @@ headcss = (toload, which) ->
   console.log "CSS now has #{head2.length} characters"
   fs.writeFile "public/css/combined#{buildTime}.css", head2, 'utf8'
   "<link rel=\"stylesheet\" href=\"css/combined#{buildTime}.css\">"
+
+combinedcss = (toload, which) ->
+  head = ''
+  for component in toload
+    if component? and component.length > 0
+      head += readstyles component, which
+  console.log "Minifying CSS: start #{head.length} characters"
+  head2 = '<style>' + cssmin head + '</style>'
+  console.log "CSS now has #{head2.length} characters"
+  head2
+ 
   
 headjs = (toload, which) ->
   head = ''
@@ -164,7 +175,8 @@ checkcomponents = (toload) ->
 
 build = (toload, which) ->
   buildTime = new Date().getTime()
-  css = headcss toload, which
+  #css = headcss toload, which
+  css = combinedcss toload, which
   scripts = headjs toload, which
   body = loadbody toload, which
   body += "<script src=\"js/combined#{buildTime}.js\"></script>"
