@@ -1,0 +1,11 @@
+.ipwtexticon {
+  background-image: url(/images/text.png);
+  width: 29px;
+  height: 26px;
+  margin: 3px;
+}
+
+
+.sizewidget {
+  border: 1px dotted #ccc; 
+}

@@ -1,0 +1,34 @@
+#addons {
+  margin-left: 15px; 
+}
+
+#inp, #matches {
+ width: 700px;   
+}
+#tosearch {
+ width: 400px;   
+ height: 150px;   
+}
+#matches {
+ border: 1px solid #000;   
+}​
+
+#plugindonemsg {
+  color: #00f; 
+}
+
+#installmsg, code {
+  display: none;
+  font-family: Lucida Console, Monaco, monospace; 
+  display: block;
+  color: white;
+  background-color: black;
+  height: 350px;
+  overflow: scroll;
+  font-size: 9pt;
+}
+
+#plugins img {
+  float: left;
+  margin-left: -20px;
+}
