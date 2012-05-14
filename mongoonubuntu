@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+if grep -Fxq distro.mongodb.org "/etc/apt/sources.list"
+then
+    # already there
+    echo "MongoDB should already be set up"
+else
+  sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10    
+  sudo echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen">>/etc/apt/sources.list    
+  sudo apt-get update
+  sudo apt-get install mongodb-10gen
+fi
