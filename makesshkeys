@@ -1,0 +1,12 @@
+#!/bin/bash
+
+EXPECTED_ARGS=2
+E_BADARGS=65
+
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: makesshkeys {email} {passphrase}"
+  exit $E_BADARGS
+  fi
+
+ssh-keygen -t rsa -C $1 -N "$2" -f ~/.ssh/id_rsa
