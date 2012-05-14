@@ -3,20 +3,24 @@
 # or submit patches to node or npm
 
 cd $HOME
-if [ -d "$HOME/bin" ] ; then
-  PATH="$PATH:$HOME/bin"
-fi
 
 mkdir $HOME/local
 echo 'export PATH=$HOME/local/bin:$PATH' >> $HOME/.bashrc
+echo 'export PATH=$HOME/local/bin:$PATH' >> $HOME/.zshrc
+
 . $HOME/.bashrc
+. $HOME/.zshrc
+
 
 # could also fork, and then clone your own fork instead of the official one
 
 git clone git://github.com/joyent/node.git
 cd node
+git checkout v0.6.17
+git pull origin master
+
 ./configure --prefix=$HOME/local
-make install
+ make install
 cd ..
 
 git clone git://github.com/isaacs/npm.git
