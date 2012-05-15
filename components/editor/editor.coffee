@@ -24,6 +24,7 @@ everyone.now.getWidgetData = (name, callback) ->
     callback null, e
 
 everyone.now.saveWidgetData = (data, callback) ->
+  console.log util.inspect data
   name = data.name
   fs.writeFileSync "components/#{name}/js/#{name}.coffee", data.browser, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
@@ -31,6 +32,7 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
   childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
     callback(o + "\n" + e)
+    
   fs.writeFileSync "components/#{name}/scripts", data.scripts, 'utf8'
   fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'  
   

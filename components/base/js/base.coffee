@@ -1,5 +1,7 @@
 S4 = ->  (((1+Math.random())*0x10000)|0).toString(16).substring(1)
 
+window.nowAlready = false
+
 window.delay = (ms, func) ->
   setTimeout func, ms
 
@@ -28,8 +30,32 @@ window.readCookie = (name) ->
   
 window.eraseCookie = (name) ->
   createCookie name, "", -1
-  
-      
 
-  
-  
+$ ->
+  $(document).bind 'nowInit', ->
+    sessionid = window.readCookie 'myid'
+    console.log 'sessionid is ' + sessionid
+    if not sessionid?
+      window.loggedIn = false
+      console.log "Logged in is " + window.loggedIn
+      $(document).trigger 'sessionState', undefined
+    else
+      now.getAccountInfo sessionid, (user) ->
+        if not user?
+          window.loggedIn = false
+          console.log "Logged in is " + window.loggedIn
+          $(document).trigger 'sessionState', undefined
+        else
+          window.loggedIn = true
+          window.user = user
+          console.log "Logged in is " + window.loggedIn
+          console.log "user is " + window.user
+          $('#editorui').show()
+          $(document).trigger 'sessionState', user
+
+ 
+now.ready ->
+  if not window.nowAlready
+    window.nowAlready = true
+    $(document).trigger 'nowInit'      
+

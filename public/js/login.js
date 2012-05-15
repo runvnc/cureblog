@@ -1,3 +1,4 @@
+(function() {
 
   window.login = function() {
     console.log('you clicked login');
@@ -33,3 +34,5 @@
       });
     }
   });
+
+}).call(this);

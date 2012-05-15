@@ -248,8 +248,8 @@
         html: editorhtml.getValue(),
         css: editorcss.getValue(),
         nodejs: editornodejs.getValue(),
-        styles: $('#stylelist').text(),
-        scripts: $('#scriptlist').text()
+        styles: $('#stylelist').val(),
+        scripts: $('#scriptlist').val()
       };
       now.saveWidgetData(data, function(compileout) {
         if ((compileout != null) && compileout.length > 4) {
@@ -291,29 +291,7 @@
     $('#savepage').click(function() {
       return window.savePage();
     });
-    return now.ready(function() {
-      var sessionid;
-      sessionid = window.readCookie('myid');
-      console.log('sessionid is ' + sessionid);
-      if (!(sessionid != null)) {
-        window.loggedIn = false;
-        console.log("Logged in is " + window.loggedIn);
-      } else {
-        now.getAccountInfo(sessionid, function(user) {
-          if (!(user != null)) {
-            window.loggedIn = false;
-            console.log("Logged in is " + window.loggedIn);
-            return $(document).trigger('sessionState', void 0);
-          } else {
-            window.loggedIn = true;
-            window.user = user;
-            console.log("Logged in is " + window.loggedIn);
-            console.log("user is " + window.user);
-            $('#editorui').show();
-            return $(document).trigger('sessionState', user);
-          }
-        });
-      }
+    return $(document).bind('nowInit', function() {
       return loadwidgets();
     });
   });

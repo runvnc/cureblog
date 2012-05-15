@@ -5,6 +5,8 @@
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   };
 
+  window.nowAlready = false;
+
   window.delay = function(ms, func) {
     return setTimeout(func, ms);
   };
@@ -44,5 +46,40 @@
   window.eraseCookie = function(name) {
     return createCookie(name, "", -1);
   };
+
+  $(function() {
+    return $(document).bind('nowInit', function() {
+      var sessionid;
+      sessionid = window.readCookie('myid');
+      console.log('sessionid is ' + sessionid);
+      if (!(sessionid != null)) {
+        window.loggedIn = false;
+        console.log("Logged in is " + window.loggedIn);
+        return $(document).trigger('sessionState', void 0);
+      } else {
+        return now.getAccountInfo(sessionid, function(user) {
+          if (!(user != null)) {
+            window.loggedIn = false;
+            console.log("Logged in is " + window.loggedIn);
+            return $(document).trigger('sessionState', void 0);
+          } else {
+            window.loggedIn = true;
+            window.user = user;
+            console.log("Logged in is " + window.loggedIn);
+            console.log("user is " + window.user);
+            $('#editorui').show();
+            return $(document).trigger('sessionState', user);
+          }
+        });
+      }
+    });
+  });
+
+  now.ready(function() {
+    if (!window.nowAlready) {
+      window.nowAlready = true;
+      return $(document).trigger('nowInit');
+    }
+  });
 
 }).call(this);

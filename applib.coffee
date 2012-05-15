@@ -36,14 +36,11 @@ readstyles = (name, which) ->
     list = listfile "components/#{name}/styles"
     str = ''
     for fname in list
-      if false and which is '' and fname.substr(fname.length-1,1) isnt '*'
-        console.log 'skipping ' + fname
+      if which is '' and fname.substr(fname.length-1,1) isnt '*'
         continue #static/non-design mode doesn't include styles unless they end in *
       else
-        console.log 'not skipping ' + fname
         if fname.substr(fname.length-1, 1) is '*'
           fname = fname.substr 0, fname.length-1
-      console.log 'its ' + fname
       if fname.indexOf('/') is 0
         prefix = ''
       else
@@ -65,7 +62,7 @@ readscripts = (name, which) ->
     str = ''
     headscripts = ''
     for fname in list
-      if false and which is '' and fname.substr(fname.length-1,1) isnt '*'
+      if which is '' and fname.substr(fname.length-1,1) isnt '*'
         continue #static/non-design mode doesn't include scripts unless they end in *
       else
         if fname.substr(fname.length-1, 1) is '*'
@@ -179,6 +176,7 @@ build = (toload, which) ->
   css = combinedcss toload, which
   scripts = headjs toload, which
   body = loadbody toload, which
+  body += scripts
   body += "<script src=\"js/combined#{buildTime}.js\"></script>"
   for component in toload
     copyimages component
@@ -186,7 +184,7 @@ build = (toload, which) ->
   #addCss =  '<script>var headHTML = document.getElementsByTagName("head")[0].innerHTML;'
   #addCss += 'headHTML+= \'' + css + '\';'
   #addCss += 'document.getElementsByTagName("head")[0].innerHTML = headHTML;</script>'
-  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{body}#{scripts}</body></html>"
+  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{body}</body></html>"
 
 writebuild = (source, which) ->
   process.templates["#{which}index"] = source

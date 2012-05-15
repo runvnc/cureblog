@@ -21,30 +21,23 @@ app = http.createServer()
 
 process.app = app
 
-oneYear = 31557600000
-
 cachefiles.setbase 'public'
 
 app.on 'request', (req, res) ->
-  checkSession req, (session) ->
-    if req.url is '/'
+  if req.url is '/'  
+    checkSession req, (session) ->
       if session? and session.user is 'admin'
         filepath = 'devindex.html'
       else
         filepath = 'index.html'
-    
-    else if req.url is '/socket.io/socket.io.js'
-      filepath = 'js/socket.io.js'
-    else
-      filepath = req.url
-    if req.url is '/' or cachefiles.iscachefile filepath
       cachefiles.get filepath, req, res, (success) ->
-        #if not success
-  
-    #page = fs.readFileSync 'static/page', 'utf8'
-    #index = index.replace '{{page}}', page
-  
-    #response.send index
+  else if req.url is '/socket.io/socket.io.js'
+    filepath = 'js/socket.io.js'
+  else
+    filepath = req.url
+    if cachefiles.iscachefile filepath
+      cachefiles.get filepath, req, res, (success) ->
+
 
 nowjs = require 'now'
 
@@ -97,6 +90,7 @@ getSession = (id, callback) ->
         console.log 'findOne returned error ' + err.message
         callback null
       else
+        sessions[id] = session
         callback session
 
         

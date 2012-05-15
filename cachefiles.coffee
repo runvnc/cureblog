@@ -101,9 +101,9 @@ checkETag = (filepath, req) ->
 
 
 readbinary = (filepath, type, res) ->
-  encoding = 'binary'
-  fs.readFile filepath, encoding, (err, data) ->
+  fs.readFile filepath, (err, data) ->
     if err?
+      console.log 'sending 404 for binary ' + filepath
       res.writeHead 404,
         'Content-Type': 'text/plain'
       res.end 'Not found'

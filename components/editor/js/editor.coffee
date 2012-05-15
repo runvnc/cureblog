@@ -188,8 +188,8 @@ $ ->
       html: editorhtml.getValue()
       css:  editorcss.getValue()
       nodejs:  editornodejs.getValue()
-      styles: $('#stylelist').text()
-      scripts: $('#scriptlist').text()
+      styles: $('#stylelist').val()
+      scripts: $('#scriptlist').val()
 
     now.saveWidgetData data, (compileout) ->
       if compileout? and compileout.length > 4
@@ -227,25 +227,6 @@ $ ->
   $('#savepage').click ->
     window.savePage()
 
-  now.ready ->
-    sessionid = window.readCookie 'myid'
-    console.log 'sessionid is ' + sessionid
-    if not sessionid?
-      window.loggedIn = false
-      console.log "Logged in is " + window.loggedIn
-    else
-      now.getAccountInfo sessionid, (user) ->
-        if not user?
-          window.loggedIn = false
-          console.log "Logged in is " + window.loggedIn
-          $(document).trigger 'sessionState', undefined
-        else
-          window.loggedIn = true
-          window.user = user
-          console.log "Logged in is " + window.loggedIn
-          console.log "user is " + window.user
-          $('#editorui').show()
-          $(document).trigger 'sessionState', user
-      
+  $(document).bind 'nowInit', ->
     loadwidgets()
 
