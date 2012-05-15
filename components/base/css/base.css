@@ -1,3 +1,12 @@
 #container {
   position: relative;
 }
+
+#editorui {
+  display: none;  
+}
+
+#page {
+  left: 0%;
+  width: 100%;
+}

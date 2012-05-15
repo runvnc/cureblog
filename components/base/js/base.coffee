@@ -53,7 +53,7 @@ $ ->
           $('#editorui').show()
           $(document).trigger 'sessionState', user
 
- 
+
 now.ready ->
   if not window.nowAlready
     window.nowAlready = true

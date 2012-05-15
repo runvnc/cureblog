@@ -12,14 +12,15 @@ window.login = ->
   now.login 'admin', '', (guid) ->
     console.log 'guid is ' + guid
     window.createCookie 'myid', guid, 1
-    window.location.reload()
+    window.location.assign '/?dev'
     
 window.logout = ->
   myid = window.readCookie 'myid'
+  window.eraseCookie 'myid'
   now.logout myid, ->
-    window.location.reload()
+    window.location.assign '/'
   window.delay 500, ->
-    window.location.reload()
+    window.location.assign '/'
   
 $(document).bind 'sessionState', (user) ->
   console.log 'Inside of login window.loggedIn is ' + window.loggedIn

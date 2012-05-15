@@ -24,11 +24,13 @@ process.app = app
 cachefiles.setbase 'public'
 
 app.on 'request', (req, res) ->
-  if req.url is '/'  
+  if cachefiles.dropquery(req.url) is '/'  
     checkSession req, (session) ->
       if session? and session.user is 'admin'
+        console.log 'returning devindex'
         filepath = 'devindex.html'
       else
+        console.log 'session not found or not admin'
         filepath = 'index.html'
       cachefiles.get filepath, req, res, (success) ->
   else if req.url is '/socket.io/socket.io.js'

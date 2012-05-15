@@ -67,14 +67,14 @@ readscripts = (name, which) ->
       else
         if fname.substr(fname.length-1, 1) is '*'
           fname = fname.substr 0, fname.length-1
+      if fname.indexOf('//') is 0
+        headscripts += "<script src=\"#{fname}\"></script>"
+        continue
       if fname.indexOf('/') is 0
         prefix = ''
         headscripts += "<script src=\"#{fname}\"></script>"
       else
         prefix = 'js/'
-      if fname.indexOf('//') is 0
-        headscripts += "<script src=\"#{fname}\"></script>"
-        continue
       filepath = "components/#{name}/#{prefix}#{fname}"
       if path.existsSync filepath
         filedat = fs.readFileSync filepath, 'utf8'
@@ -140,7 +140,7 @@ headjs = (toload, which) ->
   #console.log "Minifying JS code: start #{head.length} characters"
   #head2 = jsmin head, 3
   #console.log "JS code now #{head2.length} characters"
-  fs.writeFile "public/js/combined#{buildTime}.js", head, 'utf8'
+  fs.writeFile "public/js/#{which}combined#{buildTime}.js", head, 'utf8'
   headext #+ '<script src="js/combined.js"></script>'
  
 
@@ -177,7 +177,7 @@ build = (toload, which) ->
   scripts = headjs toload, which
   body = loadbody toload, which
   body += scripts
-  body += "<script src=\"js/combined#{buildTime}.js\"></script>"
+  body += "<script src=\"js/#{which}combined#{buildTime}.js\"></script>"
   for component in toload
     copyimages component
 

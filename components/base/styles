@@ -1,7 +1,7 @@
 jquery.contextMenu.css
 base.css*
-smoothness/jquery-ui-1.8.18.custom.css*
-jquery-ui.css*
+smoothness/jquery-ui-1.8.18.custom.css
+jquery-ui.css
 style.css*
 jquery.noty.css
 noty_theme_default.css

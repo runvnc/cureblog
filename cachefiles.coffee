@@ -177,9 +177,10 @@ get = (filepath, req, res, callback) ->
     callback false
   else if cached[filepath]
     type = contenttype filepath
-
+     
     check = checkETag filepath, req
-    if check.statCode is 304
+    console.log 'filepath is' + filepath
+    if filepath isnt 'public/devindex.html' and check.statCode is 304
       res.writeHead 304,
         'ETag' : check.headerFields.ETag
         'Date' : new Date().toUTCString()
@@ -229,4 +230,4 @@ exports.get = get
 exports.set = set
 exports.setbase = setbase
 exports.iscachefile = iscachefile
-
+exports.dropquery = dropquery

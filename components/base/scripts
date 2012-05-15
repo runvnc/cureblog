@@ -1,11 +1,9 @@
-handlebars.js*
-jquery.min.js*
-jquery-ui-1.8.18.custom.min.js*
-jquery.ui.position.js*
+//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js*
+jquery-ui-1.8.18.custom.min.js
+jquery.ui.position.js
 jquery.contextMenu.js
 jquery.livequery.js
 jquery.noty.js
 promise.js*
 /nowjs/now.js*
-socket.io.js*
 base.js*
