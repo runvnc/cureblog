@@ -209,6 +209,7 @@ $ ->
 
   $('#editcode').click ->
     $('.demo').dialog
+      closeOnEscape: false
       title: name + ' component - Code Editor'
       position: 'top'
       height: $(window).height() * .93

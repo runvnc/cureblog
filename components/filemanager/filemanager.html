@@ -1,6 +1,9 @@
-<form id="uploadform" action="/dyn/upload" enctype="multipart/form-data" method="post">
-  Upload
-  <input type="text" name="title"><br>
-  <input type="file" name="upload" multiple="multiple"><br>
-  <input type="submit" value="Upload">
-</form>
+<div id="fileman">
+  <iframe id="upframe" src="/dyn/upframe"></iframe>
+  <button id="refreshdir" class="button white">Refresh Listing</button> <br/><br/>
+  
+  <div id="fileswin">
+    <ul id="fsroot"></ul>
+  </div>
+</div>
+

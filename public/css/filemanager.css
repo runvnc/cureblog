@@ -1,3 +1,26 @@
 #uploadform {
  display: none; 
 }
+
+#upframe {
+ height: 75px; 
+ overflow: hidden;
+}
+
+#fsroot li {
+  cursor: pointer; 
+}
+
+#refreshdir {
+  margin-left: 50px; 
+}
+
+.fmdir {
+  background-color: #F5EFB3; 
+}
+
+#fileswin {
+  height: 250px; 
+  background-color: #fff;
+  overflow: auto;
+}
