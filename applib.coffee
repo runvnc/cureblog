@@ -38,12 +38,19 @@ readstyles = (name, which) ->
   try
     list = listfile "components/#{name}/styles"
     str = ''
+    headstyles = ''
     for fname in list
       if which is '' and fname.substr(fname.length-1,1) isnt '*'
         continue #static/non-design mode doesn't include styles unless they end in *
       else
         if fname.substr(fname.length-1, 1) is '*'
           fname = fname.substr 0, fname.length-1
+
+      if fname.indexOf('//') is 0
+        headstyles += "<link rel=\"stylesheet\" type=\"text/css\" href=\"#{fname}\">"
+        continue
+ 
+
       if fname.indexOf('/') is 0
         prefix = ''
       else
@@ -54,6 +61,7 @@ readstyles = (name, which) ->
     
     if path.existsSync "components/#{name}/css"
       sh.cp '-Rf', "components/#{name}/css/*", 'public/css'
+    return {str: str, headstyles: headstyles }
     str
     
   catch e
@@ -123,11 +131,17 @@ headcss = (toload, which) ->
 
 combinedcss = (toload, which) ->
   head = ''
+  links = ''
   for component in toload
     if component? and component.length > 0
-      head += readstyles component, which
+      styles = readstyles component, which
+      if styles.headstyles?
+        links += styles.headstyles
+      if styles.str?
+        head += styles.str
+      
   console.log "Minifying CSS: start #{head.length} characters"
-  head2 = '<style>' + cssmin head + '</style>'
+  head2 = links + '<style>' + cssmin head + '</style>'
   console.log "CSS now has #{head2.length} characters"
   head2
  
