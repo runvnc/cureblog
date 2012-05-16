@@ -58,8 +58,8 @@
   IPWTextTool = (function() {
 
     function IPWTextTool() {
-      var btn, data, widget, widgethtml,
-        _this = this;
+      var btn, data, widget, widgethtml;
+      var _this = this;
       this.active = false;
       widgethtml = $('#ipwtexttemplate').html();
       widget = $(widgethtml);
