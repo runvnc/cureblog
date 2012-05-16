@@ -30,7 +30,8 @@
     editorhtml.setValue(widget.html);
     editorcss.setValue(widget.css);
     $('#stylelist').text(widget.styles);
-    return $('#scriptlist').text(widget.scripts);
+    $('#scriptlist').text(widget.scripts);
+    return $('#package').text(widget.package);
   };
 
   initeditortabs = function() {
@@ -249,7 +250,8 @@
         css: editorcss.getValue(),
         nodejs: editornodejs.getValue(),
         styles: $('#stylelist').val(),
-        scripts: $('#scriptlist').val()
+        scripts: $('#scriptlist').val(),
+        package: $('#package').val()
       };
       now.saveWidgetData(data, function(compileout) {
         if ((compileout != null) && compileout.length > 4) {

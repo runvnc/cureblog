@@ -1,0 +1,8 @@
+{
+  "name": "oicfilemanager",
+  "version": "0.0.1",
+  "dependencies": {
+    "formidable": "",
+    "shelljs":""
+  }
+}

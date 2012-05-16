@@ -8,6 +8,11 @@ path = require 'path'
 
 everyone.now.getWidgetData = (name, callback) ->
   try
+    if path.existsSync "components/#{name}/package.json"
+      package = fs.readFileSync "components/#{name}/package.json", 'utf8'
+    else
+      package = ''
+
     data =
       name: name
       browser: fs.readFileSync "components/#{name}/js/#{name}.coffee", 'utf8'
@@ -17,7 +22,8 @@ everyone.now.getWidgetData = (name, callback) ->
       css: fs.readFileSync "components/#{name}/css/#{name}.css", 'utf8'
       scripts: fs.readFileSync "components/#{name}/scripts", 'utf8'
       styles: fs.readFileSync "components/#{name}/styles", 'utf8'
-    
+      package: package 
+      
     callback data
   catch e
     console.log e
@@ -30,12 +36,26 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
+
+  if data.package isnt ''
+    console.log 'executing npm install'
+    childproc.exec "cd components/#{name};npm install", (er, o, e) ->
+      oe = o + e
+      console.log oe
+      if oe.indexOf('ERR') >= 0
+        callback(o + "\n" + e)
+  else
+    console.log 'package is blank not executing'
+  
   childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
     callback(o + "\n" + e)
     
   fs.writeFileSync "components/#{name}/scripts", data.scripts, 'utf8'
   fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'  
-  
+  if data.package isnt ''
+    fs.writeFileSync "components/#{name}/package.json", data.package, 'utf8'  
+    
+
 
 everyone.now.listComponents = (callback) ->
   active = process.listfile 'loadorder'

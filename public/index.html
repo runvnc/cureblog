@@ -41,8 +41,9 @@
         <li><a href="#tabs-2">HTML</a></li>
         <li><a href="#tabs-3">CSS</a></li>
         <li><a href="#tabs-4">Node.js</a></li>
-        <li><a href="#tabs-5">Settings</a></li>
-        <li><a href="#tabs-6">Publish</a></li>
+        <li><a href="#tabs-5">Package.json</a></li>
+        <li><a href="#tabs-6">JS/CSS Files</a></li>
+        <li><a href="#tabs-7">Publish</a></li>
       </ul>
       <div id="tabs-1">
         <input type="hidden" id="widgetname"/>
@@ -62,6 +63,10 @@
           <textarea id="nodejs"></textarea>
       </div>
       <div id="tabs-5">
+          Package.json: <br/>
+         <textarea id="package"></textarea> 
+      </div>
+      <div id="tabs-6">
         One filename per line. * at end = include in static page <br/><br/>
         
         <div class="scriptsdiv">
@@ -74,7 +79,7 @@
           <textarea id="stylelist"></textarea>
         </div>
       </div>
-      <div id="tabs-6">
+      <div id="tabs-7">
         <strong>Publish Component</strong><br/><br/>
         <div class="gituser">
           GitHub username: <br/>
@@ -107,4 +112,16 @@
   </li>
 </script>
 
-<a id ="loginout"></a><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script><script src="/nowjs/now.js"></script><script src="js/combined1337062961662.js"></script></body></html>
+<a id ="loginout"></a><script type="text/template" id="imagetemplate">
+  <li>
+    <div class="imagetool designwidget toolbutton">
+      <div class="imageicon" data-name="image"></div>
+      image
+    </div>
+  </li>
+</script><form id="uploadform" action="/dyn/upload" enctype="multipart/form-data" method="post">
+  Upload
+  <input type="text" name="title"><br>
+  <input type="file" name="upload" multiple="multiple"><br>
+  <input type="submit" value="Upload">
+</form><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script><script src="/nowjs/now.js"></script><script src="js/combined1337148825827.js"></script></body></html>

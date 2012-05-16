@@ -4,7 +4,8 @@ zlib = require 'zlib'
 
 basedir = ''
 
-notstatic = {}
+notstatic = (req) ->
+  return req.url.indexOf('/dyn') is 0
 
 cached = {}
 
@@ -173,7 +174,7 @@ get = (filepath, req, res, callback) ->
   if not (filepath.indexOf(basedir) is 0)
     filepath = basedir + filepath
   filepath = filepath.replace "#{basedir}\/\/", "#{basedir}/"
-  if notstatic[filepath]?
+  if notstatic req
     callback false
   else if cached[filepath]
     type = contenttype filepath

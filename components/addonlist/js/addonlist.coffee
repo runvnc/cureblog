@@ -38,6 +38,10 @@ updateActive = ->
     if $(@).find('input').is(':checked')
       active.push $(@).find('.compname').text()
   now.setActiveComponents active    
+  $('#plugindonemsg').html 'Your edits have been saved.  Reloading application..'
+  now.restartServer()
+  setTimeout ( -> window.location.reload() ), 2000
+
   
 installdone = (success) ->
   if success
@@ -50,7 +54,7 @@ installdone = (success) ->
     $('#installmsg').hide()
     
     $('#pluginlist').show()
-    $('#plugindonemsg').html 'Installation complete.  Check the box to activate plugin'
+    $('#plugindonemsg').html 'Installation successful.  Click Save Changes to restart.'
     $('#plugindonemsg').css 'backgroundColor', 'white'
     listplugins()
     

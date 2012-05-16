@@ -22,6 +22,9 @@ npm install
 
 set +e
 
+cd ../..
+echo -e "\n$1" >>loadorder
+
 echo '__SUCCESS__'
 
 exit 0

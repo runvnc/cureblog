@@ -59,7 +59,12 @@
         return active.push($(this).find('.compname').text());
       }
     });
-    return now.setActiveComponents(active);
+    now.setActiveComponents(active);
+    $('#plugindonemsg').html('Your edits have been saved.  Reloading application..');
+    now.restartServer();
+    return setTimeout((function() {
+      return window.location.reload();
+    }), 2000);
   };
 
   installdone = function(success) {
@@ -74,7 +79,7 @@
       });
       $('#installmsg').hide();
       $('#pluginlist').show();
-      $('#plugindonemsg').html('Installation complete.  Check the box to activate plugin');
+      $('#plugindonemsg').html('Installation successful.  Click Save Changes to restart.');
       $('#plugindonemsg').css('backgroundColor', 'white');
       return listplugins();
     } else {

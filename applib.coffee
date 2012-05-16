@@ -25,9 +25,12 @@ trim = (string) ->
   string.replace /^\s*|\s*$/g, ''
 
 listfile = (fname) ->
-  str = fs.readFileSync fname, 'utf8'
-  list = str.split '\n'
-  (trim item for item in list when item? and trim(item).length>0)
+  if path.existsSync fname
+    str = fs.readFileSync fname, 'utf8'
+    list = str.split '\n'
+    return (trim item for item in list when item? and trim(item).length>0)
+  else
+    return []
 
 process.listfile = listfile
   

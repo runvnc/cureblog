@@ -15,6 +15,11 @@
   );
 }
 
+#package {
+  width: 450px;
+  height: 400px;
+}
+
 .scriptsdiv, .stylesdiv {
   float: left;  
 }

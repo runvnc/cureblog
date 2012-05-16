@@ -23,6 +23,8 @@ process.app = app
 
 cachefiles.setbase 'public'
 
+process.cachefiles = cachefiles
+
 app.on 'request', (req, res) ->
   if cachefiles.dropquery(req.url) is '/'  
     checkSession req, (session) ->

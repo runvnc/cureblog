@@ -1,4 +1,3 @@
-#testing
 editor = undefined
 editorhtml = undefined
 editorbrowser = undefined
@@ -24,6 +23,7 @@ editWidget = (widget) ->
   editorcss.setValue widget.css
   $('#stylelist').text widget.styles
   $('#scriptlist').text widget.scripts
+  $('#package').text widget.package
 
 initeditortabs =  ->
   if initialized then return
@@ -190,6 +190,7 @@ $ ->
       nodejs:  editornodejs.getValue()
       styles: $('#stylelist').val()
       scripts: $('#scriptlist').val()
+      package: $('#package').val()
 
     now.saveWidgetData data, (compileout) ->
       if compileout? and compileout.length > 4
