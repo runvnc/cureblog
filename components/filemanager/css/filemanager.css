@@ -1,8 +1,17 @@
+#fileman {
+  display: none;  
+}
+
+#loadfromurl {
+  width: 350px; 
+}
+
 #uploadform {
  display: none; 
 }
 
 #upframe {
+ display:none;
  height: 75px; 
  overflow: hidden;
 }
@@ -13,6 +22,10 @@
 
 #refreshdir {
   margin-left: 50px; 
+}
+
+.fmupdir {
+  background-color: #F5EFB3;  
 }
 
 .fmdir {

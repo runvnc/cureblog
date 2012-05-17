@@ -1,5 +1,5 @@
 (function() {
-  var cwd, listFiles, showFiles, sortem;
+  var cwd, getlink, listFiles, showFiles, sortem;
 
   cwd = '.';
 
@@ -16,7 +16,7 @@
 
   showFiles = function(files) {
     var classnm, file, listing, str, _i, _len;
-    str = '';
+    str = '<li class=\"fmupdir\">..</li>';
     sortem(files);
     for (_i = 0, _len = files.length; _i < _len; _i++) {
       file = files[_i];
@@ -30,19 +30,45 @@
       str += "<li class=\"" + classnm + "\">" + listing + "</li>";
     }
     $('#fsroot').html(str);
-    return $('.fmdir').click(function() {
+    $('.fmdir').click(function() {
+      console.log('you clicked fmdir');
       if (cwd === '.') cwd = './';
       cwd += $(this).text();
       console.log('new dir is ' + cwd);
       return listFiles();
     });
+    return $('.fmupdir').click(function() {
+      var d, dirs, newdirs, _j, _len2;
+      dirs = cwd.split('/');
+      newdirs = [];
+      for (_j = 0, _len2 = dirs.length; _j < _len2; _j++) {
+        d = dirs[_j];
+        if (d !== '') {
+          newdirs.push(d);
+        } else {
+          console.log('d is 3' + d + '3');
+        }
+      }
+      newdirs.splice(newdirs.length - 1, 1);
+      cwd = newdirs.join('/');
+      cwd = cwd + '/';
+      return listFiles();
+    });
   };
 
   listFiles = function() {
-    console.log('calling listfiles');
     return now.listFiles(cwd, function(files) {
       console.log('listfiles returned');
       return showFiles(files);
+    });
+  };
+
+  getlink = function() {
+    var url;
+    url = $('#loadfromurl').val();
+    return now.loadAndUncompress(url, cwd, function(err) {
+      $('#loadfromurl').val('');
+      return listFiles();
     });
   };
 
@@ -57,11 +83,13 @@
       $('#fileman').dialog({
         title: 'File Manager',
         width: 600,
-        height: 450
+        height: 495
       });
+      $('#upframe').show();
       return listFiles();
     });
-    return $('#refreshdir').click(listFiles);
+    $('#refreshdir').click(listFiles);
+    return $('#getlink').click(getlink);
   });
 
 }).call(this);

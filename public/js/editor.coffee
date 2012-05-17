@@ -193,7 +193,7 @@ $ ->
       package: $('#package').val()
 
     now.saveWidgetData data, (compileout) ->
-      if compileout? and compileout.length > 4
+      if compileout? and compileout.length > 8
         alert compileout
         return
       else
@@ -231,4 +231,11 @@ $ ->
 
   $(document).bind 'nowInit', ->
     loadwidgets()
-
+    
+  now.consolelog = (msg) ->
+    if typeof(msg) is 'object'
+      console.log '[server]:'
+      console.log msg
+    else
+      console.log '[server]: ' + msg
+      

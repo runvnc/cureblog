@@ -4,6 +4,7 @@
   "dependencies": {
     "formidable": "",
     "shelljs":"",
-    "async":""
+    "async":"",
+    "request":""
   }
 }

@@ -48,7 +48,8 @@ everyone.now.saveWidgetData = (data, callback) ->
     console.log 'package is blank not executing'
   
   childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
-    callback(o + "\n" + e)
+    childproc.exec "coffee -o /tmp -c components/#{name}/#{name}.coffee", (er, o2, e2) ->
+      callback(o + "\n" + e + "\n" + o2 + "\n" + e2)
     
   fs.writeFileSync "components/#{name}/scripts", data.scripts, 'utf8'
   fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'  

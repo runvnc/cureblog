@@ -254,7 +254,7 @@
         package: $('#package').val()
       };
       now.saveWidgetData(data, function(compileout) {
-        if ((compileout != null) && compileout.length > 4) {
+        if ((compileout != null) && compileout.length > 8) {
           alert(compileout);
         } else {
           $('.demo').html('Your edits have been saved.  Reloading application..');
@@ -294,9 +294,17 @@
     $('#savepage').click(function() {
       return window.savePage();
     });
-    return $(document).bind('nowInit', function() {
+    $(document).bind('nowInit', function() {
       return loadwidgets();
     });
+    return now.consolelog = function(msg) {
+      if (typeof msg === 'object') {
+        console.log('[server]:');
+        return console.log(msg);
+      } else {
+        return console.log('[server]: ' + msg);
+      }
+    };
   });
 
 }).call(this);

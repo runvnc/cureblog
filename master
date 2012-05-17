@@ -1,0 +1,12 @@
+function (err) {
+          if (!(err != null)) {
+            return childproc.exec("cd " + dir + "; unzip " + (dir + fname) + ";tar xvf " + (dir + fname), function(er, o, e) {
+              console.log(er);
+              console.log(o);
+              console.log(e);
+              return callback(void 0);
+            });
+          } else {
+            return typeof callback === "function" ? callback(err) : void 0;
+          }
+        }

@@ -55,6 +55,39 @@ everyone = nowjs.initialize app, socketoptions
 
 process.everyone = everyone
 
+stdoutmsg = []
+stderrmsg = []
+
+
+nowisready = false
+
+
+hookstd = (which, q) ->
+  orig = process[which].write
+  process[which].write = (string, encoding, fd) ->
+    orig.call process[which], string, encoding, fd
+    if process.nowisready     
+      if q.length > 0
+        for m in q
+          process.everyone.now.consolelog m
+      process.everyone.now.consolelog string
+      q = []
+    else
+      q.push string
+
+
+delayit = (time, func) ->
+  setTimeout func, time
+
+hookstd 'stdout', stdoutmsg
+hookstd 'stderr', stderrmsg
+
+delayit 5000, ->
+  process.nowisready = true
+  console.log 'Hello from server'
+
+  
+
 everyone.now.restartServer = ->
   request 'http://127.0.0.1:' + process.config.restarterport + '/'
 
@@ -106,7 +139,7 @@ everyone.now.login = (user, pass, callback) ->
     loggedin: new Date()
     user: user
   sessions[guid] = session
-  
+
   db.collection('sessions').insert session
     
   callback guid
