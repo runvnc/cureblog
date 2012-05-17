@@ -165,7 +165,54 @@ publish = ->
         else
           $('.pubmsg').html 'Success!'
 
+logmsgcnt = 0          
+          
+loghandle = (text) ->
+  if not debugWinVis
+    $('#debugloghandle').css 'right', '0px'  
+  $('#debugloghandle').html text
 
+          
+debugWinVis = false
+          
+debugWin = ->          
+  $('#debugloghandle').click ->
+    
+    if not debugWinVis
+      $('#debugloghandle').animate {right: '+450'}
+      $('#debuglog').animate {width: '+450'}, 70, ->
+        pre = $("#debuglog")
+        pre.scrollTop pre.prop("scrollHeight")    
+      logmsgcnt = 0
+      loghandle 'log'
+      debugWinVis = true
+    else
+      $('#debugloghandle').animate {right: '-450'}, ->
+        loghandle 'log'
+      $('#debuglog').animate {width: '-450'}, 70
+      debugWinVis = false
+
+
+writelog = (s) ->
+  lines = s.split "\n"
+  n = lines.length
+  logmsgcnt += Math.floor n/2
+  if logmsgcnt is 0 then logmsgcnt = 1
+  if not debugWinVis
+    loghandle "log (#{logmsgcnt})"
+  else
+    loghandle 'log'    
+  if s.lastIndexOf("\n") isnt s.length-1 then s+= "\n"
+  $('#logmsgs').append s
+  pre = $("#debuglog");
+  pre.scrollTop pre.prop("scrollHeight")   
+  
+  
+window.console.log = (s) ->
+  writelog s
+
+  
+      
 $ ->
   $('#editorui').hide()
   $('body').prepend $('#editorui')
@@ -226,6 +273,8 @@ $ ->
 
   $('#publish').click publish
   
+  debugWin()
+  
   $('#savepage').click ->
     window.savePage()
 
@@ -234,8 +283,8 @@ $ ->
     
   now.consolelog = (msg) ->
     if typeof(msg) is 'object'
-      console.log '[server]:'
-      console.log msg
+      writelog '[server]:'
+      writelog msg
     else
-      console.log '[server]: ' + msg
+      writelog '[server]: ' + msg
       

@@ -75,9 +75,20 @@ everyone.now.loadAndUncompress = (url, dir, callback) ->
         else
           callback? err
   
-
+  
+everyone.now.deleteFiles = (files, dir, callback) ->
+  if dir is '.' then dir = ''
+  paths = []
+  for f in files
+    paths.push dir + f 
+  console.log 'trying to delete:'
+  console.log paths
+  async.map paths, fs.unlink, (err, results) ->
+    console.log err
+    callback()
+  
+  
 everyone.now.listFiles = (dir, callback) ->
-  console.log 'listing files'
   fs.readdir dir, (err, files) ->
     console.log 'readdir returned'    
     fileordir dir, files, callback    

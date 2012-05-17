@@ -1,5 +1,5 @@
 (function() {
-  var editWidget, editor, editorbrowser, editorcss, editorhtml, editornodejs, initeditortabs, initialized, loadwidgets, makeEditable, nowediting, publish, thing;
+  var debugWin, debugWinVis, editWidget, editor, editorbrowser, editorcss, editorhtml, editornodejs, initeditortabs, initialized, loadwidgets, loghandle, logmsgcnt, makeEditable, nowediting, publish, thing, writelog;
 
   editor = void 0;
 
@@ -227,6 +227,66 @@
     }
   };
 
+  logmsgcnt = 0;
+
+  loghandle = function(text) {
+    if (!debugWinVis) $('#debugloghandle').css('right', '0px');
+    return $('#debugloghandle').html(text);
+  };
+
+  debugWinVis = false;
+
+  debugWin = function() {
+    return $('#debugloghandle').click(function() {
+      if (!debugWinVis) {
+        $('#debugloghandle').animate({
+          right: '+450'
+        });
+        $('#debuglog').animate({
+          width: '+450'
+        }, 70, function() {
+          var pre;
+          pre = $("#debuglog");
+          return pre.scrollTop(pre.prop("scrollHeight"));
+        });
+        logmsgcnt = 0;
+        loghandle('log');
+        return debugWinVis = true;
+      } else {
+        $('#debugloghandle').animate({
+          right: '-450'
+        }, function() {
+          return loghandle('log');
+        });
+        $('#debuglog').animate({
+          width: '-450'
+        }, 70);
+        return debugWinVis = false;
+      }
+    });
+  };
+
+  writelog = function(s) {
+    var lines, n, pre;
+    lines = s.split("\n");
+    n = lines.length;
+    logmsgcnt += Math.floor(n / 2);
+    if (logmsgcnt === 0) logmsgcnt = 1;
+    if (!debugWinVis) {
+      loghandle("log (" + logmsgcnt + ")");
+    } else {
+      loghandle('log');
+    }
+    if (s.lastIndexOf("\n") !== s.length - 1) s += "\n";
+    $('#logmsgs').append(s);
+    pre = $("#debuglog");
+    return pre.scrollTop(pre.prop("scrollHeight"));
+  };
+
+  window.console.log = function(s) {
+    return writelog(s);
+  };
+
   $(function() {
     $('#editorui').hide();
     $('body').prepend($('#editorui'));
@@ -291,6 +351,7 @@
       return initeditortabs();
     });
     $('#publish').click(publish);
+    debugWin();
     $('#savepage').click(function() {
       return window.savePage();
     });
@@ -299,10 +360,10 @@
     });
     return now.consolelog = function(msg) {
       if (typeof msg === 'object') {
-        console.log('[server]:');
-        return console.log(msg);
+        writelog('[server]:');
+        return writelog(msg);
       } else {
-        return console.log('[server]: ' + msg);
+        return writelog('[server]: ' + msg);
       }
     };
   });

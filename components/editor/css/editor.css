@@ -15,6 +15,49 @@
   );
 }
 
+#debugloghandle {
+  position: fixed;
+  right: 0px;
+  top: 5%;
+  color: white;
+  font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+  background-color: rgba(10,10,10,0.9);
+  /* -webkit-transform: rotate(-90deg); 
+  -moz-transform: rotate(-90deg); */
+  padding: 5px;
+  cursor: pointer;
+  z-index: 9999;
+  margin: 0px;
+}
+
+#debuglog {
+  position: fixed;
+  height: 90%;
+  /* width: 35%; */
+  background-color: rgba(0,0,0,0.9);
+  border: 1px solid #000;
+  font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+  position: fixed;
+  top: 5%;
+  right: 0px;
+  width: 0px;
+  overflow: auto;
+  z-index: 9999;
+}
+
+#debuglog pre {
+  font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
+  font-size: 10pt;
+  margin-left: 15px;
+  margin-top: 15px;
+  background-color: rgba(0,0,0,0);
+  font: #000; 
+  height: 90%;
+  color: #fff;
+}
+
+
+
 #package {
   width: 450px;
   height: 400px;
