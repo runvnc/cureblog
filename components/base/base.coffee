@@ -26,7 +26,8 @@ cachefiles.setbase 'public'
 process.cachefiles = cachefiles
 
 app.on 'request', (req, res) ->
-  console.log 'req.url is ' + req.url
+  ispage = (req.url.indexOf('/page') is 0)
+  if ispage then req.url = '/'  
   if cachefiles.dropquery(req.url) is '/'  
     checkSession req, (session) ->
       if session? and session.user is 'admin'
