@@ -214,6 +214,8 @@ window.console.log = (s) ->
   
       
 $ ->
+  $('body').prepend '<div id="debugloghandle">log</div>'
+  $('#debugloghandle').show()
   $('#editorui').hide()
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()

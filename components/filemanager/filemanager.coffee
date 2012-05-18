@@ -76,7 +76,7 @@ everyone.now.loadAndUncompress = (url, dir, callback) ->
       if dir is '.' or dir is './' then dir = ''
       fs.writeFile dir + fname, body, (err) ->
         if not err?
-          childproc.exec "cd #{dir};unzip #{fname};tar xvf #{dir + fname}", (er, o, e) ->
+          childproc.exec "cd #{dir};unzip #{dir + fname};tar xvf #{dir + fname}", (er, o, e) ->
             console.log er
             console.log o
             console.log e
@@ -95,6 +95,12 @@ everyone.now.deleteFiles = (files, dir, callback) ->
   async.map paths, rimraf, (err, results) ->
     console.log err
     callback()
+
+    
+everyone.now.moveFiles = (files, dir, callback) ->
+  console.log 'server cutFiles'
+  sh.mv '-f', files, dir
+  callback()
 
     
 everyone.now.copyFiles = (files, dir, callback) ->

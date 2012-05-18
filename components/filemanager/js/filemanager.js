@@ -1,5 +1,5 @@
 (function() {
-  var copySelected, cwd, deleteSelected, getlink, listFiles, pasteFiles, selfiles, selop, shiftSel, showFiles, sortem;
+  var copySelected, cutSelected, cwd, deleteSelected, getlink, listFiles, pasteFiles, selfiles, selop, shiftSel, showFiles, sortem;
 
   cwd = '.';
 
@@ -54,6 +54,23 @@
     return console.log(selfiles);
   };
 
+  cutSelected = function() {
+    selfiles = [];
+    selop = 'cut';
+    $('.fmselected').each(function() {
+      var dir;
+      if (cwd === '.') {
+        dir = '';
+      } else {
+        dir = cwd;
+      }
+      return selfiles.push(dir + $(this).text());
+    });
+    $('#cutsel').text('Cut Selected (' + selfiles.length + ')');
+    console.log('cut files: ');
+    return console.log(selfiles);
+  };
+
   pasteFiles = function() {
     console.log('pastefiles client');
     if (selop === 'copy') {
@@ -61,6 +78,12 @@
       return now.copyFiles(selfiles, cwd, function() {
         listFiles();
         return $('#copysel').text('Copy Selected');
+      });
+    } else if (selop === 'cut') {
+      console.log('calling nowmovefiles');
+      return now.moveFiles(selfiles, cwd, function() {
+        listFiles();
+        return $('#cutsel').text('Cut Selected');
       });
     }
   };
@@ -134,6 +157,8 @@
     $('#deletesel').on('click', deleteSelected);
     $('#copysel').off('click');
     $('#copysel').on('click', copySelected);
+    $('#cutsel').off('click');
+    $('#cutsel').on('click', cutSelected);
     $('#pastefiles').off('click');
     return $('#pastefiles').on('click', pasteFiles);
   };

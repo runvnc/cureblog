@@ -36,7 +36,18 @@ copySelected = ->
   console.log 'copy files: '
   console.log selfiles
     
-    
+  
+cutSelected = ->
+  selfiles = []
+  selop = 'cut'
+  $('.fmselected').each ->
+    if cwd is '.' then dir = '' else dir = cwd
+    selfiles.push dir + $(this).text()
+  $('#cutsel').text 'Cut Selected (' + selfiles.length + ')'
+  console.log 'cut files: '
+  console.log selfiles
+  
+  
 pasteFiles = ->
   console.log 'pastefiles client'
   if selop is 'copy'
@@ -44,6 +55,11 @@ pasteFiles = ->
     now.copyFiles selfiles, cwd, ->
       listFiles()
       $('#copysel').text 'Copy Selected'
+  else if selop is 'cut'
+    console.log 'calling nowmovefiles'
+    now.moveFiles selfiles, cwd, ->
+      listFiles()
+      $('#cutsel').text 'Cut Selected'
   
     
   
@@ -110,6 +126,9 @@ showFiles = (files) ->
 
   $('#copysel').off 'click'
   $('#copysel').on 'click', copySelected
+  
+  $('#cutsel').off 'click'
+  $('#cutsel').on 'click', cutSelected  
   
   $('#pastefiles').off 'click'
   $('#pastefiles').on 'click', pasteFiles
