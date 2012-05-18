@@ -4,6 +4,7 @@
   "dependencies": {
     "formidable": "",
     "shelljs":"",
+    "rimraf":"",
     "async":"",
     "request":""
   }

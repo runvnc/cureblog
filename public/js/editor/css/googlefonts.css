@@ -1,3 +1,7 @@
+.TB_ToolbarSet {
+  background-color: rgba(225,225,225,0.8);
+}
+
 @font-face {
   font-family: 'Ubuntu';
   font-style: normal;

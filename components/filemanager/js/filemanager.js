@@ -67,12 +67,14 @@
       str += "<li class=\"fmitem " + classnm + "\">" + listing + "</li>";
     }
     $('#fsroot').html(str);
-    $('.fmdir').dblclick(function() {
+    $('.fmdir').off('dblclick');
+    $('.fmdir').on('dblclick', function() {
       if (cwd === '.') cwd = './';
       cwd += $(this).text();
       return listFiles();
     });
-    $('.fmupdir').dblclick(function() {
+    $('.fmupdir').off('dblclick');
+    $('.fmupdir').on('dblclick', function() {
       var d, dirs, newdirs, _j, _len2;
       dirs = cwd.split('/');
       newdirs = [];
@@ -85,7 +87,8 @@
       cwd = cwd + '/';
       return listFiles();
     });
-    $('.fmitem').click(function(e) {
+    $('.fmitem').off('click');
+    $('.fmitem').on('click', function(e) {
       if (e.ctrlKey) {
         return $(this).addClass('fmselected');
       } else if (e.shiftKey) {
@@ -95,7 +98,8 @@
         return $(this).addClass('fmselected');
       }
     });
-    return $('#deletesel').click(deleteSelected);
+    $('#deletesel').off('click');
+    return $('#deletesel').on('click', deleteSelected);
   };
 
   listFiles = function() {

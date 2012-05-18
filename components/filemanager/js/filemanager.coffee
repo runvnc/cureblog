@@ -53,12 +53,14 @@ showFiles = (files) ->
     
   $('#fsroot').html str
   
-  $('.fmdir').dblclick ->    
+  $('.fmdir').off 'dblclick'
+  $('.fmdir').on 'dblclick', ->    
     if cwd is '.' then cwd = './'
     cwd += $(this).text()
     listFiles()
-    
-  $('.fmupdir').dblclick ->
+  
+  $('.fmupdir').off 'dblclick'  
+  $('.fmupdir').on 'dblclick', ->
     dirs = cwd.split '/'
     newdirs = []
     for d in dirs
@@ -69,8 +71,9 @@ showFiles = (files) ->
     cwd = newdirs.join '/'
     cwd = cwd + '/'
     listFiles()
-    
-  $('.fmitem').click (e) ->
+  
+  $('.fmitem').off 'click'  
+  $('.fmitem').on 'click', (e) ->
     if e.ctrlKey
       $(this).addClass 'fmselected'
     else if e.shiftKey
@@ -78,8 +81,9 @@ showFiles = (files) ->
     else
       $('.fmitem').removeClass 'fmselected'
       $(this).addClass 'fmselected'
-      
-  $('#deletesel').click deleteSelected
+  
+  $('#deletesel').off 'click'
+  $('#deletesel').on 'click', deleteSelected
   
   
 listFiles = ->  

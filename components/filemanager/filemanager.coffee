@@ -6,6 +6,7 @@ fs = require 'fs'
 async = require 'async'
 request = require 'request'
 childproc = require 'child_process'
+rimraf = require 'rimraf'
 
 
 mydir = ''
@@ -83,7 +84,7 @@ everyone.now.deleteFiles = (files, dir, callback) ->
     paths.push dir + f 
   console.log 'trying to delete:'
   console.log paths
-  async.map paths, fs.unlink, (err, results) ->
+  async.map paths, rimraf, (err, results) ->
     console.log err
     callback()
   

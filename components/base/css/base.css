@@ -7,6 +7,9 @@
 }
 
 #page {
-  left: 0%;
-  width: 100%;
+  position: relative;
+  min-height: 700px;
+  width: 1150px;
+  margin-left: auto;
+  margin-right: auto;
 }
