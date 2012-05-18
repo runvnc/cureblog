@@ -1,5 +1,5 @@
 (function() {
-  var cwd, deleteSelected, getlink, listFiles, shiftSel, showFiles, sortem;
+  var copySelected, cwd, deleteSelected, getlink, listFiles, pasteFiles, selfiles, selop, shiftSel, showFiles, sortem;
 
   cwd = '.';
 
@@ -29,6 +29,38 @@
     if (confirm("Delete " + todel.length + " files/directories??")) {
       return now.deleteFiles(todel, cwd, function() {
         return listFiles();
+      });
+    }
+  };
+
+  selfiles = [];
+
+  selop = '';
+
+  copySelected = function() {
+    selfiles = [];
+    selop = 'copy';
+    $('.fmselected').each(function() {
+      var dir;
+      if (cwd === '.') {
+        dir = '';
+      } else {
+        dir = cwd;
+      }
+      return selfiles.push(cwd + $(this).text());
+    });
+    $('#copysel').text('Copy Selected (' + selfiles.length + ')');
+    console.log('copy files: ');
+    return console.log(selfiles);
+  };
+
+  pasteFiles = function() {
+    console.log('pastefiles client');
+    if (selop === 'copy') {
+      console.log('calling nowcopyfiles');
+      return now.copyFiles(selfiles, cwd, function() {
+        listFiles();
+        return $('#copysel').text('Copy Selected');
       });
     }
   };
@@ -99,7 +131,11 @@
       }
     });
     $('#deletesel').off('click');
-    return $('#deletesel').on('click', deleteSelected);
+    $('#deletesel').on('click', deleteSelected);
+    $('#copysel').off('click');
+    $('#copysel').on('click', copySelected);
+    $('#pastefiles').off('click');
+    return $('#pastefiles').on('click', pasteFiles);
   };
 
   listFiles = function() {

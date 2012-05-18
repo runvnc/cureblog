@@ -23,6 +23,29 @@ deleteSelected = ->
     now.deleteFiles todel, cwd, ->
       listFiles()
   
+selfiles = []  
+selop = ''
+
+copySelected = ->
+  selfiles = []
+  selop = 'copy'
+  $('.fmselected').each ->
+    if cwd is '.' then dir = '' else dir = cwd
+    selfiles.push cwd + $(this).text()
+  $('#copysel').text 'Copy Selected (' + selfiles.length + ')'
+  console.log 'copy files: '
+  console.log selfiles
+    
+    
+pasteFiles = ->
+  console.log 'pastefiles client'
+  if selop is 'copy'
+    console.log 'calling nowcopyfiles'
+    now.copyFiles selfiles, cwd, ->
+      listFiles()
+      $('#copysel').text 'Copy Selected'
+  
+    
   
 shiftSel = (e, th) ->
   selIndex = $('.fmselected').index()
@@ -84,6 +107,13 @@ showFiles = (files) ->
   
   $('#deletesel').off 'click'
   $('#deletesel').on 'click', deleteSelected
+
+  $('#copysel').off 'click'
+  $('#copysel').on 'click', copySelected
+  
+  $('#pastefiles').off 'click'
+  $('#pastefiles').on 'click', pasteFiles
+
   
   
 listFiles = ->  
