@@ -184,7 +184,7 @@
   };
 
   $(function() {
-    $('#objs').prepend('<button id=\"openfm\" class=\"white button\">File Manager</button>');
+    $('#objs').prepend('<button id=\"openfm\" class=\"white button\"><img src=\"images/files.png\"/>File Manager</button>');
     $('#openfm').click(function() {
       $('#fileman').dialog({
         title: 'File Manager',

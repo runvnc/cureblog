@@ -49,7 +49,6 @@ readstyles = (name, which) ->
       if fname.indexOf('//') is 0
         headstyles += "<link rel=\"stylesheet\" type=\"text/css\" href=\"#{fname}\">"
         continue
- 
 
       if fname.indexOf('/') is 0
         prefix = ''
@@ -201,7 +200,8 @@ build = (toload, which) ->
   #addCss =  '<script>var headHTML = document.getElementsByTagName("head")[0].innerHTML;'
   #addCss += 'headHTML+= \'' + css + '\';'
   #addCss += 'document.getElementsByTagName("head")[0].innerHTML = headHTML;</script>'
-  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{body}</body></html>"
+  idthis = "<script type=\"text/template\">which is #{which}</script>"
+  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{idthis}#{body}</body></html>"
 
 writebuild = (source, which) ->
   process.templates["#{which}index"] = source

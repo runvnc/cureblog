@@ -7,6 +7,11 @@
   color: white;
 }
 
+#openfm img {
+  float: left;
+  margin-left: -20px;
+}
+
 .fmitem {
   -webkit-touch-callout: none;
   -webkit-user-select: none;

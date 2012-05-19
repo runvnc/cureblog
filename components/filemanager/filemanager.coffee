@@ -31,7 +31,8 @@ fileordir = (dir, files, callback) ->
   
 
 process.app.on 'request', (req, res) ->
-
+  console.log 'inside of filemanager request: '
+  console.log req.url
   if req.url.indexOf('/dyn/upframe') is 0
     uploadform = """  
     <form id="uploadform" action="/dyn/upload" enctype="multipart/form-data" method="post">

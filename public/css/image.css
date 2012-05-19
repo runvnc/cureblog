@@ -1,0 +1,15 @@
+.imageicon {
+  background-image: url(/images/image.png);
+  width: 29px;
+  height: 26px;
+  margin: 3px;
+}
+
+.imagetool.toolbutton.active {
+  box-shadow: none; 
+}
+
+.imgwrapper {
+  width: 133px;
+  margin: 0 auto;
+}

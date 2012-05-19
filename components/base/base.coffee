@@ -26,8 +26,15 @@ cachefiles.setbase 'public'
 process.cachefiles = cachefiles
 
 app.on 'request', (req, res) ->
+  isdynamic = (req.url.indexOf('/dyn') >= 0)
+  console.log 'isdynamic is ' + isdynamic
+  console.log 'req.url is ' + req.url
+  if isdynamic then return
+
   ispage = (req.url.indexOf('/page') is 0)
-  if ispage then req.url = '/'  
+  if ispage
+    req.url = '/'  
+    console.log 'its a page??'
   if cachefiles.dropquery(req.url) is '/'  
     checkSession req, (session) ->
       if session? and session.user is 'admin'
@@ -68,7 +75,7 @@ hookstd = (which, q) ->
   orig = process[which].write
   process[which].write = (string, encoding, fd) ->
     orig.call process[which], string, encoding, fd
-    if process.nowisready     
+    if process.nowisready and process.everyone.now.consolelog?     
       if q.length > 0
         for m in q
           process.everyone.now.consolelog m
@@ -84,7 +91,7 @@ delayit = (time, func) ->
 hookstd 'stdout', stdoutmsg
 hookstd 'stderr', stderrmsg
 
-delayit 5000, ->
+delayit 10000, ->
   process.nowisready = true
   console.log 'Hello from server'
 
