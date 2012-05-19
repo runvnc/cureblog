@@ -53,6 +53,8 @@ process.app.on 'request', (req, res) ->
         thedir = ''
       else
         thedir = currdir
+      if name is 'imageupload'
+        thedir = 'public/images/'
       fs.rename file.path, thedir + file.name
     
     form.parse req, (err, fields, files) ->

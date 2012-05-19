@@ -24,8 +24,15 @@
       $('#objlist').append(widget);
       uploadopts = {
         action: '/dyn/upload',
+        name: 'imageupload',
         onComplete: function(file, response) {
-          return alert('uploaded');
+          var style;
+          console.log(file);
+          style = 'style="position: absolute; top: 100px; left: 100px;"';
+          return window.delay(150, function() {
+            $('#page').append("<img class=\"oicimage\" src=\"images/" + file + "\"/>");
+            return $('.oicimage').draggable();
+          });
         }
       };
       new AjaxUpload('imginsert', uploadopts);
