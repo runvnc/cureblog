@@ -10,8 +10,9 @@
 }
 
 .imgwrapper {
-  width: 133px;
-  margin: 0 auto;
+  display: inline;
+  /* width: 133px;
+  margin: 0 auto; */
 }
 
 .oicimage {

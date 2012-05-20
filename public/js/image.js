@@ -37,7 +37,6 @@
         action: '/dyn/upload',
         name: 'imageupload',
         onComplete: function(file, response) {
-          console.log(file);
           return window.delay(150, function() {
             $('#page').prepend("<img class=\"oicimage\" src=\"images/" + file + "\"/>");
             return $('.oicimage').draggable();
@@ -52,8 +51,11 @@
   })();
 
   $(function() {
-    return $(document).bind('sessionState', function(user) {
+    return $(document).bind('sessionState', function(event) {
       if (window.loggedIn) {
+        console.log('loggedin in image');
+        console.log('in image user is:');
+        console.log(window.user);
         window.ImageTool = new ImageTool();
         return $('.oicimage').each(function() {
           var text;

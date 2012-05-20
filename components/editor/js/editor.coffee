@@ -194,6 +194,8 @@ debugWin = ->
 
 
 writelog = (s) ->
+  if typeof s is 'object'
+    s = JSON.stringify s 
   lines = s.split "\n"
   n = lines.length
   logmsgcnt += Math.floor n/2
@@ -206,7 +208,7 @@ writelog = (s) ->
   $('#logmsgs').append s
   pre = $("#debuglog");
   pre.scrollTop pre.prop("scrollHeight")   
-  
+    
   
 window.console.log = (s) ->
   writelog s

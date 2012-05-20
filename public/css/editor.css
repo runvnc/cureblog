@@ -19,7 +19,7 @@
 #debugloghandle {
   position: fixed;
   right: 0px;
-  top: 5%;
+  top: 1%;
   color: white;
   font-family: 'Bitstream Vera Sans Mono', Courier, monospace;
   background-color: rgba(10,10,10,0.9);
@@ -126,6 +126,7 @@
 
 #objlist li {
   padding: 5px;
+  display: inline-block;
 }
 
 /*

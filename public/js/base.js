@@ -68,7 +68,7 @@
             console.log("Logged in is " + window.loggedIn);
             console.log("user is " + window.user);
             $('#editorui').show();
-            return $(document).trigger('sessionState', user);
+            return $(document).trigger('sessionState', window.user);
           }
         });
       }

@@ -268,6 +268,7 @@
 
   writelog = function(s) {
     var lines, n, pre;
+    if (typeof s === 'object') s = JSON.stringify(s);
     lines = s.split("\n");
     n = lines.length;
     logmsgcnt += Math.floor(n / 2);

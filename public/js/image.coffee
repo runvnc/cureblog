@@ -27,8 +27,6 @@ class ImageTool
       name: 'imageupload'
 	    
       onComplete: (file, response) ->
-        console.log file
-        #style = 'style="position: absolute; top: 100px; left: 100px;"'
         window.delay 150, ->
           $('#page').prepend("<img class=\"oicimage\" src=\"images/#{file}\"/>")
           $('.oicimage').draggable()
@@ -37,8 +35,11 @@ class ImageTool
 
 
 $ ->
-  $(document).bind 'sessionState', (user) ->
+  $(document).bind 'sessionState', (event) ->
     if window.loggedIn
+      console.log 'loggedin in image'
+      console.log 'in image user is:'
+      console.log window.user
       window.ImageTool = new ImageTool()
       $('.oicimage').each ->    
         if $(@)?

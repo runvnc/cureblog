@@ -51,7 +51,7 @@ $ ->
           console.log "Logged in is " + window.loggedIn
           console.log "user is " + window.user
           $('#editorui').show()
-          $(document).trigger 'sessionState', user
+          $(document).trigger 'sessionState', window.user
 
 
 now.ready ->
