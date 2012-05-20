@@ -13,3 +13,10 @@
   width: 133px;
   margin: 0 auto;
 }
+
+.oicimage {
+  position: absolute;
+  z-index: 0;
+  display: block;
+}
+

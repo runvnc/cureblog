@@ -9,3 +9,8 @@
 .sizewidget {
   border: 1px dotted #ccc; 
 }
+
+
+.ipwtextwidget {
+  z-index: 5; 
+}

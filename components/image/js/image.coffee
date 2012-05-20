@@ -1,5 +1,6 @@
 class ImageWidget
   constructor: (jqueryObj) ->
+    jqueryObj.css 'position', 'absolute'
     jqueryObj.draggable()
   
 
@@ -27,9 +28,9 @@ class ImageTool
 	    
       onComplete: (file, response) ->
         console.log file
-        style = 'style="position: absolute; top: 100px; left: 100px;"'
+        #style = 'style="position: absolute; top: 100px; left: 100px;"'
         window.delay 150, ->
-          $('#page').append("<img class=\"oicimage\" src=\"images/#{file}\"/>")
+          $('#page').prepend("<img class=\"oicimage\" src=\"images/#{file}\"/>")
           $('.oicimage').draggable()
 
     new AjaxUpload('imginsert', uploadopts)
