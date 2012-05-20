@@ -1,5 +1,15 @@
 (function() {
-  var ImageTool;
+  var ImageTool, ImageWidget;
+
+  ImageWidget = (function() {
+
+    function ImageWidget(jqueryObj) {
+      jqueryObj.draggable();
+    }
+
+    return ImageWidget;
+
+  })();
 
   ImageTool = (function() {
 
@@ -44,7 +54,17 @@
 
   $(function() {
     return $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) return window.ImageTool = new ImageTool();
+      if (window.loggedIn) {
+        window.ImageTool = new ImageTool();
+        return $('.oicimage').each(function() {
+          var text;
+          if ($(this) != null) {
+            return text = new ImageWidget($(this));
+          } else {
+            return console.log('$(this)? false skipping');
+          }
+        });
+      }
     });
   });
 

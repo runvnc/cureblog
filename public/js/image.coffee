@@ -1,3 +1,8 @@
+class ImageWidget
+  constructor: (jqueryObj) ->
+    jqueryObj.draggable()
+  
+
 class ImageTool
   constructor: ->
     @active = false
@@ -27,7 +32,6 @@ class ImageTool
           $('#page').append("<img class=\"oicimage\" src=\"images/#{file}\"/>")
           $('.oicimage').draggable()
 
-
     new AjaxUpload('imginsert', uploadopts)
 
 
@@ -35,4 +39,9 @@ $ ->
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
       window.ImageTool = new ImageTool()
-      
+      $('.oicimage').each ->    
+        if $(@)?
+          text = new ImageWidget $(@)
+        else
+          console.log '$(this)? false skipping'
+            
