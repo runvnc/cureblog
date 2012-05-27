@@ -1,6 +1,8 @@
 express = require 'express'
 config = require './config'
 childproc = require 'child_process'
+fs = require 'fs'
+
 
 app = express.createServer()
 
