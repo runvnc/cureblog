@@ -3,8 +3,11 @@ config = require './config'
 childproc = require 'child_process'
 
 app = express.createServer()
+
+
 app.get '/', (req, res) ->
-  childproc.exec './restart'
+  pid = fs.readFileSync 'mypid', 'utf8'
+  childproc.exec './restart ' + pid
 
 app.listen config.restarterport
 
