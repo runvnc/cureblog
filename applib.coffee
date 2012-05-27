@@ -11,6 +11,9 @@ if path.existsSync 'localconfig.coffee'
 else
   config = require './config'
 
+if path.existsSync 'myport'
+  config.port = fs.readFileSync 'myport', 'utf8'
+
 process.config = config
 
 process.templates = {}
