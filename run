@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ `pgrep -f restarter.coffee` ]; then
+if [ `pgrep -f restarter` ]; then
   echo 'Restarter already running.'  
 else
   echo 'Starting restarter'

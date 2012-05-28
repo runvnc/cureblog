@@ -37,3 +37,88 @@ Error: Cannot find module 'connect'
     at Module.load (module.js:348:31)
     at Function._load (module.js:308:12)
     at Module.require (module.js:354:17)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+ReferenceError: fs is not defined
+    at /home/runvnc/cureblog/restarter.coffee:14:11
+    at callbacks (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:272:11)
+    at param (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:246:11)
+    at pass (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:253:5)
+    at Router._dispatch (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:280:4)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/router/index.js:45:10)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at Object.handle (/home/runvnc/cureblog/node_modules/express/lib/http.js:84:5)
+    at next (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:203:15)
+    at HTTPServer.handle (/home/runvnc/cureblog/node_modules/express/node_modules/connect/lib/http.js:216:3)
+
+node.js:201
+        throw e; // process.nextTick error, or 'error' event on first tick
+              ^
+Error: listen EADDRINUSE
+    at errnoException (net.js:670:11)
+    at Array.0 (net.js:771:26)
+    at EventEmitter._tickCallback (node.js:192:40)
