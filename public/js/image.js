@@ -38,7 +38,7 @@
         name: 'imageupload',
         onComplete: function(file, response) {
           return window.delay(150, function() {
-            $('#page').prepend("<img class=\"oicimage\" src=\"images/" + file + "\"/>");
+            $('.pagescontent:visible').prepend("<img class=\"oicimage\" src=\"images/" + file + "\"/>");
             return $('.oicimage').draggable();
           });
         }

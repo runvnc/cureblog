@@ -27,8 +27,8 @@ class ImageTool
       name: 'imageupload'
 	    
       onComplete: (file, response) ->
-        window.delay 150, ->
-          $('#page').prepend("<img class=\"oicimage\" src=\"images/#{file}\"/>")
+        window.delay 150, ->          
+          $('.pagescontent:visible').prepend("<img class=\"oicimage\" src=\"images/#{file}\"/>")
           $('.oicimage').draggable()
 
     new AjaxUpload('imginsert', uploadopts)
