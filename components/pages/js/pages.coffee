@@ -1,23 +1,27 @@
 class PagesWidget
-  constructor: (position, exists) ->
+  constructor: (position, exists, widget) ->
     console.log 'position.top is ' + position.top
     console.log 'position.left is ' + position.left
     if not exists
       pageshtml = $('#pageswidgettemplate').html()
-      pages = $(pageshtml)      
+      pages = $(pageshtml)    
       pages.css 'position', 'absolute'
       pages.css 'top', position.top + 'px'
       pages.css 'left', position.left + 'px'
       $('#page').append pages
+    else
+      pages = widget
+    pages.find('.pagesmenu li').off 'click'      
+    pages.find('.pagesmenu li').on 'click', (ev) ->
+      name = $(this).text()        
+      pages.find('.pagescontent').hide()
+      pages.find(".page-#{name}").show()
       
-      pages.find('.pagesmenu li').off 'click'      
-      pages.find('.pagesmenu li').on 'click', (ev) ->
-        name = $(this).text()        
-        pages.find('.pagescontent').hide()
-        pages.find(".page-#{name}").show()
-        
-      pages.find('.pagesmenu:first-child').trigger 'click'
-  
+    pages.find('.pagesmenu:first-child').trigger 'click'
+    try
+      pages.draggable()
+    catch e
+    
   
 class PagesTool
   constructor: ->
@@ -42,7 +46,15 @@ class PagesTool
           p.top = ev.pageY - $('#page')[0].offsetTop
         new PagesWidget(p, false)
     
+    
 $ ->
+  $('.pagesall').each ->    
+    if $(@)?      
+      x = $(@).position().left
+      y = $(@).position().top
+      text = new PagesWidget($(this).position(), true, $(this))  
+  
+  
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
       window.PagesTool = new PagesTool()

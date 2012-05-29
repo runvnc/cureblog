@@ -2,17 +2,43 @@
   width: 150px;
 }
 
+.pagesall {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+   
+}
+
+.pagesmenu {
+  float: left; 
+}
+
+.pagescontent {
+  width: 800px;
+  height: 800px;
+  position: relative;
+}
 
 .pagescontainer {
+  position: relative;
   margin-left: 150px;
-  width: 500px;
-  height: 500px;
-  border: 1px dotted #000;
+  width: 800px;
+  height: 800px;  
 }
 
-.pagescontainer div {
-  display: none; 
+.pagesmenu li {
+  cursor: pointer; 
+  font-family: Ubuntu;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 15px;
 }
+
+.pagesmenu li:hover {
+  color: #fff;
+  background-color: #000;
+}
+
 
 .toolwidget {
   cursor:hand;

@@ -15,6 +15,8 @@ class IPWTextWidget
       @el = $(@id)
       idx = '#' + @id
     
+    console.log 'its on there'
+    
     $(idx).resizable()
         
     $(idx).draggable
@@ -62,22 +64,22 @@ class IPWTextTool
         @active = false
         
     
-    $('#page').bind 'click', (ev) =>
-      if not ev.target is $('#page')[0] then return
+    $('#page, .pagescontent').bind 'click', (ev) =>
+      ispage = (ev.target.className.indexOf('pagescontent') >= 0) 
+      if not (ev.target is $('#page')[0] or ispage) then return
       if window.alreadyEditing then return
       if $('#editor1___Frame').is(':visible') then return
       if ev.offsetX?
         x = ev.offsetX
         y = ev.offsetY
       else
-        x = ev.pageX - $('#page')[0].offsetLeft
-        y = ev.pageY - $('#page')[0].offsetTop
+        x = ev.pageX - $(ev.target).offsetLeft
+        y = ev.pageY - $(ev.target).offsetTop
       if @active
-        text = new IPWTextWidget($('#page'), x, y)            
+        text = new IPWTextWidget($(ev.target), x, y)            
       
         
     $('#objlist').append widget  
-    console.log 'appended'
     
     
 $ ->

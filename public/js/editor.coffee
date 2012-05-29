@@ -209,7 +209,7 @@ writelog = (s) ->
   pre = $("#debuglog");
   pre.scrollTop pre.prop("scrollHeight")   
     
-  
+
 window.console.log = (s) ->
   writelog s
 

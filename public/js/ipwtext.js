@@ -25,6 +25,7 @@
         this.el = $(this.id);
         idx = '#' + this.id;
       }
+      console.log('its on there');
       $(idx).resizable();
       $(idx).draggable({
         stop: function(ev) {
@@ -81,22 +82,22 @@
           return _this.active = false;
         }
       });
-      $('#page').bind('click', function(ev) {
-        var text, x, y;
-        if (!ev.target === $('#page')[0]) return;
+      $('#page, .pagescontent').bind('click', function(ev) {
+        var ispage, text, x, y;
+        ispage = ev.target.className.indexOf('pagescontent') >= 0;
+        if (!(ev.target === $('#page')[0] || ispage)) return;
         if (window.alreadyEditing) return;
         if ($('#editor1___Frame').is(':visible')) return;
         if (ev.offsetX != null) {
           x = ev.offsetX;
           y = ev.offsetY;
         } else {
-          x = ev.pageX - $('#page')[0].offsetLeft;
-          y = ev.pageY - $('#page')[0].offsetTop;
+          x = ev.pageX - $(ev.target).offsetLeft;
+          y = ev.pageY - $(ev.target).offsetTop;
         }
-        if (_this.active) return text = new IPWTextWidget($('#page'), x, y);
+        if (_this.active) return text = new IPWTextWidget($(ev.target), x, y);
       });
       $('#objlist').append(widget);
-      console.log('appended');
     }
 
     return IPWTextTool;

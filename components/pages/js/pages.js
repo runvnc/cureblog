@@ -3,7 +3,7 @@
 
   PagesWidget = (function() {
 
-    function PagesWidget(position, exists) {
+    function PagesWidget(position, exists, widget) {
       var pages, pageshtml;
       console.log('position.top is ' + position.top);
       console.log('position.left is ' + position.left);
@@ -14,14 +14,21 @@
         pages.css('top', position.top + 'px');
         pages.css('left', position.left + 'px');
         $('#page').append(pages);
-        pages.find('.pagesmenu li').off('click');
-        pages.find('.pagesmenu li').on('click', function(ev) {
-          var name;
-          name = $(this).text();
-          pages.find('.pagescontent').hide();
-          return pages.find(".page-" + name).show();
-        });
-        pages.find('.pagesmenu:first-child').trigger('click');
+      } else {
+        pages = widget;
+      }
+      pages.find('.pagesmenu li').off('click');
+      pages.find('.pagesmenu li').on('click', function(ev) {
+        var name;
+        name = $(this).text();
+        pages.find('.pagescontent').hide();
+        return pages.find(".page-" + name).show();
+      });
+      pages.find('.pagesmenu:first-child').trigger('click');
+      try {
+        pages.draggable();
+      } catch (e) {
+
       }
     }
 
@@ -64,6 +71,14 @@
   })();
 
   $(function() {
+    $('.pagesall').each(function() {
+      var text, x, y;
+      if ($(this) != null) {
+        x = $(this).position().left;
+        y = $(this).position().top;
+        return text = new PagesWidget($(this).position(), true, $(this));
+      }
+    });
     return $(document).bind('sessionState', function(user) {
       if (window.loggedIn) return window.PagesTool = new PagesTool();
     });

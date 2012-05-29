@@ -1,3 +1,8 @@
+body, td, th, div, li, p, #page {
+  font-family: Ubuntu, sans-serif;    
+}
+
+
 #container {
   position: relative;
 }
