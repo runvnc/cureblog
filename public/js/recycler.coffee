@@ -4,6 +4,7 @@ class Recycler
     $('#objs').prepend( '<div class="recycle"><div id="recycler">♻</div><div class="rectext">Recycle</div></div>' )
     #♻
     $('#recycler').droppable
+      tolerance: 'touch'
       drop: (ev, ui) ->
         name = ui.draggable.data 'name'
         ui.draggable.remove()

@@ -16,6 +16,8 @@ class PagesWidget
       name = $(this).text()        
       pages.find('.pagescontent').hide()
       pages.find(".page-#{name}").show()
+      $('.activewidget').removeClass 'activewidget'
+      pages.find(".page-#{name}").addClass 'activewidget'
       
     pages.find('.pagesmenu:first-child').trigger 'click'
     try
@@ -59,3 +61,9 @@ $ ->
     if window.loggedIn
       window.PagesTool = new PagesTool()
       
+  $('#page').on 'click', (ev) ->
+    if ev.target.id is 'page'
+      $('.activewidget').removeClass 'activewidget'
+      $('#page').addClass 'activewidget'
+    
+    

@@ -1,5 +1,11 @@
 .pageswrapper {
-  width: 150px;
+  /* width: 150px; */
+}
+
+.pagesicon {
+  background-image: url('images/tabs.jpg');
+  width: 30px;
+  height: 30px;
 }
 
 .pagesall {

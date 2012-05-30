@@ -22,7 +22,9 @@
         var name;
         name = $(this).text();
         pages.find('.pagescontent').hide();
-        return pages.find(".page-" + name).show();
+        pages.find(".page-" + name).show();
+        $('.activewidget').removeClass('activewidget');
+        return pages.find(".page-" + name).addClass('activewidget');
       });
       pages.find('.pagesmenu:first-child').trigger('click');
       try {
@@ -79,8 +81,14 @@
         return text = new PagesWidget($(this).position(), true, $(this));
       }
     });
-    return $(document).bind('sessionState', function(user) {
+    $(document).bind('sessionState', function(user) {
       if (window.loggedIn) return window.PagesTool = new PagesTool();
+    });
+    return $('#page').on('click', function(ev) {
+      if (ev.target.id === 'page') {
+        $('.activewidget').removeClass('activewidget');
+        return $('#page').addClass('activewidget');
+      }
     });
   });
 

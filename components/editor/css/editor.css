@@ -1,4 +1,5 @@
 
+
 .grad1 {
   background-image: linear-gradient(bottom, rgb(167,206,209) 25%, rgb(154,179,179) 63%);
   background-image: -o-linear-gradient(bottom, rgb(167,206,209) 25%, rgb(154,179,179) 63%);
@@ -100,6 +101,7 @@
 } 
 
 #objs {
+  position: fixed;
   border: 1px solid #666;
   width: 13%;
   height: 100%;
