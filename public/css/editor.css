@@ -293,6 +293,10 @@
   margin-bottom: 10px;
 }
 
+#components {
+  overflow-y: scroll;
+}
+
 #components li:hover {
   background-color: #eee;
 }

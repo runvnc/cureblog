@@ -1,0 +1,10 @@
+{
+  "name": "ethercalcwidget",
+  "version": "0.0.1",
+  "dependencies": {
+     "ethercalc": ""
+  },
+  "scripts": {
+    "preinstall": "npm i -g ethercalc"  
+  }
+}

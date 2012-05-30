@@ -36,20 +36,25 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
-
+  waitforinstall = false
   if data.package isnt ''
     console.log 'executing npm install'
+    waitforinstall = true
     childproc.exec "cd components/#{name};npm install", (er, o, e) ->
+      if er? then console.log er
       oe = o + e
       console.log oe
       if oe.indexOf('ERR') >= 0
         callback(o + "\n" + e)
+      else
+        callback ""
   else
     console.log 'package is blank not executing'
   
   childproc.exec "coffee -o components/#{name}/js -c components/#{name}/js/#{name}.coffee", (er, o, e) ->
     childproc.exec "coffee -o /tmp -c components/#{name}/#{name}.coffee", (er, o2, e2) ->
-      callback(o + "\n" + e + "\n" + o2 + "\n" + e2)
+      if not waitforinstall
+        callback(o + "\n" + e + "\n" + o2 + "\n" + e2)
     
   fs.writeFileSync "components/#{name}/scripts", data.scripts, 'utf8'
   fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'  

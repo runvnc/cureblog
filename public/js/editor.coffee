@@ -269,6 +269,7 @@ $ ->
     window.delay 150, ->
       $(".ui-tabs-panel").height $(window).height() * .7
       $(".CodeMirror").height $(window).height() * .69
+      $('#components').height $(window).height() * .64
       window.delay 150, ->
         $(".CodeMirror-scroll").height $(window).height() * .68
         $('.transparent').css 'backgroundColor', '#f2f2f2'
