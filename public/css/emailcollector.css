@@ -10,26 +10,21 @@
 
 .emailsall {
   position: absolute;
-  width: 800px;
-  height: 800px;
-   
-}
+ }
 
 .emailssmenu {
   float: left; 
 }
 
 .emailsscontent {
-  width: 800px;
-  height: 800px;
+
   position: relative;
 }
 
 .emailsscontainer {
   position: relative;
   margin-left: 150px;
-  width: 800px;
-  height: 800px;  
+
 }
 
 .emailsmenu li {
