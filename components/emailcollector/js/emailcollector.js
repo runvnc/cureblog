@@ -17,6 +17,11 @@
       }
       try {
         emails.draggable();
+        $('.saveemail').off('blur');
+        $('.saveemail').on('blur', function() {
+          now.saveEmail($(this).val());
+          return $(this).val('');
+        });
       } catch (e) {
 
       }

@@ -12,6 +12,10 @@ class EmailCollectorWidget
 
     try
       emails.draggable()
+      $('.saveemail').off 'blur'
+      $('.saveemail').on 'blur', ->
+        now.saveEmail $(this).val()
+        $(this).val ''
     catch e
     
   
