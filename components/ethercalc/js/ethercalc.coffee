@@ -1,8 +1,11 @@
 class EtherCalcWidget
   constructor: (parent, position, exists, widget) ->
     if not exists
+      id = window.guid()
       ethercalchtml = $('#ethercalcwidgettemplate').html()
       ethercalc = $(ethercalchtml)    
+      ethercalc.attr 'id', id
+      ethercalc.find('iframe').attr 'src', "http://localhost:8000/#{id}"
       ethercalc.css 'position', 'absolute'
       ethercalc.css 'top', position.top + 'px'
       ethercalc.css 'left', position.left + 'px'
@@ -13,12 +16,9 @@ class EtherCalcWidget
     try
       ethercalc.draggable()
       ethercalc.resizable()
-      $('.saveemail').off 'blur'
-      $('.saveemail').on 'blur', ->
-        now.saveEmail $(this).val()
-        $(this).val ''
+
     catch e
-      
+             
 
 class EtherCalcTool
   constructor: ->
@@ -56,4 +56,8 @@ $ ->
     if window.loggedIn
       window.EtherCalcTool = new EtherCalcTool()
       
-    
+window.saveFilters.push (sel) ->      
+  $(sel).find('.ui-resizable-handle').remove()
+  $(sel).find('.sizewidget').removeClass 'sizewidget'  
+
+  

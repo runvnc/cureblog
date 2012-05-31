@@ -5,6 +5,6 @@
      "ethercalc": ""
   },
   "scripts": {
-    "preinstall": "npm i -g ethercalc"  
+    "preinstall": " [ installdone ] || npm i -g ethercalc && touch installdone"  
   }
 }

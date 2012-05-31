@@ -4,10 +4,13 @@
   EtherCalcWidget = (function() {
 
     function EtherCalcWidget(parent, position, exists, widget) {
-      var ethercalc, ethercalchtml;
+      var ethercalc, ethercalchtml, id;
       if (!exists) {
+        id = window.guid();
         ethercalchtml = $('#ethercalcwidgettemplate').html();
         ethercalc = $(ethercalchtml);
+        ethercalc.attr('id', id);
+        ethercalc.find('iframe').attr('src', "http://localhost:8000/" + id);
         ethercalc.css('position', 'absolute');
         ethercalc.css('top', position.top + 'px');
         ethercalc.css('left', position.left + 'px');
@@ -18,11 +21,6 @@
       try {
         ethercalc.draggable();
         ethercalc.resizable();
-        $('.saveemail').off('blur');
-        $('.saveemail').on('blur', function() {
-          now.saveEmail($(this).val());
-          return $(this).val('');
-        });
       } catch (e) {
 
       }
@@ -78,6 +76,11 @@
     return $(document).bind('sessionState', function(user) {
       if (window.loggedIn) return window.EtherCalcTool = new EtherCalcTool();
     });
+  });
+
+  window.saveFilters.push(function(sel) {
+    $(sel).find('.ui-resizable-handle').remove();
+    return $(sel).find('.sizewidget').removeClass('sizewidget');
   });
 
 }).call(this);
