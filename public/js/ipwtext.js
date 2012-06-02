@@ -82,10 +82,11 @@
           return _this.active = false;
         }
       });
-      $('#page, .pagescontent').bind('click', function(ev) {
-        var ispage, text, x, y;
+      $('#page, .pagescontent, .widgetcontent').bind('click', function(ev) {
+        var ispage, iswidget, text, x, y;
         ispage = ev.target.className.indexOf('pagescontent') >= 0;
-        if (!(ev.target === $('#page')[0] || ispage)) return;
+        iswidget = ev.target.className.indexOf('widgetcontent') >= 0;
+        if (!(ev.target === $('#page')[0] || ispage || iswidget)) return;
         if (window.alreadyEditing) return;
         if ($('#editor1___Frame').is(':visible')) return;
         if (ev.offsetX != null) {

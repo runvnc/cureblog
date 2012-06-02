@@ -1,0 +1,14 @@
+.pageddataicon {
+  background-image: url('images/form.png');
+  width: 30px;
+  height: 30px;
+}
+
+.pageddataall {
+  position: absolute;
+  padding: 15px;
+  margin: 15px;
+  width: 500px;
+  height: 500px;
+  border: 1px dotted #ccc;
+ }

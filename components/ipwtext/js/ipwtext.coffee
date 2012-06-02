@@ -64,9 +64,10 @@ class IPWTextTool
         @active = false
         
     
-    $('#page, .pagescontent').bind 'click', (ev) =>
+    $('#page, .pagescontent, .widgetcontent').bind 'click', (ev) =>
       ispage = (ev.target.className.indexOf('pagescontent') >= 0) 
-      if not (ev.target is $('#page')[0] or ispage) then return
+      iswidget = (ev.target.className.indexOf('widgetcontent') >= 0)
+      if not (ev.target is $('#page')[0] or ispage or iswidget) then return
       if window.alreadyEditing then return
       if $('#editor1___Frame').is(':visible') then return
       if ev.offsetX?
