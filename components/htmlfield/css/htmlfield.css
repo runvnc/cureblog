@@ -1,0 +1,77 @@
+.htmlfieldwrapper {
+  /* width: 150px; */
+}
+
+.htmlfieldicon {
+  background-image: url('images/article.png');
+  width: 30px;
+  height: 30px;
+}
+
+.htmlfieldall {
+  position: absolute;
+  padding: 15px;
+  margin: 15px;
+  border: 1px dotted #aaa; 
+ }
+
+
+.rename {
+  float: right; 
+  cursor: pointer;
+  font-size: 8pt;
+}
+
+.fieldname {
+  float: right;
+  margin-left: 5px;
+  font-size: 8pt;
+}
+
+.htmlfieldscontent {
+
+  position: relative;
+}
+
+.htmlfieldscontainer {
+  position: relative;
+  margin-left: 150px;
+
+}
+
+.htmlfieldmenu li {
+  cursor: pointer; 
+  font-family: Ubuntu;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.htmlfieldmenu li:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+
+.toolwidget {
+  cursor:hand;
+  cursor:grab;
+  cursor:-moz-grab;
+  cursor:-webkit-grab;  
+  background-color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  text-align: center;
+  border: 1px dotted #000;
+
+  height: 45px;
+  padding: 4px; 
+  padding-bottom: 10px;
+
+  color: #606060;
+  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+  background: -moz-linear-gradient(top,  #fff,  #ededed);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed'); 
+  margin-left: 10px;
+}

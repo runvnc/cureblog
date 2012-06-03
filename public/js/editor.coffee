@@ -210,8 +210,8 @@ writelog = (s) ->
   pre.scrollTop pre.prop("scrollHeight")   
     
 
-window.console.log = (s) ->
-  writelog s
+#window.console.log = (s) ->
+#  writelog s
 
   
       

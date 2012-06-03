@@ -284,10 +284,6 @@
     return pre.scrollTop(pre.prop("scrollHeight"));
   };
 
-  window.console.log = function(s) {
-    return writelog(s);
-  };
-
   $(function() {
     $('body').prepend('<div id="debugloghandle">log</div>');
     $('#debugloghandle').show();
