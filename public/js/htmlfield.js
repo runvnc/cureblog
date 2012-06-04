@@ -37,6 +37,31 @@
       return this.obj.find('.fieldname').html(this.obj.attr('data-fieldname'));
     };
 
+    HtmlFieldWidget.prototype.edit = function(record) {
+      var name, oFCKeditor;
+      name = this.obj.attr('data-fieldname');
+      htmlfield.find('.htmleditarea').html(record[name]);
+      oFCKeditor = new FCKeditor('editor1');
+      oFCKeditor.ToolbarSet = 'Simple';
+      oFCKeditor.BasePath = "/js/";
+      return $(idx).find('.htmleditarea').editable({
+        type: 'wysiwyg',
+        editor: oFCKeditor,
+        submit: 'save',
+        cancel: 'cancel',
+        onEdit: function(content) {
+          return window.alreadyEditing = true;
+        },
+        onSubmit: function(content) {
+          record[name] = content;
+          return window.alreadyEditing = false;
+        },
+        onCancel: function(content) {
+          return window.alreadyEditing = false;
+        }
+      });
+    };
+
     return HtmlFieldWidget;
 
   })();

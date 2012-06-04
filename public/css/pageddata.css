@@ -26,6 +26,10 @@
   height: 100%;
 } 
 
+.pagedlist li {
+  cursor: pointer; 
+}
+
 .pagedlist {
   height: 75px;
   overflow: auto;

@@ -79,21 +79,45 @@
       return obj;
     };
 
+    PagedDataWidget.prototype.edit = function(record) {
+      var pageddata;
+      pageddata = this.pageddata;
+      return this.pageddata.find('.field').each(function() {
+        alert('trying to edit something');
+        return $(this).data('widget').edit(record);
+      });
+    };
+
     PagedDataWidget.prototype.listrecords = function() {
       var _this = this;
       return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
-        var fieldname, fieldstr, record, str, val, _i, _len;
+        var fieldname, fieldstr, id, pageddata, record, str, val, _i, _len;
         str = '';
         for (_i = 0, _len = records.length; _i < _len; _i++) {
           record = records[_i];
           fieldstr = '';
+          id = record['_id'];
           for (fieldname in record) {
             val = record[fieldname];
             if (fieldname.indexOf('_') !== 0) fieldstr += fieldname + ':' + val;
           }
-          str += '<li>' + fieldstr + '</li>';
+          str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>';
         }
-        return _this.pageddata.find('.pagedlist').html(str);
+        _this.pageddata.find('.pagedlist').html(str);
+        _this.pageddata.find('.pagedrecord').off('click');
+        pageddata = _this.pageddata;
+        return _this.pageddata.find('.pagedrecord').on('click', function() {
+          var col;
+          alert('you clicked');
+          col = pageddata.attr('data-collection');
+          return now.dbquery(col, {
+            id: $(this).attr('id')
+          }, function(record) {
+            alert('returned');
+            console.log(record);
+            return pageddata.edit.call(pageddata(record));
+          });
+        });
       });
     };
 

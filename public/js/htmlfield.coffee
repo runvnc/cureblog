@@ -28,6 +28,25 @@ class HtmlFieldWidget
   showname: ->
     @obj.find('.fieldname').html @obj.attr 'data-fieldname'
     
+  edit: (record) ->
+    name = @obj.attr 'data-fieldname'
+    htmlfield.find('.htmleditarea').html record[name]
+    oFCKeditor = new FCKeditor('editor1')
+    oFCKeditor.ToolbarSet = 'Simple'
+    oFCKeditor.BasePath = "/js/"   
+    
+    $(idx).find('.htmleditarea').editable
+      type: 'wysiwyg'
+      editor: oFCKeditor       
+      submit:'save',
+      cancel:'cancel'
+      onEdit: (content) ->
+        window.alreadyEditing = true
+      onSubmit: (content) ->
+        record[name] = content
+        window.alreadyEditing = false
+      onCancel: (content) ->
+        window.alreadyEditing = false    
   
 class HtmlFieldTool
   constructor: ->

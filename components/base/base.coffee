@@ -225,6 +225,11 @@ everyone.now.dbfind = (col, callback) ->
   db.collection(col).find().toArray (err, data) ->
     callback data
 
+everyone.now.dbquery = (col, criteria, callback) ->
+  db.collection(col).find(criteria).toArray() (err, data) ->
+    callback? data
+    
+    
 everyone.now.saveFile = (filename, filedata, callback) ->
   fs.writeFile filename, filedata, 'utf8', (err) ->
     callback err

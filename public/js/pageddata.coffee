@@ -54,17 +54,34 @@ class PagedDataWidget
     for field in fields
       obj[field.name] = field.value
     obj
-  
+    
+  edit: (record) ->
+    pageddata = @pageddata
+    @pageddata.find('.field').each ->
+      alert 'trying to edit something'
+      $(this).data('widget').edit record
+
+      
   listrecords: ->
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       str = ''
       for record in records
         fieldstr = ''
-        for fieldname, val of record
+        id = record['_id']
+        for fieldname, val of record        
           if fieldname.indexOf('_') isnt 0
             fieldstr += fieldname + ':' + val
-        str += '<li>' + fieldstr + '</li>'
+        str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>'
       @pageddata.find('.pagedlist').html str
+      @pageddata.find('.pagedrecord').off 'click'
+      pageddata = @pageddata
+      @pageddata.find('.pagedrecord').on 'click', ->  
+        alert 'you clicked'        
+        col = pageddata.attr('data-collection')        
+        now.dbquery col, { id: $(this).attr('id') }, (record) ->
+          alert 'returned'
+          console.log record
+          pageddata.edit.call pageddata record
       
     
 class PagedDataTool
