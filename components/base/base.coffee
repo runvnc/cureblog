@@ -200,8 +200,9 @@ everyone.now.saveStatic = (name, html, callback) ->
     else
       if callback? then callback true
 
-everyone.now.dbinsert = (col, data) ->
+everyone.now.dbinsert = (col, data, callback) ->
   db.collection(col).insert data
+  callback?()
 
 everyone.now.dbrestore = (criteria) ->
   db.collection('backups').findOne criteria: criteria, (err, backups) ->

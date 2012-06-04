@@ -13,7 +13,6 @@
         htmlfield.css('top', position.top + 'px');
         htmlfield.css('left', position.left + 'px');
         parent.append(htmlfield);
-        console.log(parent);
       } else {
         htmlfield = widget;
       }

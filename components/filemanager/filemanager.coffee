@@ -31,8 +31,6 @@ fileordir = (dir, files, callback) ->
   
 
 process.app.on 'request', (req, res) ->
-  console.log 'inside of filemanager request: '
-  console.log req.url
   if req.url.indexOf('/dyn/upframe') is 0
     uploadform = """  
     <form id="uploadform" action="/dyn/upload" enctype="multipart/form-data" method="post">
@@ -44,11 +42,9 @@ process.app.on 'request', (req, res) ->
     res.end uploadform, 'utf8'
     
   else if req.url.indexOf('/dyn/upload') is 0 and req.method.toLowerCase() is 'post'
-    console.log 'upload in progress'
     form = new formidable.IncomingForm()
 
     form.on 'file', (name, file) ->
-      console.log 'file event'
       if not currdir? or currdir is '.' or currdir is './' 
         thedir = ''
       else
@@ -93,21 +89,17 @@ everyone.now.deleteFiles = (files, dir, callback) ->
   paths = []
   for f in files
     paths.push dir + f 
-  console.log 'trying to delete:'
-  console.log paths
   async.map paths, rimraf, (err, results) ->
     console.log err
     callback()
 
     
 everyone.now.moveFiles = (files, dir, callback) ->
-  console.log 'server cutFiles'
   sh.mv '-f', files, dir
   callback()
 
     
 everyone.now.copyFiles = (files, dir, callback) ->
-  console.log 'server copyFiles'
   sh.cp '-R', files, dir
   callback()
     
@@ -115,6 +107,5 @@ everyone.now.copyFiles = (files, dir, callback) ->
 everyone.now.listFiles = (dir, callback) ->
   currdir = dir
   fs.readdir dir, (err, files) ->
-    console.log 'readdir returned'    
     fileordir dir, files, callback    
 
