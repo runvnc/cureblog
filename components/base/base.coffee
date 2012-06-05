@@ -208,24 +208,33 @@ everyone.now.dbrestore = (criteria) ->
   db.collection('backups').findOne criteria: criteria, (err, backups) ->
     for backup in backups
       console.log backup
+      
 
-everyone.now.dbupdate = (col, criteria, data) ->
-  db.collection(col).find(criteria).toArray (err, doc) ->
-    if (err)
-      console.log err
-    db.collection('backups').insert
-      status: 'saved'
-      col: col
-      modified: new Date()
-      criteria: criteria
-      data : doc
-    db.collection(col).update criteria, data
-
+convertids = (obj) ->
+  if obj['_id']?
+    obj['_id'] = new ObjectId(obj['_id'])
+  
+  if obj['id']?
+    obj['_id'] = new ObjectId(obj['id'])
+    delete obj['id']
+  
+  
+everyone.now.dbupdate = (col, criteria, data, callback) ->
+  console.log 'id is ' + criteria['id']
+  console.log 'criteria is ' + util.inspect(criteria)
+  convertids criteria
+  console.log 'criteria is now ' + util.inspect(criteria)
+  db.collection(col).update criteria, data
+  callback?()
+    
 everyone.now.dbfind = (col, callback) ->
   db.collection(col).find().toArray (err, data) ->
     callback data
 
 everyone.now.dbquery = (col, criteria, callback) ->
+  console.log 'dbquery criteria is '
+  console.log util.inspect criteria
+  convertids criteria
   db.collection(col).find(criteria).toArray (err, data) ->
     callback? data
     

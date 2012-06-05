@@ -12,6 +12,10 @@
   height: 300px;
  }
 
+.editcontrols {
+  display: none; 
+}
+
 .toggletop {
   margin-left: auto;
   margin-right: auto;

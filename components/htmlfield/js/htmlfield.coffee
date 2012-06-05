@@ -46,6 +46,7 @@ class HtmlFieldWidget
         window.alreadyEditing = true
       onSubmit: (content) ->
         record[name] = content
+        alert 'tried to update record with new val ' + content
         window.alreadyEditing = false
       onCancel: (content) ->
         window.alreadyEditing = false    

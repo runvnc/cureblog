@@ -31,6 +31,9 @@ class PagedDataWidget
       @pageddata.find('.toggletop').off 'click'
       @pageddata.find('.toggletop').on 'click', =>
         @pageddata.find('.pagedtop').toggle 100
+      @pageddata.find('.savepaged').off 'click'
+      @pageddata.find('.savepaged').on 'click', =>
+        @save()
       @listrecords()
       
     catch e
@@ -56,13 +59,28 @@ class PagedDataWidget
       obj[field.name] = field.value
     obj
     
+  save: ->
+    alert 'trying to save'
+    console.log 'record is'
+    console.log JSON.stringify(@record)
+    console.log 'record id is ' + @record['_id']
+    @col = @pageddata.attr 'data-collection'
+    criteria = { "id": @record["_id"] }
+    console.log 'sending c riteria ' 
+    console.log criteria
+    now.dbupdate @col, criteria, @record, =>
+      console.log 'returned from save'
+      @listrecords()
+    
+    
   edit: (record) ->
+    @record = record
+    console.log 'editing record'
+    console.log JSON.stringify(record)
     pageddata = @pageddata
+    @pageddata.find('.editcontrols').show()
+    @pageddata.find('.pagedtop').hide 100
     @pageddata.find('.field').each ->
-      console.log 'trying to edit something'
-      console.log this
-      console.log 'this.data is '
-      console.log $(this).data 'widget'
       widget = $(this).data 'widget'
       widget.edit record
 
@@ -80,13 +98,11 @@ class PagedDataWidget
       @pageddata.find('.pagedlist').html str
       @pageddata.find('.pagedrecord').off 'click'
       pageddata = this
-      @pageddata.find('.pagedrecord').on 'click', ->  
-        alert 'you clicked'        
+      @pageddata.find('.pagedrecord').on 'click', ->   
         col = pageddata.pageddata.attr('data-collection')
-        obj = { id: $(this).attr('id') }
+        obj = { "_id": $(this).attr('id') }
         now.dbquery col, obj, (record) ->
-          alert 'returned'
-          console.log record
+          record = record[0]
           pageddata.edit.call pageddata, record
       
     
@@ -122,7 +138,11 @@ $ ->
         y = $(@).position().top
         text = new PagedDataWidget($(this).parent(),$(this).position(), true, $(this))  
   
-  
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
       window.PagedDataTool = new PagedDataTool()
+      
+      
+window.saveFilters.push (sel) ->      
+  $(sel).find('.pagedlist li').remove()  
+  

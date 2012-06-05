@@ -56,6 +56,7 @@
         },
         onSubmit: function(content) {
           record[name] = content;
+          alert('tried to update record with new val ' + content);
           return window.alreadyEditing = false;
         },
         onCancel: function(content) {

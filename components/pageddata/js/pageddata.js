@@ -44,6 +44,10 @@
         this.pageddata.find('.toggletop').on('click', function() {
           return _this.pageddata.find('.pagedtop').toggle(100);
         });
+        this.pageddata.find('.savepaged').off('click');
+        this.pageddata.find('.savepaged').on('click', function() {
+          return _this.save();
+        });
         this.listrecords();
       } catch (e) {
         console.log(e);
@@ -80,15 +84,35 @@
       return obj;
     };
 
+    PagedDataWidget.prototype.save = function() {
+      var criteria,
+        _this = this;
+      alert('trying to save');
+      console.log('record is');
+      console.log(JSON.stringify(this.record));
+      console.log('record id is ' + this.record['_id']);
+      this.col = this.pageddata.attr('data-collection');
+      criteria = {
+        "id": this.record["_id"]
+      };
+      console.log('sending c riteria ');
+      console.log(criteria);
+      return now.dbupdate(this.col, criteria, this.record, function() {
+        console.log('returned from save');
+        return _this.listrecords();
+      });
+    };
+
     PagedDataWidget.prototype.edit = function(record) {
       var pageddata;
+      this.record = record;
+      console.log('editing record');
+      console.log(JSON.stringify(record));
       pageddata = this.pageddata;
+      this.pageddata.find('.editcontrols').show();
+      this.pageddata.find('.pagedtop').hide(100);
       return this.pageddata.find('.field').each(function() {
         var widget;
-        console.log('trying to edit something');
-        console.log(this);
-        console.log('this.data is ');
-        console.log($(this).data('widget'));
         widget = $(this).data('widget');
         return widget.edit(record);
       });
@@ -114,14 +138,12 @@
         pageddata = _this;
         return _this.pageddata.find('.pagedrecord').on('click', function() {
           var col, obj;
-          alert('you clicked');
           col = pageddata.pageddata.attr('data-collection');
           obj = {
-            id: $(this).attr('id')
+            "_id": $(this).attr('id')
           };
           return now.dbquery(col, obj, function(record) {
-            alert('returned');
-            console.log(record);
+            record = record[0];
             return pageddata.edit.call(pageddata, record);
           });
         });
@@ -180,6 +202,10 @@
     return $(document).bind('sessionState', function(user) {
       if (window.loggedIn) return window.PagedDataTool = new PagedDataTool();
     });
+  });
+
+  window.saveFilters.push(function(sel) {
+    return $(sel).find('.pagedlist li').remove();
   });
 
 }).call(this);
