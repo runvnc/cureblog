@@ -4,30 +4,32 @@
   HtmlFieldWidget = (function() {
 
     function HtmlFieldWidget(parent, position, exists, widget) {
-      var htmlfield, htmlfieldhtml,
+      var htmlfieldhtml,
         _this = this;
       if (!exists) {
         htmlfieldhtml = $('#htmlfieldwidgettemplate').html();
-        htmlfield = $(htmlfieldhtml);
-        htmlfield.css('position', 'absolute');
-        htmlfield.css('top', position.top + 'px');
-        htmlfield.css('left', position.left + 'px');
-        parent.append(htmlfield);
+        this.htmlfield = $(htmlfieldhtml);
+        this.htmlfield.css('position', 'absolute');
+        this.htmlfield.css('top', position.top + 'px');
+        this.htmlfield.css('left', position.left + 'px');
+        parent.append(this.htmlfield);
       } else {
-        htmlfield = widget;
+        this.htmlfield = widget;
       }
       try {
-        htmlfield.resizable();
-        htmlfield.draggable();
+        this.htmlfield.resizable();
+        this.htmlfield.draggable();
       } catch (e) {
 
       }
-      this.obj = htmlfield;
-      htmlfield.find('.rename').off('click');
-      htmlfield.find('.rename').on('click', function() {
+      this.obj = this.htmlfield;
+      this.htmlfield.data('widget', this);
+      this.htmlfield.widget = this;
+      this.htmlfield.find('.rename').off('click');
+      this.htmlfield.find('.rename').on('click', function() {
         var name;
         name = prompt('Enter field name');
-        htmlfield.attr('data-fieldname', name);
+        _this.htmlfield.attr('data-fieldname', name);
         return _this.showname();
       });
       this.showname();
@@ -40,11 +42,11 @@
     HtmlFieldWidget.prototype.edit = function(record) {
       var name, oFCKeditor;
       name = this.obj.attr('data-fieldname');
-      htmlfield.find('.htmleditarea').html(record[name]);
+      this.htmlfield.find('.htmleditarea').html(record[name]);
       oFCKeditor = new FCKeditor('editor1');
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";
-      return $(idx).find('.htmleditarea').editable({
+      return this.htmlfield.find('.htmleditarea').editable({
         type: 'wysiwyg',
         editor: oFCKeditor,
         submit: 'save',

@@ -1,28 +1,28 @@
 What is the next thing to do?
  
-Needs to show in load order
-need to be able to deactivate some things on the editor
+DONE Needs to show in load order
+DONE need to be able to deactivate some things on the editor
 
 need a requires file
 change loadorder to reflect honor all requires if possible
 
-need a settings tab to list scripts and styles and requires
+DONE need a settings tab to list scripts and styles and requires
 
-need a file listing
-need to be able to upload files
-need to be able to delete files
+DONE need a file listing
+DONE need to be able to upload files
+DONE need to be able to delete files
 
-need to be able to publish components
-  place to enter github login and password
-  and github repo name
+DONE (mostly?) need to be able to publish components
+DONE  place to enter github login and password
+DONE  and github repo name
 
-need a button Addons.. that lists components
-need to be able to install components from addons list
+DONE need a button Addons.. that lists components
+DONE need to be able to install components from addons list
 
-text editor needs a font selection and font size
-need an image tool
+DONE text editor needs a font selection and font size
+DONE need an image tool
 
-need a trash can
+DONE need a trash can
 
 need a way to change background color
 probably need a box tool
@@ -31,10 +31,10 @@ need a backup, undo, or some other way of handling a situation where server won'
 (restore points?)
 need a try catch around front end and back end code where loading components
 
-need a way to create more than one site using proxying through bouncy or something
+DONE (mostly) need a way to create more than one site using proxying through bouncy or something
 need a ui for managing sites per user
 
 need a way to have a dev site and a prod site and move dev into prod
 
 
-
+ 

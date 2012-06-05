@@ -3,24 +3,26 @@ class HtmlFieldWidget
   constructor: (parent, position, exists, widget) ->
     if not exists
       htmlfieldhtml = $('#htmlfieldwidgettemplate').html()
-      htmlfield = $(htmlfieldhtml)    
-      htmlfield.css 'position', 'absolute'
-      htmlfield.css 'top', position.top + 'px'
-      htmlfield.css 'left', position.left + 'px'
-      parent.append htmlfield
+      @htmlfield = $(htmlfieldhtml)    
+      @htmlfield.css 'position', 'absolute'
+      @htmlfield.css 'top', position.top + 'px'
+      @htmlfield.css 'left', position.left + 'px'
+      parent.append @htmlfield
     else
-      htmlfield = widget
+      @htmlfield = widget
       
     try
-      htmlfield.resizable()
-      htmlfield.draggable()
+      @htmlfield.resizable()
+      @htmlfield.draggable()
     catch e
     
-    @obj = htmlfield
-    htmlfield.find('.rename').off 'click'
-    htmlfield.find('.rename').on 'click', =>
+    @obj = @htmlfield
+    @htmlfield.data 'widget', this
+    @htmlfield.widget = this
+    @htmlfield.find('.rename').off 'click'
+    @htmlfield.find('.rename').on 'click', =>
       name = prompt 'Enter field name'
-      htmlfield.attr 'data-fieldname', name
+      @htmlfield.attr 'data-fieldname', name
       @showname()
       
     @showname()
@@ -30,12 +32,12 @@ class HtmlFieldWidget
     
   edit: (record) ->
     name = @obj.attr 'data-fieldname'
-    htmlfield.find('.htmleditarea').html record[name]
+    @htmlfield.find('.htmleditarea').html record[name]
     oFCKeditor = new FCKeditor('editor1')
     oFCKeditor.ToolbarSet = 'Simple'
     oFCKeditor.BasePath = "/js/"   
     
-    $(idx).find('.htmleditarea').editable
+    @htmlfield.find('.htmleditarea').editable
       type: 'wysiwyg'
       editor: oFCKeditor       
       submit:'save',

@@ -31,6 +31,7 @@ class PagedDataWidget
       @pageddata.find('.toggletop').off 'click'
       @pageddata.find('.toggletop').on 'click', =>
         @pageddata.find('.pagedtop').toggle 100
+      @listrecords()
       
     catch e
       console.log e
@@ -58,8 +59,12 @@ class PagedDataWidget
   edit: (record) ->
     pageddata = @pageddata
     @pageddata.find('.field').each ->
-      alert 'trying to edit something'
-      $(this).data('widget').edit record
+      console.log 'trying to edit something'
+      console.log this
+      console.log 'this.data is '
+      console.log $(this).data 'widget'
+      widget = $(this).data 'widget'
+      widget.edit record
 
       
   listrecords: ->
@@ -74,14 +79,15 @@ class PagedDataWidget
         str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>'
       @pageddata.find('.pagedlist').html str
       @pageddata.find('.pagedrecord').off 'click'
-      pageddata = @pageddata
+      pageddata = this
       @pageddata.find('.pagedrecord').on 'click', ->  
         alert 'you clicked'        
-        col = pageddata.attr('data-collection')        
-        now.dbquery col, { id: $(this).attr('id') }, (record) ->
+        col = pageddata.pageddata.attr('data-collection')
+        obj = { id: $(this).attr('id') }
+        now.dbquery col, obj, (record) ->
           alert 'returned'
           console.log record
-          pageddata.edit.call pageddata record
+          pageddata.edit.call pageddata, record
       
     
 class PagedDataTool
@@ -109,11 +115,12 @@ class PagedDataTool
     
     
 $ ->
-  $('.pageddataall').each ->    
-    if $(@)?      
-      x = $(@).position().left
-      y = $(@).position().top
-      text = new PagedDataWidget($(this).parent(),$(this).position(), true, $(this))  
+  now.ready ->
+    $('.pageddataall').each ->    
+      if $(@)?      
+        x = $(@).position().left
+        y = $(@).position().top
+        text = new PagedDataWidget($(this).parent(),$(this).position(), true, $(this))  
   
   
   $(document).bind 'sessionState', (user) ->

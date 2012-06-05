@@ -44,6 +44,7 @@
         this.pageddata.find('.toggletop').on('click', function() {
           return _this.pageddata.find('.pagedtop').toggle(100);
         });
+        this.listrecords();
       } catch (e) {
         console.log(e);
       }
@@ -83,8 +84,13 @@
       var pageddata;
       pageddata = this.pageddata;
       return this.pageddata.find('.field').each(function() {
-        alert('trying to edit something');
-        return $(this).data('widget').edit(record);
+        var widget;
+        console.log('trying to edit something');
+        console.log(this);
+        console.log('this.data is ');
+        console.log($(this).data('widget'));
+        widget = $(this).data('widget');
+        return widget.edit(record);
       });
     };
 
@@ -105,17 +111,18 @@
         }
         _this.pageddata.find('.pagedlist').html(str);
         _this.pageddata.find('.pagedrecord').off('click');
-        pageddata = _this.pageddata;
+        pageddata = _this;
         return _this.pageddata.find('.pagedrecord').on('click', function() {
-          var col;
+          var col, obj;
           alert('you clicked');
-          col = pageddata.attr('data-collection');
-          return now.dbquery(col, {
+          col = pageddata.pageddata.attr('data-collection');
+          obj = {
             id: $(this).attr('id')
-          }, function(record) {
+          };
+          return now.dbquery(col, obj, function(record) {
             alert('returned');
             console.log(record);
-            return pageddata.edit.call(pageddata(record));
+            return pageddata.edit.call(pageddata, record);
           });
         });
       });
@@ -160,13 +167,15 @@
   })();
 
   $(function() {
-    $('.pageddataall').each(function() {
-      var text, x, y;
-      if ($(this) != null) {
-        x = $(this).position().left;
-        y = $(this).position().top;
-        return text = new PagedDataWidget($(this).parent(), $(this).position(), true, $(this));
-      }
+    now.ready(function() {
+      return $('.pageddataall').each(function() {
+        var text, x, y;
+        if ($(this) != null) {
+          x = $(this).position().left;
+          y = $(this).position().top;
+          return text = new PagedDataWidget($(this).parent(), $(this).position(), true, $(this));
+        }
+      });
     });
     return $(document).bind('sessionState', function(user) {
       if (window.loggedIn) return window.PagedDataTool = new PagedDataTool();

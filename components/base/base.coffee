@@ -226,7 +226,7 @@ everyone.now.dbfind = (col, callback) ->
     callback data
 
 everyone.now.dbquery = (col, criteria, callback) ->
-  db.collection(col).find(criteria).toArray() (err, data) ->
+  db.collection(col).find(criteria).toArray (err, data) ->
     callback? data
     
     
