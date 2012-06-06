@@ -223,9 +223,13 @@ everyone.now.dbupdate = (col, criteria, data, callback) ->
   console.log 'id is ' + criteria['id']
   console.log 'criteria is ' + util.inspect(criteria)
   convertids criteria
+  delete data['_id']
   console.log 'criteria is now ' + util.inspect(criteria)
-  db.collection(col).update criteria, data
-  callback?()
+  db.collection(col).update criteria, data, (err, val) ->
+    console.log 'db collection update callback'
+    console.log err
+    console.log val
+    callback?()
     
 everyone.now.dbfind = (col, callback) ->
   db.collection(col).find().toArray (err, data) ->

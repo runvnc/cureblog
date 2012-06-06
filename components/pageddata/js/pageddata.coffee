@@ -12,7 +12,8 @@ class PagedDataWidget
 
     try
       pageddata = @pageddata
-      @pageddata.draggable()
+      @pageddata.draggable
+        handle: '.movehandle'
       @pageddata.resizable()
       @pageddata.find('.widgetcontent').off 'click'
       @pageddata.find('.widgetcontent').on 'click', ->
@@ -60,23 +61,14 @@ class PagedDataWidget
     obj
     
   save: ->
-    alert 'trying to save'
-    console.log 'record is'
-    console.log JSON.stringify(@record)
-    console.log 'record id is ' + @record['_id']
     @col = @pageddata.attr 'data-collection'
     criteria = { "id": @record["_id"] }
-    console.log 'sending c riteria ' 
-    console.log criteria
     now.dbupdate @col, criteria, @record, =>
-      console.log 'returned from save'
       @listrecords()
     
     
   edit: (record) ->
     @record = record
-    console.log 'editing record'
-    console.log JSON.stringify(record)
     pageddata = @pageddata
     @pageddata.find('.editcontrols').show()
     @pageddata.find('.pagedtop').hide 100
@@ -92,7 +84,7 @@ class PagedDataWidget
         fieldstr = ''
         id = record['_id']
         for fieldname, val of record        
-          if fieldname.indexOf('_') isnt 0
+          if true or fieldname.indexOf('_') isnt 0
             fieldstr += fieldname + ':' + val
         str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>'
       @pageddata.find('.pagedlist').html str

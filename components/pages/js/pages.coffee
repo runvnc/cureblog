@@ -21,10 +21,10 @@ class PagesWidget
       
     pages.find('.pagesmenu:first-child').trigger 'click'
     try
-      pages.draggable()
+      pages.draggable({handle: '.movepages'})
     catch e
+     
     
-  
 class PagesTool
   constructor: ->
     widgethtml = $('#pagestemplate').html()

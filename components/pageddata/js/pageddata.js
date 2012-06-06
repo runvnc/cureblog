@@ -18,7 +18,9 @@
       }
       try {
         pageddata = this.pageddata;
-        this.pageddata.draggable();
+        this.pageddata.draggable({
+          handle: '.movehandle'
+        });
         this.pageddata.resizable();
         this.pageddata.find('.widgetcontent').off('click');
         this.pageddata.find('.widgetcontent').on('click', function() {
@@ -87,18 +89,11 @@
     PagedDataWidget.prototype.save = function() {
       var criteria,
         _this = this;
-      alert('trying to save');
-      console.log('record is');
-      console.log(JSON.stringify(this.record));
-      console.log('record id is ' + this.record['_id']);
       this.col = this.pageddata.attr('data-collection');
       criteria = {
         "id": this.record["_id"]
       };
-      console.log('sending c riteria ');
-      console.log(criteria);
       return now.dbupdate(this.col, criteria, this.record, function() {
-        console.log('returned from save');
         return _this.listrecords();
       });
     };
@@ -106,8 +101,6 @@
     PagedDataWidget.prototype.edit = function(record) {
       var pageddata;
       this.record = record;
-      console.log('editing record');
-      console.log(JSON.stringify(record));
       pageddata = this.pageddata;
       this.pageddata.find('.editcontrols').show();
       this.pageddata.find('.pagedtop').hide(100);
@@ -129,7 +122,9 @@
           id = record['_id'];
           for (fieldname in record) {
             val = record[fieldname];
-            if (fieldname.indexOf('_') !== 0) fieldstr += fieldname + ':' + val;
+            if (true || fieldname.indexOf('_') !== 0) {
+              fieldstr += fieldname + ':' + val;
+            }
           }
           str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>';
         }
