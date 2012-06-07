@@ -18,43 +18,66 @@
       }
       try {
         pageddata = this.pageddata;
-        this.pageddata.draggable({
-          handle: '.movehandle'
-        });
-        this.pageddata.resizable();
-        this.pageddata.find('.widgetcontent').off('click');
-        this.pageddata.find('.widgetcontent').on('click', function() {
-          $('.activewidget').removeClass('activewidget');
-          return $(this).addClass('activewidget');
-        });
-        this.pageddata.find('.pagedtype').off('change');
-        this.pageddata.find('.pagedtype').on('change', function() {
-          return pageddata.attr('data-collection', $(this).val());
-        });
-        if (this.pageddata.attr('data-collection') != null) {
-          this.pageddata.find('.pagedtype').val(this.pageddata.attr('data-collection'));
-        }
-        this.pageddata.find('.addpaged').off('click');
-        this.pageddata.find('.addpaged').on('click', function() {
-          var record;
-          record = _this.newblank();
-          return now.dbinsert(_this.pageddata.attr('data-collection'), record, function() {
-            return _this.listrecords();
+        if (window.loggedIn) {
+          this.pageddata.draggable({
+            handle: '.movehandle'
           });
-        });
-        this.pageddata.find('.toggletop').off('click');
-        this.pageddata.find('.toggletop').on('click', function() {
-          return _this.pageddata.find('.pagedtop').toggle(100);
-        });
-        this.pageddata.find('.savepaged').off('click');
-        this.pageddata.find('.savepaged').on('click', function() {
-          return _this.save();
-        });
-        this.listrecords();
+          this.pageddata.resizable();
+          this.pageddata.find('.widgetcontent').off('click');
+          this.pageddata.find('.widgetcontent').on('click', function() {
+            $('.activewidget').removeClass('activewidget');
+            return $(this).addClass('activewidget');
+          });
+          this.pageddata.find('.pagedtype').off('change');
+          this.pageddata.find('.pagedtype').on('change', function() {
+            return pageddata.attr('data-collection', $(this).val());
+          });
+          if (this.pageddata.attr('data-collection') != null) {
+            this.pageddata.find('.pagedtype').val(this.pageddata.attr('data-collection'));
+          }
+          this.pageddata.find('.addpaged').off('click');
+          this.pageddata.find('.addpaged').on('click', function() {
+            var record;
+            record = _this.newblank();
+            return now.dbinsert(_this.pageddata.attr('data-collection'), record, function() {
+              return _this.listrecords();
+            });
+          });
+          this.pageddata.find('.toggletop').off('click');
+          this.pageddata.find('.toggletop').on('click', function() {
+            return _this.pageddata.find('.pagedtop').toggle(100);
+          });
+          this.pageddata.find('.savepaged').off('click');
+          this.pageddata.find('.savepaged').on('click', function() {
+            return _this.save();
+          });
+          this.listrecords();
+        } else {
+          this.loadrecent();
+        }
       } catch (e) {
         console.log(e);
       }
     }
+
+    PagedDataWidget.prototype.loadrecent = function(callback) {
+      var _this = this;
+      return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
+        _this.records = records;
+        _this.record = records[records.length - 1];
+        return _this.display();
+      });
+    };
+
+    PagedDataWidget.prototype.display = function() {
+      var rec;
+      rec = this.record;
+      return this.pageddata.find('.field').each(function() {
+        var widget;
+        widget = $(this).data('widget');
+        return widget.display(rec);
+      });
+    };
 
     PagedDataWidget.prototype.getfields = function() {
       var fields, s;
@@ -86,6 +109,15 @@
       return obj;
     };
 
+    PagedDataWidget.prototype.designmode = function() {
+      this.pageddata.find('.editcontrols').hide();
+      return this.pageddata.find('.field').each(function() {
+        var widget;
+        widget = $(this).data('widget');
+        return widget.designmode(this.record);
+      });
+    };
+
     PagedDataWidget.prototype.save = function() {
       var criteria,
         _this = this;
@@ -94,7 +126,8 @@
         "id": this.record["_id"]
       };
       return now.dbupdate(this.col, criteria, this.record, function() {
-        return _this.listrecords();
+        _this.listrecords();
+        return _this.designmode();
       });
     };
 
@@ -184,7 +217,13 @@
   })();
 
   $(function() {
-    now.ready(function() {
+    return $(document).bind('sessionState', function(user) {
+      if (window.loggedIn) {
+        window.PagedDataTool = new PagedDataTool();
+        window.saveFilters.push(function(sel) {
+          return $(sel).find('.pagedlist li').remove();
+        });
+      }
       return $('.pageddataall').each(function() {
         var text, x, y;
         if ($(this) != null) {
@@ -194,13 +233,6 @@
         }
       });
     });
-    return $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) return window.PagedDataTool = new PagedDataTool();
-    });
-  });
-
-  window.saveFilters.push(function(sel) {
-    return $(sel).find('.pagedlist li').remove();
   });
 
 }).call(this);

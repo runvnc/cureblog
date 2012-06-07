@@ -17,8 +17,8 @@
 
 .movepages {
   position: absolute;
+  z-index: 10;
   right: 10px;
-  z-index: 2000;
   width: 32px;
   height: 32px;
   background-image: url('images/move.png');

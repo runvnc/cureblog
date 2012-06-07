@@ -55,9 +55,10 @@ $ ->
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
       window.EtherCalcTool = new EtherCalcTool()
+      window.saveFilters.push (sel) ->      
+        $(sel).find('.ui-resizable-handle').remove()
+        $(sel).find('.sizewidget').removeClass 'sizewidget'  
       
-window.saveFilters.push (sel) ->      
-  $(sel).find('.ui-resizable-handle').remove()
-  $(sel).find('.sizewidget').removeClass 'sizewidget'  
+      
 
   

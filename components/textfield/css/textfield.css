@@ -1,47 +1,50 @@
-.pageswrapper {
+.textfieldwrapper {
   /* width: 150px; */
 }
 
-.pagesicon {
-  background-image: url('images/tabs.jpg');
+.textfieldicon {
+  background-image: url('images/input.png');
   width: 30px;
   height: 30px;
 }
 
-.pagesall {
+
+.texthtmleditarea {
+  display: none; 
+}
+
+.textfieldall {
   position: absolute;
-  width: 800px;
-  height: 800px;
-   
+  padding: 15px;
+  margin: 15px;
+  border: 1px dotted #aaa; 
+ }
+
+
+.rename {
+  float: right; 
+  cursor: pointer;
+  font-size: 8pt;
 }
 
-.movepages {
-  position: absolute;
-  z-index: 10;
-  right: 10px;
-  width: 32px;
-  height: 32px;
-  background-image: url('images/move.png');
+.fieldname {
+  float: right;
+  margin-left: 5px;
+  font-size: 8pt;
 }
 
-.pagesmenu {
-  float: left; 
-}
+.textfieldscontent {
 
-.pagescontent {
-  width: 800px;
-  height: 800px;
   position: relative;
 }
 
-.pagescontainer {
+.textfieldscontainer {
   position: relative;
   margin-left: 150px;
-  width: 800px;
-  height: 800px;  
+
 }
 
-.pagesmenu li {
+.textfieldmenu li {
   cursor: pointer; 
   font-family: Ubuntu;
   font-size: 16pt;
@@ -49,7 +52,7 @@
   margin-bottom: 15px;
 }
 
-.pagesmenu li:hover {
+.textfieldmenu li:hover {
   color: #fff;
   background-color: #000;
 }

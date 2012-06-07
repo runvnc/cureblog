@@ -74,13 +74,14 @@
       }
     });
     return $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) return window.EtherCalcTool = new EtherCalcTool();
+      if (window.loggedIn) {
+        window.EtherCalcTool = new EtherCalcTool();
+        return window.saveFilters.push(function(sel) {
+          $(sel).find('.ui-resizable-handle').remove();
+          return $(sel).find('.sizewidget').removeClass('sizewidget');
+        });
+      }
     });
-  });
-
-  window.saveFilters.push(function(sel) {
-    $(sel).find('.ui-resizable-handle').remove();
-    return $(sel).find('.sizewidget').removeClass('sizewidget');
   });
 
 }).call(this);

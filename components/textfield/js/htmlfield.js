@@ -39,17 +39,6 @@
       return this.obj.find('.fieldname').html(this.obj.attr('data-fieldname'));
     };
 
-    HtmlFieldWidget.prototype.designmode = function(record) {
-      this.htmlfield.find('.htmleditarea').html('Rich Text Field');
-      return this.htmlfield.find('.htmleditarea').editable('disable');
-    };
-
-    HtmlFieldWidget.prototype.display = function(record) {
-      var name;
-      name = this.obj.attr('data-fieldname');
-      return this.htmlfield.find('.htmleditarea').html(record[name]);
-    };
-
     HtmlFieldWidget.prototype.edit = function(record) {
       var name, oFCKeditor;
       name = this.obj.attr('data-fieldname');

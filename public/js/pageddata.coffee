@@ -12,33 +12,50 @@ class PagedDataWidget
 
     try
       pageddata = @pageddata
-      @pageddata.draggable
-        handle: '.movehandle'
-      @pageddata.resizable()
-      @pageddata.find('.widgetcontent').off 'click'
-      @pageddata.find('.widgetcontent').on 'click', ->
-        $('.activewidget').removeClass 'activewidget'
-        $(this).addClass 'activewidget'
-      @pageddata.find('.pagedtype').off 'change'
-      @pageddata.find('.pagedtype').on 'change', ->        
-        pageddata.attr 'data-collection', $(this).val()
-      if @pageddata.attr('data-collection')?
-        @pageddata.find('.pagedtype').val @pageddata.attr('data-collection')
-      @pageddata.find('.addpaged').off 'click'
-      @pageddata.find('.addpaged').on 'click', =>
-        record = @newblank()
-        now.dbinsert @pageddata.attr('data-collection'), record, =>
-          @listrecords()
-      @pageddata.find('.toggletop').off 'click'
-      @pageddata.find('.toggletop').on 'click', =>
-        @pageddata.find('.pagedtop').toggle 100
-      @pageddata.find('.savepaged').off 'click'
-      @pageddata.find('.savepaged').on 'click', =>
-        @save()
-      @listrecords()
-      
+      if window.loggedIn
+        @pageddata.draggable
+          handle: '.movehandle'
+        @pageddata.resizable()
+        @pageddata.find('.widgetcontent').off 'click'
+        @pageddata.find('.widgetcontent').on 'click', ->
+          $('.activewidget').removeClass 'activewidget'
+          $(this).addClass 'activewidget'
+        @pageddata.find('.pagedtype').off 'change'
+        @pageddata.find('.pagedtype').on 'change', ->        
+          pageddata.attr 'data-collection', $(this).val()
+        if @pageddata.attr('data-collection')?
+          @pageddata.find('.pagedtype').val @pageddata.attr('data-collection')
+        @pageddata.find('.addpaged').off 'click'
+        @pageddata.find('.addpaged').on 'click', =>
+          record = @newblank()
+          now.dbinsert @pageddata.attr('data-collection'), record, =>
+            @listrecords()
+        @pageddata.find('.toggletop').off 'click'
+        @pageddata.find('.toggletop').on 'click', =>
+          @pageddata.find('.pagedtop').toggle 100
+        @pageddata.find('.savepaged').off 'click'
+        @pageddata.find('.savepaged').on 'click', =>
+          @save()
+        @listrecords()
+      else
+        @loadrecent()        
+        
     catch e
       console.log e
+    
+    
+  loadrecent: (callback) ->  
+    now.dbfind @pageddata.attr('data-collection'), (records) =>
+      @records = records
+      @record = records[records.length-1]      
+      @display()
+  
+  display: ->
+    rec = @record
+    @pageddata.find('.field').each ->
+      widget = $(this).data 'widget'    
+      widget.display rec
+      
     
   getfields: ->
     fields = []
@@ -60,11 +77,19 @@ class PagedDataWidget
       obj[field.name] = field.value
     obj
     
+  designmode: ->
+    @pageddata.find('.editcontrols').hide()
+    @pageddata.find('.field').each ->
+      widget = $(this).data 'widget'
+      widget.designmode @record
+    
+    
   save: ->
     @col = @pageddata.attr 'data-collection'
     criteria = { "id": @record["_id"] }
-    now.dbupdate @col, criteria, @record, =>
+    now.dbupdate @col, criteria, @record, =>      
       @listrecords()
+      @designmode()
     
     
   edit: (record) ->
@@ -123,18 +148,15 @@ class PagedDataTool
     
     
 $ ->
-  now.ready ->
+  $(document).bind 'sessionState', (user) ->
+    if window.loggedIn
+      window.PagedDataTool = new PagedDataTool()
+      window.saveFilters.push (sel) ->      
+        $(sel).find('.pagedlist li').remove()  
+        
     $('.pageddataall').each ->    
       if $(@)?      
         x = $(@).position().left
         y = $(@).position().top
         text = new PagedDataWidget($(this).parent(),$(this).position(), true, $(this))  
-  
-  $(document).bind 'sessionState', (user) ->
-    if window.loggedIn
-      window.PagedDataTool = new PagedDataTool()
-      
-      
-window.saveFilters.push (sel) ->      
-  $(sel).find('.pagedlist li').remove()  
   

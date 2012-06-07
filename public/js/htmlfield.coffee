@@ -30,6 +30,17 @@ class HtmlFieldWidget
   showname: ->
     @obj.find('.fieldname').html @obj.attr 'data-fieldname'
     
+  designmode: (record) ->
+    @htmlfield.find('.htmleditarea').html 'Rich Text Field'
+    @htmlfield.find('.htmleditarea').editable 'disable'
+    
+    
+  display: (record) ->  
+    name = @obj.attr 'data-fieldname'
+    @htmlfield.find('.htmleditarea').html record[name]
+    
+    
+    
   edit: (record) ->
     name = @obj.attr 'data-fieldname'
     @htmlfield.find('.htmleditarea').html record[name]

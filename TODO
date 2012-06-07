@@ -37,4 +37,12 @@ need a ui for managing sites per user
 need a way to have a dev site and a prod site and move dev into prod
 
 
+textfield
+ similar to htmlfield but instead of entering rich text during data entry mode,
+ goes into rich text mode during design mode so that you can specify the way the text is displayed
+ in view mode
+ to start let's leave the design mode text editor out
+ in data entry mode needs to change into a text input box
+ then save its text to the record on blur
+
  
