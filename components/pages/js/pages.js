@@ -75,6 +75,7 @@
   })();
 
   $(function() {
+    $('.movepages').hide();
     $('.pagesall').each(function() {
       var text, x, y;
       if ($(this) != null) {
@@ -84,7 +85,10 @@
       }
     });
     $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) return window.PagesTool = new PagesTool();
+      if (window.loggedIn) {
+        $('.movepages').show();
+        return window.PagesTool = new PagesTool();
+      }
     });
     return $('#page').on('click', function(ev) {
       if (ev.target.id === 'page') {

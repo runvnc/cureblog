@@ -50,6 +50,7 @@ class PagesTool
     
     
 $ ->
+  $('.movepages').hide()
   $('.pagesall').each ->    
     if $(@)?      
       x = $(@).position().left
@@ -59,6 +60,7 @@ $ ->
   
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
+      $('.movepages').show()
       window.PagesTool = new PagesTool()
       
   $('#page').on 'click', (ev) ->

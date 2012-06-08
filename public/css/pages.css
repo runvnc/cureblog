@@ -16,6 +16,7 @@
 }
 
 .movepages {
+  display: none;
   position: absolute;
   z-index: 10;
   right: 10px;

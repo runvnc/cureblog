@@ -12,6 +12,14 @@
   height: 300px;
  }
 
+.recorditem {
+  cursor: pointer;  
+}
+
+.recordhead {
+  text-align: left; 
+}
+
 .movehandle {
   float: right;
   width: 32px;

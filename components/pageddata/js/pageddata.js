@@ -53,6 +53,7 @@
           });
           this.listrecords();
         } else {
+          this.displaymode();
           this.loadrecent();
         }
       } catch (e) {
@@ -65,8 +66,15 @@
       return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
         _this.records = records;
         _this.record = records[records.length - 1];
-        return _this.display();
+        return setTimeout((function() {
+          return _this.display();
+        }), 50);
       });
+    };
+
+    PagedDataWidget.prototype.displaymode = function() {
+      this.pageddata.find('.pagedtop,.toggletop,.movehandle').hide();
+      return this.pageddata.css('border', 'none');
     };
 
     PagedDataWidget.prototype.display = function() {
@@ -74,7 +82,7 @@
       rec = this.record;
       return this.pageddata.find('.field').each(function() {
         var widget;
-        widget = $(this).data('widget');
+        widget = this.widget;
         return widget.display(rec);
       });
     };
@@ -144,22 +152,43 @@
       });
     };
 
+    PagedDataWidget.prototype.fieldlist = function(records) {
+      var key, keys, record, val, _i, _len;
+      keys = {};
+      for (_i = 0, _len = records.length; _i < _len; _i++) {
+        record = records[_i];
+        for (key in record) {
+          val = record[key];
+          if (key.indexOf('_') !== 0 && !(keys[key] != null)) keys[key] = true;
+        }
+      }
+      return keys;
+    };
+
     PagedDataWidget.prototype.listrecords = function() {
       var _this = this;
       return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
-        var fieldname, fieldstr, id, pageddata, record, str, val, _i, _len;
+        var fieldname, fields, id, pageddata, record, str, val, _i, _len;
         str = '';
+        _this.records = records;
+        fields = _this.fieldlist(_this.records);
+        str += '<table><tr>';
+        for (fieldname in fields) {
+          val = fields[fieldname];
+          str += '<th class=\"recordhead\">' + fieldname + '</th>';
+        }
+        str += '</tr>';
         for (_i = 0, _len = records.length; _i < _len; _i++) {
           record = records[_i];
-          fieldstr = '';
           id = record['_id'];
-          for (fieldname in record) {
-            val = record[fieldname];
-            if (true || fieldname.indexOf('_') !== 0) {
-              fieldstr += fieldname + ':' + val;
+          str += '<tr class=\"pagedrecord\" id=\"' + id + '\">';
+          for (fieldname in fields) {
+            val = fields[fieldname];
+            if (fieldname.indexOf('_') !== 0) {
+              str += '<td class=\"recorditem\">' + record[fieldname] + '</td>';
             }
           }
-          str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>';
+          str += '</tr></table>';
         }
         _this.pageddata.find('.pagedlist').html(str);
         _this.pageddata.find('.pagedrecord').off('click');

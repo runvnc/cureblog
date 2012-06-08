@@ -18,15 +18,22 @@ class HtmlFieldWidget
     
     @obj = @htmlfield
     @htmlfield.data 'widget', this
+    @htmlfield[0].widget = this
     @htmlfield.widget = this
-    @htmlfield.find('.rename').off 'click'
-    @htmlfield.find('.rename').on 'click', =>
-      name = prompt 'Enter field name'
-      @htmlfield.attr 'data-fieldname', name
+    if window.loggedIn
+      @htmlfield.find('.rename').off 'click'
+      @htmlfield.find('.rename').on 'click', =>
+        name = prompt 'Enter field name'
+        @htmlfield.attr 'data-fieldname', name
+        @showname()
+        
       @showname()
+    else
+      @displaymode()
       
-    @showname()
-    
+    console.log 'htmlfield constructor done'
+  
+  
   showname: ->
     @obj.find('.fieldname').html @obj.attr 'data-fieldname'
     
@@ -39,7 +46,9 @@ class HtmlFieldWidget
     name = @obj.attr 'data-fieldname'
     @htmlfield.find('.htmleditarea').html record[name]
     
-    
+  displaymode: ->
+    @htmlfield.find('.rename,.fieldname').hide()
+    @htmlfield.css 'border', 'none'
     
   edit: (record) ->
     name = @obj.attr 'data-fieldname'
@@ -86,14 +95,13 @@ class HtmlFieldTool
     
     
 $ ->
-  $('.htmlfieldall').each ->    
-    if $(@)?      
-      x = $(@).position().left
-      y = $(@).position().top
-      text = new HtmlFieldWidget($(this).parent(),$(this).position(), true, $(this))  
-  
-  $(document).bind 'sessionState', (user) ->
+  $(document).bind 'sessionState', (user) ->    
     if window.loggedIn
       window.HtmlFieldTool = new HtmlFieldTool()
+    $('.htmlfieldall').each ->
+      if $(@)?      
+        x = $(@).position().left
+        y = $(@).position().top
+        text = new HtmlFieldWidget($(this).parent(),$(this).position(), true, $(this)) 
       
       

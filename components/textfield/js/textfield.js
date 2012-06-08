@@ -24,6 +24,7 @@
       }
       this.obj = this.textfield;
       this.textfield.data('widget', this);
+      this.textfield[0].widget = this;
       this.textfield.widget = this;
       this.textfield.find('.rename').off('click');
       this.textfield.find('.rename').on('click', function() {
@@ -44,6 +45,8 @@
       var name;
       name = this.obj.attr('data-fieldname');
       this.textfield.find('.textinput').show();
+      this.textfield.find('.textinput').val(record[name]);
+      this.textfield.find('.texthtmleditarea').hide();
       this.textfield.find('.textinput').off('blur');
       return this.textfield.find('.textinput').on('blur', function() {
         return record[name] = $(this).val();
@@ -53,15 +56,22 @@
     TextFieldWidget.prototype.display = function(record) {
       var name, newhtml, template;
       name = this.obj.attr('data-fieldname');
-      template = this.htmlfield.find('.texthtmleditarea').html();
+      template = this.textfield.find('.texthtmleditarea').html();
       newhtml = template.replace('{{' + name + '}}', record[name]);
-      return this.htmlfield.find('.texthtmleditarea').html(newhtml);
+      this.textfield.find('.texthtmleditarea').html(newhtml);
+      this.textfield.find('.rename,.fieldname').hide();
+      return this.textfield.css('border', 'none');
     };
 
     TextFieldWidget.prototype.designmode = function() {
-      var oFCKeditor;
+      var currhtml, name, oFCKeditor;
+      name = this.obj.attr('data-fieldname');
       this.textfield.find('.textinput').hide();
-      this.textfield.find('.texthtmleditarea').html('{{' + name + '}}');
+      currhtml = this.textfield.find('.texthtmleditarea').html();
+      if (currhtml.indexOf('{{') < 0) {
+        this.textfield.find('.texthtmleditarea').html('{{' + name + '}}');
+      }
+      this.textfield.find('.texthtmleditarea').show();
       oFCKeditor = new FCKeditor('editor1');
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";
@@ -74,7 +84,6 @@
           return window.alreadyEditing = true;
         },
         onSubmit: function(content) {
-          record[name] = content.current;
           return window.alreadyEditing = false;
         },
         onCancel: function(content) {
@@ -122,16 +131,16 @@
   })();
 
   $(function() {
-    $('.textfieldall').each(function() {
-      var text, x, y;
-      if ($(this) != null) {
-        x = $(this).position().left;
-        y = $(this).position().top;
-        return text = new TextFieldWidget($(this).parent(), $(this).position(), true, $(this));
-      }
-    });
     return $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) return window.TextFieldTool = new TextFieldTool();
+      if (window.loggedIn) window.TextFieldTool = new TextFieldTool();
+      return $('.textfieldall').each(function() {
+        var text, x, y;
+        if ($(this) != null) {
+          x = $(this).position().left;
+          y = $(this).position().top;
+          return text = new TextFieldWidget($(this).parent(), $(this).position(), true, $(this));
+        }
+      });
     });
   });
 

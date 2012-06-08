@@ -24,15 +24,21 @@
       }
       this.obj = this.htmlfield;
       this.htmlfield.data('widget', this);
+      this.htmlfield[0].widget = this;
       this.htmlfield.widget = this;
-      this.htmlfield.find('.rename').off('click');
-      this.htmlfield.find('.rename').on('click', function() {
-        var name;
-        name = prompt('Enter field name');
-        _this.htmlfield.attr('data-fieldname', name);
-        return _this.showname();
-      });
-      this.showname();
+      if (window.loggedIn) {
+        this.htmlfield.find('.rename').off('click');
+        this.htmlfield.find('.rename').on('click', function() {
+          var name;
+          name = prompt('Enter field name');
+          _this.htmlfield.attr('data-fieldname', name);
+          return _this.showname();
+        });
+        this.showname();
+      } else {
+        this.displaymode();
+      }
+      console.log('htmlfield constructor done');
     }
 
     HtmlFieldWidget.prototype.showname = function() {
@@ -48,6 +54,11 @@
       var name;
       name = this.obj.attr('data-fieldname');
       return this.htmlfield.find('.htmleditarea').html(record[name]);
+    };
+
+    HtmlFieldWidget.prototype.displaymode = function() {
+      this.htmlfield.find('.rename,.fieldname').hide();
+      return this.htmlfield.css('border', 'none');
     };
 
     HtmlFieldWidget.prototype.edit = function(record) {
@@ -114,16 +125,16 @@
   })();
 
   $(function() {
-    $('.htmlfieldall').each(function() {
-      var text, x, y;
-      if ($(this) != null) {
-        x = $(this).position().left;
-        y = $(this).position().top;
-        return text = new HtmlFieldWidget($(this).parent(), $(this).position(), true, $(this));
-      }
-    });
     return $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) return window.HtmlFieldTool = new HtmlFieldTool();
+      if (window.loggedIn) window.HtmlFieldTool = new HtmlFieldTool();
+      return $('.htmlfieldall').each(function() {
+        var text, x, y;
+        if ($(this) != null) {
+          x = $(this).position().left;
+          y = $(this).position().top;
+          return text = new HtmlFieldWidget($(this).parent(), $(this).position(), true, $(this));
+        }
+      });
     });
   });
 

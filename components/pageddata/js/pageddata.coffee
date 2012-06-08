@@ -38,22 +38,28 @@ class PagedDataWidget
           @save()
         @listrecords()
       else
+        @displaymode()
         @loadrecent()        
         
     catch e
       console.log e
     
-    
+     
   loadrecent: (callback) ->  
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       @records = records
       @record = records[records.length-1]      
-      @display()
+      setTimeout (=> @display()), 50
+  
+  displaymode: ->
+    @pageddata.find('.pagedtop,.toggletop,.movehandle').hide()    
+    @pageddata.css 'border', 'none'
+    
   
   display: ->
     rec = @record
     @pageddata.find('.field').each ->
-      widget = $(this).data 'widget'    
+      widget = this.widget
       widget.display rec
       
     
@@ -101,17 +107,31 @@ class PagedDataWidget
       widget = $(this).data 'widget'
       widget.edit record
 
+  fieldlist: (records) ->   
+    keys = {}
+    for record in records
+      for key, val of record        
+        if key.indexOf('_') isnt 0 and not keys[key]?
+          keys[key] = true
+    keys    
+      
       
   listrecords: ->
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       str = ''
+      @records = records
+      fields = @fieldlist @records
+      str += '<table><tr>'
+      for fieldname, val of fields
+        str += '<th class=\"recordhead\">'+fieldname+'</th>'
+      str += '</tr>'
       for record in records
-        fieldstr = ''
-        id = record['_id']
-        for fieldname, val of record        
-          if true or fieldname.indexOf('_') isnt 0
-            fieldstr += fieldname + ':' + val
-        str += '<li class=\"pagedrecord\" id=\"' + id + '\">' + fieldstr + '</li>'
+        id = record['_id']        
+        str += '<tr class=\"pagedrecord\" id=\"' + id + '\">'
+        for fieldname, val of fields
+          if fieldname.indexOf('_') isnt 0
+            str += '<td class=\"recorditem\">' + record[fieldname] + '</td>'
+        str += '</tr></table>'
       @pageddata.find('.pagedlist').html str
       @pageddata.find('.pagedrecord').off 'click'
       pageddata = this
