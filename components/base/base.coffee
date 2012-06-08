@@ -176,6 +176,7 @@ everyone.now.getAccountInfo = (sessionid, callback) ->
   
   
 everyone.now.savePage = (html, callback) ->
+  console.log 'TRYING TO SAVE SOME HTML *********** '
   index = process.templates['devindex']
   index = index.replace '{{page}}', html
   cachefiles.set 'public/devindex.html', index
@@ -183,14 +184,38 @@ everyone.now.savePage = (html, callback) ->
   index = process.templates['index']
   index = index.replace '{{page}}', html
   cachefiles.set 'public/index.html', index
-
+  console.log 'OK SO FAR'
   fs.writeFile "static/page.html", html, (err) ->
     if err
       console.log err
       if callback? then callback false
     else
       if callback? then callback true
-  
+
+      
+saveStaticPage = (name, html, callback) ->
+  cachefiles.set 'public/' + name, html
+
+  fs.writeFile "public/" + name, html, (err) ->
+    if err
+      console.log err
+      if callback? then callback false
+    else
+      if callback? then callback true      
+
+process.saveStaticPage = saveStaticPage  
+
+
+everyone.now.saveStaticPage = (name, html, callback) ->
+  cachefiles.set 'public/' + name, html
+
+  fs.writeFile "public/" + name, html, (err) ->
+    if err
+      console.log err
+      if callback? then callback false
+    else
+      if callback? then callback true     
+      
   
 everyone.now.saveStatic = (name, html, callback) ->
   fs.writeFile "static/#{name}", html, (err) ->

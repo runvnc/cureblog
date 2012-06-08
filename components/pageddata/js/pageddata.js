@@ -135,7 +135,8 @@
       };
       return now.dbupdate(this.col, criteria, this.record, function() {
         _this.listrecords();
-        return _this.designmode();
+        _this.designmode();
+        return now.cachePage('/');
       });
     };
 

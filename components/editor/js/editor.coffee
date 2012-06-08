@@ -113,7 +113,7 @@ window.savePage = ->
         
   for filter in window.saveFilters
     filter '#tofilter'
-  
+
   window.delay 500, ->
     now.savePage $('#tofilter').html(), (success) ->
       if success

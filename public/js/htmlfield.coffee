@@ -69,7 +69,9 @@ class HtmlFieldWidget
         window.alreadyEditing = false
       onCancel: (content) ->
         window.alreadyEditing = false    
-  
+
+          
+        
 class HtmlFieldTool
   constructor: ->
     widgethtml = $('#htmlfieldtemplate').html()

@@ -37,12 +37,24 @@ need a ui for managing sites per user
 need a way to have a dev site and a prod site and move dev into prod
 
 
-textfield
+DONE textfield
  similar to htmlfield but instead of entering rich text during data entry mode,
  goes into rich text mode during design mode so that you can specify the way the text is displayed
  in view mode
  to start let's leave the design mode text editor out
  in data entry mode needs to change into a text input box
  then save its text to the record on blur
+
+generate static pages
+  whenever a paged data record is saved
+  use phantomjs to access that page
+  and then store a cached version
+  and also store a cached version of the home page
+  copy the html out of the phantomjs page
+  and send to app
+  or phantomjs called from nodejs
+
+provide links to static pages on design
+  probably when in edit mode
 
  

@@ -1,6 +1,10 @@
 {
-  "name": "blank",
+  "name": "pageddata",
   "version": "0.0.1",
   "dependencies": {
+    "phantom": ""
+  },
+  "scripts": {
+   "preinstall": "./installphantom"
   }
 }

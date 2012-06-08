@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ -f installdone ]
+then
+  exit 0
+fi
+
+set -e
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+tar xvf phantomjs-1.5.0-linux-x86_64-dynamic.tar.gz
+ln -s $DIR/phantomjs/bin/phantomjs $HOME/local/bin/phantomjs
+touch installdone

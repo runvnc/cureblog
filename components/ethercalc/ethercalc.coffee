@@ -7,3 +7,4 @@ childprocess.exec 'bash -c ethercalc', (er, o, e) ->
   console.log er
   console.log o
   console.log e
+  

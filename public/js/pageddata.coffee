@@ -96,6 +96,7 @@ class PagedDataWidget
     now.dbupdate @col, criteria, @record, =>      
       @listrecords()
       @designmode()
+      now.cachePage '/'
     
     
   edit: (record) ->
@@ -142,7 +143,7 @@ class PagedDataWidget
           record = record[0]
           pageddata.edit.call pageddata, record
       
-    
+      
 class PagedDataTool
   constructor: ->
     widgethtml = $('#pageddatatemplate').html()
