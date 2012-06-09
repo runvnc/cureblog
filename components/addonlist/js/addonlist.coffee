@@ -11,7 +11,7 @@ highlightSel = ->
   $('#matches li').eq(plugitem).css 'backgroundColor', '#EEDAF5'
   
 matches = []
-
+ 
 currentlyinstalling = ''
 
 installmsg = (msg) ->
@@ -21,7 +21,7 @@ installmsg = (msg) ->
     $('#installmsg').append msg
     $('#installmsg')[0].scrollTop = $('#installmsg')[0].scrollHeight
 
-  
+    
 listplugins = ->
   now.listComponents (components) ->
     str = ''

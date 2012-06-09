@@ -4,9 +4,12 @@ childproc = require 'child_process'
 
 allplugins = {}
 
-fs.readFile 'oicplugins/all.json', 'utf8', (err, data) ->
-  allplugins = JSON.parse data
-  
+
+childproc.exec 'git submodule update', (er, o, e) ->
+  fs.readFile 'oicplugins/all.json', 'utf8', (err, data) ->
+    allplugins = JSON.parse data
+
+    
 everyone.now.getPluginIndex = (callback) ->
   callback allplugins
   
