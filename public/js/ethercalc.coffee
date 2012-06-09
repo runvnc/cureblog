@@ -19,7 +19,7 @@ class EtherCalcWidget
 
     catch e
              
-
+  
 class EtherCalcTool
   constructor: ->
     widgethtml = $('#ethercalctemplate').html()

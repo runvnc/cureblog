@@ -1,0 +1,9 @@
+#!/bin/bash
+echo `pgrep -f bin/ethercalc`
+echo count is `pgrep -f bin/ethercalc | wc -l`
+if [ `pgrep -f bin/ethercalc | wc -l` != 0 ]; then
+  echo 'ethercalc already running'
+else
+  ethercalc &
+fi
+
