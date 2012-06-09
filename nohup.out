@@ -122,3 +122,7 @@ Error: listen EADDRINUSE
     at errnoException (net.js:670:11)
     at Array.0 (net.js:771:26)
     at EventEmitter._tickCallback (node.js:192:40)
+/usr/bin/env: node: No such file or directory
+/usr/bin/env: node: No such file or directory
+/usr/bin/env: node: No such file or directory
+/usr/bin/env: node: No such file or directory

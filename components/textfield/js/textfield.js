@@ -38,7 +38,12 @@
     }
 
     TextFieldWidget.prototype.showname = function() {
-      return this.obj.find('.fieldname').html(this.obj.attr('data-fieldname'));
+      var name, newhtml, template;
+      name = this.obj.attr('data-fieldname');
+      this.obj.find('.fieldname').html(name);
+      template = this.textfield.find('.texthtmleditarea').html();
+      newhtml = template.replace(/\{\{[a-z0-9]*\}\}/i, '{{' + name + '}}');
+      return this.textfield.find('.texthtmleditarea').html(newhtml);
     };
 
     TextFieldWidget.prototype.edit = function(record) {
@@ -68,7 +73,7 @@
       name = this.obj.attr('data-fieldname');
       this.textfield.find('.textinput').hide();
       currhtml = this.textfield.find('.texthtmleditarea').html();
-      if (currhtml.indexOf('{{') < 0) {
+      if (currhtml.indexOf('{{') < 0 || currhtml.indexOf('{{undefined}}') > 0) {
         this.textfield.find('.texthtmleditarea').html('{{' + name + '}}');
       }
       this.textfield.find('.texthtmleditarea').show();

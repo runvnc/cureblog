@@ -39,12 +39,38 @@ class PagedDataWidget
         @listrecords()
       else
         @displaymode()
-        @loadrecent()        
-        
+        if not window.location.hash? or window.location.hash.length < 3
+          @loadrecent()        
+      
+      $(window).bind 'hashchange', =>
+        @checkHash()  
+
+      @checkHash()      
+      
     catch e
       console.log e
-    
-     
+
+  checkHash: ->
+    if window.location.hash?
+      path = window.location.hash.substr 1
+      if path.indexOf 'content/' >= 0
+        tokens = path.split '/'
+        collection = tokens[1]
+        if collection is @pageddata.attr('data-collection')
+          title = tokens[2]
+          title = title.replace(/\-/g, ' ')
+          criteria = { title: title }
+          now.dbquery collection, criteria, (record) =>
+            if record?
+              record = record[0]
+              if not record?
+                @designmode()
+              else
+                @displaymode()
+                @record = record
+                @display()
+              
+      
   loadrecent: (callback) ->  
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       @records = records
@@ -60,7 +86,7 @@ class PagedDataWidget
     rec = @record
     @pageddata.find('.field').each ->
       widget = this.widget
-      widget.display rec
+      widget.display.call widget, rec
       
     
   getfields: ->
@@ -97,6 +123,10 @@ class PagedDataWidget
       @listrecords()
       @designmode()
       now.cachePage '/'
+      title = @record['title']
+      if title?
+        title = title.replace(/\ /g, '-')
+        now.cachePage title, @col
     
     
   edit: (record) ->
@@ -132,7 +162,8 @@ class PagedDataWidget
         for fieldname, val of fields
           if fieldname.indexOf('_') isnt 0
             str += '<td class=\"recorditem\">' + record[fieldname] + '</td>'
-        str += '</tr></table>'
+        str += '</tr>'
+      str += '</table>'
       @pageddata.find('.pagedlist').html str
       @pageddata.find('.pagedrecord').off 'click'
       pageddata = this
@@ -143,7 +174,7 @@ class PagedDataWidget
           record = record[0]
           pageddata.edit.call pageddata, record
       
-      
+       
 class PagedDataTool
   constructor: ->
     widgethtml = $('#pageddatatemplate').html()
@@ -167,6 +198,7 @@ class PagedDataTool
           p.top = ev.pageY - $(ev.target).offsetTop
         new PagedDataWidget($('.activewidget'), p, false)
     
+     
     
 $ ->
   $(document).bind 'sessionState', (user) ->
@@ -180,4 +212,6 @@ $ ->
         x = $(@).position().left
         y = $(@).position().top
         text = new PagedDataWidget($(this).parent(),$(this).position(), true, $(this))  
+  
+  
   

@@ -54,12 +54,49 @@
           this.listrecords();
         } else {
           this.displaymode();
-          this.loadrecent();
+          if (!(window.location.hash != null) || window.location.hash.length < 3) {
+            this.loadrecent();
+          }
         }
+        $(window).bind('hashchange', function() {
+          return _this.checkHash();
+        });
+        this.checkHash();
       } catch (e) {
         console.log(e);
       }
     }
+
+    PagedDataWidget.prototype.checkHash = function() {
+      var collection, criteria, path, title, tokens,
+        _this = this;
+      if (window.location.hash != null) {
+        path = window.location.hash.substr(1);
+        if (path.indexOf('content/' >= 0)) {
+          tokens = path.split('/');
+          collection = tokens[1];
+          if (collection === this.pageddata.attr('data-collection')) {
+            title = tokens[2];
+            title = title.replace(/\-/g, ' ');
+            criteria = {
+              title: title
+            };
+            return now.dbquery(collection, criteria, function(record) {
+              if (record != null) {
+                record = record[0];
+                if (!(record != null)) {
+                  return _this.designmode();
+                } else {
+                  _this.displaymode();
+                  _this.record = record;
+                  return _this.display();
+                }
+              }
+            });
+          }
+        }
+      }
+    };
 
     PagedDataWidget.prototype.loadrecent = function(callback) {
       var _this = this;
@@ -83,7 +120,7 @@
       return this.pageddata.find('.field').each(function() {
         var widget;
         widget = this.widget;
-        return widget.display(rec);
+        return widget.display.call(widget, rec);
       });
     };
 
@@ -134,9 +171,15 @@
         "id": this.record["_id"]
       };
       return now.dbupdate(this.col, criteria, this.record, function() {
+        var title;
         _this.listrecords();
         _this.designmode();
-        return now.cachePage('/');
+        now.cachePage('/');
+        title = _this.record['title'];
+        if (title != null) {
+          title = title.replace(/\ /g, '-');
+          return now.cachePage(title, _this.col);
+        }
       });
     };
 
@@ -189,8 +232,9 @@
               str += '<td class=\"recorditem\">' + record[fieldname] + '</td>';
             }
           }
-          str += '</tr></table>';
+          str += '</tr>';
         }
+        str += '</table>';
         _this.pageddata.find('.pagedlist').html(str);
         _this.pageddata.find('.pagedrecord').off('click');
         pageddata = _this;

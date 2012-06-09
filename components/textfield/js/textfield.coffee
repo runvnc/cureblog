@@ -31,7 +31,12 @@ class TextFieldWidget
       @designmode()
     
   showname: ->
-    @obj.find('.fieldname').html @obj.attr 'data-fieldname'
+    name = @obj.attr 'data-fieldname'
+    @obj.find('.fieldname').html name
+    template = @textfield.find('.texthtmleditarea').html()
+    newhtml = template.replace /\{\{[a-z0-9]*\}\}/i, '{{'+name+'}}'
+    @textfield.find('.texthtmleditarea').html newhtml
+    
     
   edit: (record) ->
     name = @obj.attr 'data-fieldname'
@@ -55,7 +60,7 @@ class TextFieldWidget
     name = @obj.attr 'data-fieldname'
     @textfield.find('.textinput').hide()
     currhtml = @textfield.find('.texthtmleditarea').html()
-    if currhtml.indexOf('{{') < 0
+    if currhtml.indexOf('{{') < 0 or currhtml.indexOf('{{undefined}}') > 0
       @textfield.find('.texthtmleditarea').html '{{' + name + '}}'
     @textfield.find('.texthtmleditarea').show()
     oFCKeditor = new FCKeditor('editor1')

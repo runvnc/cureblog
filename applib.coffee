@@ -204,7 +204,7 @@ build = (toload, which) ->
   #addCss += 'headHTML+= \'' + css + '\';'
   #addCss += 'document.getElementsByTagName("head")[0].innerHTML = headHTML;</script>'
   idthis = "<script type=\"text/template\">which is #{which}</script>"
-  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>Cure CMS</title>#{css}</head><body>#{idthis}#{body}</body></html>"
+  "<!doctype html><html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><title>OIC</title>#{css}</head><body>#{idthis}#{body}</body></html>"
 
 writebuild = (source, which) ->
   process.templates["#{which}index"] = source
