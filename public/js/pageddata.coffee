@@ -33,10 +33,13 @@ class PagedDataWidget
         @pageddata.find('.toggletop').off 'click'
         @pageddata.find('.toggletop').on 'click', =>
           @pageddata.find('.pagedtop').toggle 100
+          @pageddata.find('.widgetcontent').toggle 100
         @pageddata.find('.savepaged').off 'click'
         @pageddata.find('.savepaged').on 'click', =>
           @save()
         @listrecords()
+        @pageddata.find('.widgetcontent').hide()
+        @pageddata.find('.pagedtop').show()
       else
         @displaymode()
         if not window.location.hash? or window.location.hash.length < 3
@@ -75,7 +78,6 @@ class PagedDataWidget
               
         
   loadrecent: (callback) -> 
-    $('body').prepend 'LOADRECENT'
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       @records = records
       @record = records[records.length-1]      
@@ -87,7 +89,6 @@ class PagedDataWidget
     
   
   display: ->
-    $('body').prepend 'DISPLAY'
     rec = @record
     @pageddata.find('.field').each ->
       widget = this.widget
@@ -127,6 +128,8 @@ class PagedDataWidget
     now.dbupdate @col, criteria, @record, =>      
       @listrecords()
       @designmode()
+      @pageddata.find('.widgetcontent').hide()
+      @pageddata.find('.pagedtop').show()
       now.cachePage '/'
       title = @record['title']
       if title?
@@ -139,6 +142,7 @@ class PagedDataWidget
     pageddata = @pageddata
     @pageddata.find('.editcontrols').show()
     @pageddata.find('.pagedtop').hide 100
+    @pageddata.find('.widgetcontent').show 100
     @pageddata.find('.field').each ->
       widget = $(this).data 'widget'
       widget.edit record

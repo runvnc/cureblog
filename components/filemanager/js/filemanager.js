@@ -184,7 +184,7 @@
   };
 
   $(function() {
-    $('#advobjs').prepend('<button id=\"openfm\" class=\"white button\"><img src=\"images/files.png\"/>File Manager</button>');
+    $('#advobjs').prepend('<button id=\"openfm\" class=\"white button\"><img src=\"images/folder.png\"/></button>');
     $('#openfm').click(function() {
       $('#fileman').dialog({
         title: 'File Manager',

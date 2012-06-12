@@ -3,9 +3,9 @@
 }
 
 .emailsicon {
-  background-image: url('images/email_icon.png');
-  width: 30px;
-  height: 30px;
+  /* background-image: url('images/email_icon.png'); */
+  width: 19px;
+  height: 17px;
 }
 
 .emailsall {
@@ -43,7 +43,7 @@
 }
 
 
-.toolwidget {
+.emailswidget {
   cursor:hand;
   cursor:grab;
   cursor:-moz-grab;
@@ -54,9 +54,8 @@
   text-align: center;
   border: 1px dotted #000;
 
-  height: 45px;
+  height: 25px;
   padding: 4px; 
-  padding-bottom: 10px;
 
   color: #606060;
   background: #fff;

@@ -285,12 +285,19 @@
   };
 
   $(function() {
+    $('#advtoggle').on('change', function() {
+      if ($('#advtoggle').is(':checked')) {
+        return $('#advanced').show();
+      } else {
+        return $('#advanced').hide();
+      }
+    });
     $('body').prepend('<div id="debugloghandle">log</div>');
     $('#debugloghandle').show();
     $('#editorui').hide();
     $('body').prepend($('#editorui'));
     $('#objs').height($(window).height());
-    $('#advobjs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
+    $('#advobjs').prepend('<button id="editcode" class="button white"><img src="/images/codegray.png"/></button>');
     $('#objs').prepend('<button id="savepage" class="button white smallbtn"><img src="images/save2.png"/></button><br/>');
     $('#tabs').tabs({
       show: function(event, ui) {
@@ -342,7 +349,7 @@
       window.delay(150, function() {
         $(".ui-tabs-panel").height($(window).height() * .7);
         $(".CodeMirror").height($(window).height() * .69);
-        $('#components').height($(window).height() * .64);
+        $('#components').height($(window).height() * .62);
         return window.delay(150, function() {
           $(".CodeMirror-scroll").height($(window).height() * .68);
           return $('.transparent').css('backgroundColor', '#f2f2f2');

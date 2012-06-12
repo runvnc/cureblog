@@ -45,13 +45,16 @@
           });
           this.pageddata.find('.toggletop').off('click');
           this.pageddata.find('.toggletop').on('click', function() {
-            return _this.pageddata.find('.pagedtop').toggle(100);
+            _this.pageddata.find('.pagedtop').toggle(100);
+            return _this.pageddata.find('.widgetcontent').toggle(100);
           });
           this.pageddata.find('.savepaged').off('click');
           this.pageddata.find('.savepaged').on('click', function() {
             return _this.save();
           });
           this.listrecords();
+          this.pageddata.find('.widgetcontent').hide();
+          this.pageddata.find('.pagedtop').show();
         } else {
           this.displaymode();
           if (!(window.location.hash != null) || window.location.hash.length < 3) {
@@ -104,7 +107,6 @@
 
     PagedDataWidget.prototype.loadrecent = function(callback) {
       var _this = this;
-      $('body').prepend('LOADRECENT');
       return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
         _this.records = records;
         _this.record = records[records.length - 1];
@@ -121,7 +123,6 @@
 
     PagedDataWidget.prototype.display = function() {
       var rec;
-      $('body').prepend('DISPLAY');
       rec = this.record;
       return this.pageddata.find('.field').each(function() {
         var widget;
@@ -180,6 +181,8 @@
         var title;
         _this.listrecords();
         _this.designmode();
+        _this.pageddata.find('.widgetcontent').hide();
+        _this.pageddata.find('.pagedtop').show();
         now.cachePage('/');
         title = _this.record['title'];
         if (title != null) {
@@ -195,6 +198,7 @@
       pageddata = this.pageddata;
       this.pageddata.find('.editcontrols').show();
       this.pageddata.find('.pagedtop').hide(100);
+      this.pageddata.find('.widgetcontent').show(100);
       return this.pageddata.find('.field').each(function() {
         var widget;
         widget = $(this).data('widget');

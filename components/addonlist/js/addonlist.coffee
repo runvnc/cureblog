@@ -81,7 +81,7 @@ install = (plugin) ->
   
   
 $ ->    
-  $('#advobjs').prepend '<button id="plugins" class="button white"><img src="images/plugins.png"/>Plugins..</button>'  
+  $('#advobjs').prepend '<button id="plugins" class="button white"><img src="images/cogs.png"/></button>'  
 
   $('#updateactive').click updateActive
   

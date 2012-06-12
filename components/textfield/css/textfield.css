@@ -3,9 +3,9 @@
 }
 
 .textfieldicon {
-  background-image: url('images/input.png');
-  width: 30px;
-  height: 30px;
+  
+  width: 19px;
+  
 }
 
 
@@ -58,7 +58,7 @@
 }
 
 
-.toolwidget {
+.texttoolwidget {
   cursor:hand;
   cursor:grab;
   cursor:-moz-grab;
@@ -69,9 +69,9 @@
   text-align: center;
   border: 1px dotted #000;
 
-  height: 45px;
+  height: 25px;
   padding: 4px; 
-  padding-bottom: 10px;
+
 
   color: #606060;
   background: #fff;

@@ -216,13 +216,19 @@ writelog = (s) ->
   
       
 $ ->
+  $('#advtoggle').on 'change', ->    
+    if $('#advtoggle').is(':checked')
+      $('#advanced').show()
+    else
+      $('#advanced').hide()
+    
   $('body').prepend '<div id="debugloghandle">log</div>'
   $('#debugloghandle').show()
   $('#editorui').hide()
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()
 
-  $('#advobjs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
+  $('#advobjs').prepend '<button id="editcode" class="button white"><img src="/images/codegray.png"/></button>'
   $('#objs').prepend '<button id="savepage" class="button white smallbtn"><img src="images/save2.png"/></button><br/>'
 
   $('#tabs').tabs
@@ -269,7 +275,7 @@ $ ->
     window.delay 150, ->
       $(".ui-tabs-panel").height $(window).height() * .7
       $(".CodeMirror").height $(window).height() * .69
-      $('#components').height $(window).height() * .64
+      $('#components').height $(window).height() * .62
       window.delay 150, ->
         $(".CodeMirror-scroll").height $(window).height() * .68
         $('.transparent').css 'backgroundColor', '#f2f2f2'

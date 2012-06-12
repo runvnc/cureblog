@@ -3,9 +3,9 @@
 }
 
 .pagesicon {
-  background-image: url('images/tabs.jpg');
-  width: 30px;
-  height: 30px;
+  
+  width: 19px;
+  /* height: 30px; */
 }
 
 .pagesall {
@@ -56,7 +56,7 @@
 }
 
 
-.toolwidget {
+.pgtoolwidget, .toolwidget {
   cursor:hand;
   cursor:grab;
   cursor:-moz-grab;
@@ -67,9 +67,9 @@
   text-align: center;
   border: 1px dotted #000;
 
-  height: 45px;
+  height: 25px;
   padding: 4px; 
-  padding-bottom: 10px;
+  /* padding-bottom: 10px;*/
 
   color: #606060;
   background: #fff;
