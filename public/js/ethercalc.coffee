@@ -19,7 +19,7 @@ class EtherCalcWidget
 
     catch e
              
-  
+    
 class EtherCalcTool
   constructor: ->
     widgethtml = $('#ethercalctemplate').html()
@@ -43,7 +43,7 @@ class EtherCalcTool
           p.top = ev.pageY - $(ev.target).offsetTop
         new EtherCalcWidget($('.activewidget'), p, false)
     
-    
+      
 $ ->
   $('.ethercalcall').each ->    
     if $(@)?      

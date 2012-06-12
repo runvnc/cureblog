@@ -1,7 +1,7 @@
    
 class Recycler
   constructor: ->
-    $('#objs').prepend( '<div class="recycle"><div id="recycler">♻</div><div class="rectext">Recycle</div></div>' )
+    $('#objs').prepend( '<div class="recycle"><div id="recycler">♻</div></div>' )
     #♻
     $('#recycler').droppable
       tolerance: 'touch'

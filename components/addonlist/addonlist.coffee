@@ -5,7 +5,7 @@ childproc = require 'child_process'
 allplugins = {}
 
 
-childproc.exec 'git submodule update', (er, o, e) ->
+childproc.exec 'cd oicplugins;git pull', (er, o, e) ->
   fs.readFile 'oicplugins/all.json', 'utf8', (err, data) ->
     allplugins = JSON.parse data
 

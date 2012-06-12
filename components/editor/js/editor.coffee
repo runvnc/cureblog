@@ -6,7 +6,7 @@ editorcss = undefined
 window.saveFilters = []
 
 nowediting = ''
-
+  
 initialized = false
 
 thing = () ->
@@ -222,8 +222,8 @@ $ ->
   $('body').prepend $('#editorui')
   $('#objs').height $(window).height()
 
-  $('#objs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
-  $('#objs').prepend '<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>'
+  $('#advobjs').prepend '<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>'
+  $('#objs').prepend '<button id="savepage" class="button white smallbtn"><img src="images/save2.png"/></button><br/>'
 
   $('#tabs').tabs
     show: (event, ui) ->
@@ -250,7 +250,7 @@ $ ->
       else
         $('.demo').html 'Your edits have been saved.  Reloading application..'
         now.restartServer()
-        setTimeout ( -> window.location.reload() ), 2000
+        setTimeout ( -> window.location.reload() ), 3000
 
     active = []
     $('#components li').each ->

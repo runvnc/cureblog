@@ -41,6 +41,7 @@ class TextFieldWidget
   edit: (record) ->
     name = @obj.attr 'data-fieldname'
     @textfield.find('.textinput').show()
+    @textfield.find('.texthtmleditarea').hide()
     @textfield.find('.textinput').val record[name]
     @textfield.find('.texthtmleditarea').hide()
     @textfield.find('.textinput').off 'blur'
@@ -50,8 +51,10 @@ class TextFieldWidget
   display: (record) ->  
     name = @obj.attr 'data-fieldname'
     template = @textfield.find('.texthtmleditarea').html()
+    
     newhtml = template.replace '{{'+name+'}}', record[name]
-    @textfield.find('.texthtmleditarea').html newhtml
+    @textfield.find('.texthtmldisplay').html newhtml
+    @textfield.find('.texthtmleditarea').hide()
     @textfield.find('.rename,.fieldname').hide()
     @textfield.css 'border', 'none'
     
@@ -88,7 +91,7 @@ class TextFieldTool
     data = 
       name: 'textfieldcollector'
     btn.data 'widget', data    
-    $('#objlist').append widget 
+    $('#advobjlist').append widget 
     
     widget.draggable
       helper: 'clone'

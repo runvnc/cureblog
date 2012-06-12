@@ -50,6 +50,7 @@
       var name;
       name = this.obj.attr('data-fieldname');
       this.textfield.find('.textinput').show();
+      this.textfield.find('.texthtmleditarea').hide();
       this.textfield.find('.textinput').val(record[name]);
       this.textfield.find('.texthtmleditarea').hide();
       this.textfield.find('.textinput').off('blur');
@@ -63,7 +64,8 @@
       name = this.obj.attr('data-fieldname');
       template = this.textfield.find('.texthtmleditarea').html();
       newhtml = template.replace('{{' + name + '}}', record[name]);
-      this.textfield.find('.texthtmleditarea').html(newhtml);
+      this.textfield.find('.texthtmldisplay').html(newhtml);
+      this.textfield.find('.texthtmleditarea').hide();
       this.textfield.find('.rename,.fieldname').hide();
       return this.textfield.css('border', 'none');
     };
@@ -113,7 +115,7 @@
         name: 'textfieldcollector'
       };
       btn.data('widget', data);
-      $('#objlist').append(widget);
+      $('#advobjlist').append(widget);
       widget.draggable({
         helper: 'clone',
         stop: function(ev, ui) {

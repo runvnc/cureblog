@@ -59,3 +59,4 @@ now.ready ->
     window.nowAlready = true
     $(document).trigger 'nowInit'      
 
+  

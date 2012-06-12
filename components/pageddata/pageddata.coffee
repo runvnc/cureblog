@@ -13,7 +13,7 @@ everyone.now.cachePage = (path, collection) ->
         delayit = (ms, func) -> setTimeout func, ms
         getHTML = ->
           document.getElementsByTagName('html')[0].innerHTML
-        delayit 700, ->
+        delayit 1700, ->
           page.evaluate getHTML, (result) ->
             if path is '/'
               filename = 'index.html'

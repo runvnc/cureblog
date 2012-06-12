@@ -55,7 +55,9 @@
         } else {
           this.displaymode();
           if (!(window.location.hash != null) || window.location.hash.length < 3) {
-            this.loadrecent();
+            if (window.location.href.lastIndexOf('/') === window.location.href.length - 1) {
+              this.loadrecent();
+            }
           }
         }
         $(window).bind('hashchange', function() {
@@ -82,6 +84,8 @@
               title: title
             };
             return now.dbquery(collection, criteria, function(record) {
+              alert('got the record');
+              console.log(record);
               if (record != null) {
                 record = record[0];
                 if (!(record != null)) {
@@ -100,6 +104,7 @@
 
     PagedDataWidget.prototype.loadrecent = function(callback) {
       var _this = this;
+      $('body').prepend('LOADRECENT');
       return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
         _this.records = records;
         _this.record = records[records.length - 1];
@@ -116,6 +121,7 @@
 
     PagedDataWidget.prototype.display = function() {
       var rec;
+      $('body').prepend('DISPLAY');
       rec = this.record;
       return this.pageddata.find('.field').each(function() {
         var widget;
@@ -210,7 +216,10 @@
     };
 
     PagedDataWidget.prototype.listrecords = function() {
-      var _this = this;
+      var col,
+        _this = this;
+      col = this.pageddata.attr('data-collection');
+      if (!(col != null)) return;
       return now.dbfind(this.pageddata.attr('data-collection'), function(records) {
         var fieldname, fields, id, pageddata, record, str, val, _i, _len;
         str = '';
@@ -239,7 +248,7 @@
         _this.pageddata.find('.pagedrecord').off('click');
         pageddata = _this;
         return _this.pageddata.find('.pagedrecord').on('click', function() {
-          var col, obj;
+          var obj;
           col = pageddata.pageddata.attr('data-collection');
           obj = {
             "_id": $(this).attr('id')
@@ -268,7 +277,7 @@
         name: 'pageddatacollector'
       };
       btn.data('widget', data);
-      $('#objlist').append(widget);
+      $('#advobjlist').append(widget);
       widget.draggable({
         helper: 'clone',
         stop: function(ev, ui) {
@@ -307,6 +316,12 @@
         }
       });
     });
+  });
+
+  if (!(window.saveFilters != null)) window.saveFilters = [];
+
+  window.saveFilters.push(function(sel) {
+    return $(sel).find('.pagedlist table').remove();
   });
 
 }).call(this);

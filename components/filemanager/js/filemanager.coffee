@@ -153,7 +153,7 @@ window.doneUploading = ->
   
   
 $ ->
-  $('#objs').prepend '<button id=\"openfm\" class=\"white button\"><img src=\"images/files.png\"/>File Manager</button>'
+  $('#advobjs').prepend '<button id=\"openfm\" class=\"white button\"><img src=\"images/files.png\"/>File Manager</button>'
   $('#openfm').click ->
     $('#fileman').dialog
       title: 'File Manager'

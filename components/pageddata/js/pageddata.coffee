@@ -40,7 +40,8 @@ class PagedDataWidget
       else
         @displaymode()
         if not window.location.hash? or window.location.hash.length < 3
-          @loadrecent()        
+          if window.location.href.lastIndexOf('/') is window.location.href.length - 1
+            @loadrecent()        
       
       $(window).bind 'hashchange', =>
         @checkHash()  
@@ -61,6 +62,8 @@ class PagedDataWidget
           title = title.replace(/\-/g, ' ')
           criteria = { title: title }
           now.dbquery collection, criteria, (record) =>
+            alert 'got the record'
+            console.log record
             if record?
               record = record[0]
               if not record?
@@ -70,8 +73,9 @@ class PagedDataWidget
                 @record = record
                 @display()
               
-      
-  loadrecent: (callback) ->  
+        
+  loadrecent: (callback) -> 
+    $('body').prepend 'LOADRECENT'
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       @records = records
       @record = records[records.length-1]      
@@ -83,6 +87,7 @@ class PagedDataWidget
     
   
   display: ->
+    $('body').prepend 'DISPLAY'
     rec = @record
     @pageddata.find('.field').each ->
       widget = this.widget
@@ -148,6 +153,10 @@ class PagedDataWidget
       
       
   listrecords: ->
+    col = @pageddata.attr('data-collection')
+    if not col?
+      return
+
     now.dbfind @pageddata.attr('data-collection'), (records) =>
       str = ''
       @records = records
@@ -174,7 +183,7 @@ class PagedDataWidget
           record = record[0]
           pageddata.edit.call pageddata, record
       
-       
+        
 class PagedDataTool
   constructor: ->
     widgethtml = $('#pageddatatemplate').html()
@@ -184,7 +193,7 @@ class PagedDataTool
     data = 
       name: 'pageddatacollector'
     btn.data 'widget', data    
-    $('#objlist').append widget 
+    $('#advobjlist').append widget 
     
     widget.draggable
       helper: 'clone'
@@ -212,6 +221,11 @@ $ ->
         x = $(@).position().left
         y = $(@).position().top
         text = new PagedDataWidget($(this).parent(),$(this).position(), true, $(this))  
+
+if not window.saveFilters?
+  window.saveFilters = []
   
+window.saveFilters.push (sel) ->      
+  $(sel).find('.pagedlist table').remove()
   
   

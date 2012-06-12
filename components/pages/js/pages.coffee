@@ -34,7 +34,7 @@ class PagesTool
     data = 
       name: 'pages'
     btn.data 'widget', data    
-    $('#objlist').append widget 
+    $('#advobjlist').append widget 
     
     widget.draggable
       helper: 'clone'

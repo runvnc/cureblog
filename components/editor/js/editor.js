@@ -290,8 +290,8 @@
     $('#editorui').hide();
     $('body').prepend($('#editorui'));
     $('#objs').height($(window).height());
-    $('#objs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
-    $('#objs').prepend('<button id="savepage" class="button white"><img src="images/save.png"/>Save Page</button><br/>');
+    $('#advobjs').prepend('<button id="editcode" class="button white"><img src="images/code.png"/>Code Editor</button>');
+    $('#objs').prepend('<button id="savepage" class="button white smallbtn"><img src="images/save2.png"/></button><br/>');
     $('#tabs').tabs({
       show: function(event, ui) {
         if (editorhtml != null) editorhtml.refresh();
@@ -320,7 +320,7 @@
           now.restartServer();
           return setTimeout((function() {
             return window.location.reload();
-          }), 2000);
+          }), 3000);
         }
       });
       active = [];
