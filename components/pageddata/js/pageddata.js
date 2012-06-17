@@ -241,7 +241,7 @@
           str += '<tr class=\"pagedrecord\" id=\"' + id + '\">';
           for (fieldname in fields) {
             val = fields[fieldname];
-            if (fieldname.indexOf('_') !== 0) {
+            if (fieldname.indexOf('_') !== 0 && fieldname === 'title') {
               str += '<td class=\"recorditem\">' + record[fieldname] + '</td>';
             }
           }

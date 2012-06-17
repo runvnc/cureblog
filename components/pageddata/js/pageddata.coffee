@@ -173,7 +173,7 @@ class PagedDataWidget
         id = record['_id']        
         str += '<tr class=\"pagedrecord\" id=\"' + id + '\">'
         for fieldname, val of fields
-          if fieldname.indexOf('_') isnt 0
+          if fieldname.indexOf('_') isnt 0 and fieldname is 'title'
             str += '<td class=\"recorditem\">' + record[fieldname] + '</td>'
         str += '</tr>'
       str += '</table>'
