@@ -99,9 +99,10 @@ class PagedDataWidget
     fields = []
     s = this
     @pageddata.find('.field').each ->
+      widget= this.widget      
       field =
         name: $(this).attr 'data-fieldname'
-      field.value = s.blank field
+      field.value = widget.blank()
       fields.push field
     fields  
       

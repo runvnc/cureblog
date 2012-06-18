@@ -33,7 +33,9 @@ class HtmlFieldWidget
       
     console.log 'htmlfield constructor done'
   
-  
+  blank: =>
+    'New'
+    
   showname: ->
     @obj.find('.fieldname').html @obj.attr 'data-fieldname'
     

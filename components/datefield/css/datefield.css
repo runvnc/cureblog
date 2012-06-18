@@ -1,0 +1,82 @@
+.datefieldwrapper {
+  /* width: 150px; */
+}
+
+.datefieldicon {
+  
+  width: 19px;
+  
+}
+
+
+.datehtmleditarea {
+  display: none; 
+}
+
+.datefieldall {
+  position: absolute;
+  padding: 15px;
+  margin: 15px;
+  border: 1px dotted #aaa; 
+ }
+
+
+.rename {
+  float: right; 
+  cursor: pointer;
+  font-size: 8pt;
+}
+
+.fieldname {
+  float: right;
+  margin-left: 5px;
+  font-size: 8pt;
+}
+
+.datefieldscontent {
+
+  position: relative;
+}
+
+.datefieldscontainer {
+  position: relative;
+  margin-left: 150px;
+
+}
+
+.datefieldmenu li {
+  cursor: pointer; 
+  font-family: Ubuntu;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.datefieldmenu li:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+
+.datetoolwidget {
+  cursor:hand;
+  cursor:grab;
+  cursor:-moz-grab;
+  cursor:-webkit-grab;  
+  background-color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  text-align: center;
+  border: 1px dotted #000;
+
+  height: 25px;
+  padding: 4px; 
+
+
+  color: #606060;
+  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+  background: -moz-linear-gradient(top,  #fff,  #ededed);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed'); 
+  margin-left: 10px;
+}

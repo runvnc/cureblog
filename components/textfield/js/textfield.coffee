@@ -37,6 +37,8 @@ class TextFieldWidget
     newhtml = template.replace /\{\{[a-z0-9]*\}\}/i, '{{'+name+'}}'
     @textfield.find('.texthtmleditarea').html newhtml
     
+  blank: =>
+    'New'
     
   edit: (record) ->
     name = @obj.attr 'data-fieldname'

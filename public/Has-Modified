@@ -102,13 +102,6 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
   
    <!-- pagesall -->
   
@@ -203,7 +196,7 @@
   <div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="07dc83c8-24ae-1723-71a7-8722a0f82445" style="position: absolute; top: -14px; left: 35px; width: 325px; height: 138px; "><div class="ipweditable"><div><span style="color: rgb(102, 0, 255); "><span style="font-size: 72pt; "><span style="font-family: Ubuntu; ">OIC</span></span></span></div></div></div>
    <!-- pagesall -->
   
-  <div class="pagesall ui-draggable" style="position: absolute; left: 50px; top: 138px; ">
+  <div class="pagesall ui-draggable" style="position: absolute; left: 57px; top: 138px; ">
     <div class="movepages" style="display: none; "></div>
     <ul class="pagesmenu">
       <li>Home</li>
@@ -213,7 +206,7 @@
     <div class="pagescontainer">
       <div class="page-Home pagescontent" style="display: block; ">
         
-       <!-- pagesall --><div class="pageddataall ui-draggable ui-resizable" style="top: -24px; left: -44px; width: 833px; height: 525px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-collection="Blog">
+       <!-- pagesall --><div class="pageddataall ui-draggable ui-resizable" style="top: -25px; left: -43px; width: 821px; height: 414px; position: absolute; border-width: initial; border-color: initial; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-collection="Blog">
     <div class="pagedtop" style="display: none; ">
       <input type="text" class="pagedtype" placeholder="Record type">
       <div class="movehandle" style="display: none; ">&nbsp;</div>
@@ -227,22 +220,22 @@
     </div>
     
     <div class="widgetcontent activewidget" style="display: block; ">
-    <div class="textfieldall field ui-resizable ui-draggable" style="width: 724px; height: 15px; left: 12px; top: 67px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="title">
+    <div class="textfieldall field ui-resizable ui-draggable" style="width: 719px; height: 26px; left: 13px; top: 67px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="title">
     <div class="fieldname" style="display: none; ">title</div>
     <div class="rename" style="display: none; ">rename</div>
     <input class="textinput" type="text" style="display: none; ">
-    <div class="texthtmldisplay"><div><strong>Your Cat Wants To Eat You</strong></div></div>
-    <div class="texthtmleditarea" style="display: none; "><div><strong>{{title}}</strong></div></div>
-  </div> <!-- pagesall --><div class="htmlfieldall field ui-resizable ui-draggable" style="top: 114px; left: 10px; width: 738px; height: 154px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="article">
+    <div class="texthtmldisplay">Has Modified</div>
+    <div class="texthtmleditarea" style="display: none; ">{{title}}</div>
+  </div> <!-- pagesall --><div class="htmlfieldall field ui-resizable ui-draggable" style="position: absolute; top: 153px; left: 13px; width: 697px; height: 160px; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="article">
     <div class="fieldname" style="display: none; ">article</div>
     <div class="rename" style="display: none; ">rename</div>
-    <div class="htmleditarea"><div>I will explain why it is that your cat really wants to eat you.</div></div>
-  </div> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --><div class="datefieldall field ui-resizable ui-draggable" style="top: 5px; left: 12px; position: absolute; width: 579px; height: 10px; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="modified">
+    <div class="htmleditarea"><div>This blog entry has a modified datetime.</div></div>
+  </div> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --><div class="datefieldall field ui-resizable ui-draggable" style="top: -3px; left: 10px; width: 376px; height: 24px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="modified">
     <div class="fieldname" style="display: none; ">modified</div>
     <div class="rename" style="display: none; ">rename</div>
     <input class="dateinput" type="datetime-local" style="display: none; ">
-    <div class="datetimedisplay"><div><em>Monday, June 18th, 2012, 1:48:46 AM</em></div></div>
-    <div class="datetimeeditarea" style="display: none; "><div><em>{{modified}}</em></div></div>
+    <div class="datehtmldisplay">2012-06-19T01:16</div>
+    <div class="datehtmleditarea" style="display: none; ">{{modified}}</div>
   </div> <!-- pagesall --></div>
   </div></div>
       <div class="page-About pagescontent" style="display: none; ">
@@ -253,14 +246,9 @@
   <div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="d90d1a7d-6220-c3aa-92f0-1d5c739d5d63" style="position: absolute; top: 37px; left: 541px; width: 72px; height: 20px; "><div class="ipweditable"><div>Signup:</div></div></div><div class="emailsall ui-draggable" style="position: absolute; left: 580px; top: 3px; ">
     <input type="email" class="saveemail">    
   </div> <!-- pagesall -->
-   <!-- pagesall -->
-  
-  
-  
-  
-  
-  
-  
+  <div class="emailsall ui-draggable" style="position: absolute; left: 824px; top: 44px; ">
+    <input type="email" class="saveemail">    
+  </div> <!-- pagesall -->
   
   
   
@@ -539,8 +527,8 @@
     <div class="fieldname"></div>
     <div class="rename">rename</div>
     <input class="dateinput" type="datetime-local"/>
-    <div class="datetimedisplay"></div>
-    <div class="datetimeeditarea">Datetime</div>
+    <div class="datehtmldisplay"></div>
+    <div class="datehtmleditarea">Rich date Field</div>
   </div> <!-- pagesall -->
 </script>
 
@@ -554,4 +542,4 @@
       </div>
     </div>
   </li>
-</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script><script src="/nowjs/now.js"></script><script src="js/combined1340009288450.js"></script></body>
+</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script><script src="/nowjs/now.js"></script><script src="js/combined1340006774008.js"></script></body>

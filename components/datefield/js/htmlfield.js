@@ -1,11 +1,9 @@
 (function() {
-  var HtmlFieldTool, HtmlFieldWidget,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var HtmlFieldTool, HtmlFieldWidget;
 
   HtmlFieldWidget = (function() {
 
     function HtmlFieldWidget(parent, position, exists, widget) {
-      this.blank = __bind(this.blank, this);
       var htmlfieldhtml,
         _this = this;
       if (!exists) {
@@ -26,45 +24,19 @@
       }
       this.obj = this.htmlfield;
       this.htmlfield.data('widget', this);
-      this.htmlfield[0].widget = this;
       this.htmlfield.widget = this;
-      if (window.loggedIn) {
-        this.htmlfield.find('.rename').off('click');
-        this.htmlfield.find('.rename').on('click', function() {
-          var name;
-          name = prompt('Enter field name');
-          _this.htmlfield.attr('data-fieldname', name);
-          return _this.showname();
-        });
-        this.showname();
-      } else {
-        this.displaymode();
-      }
-      console.log('htmlfield constructor done');
+      this.htmlfield.find('.rename').off('click');
+      this.htmlfield.find('.rename').on('click', function() {
+        var name;
+        name = prompt('Enter field name');
+        _this.htmlfield.attr('data-fieldname', name);
+        return _this.showname();
+      });
+      this.showname();
     }
-
-    HtmlFieldWidget.prototype.blank = function() {
-      return 'New';
-    };
 
     HtmlFieldWidget.prototype.showname = function() {
       return this.obj.find('.fieldname').html(this.obj.attr('data-fieldname'));
-    };
-
-    HtmlFieldWidget.prototype.designmode = function(record) {
-      this.htmlfield.find('.htmleditarea').html('Rich Text Field');
-      return this.htmlfield.find('.htmleditarea').editable('disable');
-    };
-
-    HtmlFieldWidget.prototype.display = function(record) {
-      var name;
-      name = this.obj.attr('data-fieldname');
-      return this.htmlfield.find('.htmleditarea').html(record[name]);
-    };
-
-    HtmlFieldWidget.prototype.displaymode = function() {
-      this.htmlfield.find('.rename,.fieldname').hide();
-      return this.htmlfield.css('border', 'none');
     };
 
     HtmlFieldWidget.prototype.edit = function(record) {
@@ -108,7 +80,7 @@
         name: 'htmlfieldcollector'
       };
       btn.data('widget', data);
-      $('#advobjlist').append(widget);
+      $('#objlist').append(widget);
       widget.draggable({
         helper: 'clone',
         stop: function(ev, ui) {
@@ -131,16 +103,16 @@
   })();
 
   $(function() {
+    $('.htmlfieldall').each(function() {
+      var text, x, y;
+      if ($(this) != null) {
+        x = $(this).position().left;
+        y = $(this).position().top;
+        return text = new HtmlFieldWidget($(this).parent(), $(this).position(), true, $(this));
+      }
+    });
     return $(document).bind('sessionState', function(user) {
-      if (window.loggedIn) window.HtmlFieldTool = new HtmlFieldTool();
-      return $('.htmlfieldall').each(function() {
-        var text, x, y;
-        if ($(this) != null) {
-          x = $(this).position().left;
-          y = $(this).position().top;
-          return text = new HtmlFieldWidget($(this).parent(), $(this).position(), true, $(this));
-        }
-      });
+      if (window.loggedIn) return window.HtmlFieldTool = new HtmlFieldTool();
     });
   });
 

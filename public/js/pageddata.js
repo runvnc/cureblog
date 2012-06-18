@@ -136,11 +136,12 @@
       fields = [];
       s = this;
       this.pageddata.find('.field').each(function() {
-        var field;
+        var field, widget;
+        widget = this.widget;
         field = {
           name: $(this).attr('data-fieldname')
         };
-        field.value = s.blank(field);
+        field.value = widget.blank();
         return fields.push(field);
       });
       return fields;

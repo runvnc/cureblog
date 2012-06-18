@@ -9,14 +9,12 @@ class EmailCollectorWidget
       emails.css 'top', position.top + 'px'
       emails.css 'left', position.left + 'px'
       parent.append emails
-      emails.draggable()
     else
       console.log 'exists'
       emails = widget
       
-    try      
-      console.log '.saveemail is '
-      console.log $('.saveemail')
+    try
+      if window.loggedIn then emails.draggable()
       $('.saveemail').off 'blur'
       $('.saveemail').on 'blur', ->
         console.log 'blur activated'
@@ -52,17 +50,17 @@ class EmailCollectorTool
     
 $ ->
   console.log 'emailcollector startup'
-  $('.emailsall').each ->    
-    console.log 'found an email collector'
-    if $(@)?      
-      x = $(@).position().left
-      y = $(@).position().top
-      text = new EmailCollectorWidget($(this).parent(),$(this).position(), true, $(this))  
-    else
-      console.log 'email collector failed'
-  
+
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
       window.EmailCollectorTool = new EmailCollectorTool()
-      
+    $('.emailsall').each ->    
+      console.log 'found an email collector'
+      if $(@)?      
+        x = $(@).position().left
+        y = $(@).position().top
+        text = new EmailCollectorWidget($(this).parent(),$(this).position(), true, $(this))  
+      else
+        console.log 'email collector failed'
+  
     

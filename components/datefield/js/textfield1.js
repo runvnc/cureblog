@@ -1,11 +1,9 @@
 (function() {
-  var TextFieldTool, TextFieldWidget,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  var TextFieldTool, TextFieldWidget;
 
   TextFieldWidget = (function() {
 
     function TextFieldWidget(parent, position, exists, widget) {
-      this.blank = __bind(this.blank, this);
       var textfieldhtml,
         _this = this;
       if (!exists) {
@@ -46,10 +44,6 @@
       template = this.textfield.find('.texthtmleditarea').html();
       newhtml = template.replace(/\{\{[a-z0-9]*\}\}/i, '{{' + name + '}}');
       return this.textfield.find('.texthtmleditarea').html(newhtml);
-    };
-
-    TextFieldWidget.prototype.blank = function() {
-      return 'New';
     };
 
     TextFieldWidget.prototype.edit = function(record) {

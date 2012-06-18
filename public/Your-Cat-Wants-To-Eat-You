@@ -227,17 +227,17 @@
     </div>
     
     <div class="widgetcontent activewidget" style="display: block; ">
-    <div class="textfieldall field ui-resizable ui-draggable" style="width: 724px; height: 15px; left: 12px; top: 67px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="title">
+    <div class="textfieldall field ui-resizable ui-draggable" style="width: 724px; height: 15px; left: 12px; top: 67px; position: absolute; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="title">
     <div class="fieldname" style="display: none; ">title</div>
     <div class="rename" style="display: none; ">rename</div>
     <input class="textinput" type="text" style="display: none; ">
     <div class="texthtmldisplay"><div><strong>Your Cat Wants To Eat You</strong></div></div>
     <div class="texthtmleditarea" style="display: none; "><div><strong>{{title}}</strong></div></div>
-  </div> <!-- pagesall --><div class="htmlfieldall field ui-resizable ui-draggable" style="top: 114px; left: 10px; width: 738px; height: 154px; position: absolute; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="article">
+  </div> <!-- pagesall --><div class="htmlfieldall field ui-resizable ui-draggable" style="top: 114px; left: 10px; width: 738px; height: 154px; position: absolute; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="article">
     <div class="fieldname" style="display: none; ">article</div>
     <div class="rename" style="display: none; ">rename</div>
     <div class="htmleditarea"><div>I will explain why it is that your cat really wants to eat you.</div></div>
-  </div> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --><div class="datefieldall field ui-resizable ui-draggable" style="top: 5px; left: 12px; position: absolute; width: 579px; height: 10px; border-width: initial; border-color: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="modified">
+  </div> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --><div class="datefieldall field ui-resizable ui-draggable" style="top: 5px; left: 12px; position: absolute; width: 579px; height: 10px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-width: initial; border-color: initial; " data-fieldname="modified">
     <div class="fieldname" style="display: none; ">modified</div>
     <div class="rename" style="display: none; ">rename</div>
     <input class="dateinput" type="datetime-local" style="display: none; ">
