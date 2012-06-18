@@ -22,10 +22,11 @@
         if (window.loggedIn) emails.draggable();
         $('.saveemail').off('blur');
         $('.saveemail').on('blur', function() {
+          var _this = this;
           console.log('blur activated');
           console.log('value is ' + $(this).val());
           return now.saveEmail($(this).val(), function(success, msg) {
-            if (success) return $(this).val('');
+            return $(_this).val('');
           });
         });
       } catch (e) {

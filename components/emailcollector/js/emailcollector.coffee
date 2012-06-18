@@ -19,8 +19,8 @@ class EmailCollectorWidget
       $('.saveemail').on 'blur', ->
         console.log 'blur activated'
         console.log 'value is ' + $(this).val()
-        now.saveEmail $(this).val(), (success, msg) ->
-          if success then $(this).val ''
+        now.saveEmail $(this).val(), (success, msg) =>
+          $(this).val ''
     catch e
       console.log e
     
