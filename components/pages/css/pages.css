@@ -2,6 +2,12 @@
   /* width: 150px; */
 }
 
+.addpage {
+  display: none;
+  left: 15%;
+  position: fixed;
+}
+
 .pagesicon {
   
   width: 19px;
@@ -27,6 +33,7 @@
 
 .pagesmenu {
   float: left; 
+  margin-left: -5%;
 }
 
 .pagescontent {

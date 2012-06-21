@@ -18,7 +18,18 @@ class PagesWidget
       pages.find(".page-#{name}").show()
       $('.activewidget').removeClass 'activewidget'
       pages.find(".page-#{name}").addClass 'activewidget'
+    
+    try
+      pages.find('.pagesmenu li').draggable()
+    catch e
+    
+    pages.find('.addpage').off 'click'
+    pages.find('.addpage').on 'click', ->
+      pagename = prompt 'Page name:' 
+      pages.find('.pagesmenu').append '<li>'+pagename+'</li>'
+      pages.find('.pagescontainer').append '<div class=\"pagescontent page-'+pagename+'\"></div>'
       
+      pages.find('.pagesmenu li').draggable()
     pages.find('.pagesmenu:first-child').trigger 'click'
     try
       pages.draggable({handle: '.movepages'})
@@ -60,9 +71,12 @@ $ ->
   
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
+      $('.addpage').show()
       $('.movepages').show()
       window.PagesTool = new PagesTool()
-      
+    else
+      $('.addpage').hide()
+    
   $('#page').on 'click', (ev) ->
     if ev.target.id is 'page'
       $('.activewidget').removeClass 'activewidget'

@@ -26,6 +26,19 @@
         $('.activewidget').removeClass('activewidget');
         return pages.find(".page-" + name).addClass('activewidget');
       });
+      try {
+        pages.find('.pagesmenu li').draggable();
+      } catch (e) {
+
+      }
+      pages.find('.addpage').off('click');
+      pages.find('.addpage').on('click', function() {
+        var pagename;
+        pagename = prompt('Page name:');
+        pages.find('.pagesmenu').append('<li>' + pagename + '</li>');
+        pages.find('.pagescontainer').append('<div class=\"pagescontent page-' + pagename + '\"></div>');
+        return pages.find('.pagesmenu li').draggable();
+      });
       pages.find('.pagesmenu:first-child').trigger('click');
       try {
         pages.draggable({
@@ -86,8 +99,11 @@
     });
     $(document).bind('sessionState', function(user) {
       if (window.loggedIn) {
+        $('.addpage').show();
         $('.movepages').show();
         return window.PagesTool = new PagesTool();
+      } else {
+        return $('.addpage').hide();
       }
     });
     return $('#page').on('click', function(ev) {

@@ -107,6 +107,18 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
   
    <!-- pagesall -->
   
@@ -198,20 +210,39 @@
    <!-- pagesall -->
   
   
-  <div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="07dc83c8-24ae-1723-71a7-8722a0f82445" style="position: absolute; top: -14px; left: 35px; width: 325px; height: 138px; "><div class="ipweditable"><div><span style="color: rgb(102, 0, 255); "><span style="font-size: 72pt; "><span style="font-family: Ubuntu; ">OIC</span></span></span></div></div></div>
+  <div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="07dc83c8-24ae-1723-71a7-8722a0f82445" style="position: absolute; top: -14px; left: 19px; width: 513px; height: 155px; "><div class="ipweditable"><div>&nbsp;</div><div><span style="color: rgb(51, 102, 255); "><span style="font-size: 72pt; "><span style="font-family: Ubuntu; ">OIC</span></span></span></div></div></div>
    <!-- pagesall -->
   
-  <div class="pagesall ui-draggable" style="position: absolute; left: 50px; top: 138px; ">
+   <!-- pagesall -->
+  <div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="d90d1a7d-6220-c3aa-92f0-1d5c739d5d63" style="position: absolute; width: 72px; height: 46px; left: 718px; top: 150px; "><div class="ipweditable"><div>Signup:</div></div></div><div class="emailsall ui-draggable" style="position: absolute; left: 752px; top: 121px; ">
+    <input type="email" class="saveemail">    
+  </div> <!-- pagesall -->
+   <!-- pagesall -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="pagesall ui-draggable" style="position: absolute; left: 170px; top: 218px; ">
     <div class="movepages" style="display: block; "></div>
     <ul class="pagesmenu">
-      <li>Home</li>
-      <li>About</li>
-    </ul>
-
+      <li style="position: relative; left: 180px; top: -182px; " class="ui-draggable">Home</li>
+      <li style="position: relative; left: 319px; top: -224px; " class="ui-draggable">About</li>
+    <li style="position: relative; left: 469px; top: -270px; " class="ui-draggable">FAQ</li></ul>
+    <button class="addpage black button" style="display: inline-block; ">Add Page</button>
     <div class="pagescontainer">
-      <div class="page-Home pagescontent" style="display: block; ">
+      <div class="page-Home pagescontent activewidget" style="display: block; ">
         
-       <!-- pagesall --><div class="pageddataall ui-draggable ui-resizable" style="top: -24px; left: -44px; width: 833px; height: 525px; position: absolute; " data-collection="Blog">
+      <div class="pageddataall ui-draggable ui-resizable" style="position: absolute; width: 737px; height: 301px; left: -177px; top: -43px; " data-collection="Blog">
     <div class="pagedtop" style="display: none; ">
       <input type="text" class="pagedtype" placeholder="Record type">
       <div class="movehandle">&nbsp;</div>
@@ -220,41 +251,35 @@
       <div class="pagedlist"></div>      
     </div>
     <div class="toggletop">↕</div>
-    <div class="editcontrols" style="display: none; ">
+    <div class="editcontrols">
       <button class="button black savepaged">Save</button>
     </div>
     
-    <div class="widgetcontent activewidget" style="display: block; ">
-    <div class="textfieldall field ui-resizable ui-draggable" style="width: 724px; height: 15px; left: 12px; top: 67px; position: absolute; " data-fieldname="title">
-    <div class="fieldname">title</div>
-    <div class="rename">rename</div>
-    <input class="textinput" type="text" style="display: none; ">
-    <div class="texthtmldisplay"></div>
-    <div class="texthtmleditarea" style="display: block; "><div><strong>{{title}}</strong></div></div>
-  </div> <!-- pagesall --><div class="htmlfieldall field ui-resizable ui-draggable" style="top: 114px; left: 10px; width: 738px; height: 154px; position: absolute; " data-fieldname="article">
-    <div class="fieldname">article</div>
-    <div class="rename">rename</div>
-    <div class="htmleditarea">Rich Text Field</div>
-  </div> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --> <!-- pagesall --><div class="datefieldall field ui-resizable ui-draggable" style="top: 5px; left: 12px; position: absolute; width: 579px; height: 10px; " data-fieldname="modified">
+    <div class="widgetcontent" style="display: block; ">
+    <div class="datefieldall field ui-resizable ui-draggable" style="position: absolute; width: 287px; height: 21px; left: -7px; top: -6px; " data-fieldname="modified">
     <div class="fieldname">modified</div>
     <div class="rename">rename</div>
     <input class="dateinput" type="datetime-local" style="display: none; ">
     <div class="datetimedisplay"></div>
-    <div class="datetimeeditarea"><div><em>{{modified}}</em></div></div>
+    <div class="datetimeeditarea">{{modified}}</div>
+  </div> <!-- pagesall --><div class="textfieldall field ui-resizable ui-draggable" style="position: absolute; width: 285px; height: 10px; left: -9px; top: 49px; " data-fieldname="title">
+    <div class="fieldname">title</div>
+    <div class="rename">rename</div>
+    <input class="textinput" type="text" style="display: none; ">
+    <div class="texthtmldisplay"></div>
+    <div class="texthtmleditarea" style="display: block; ">{{title}}</div>
+  </div> <!-- pagesall --><div class="htmlfieldall field ui-resizable ui-draggable" style="position: absolute; top: 98px; left: -7px; width: 673px; height: 141px; " data-fieldname="article">
+    <div class="fieldname">article</div>
+    <div class="rename">rename</div>
+    <div class="htmleditarea">Rich Text Field</div>
   </div> <!-- pagesall --></div>
+    <ul class="displays"></ul>
   </div></div>
       <div class="page-About pagescontent" style="display: none; ">
         
       </div>
-    </div>
+    <div class="pagescontent page-FAQ" style="display: none; "><div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="9f9ef06a-df00-a8d1-b28b-ad366545ae26" style="position: absolute; width: 600px; height: 93px; left: -62px; top: 34px; "><div class="ipweditable"><div>This is the FAQ page.</div></div></div></div></div>
   </div> <!-- pagesall -->
-  <div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="d90d1a7d-6220-c3aa-92f0-1d5c739d5d63" style="position: absolute; top: 37px; left: 541px; width: 72px; height: 20px; "><div class="ipweditable"><div>Signup:</div></div></div><div class="emailsall ui-draggable" style="position: absolute; left: 580px; top: 3px; ">
-    <input type="email" class="saveemail">    
-  </div> <!-- pagesall -->
-   <!-- pagesall -->
-  
-  
-  
   
   
   
