@@ -106,7 +106,7 @@
   };
 
   $(function() {
-    $('#advobjs').prepend('<button id="plugins" class="button white"><img src="images/cogs.png"/></button>');
+    $('#advobjs').prepend('<button title="Plugins.." id="plugins" class="button white"><img src="images/cogs.png"/></button>');
     $('#updateactive').click(updateActive);
     $('#plugins').click(function() {
       $('#pluginauto').dialog({

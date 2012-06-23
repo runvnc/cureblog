@@ -199,7 +199,7 @@ class PagedDataTool
       name: 'pageddatacollector'
     btn.data 'widget', data    
     $('#advobjlist').append widget 
-    
+
     widget.draggable
       helper: 'clone'
       stop: (ev, ui) ->

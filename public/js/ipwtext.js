@@ -13,7 +13,7 @@
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="ipwtextwidget widgetcontainer" id ="' + this.id + '"><div class="ipweditable">The quick brown fox jumped.</div></div>');
+        this.el = $('<div class="ipwtextwidget widgetcontainer" id ="' + this.id + '" title="Text" ><div class="ipweditable">The quick brown fox jumped.</div></div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({

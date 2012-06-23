@@ -1,7 +1,7 @@
    
 class Recycler
   constructor: ->
-    $('#objs').prepend( '<div class="recycle"><div id="recycler">♻</div></div>' )
+    $('#objs').prepend( '<div class="recycle" title="Recycle (drag widgets here to remove them from the page)"><div id="recycler">♻</div></div>' )
     #♻
     $('#recycler').droppable
       tolerance: 'touch'

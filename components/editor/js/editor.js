@@ -297,8 +297,8 @@
     $('#editorui').hide();
     $('body').prepend($('#editorui'));
     $('#objs').height($(window).height());
-    $('#advobjs').prepend('<button id="editcode" class="button white"><img src="/images/codegray.png"/></button>');
-    $('#objs').prepend('<button id="savepage" class="button white smallbtn"><img src="images/save2.png"/></button><br/>');
+    $('#advobjs').prepend('<button id="editcode" title="Code editor" class="button white"><img src="/images/codegray.png"/></button>');
+    $('#objs').prepend('<button id="savepage" title="Save page" class="button white smallbtn"><img src="images/save2.png"/></button><br/>');
     $('#tabs').tabs({
       show: function(event, ui) {
         if (editorhtml != null) editorhtml.refresh();

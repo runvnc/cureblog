@@ -4,7 +4,7 @@ class IPWTextWidget
   constructor: (@parent, @x, @y, @id) ->      
     if not @id?
       @id = guid()
-      @el = $('<div class="ipwtextwidget widgetcontainer" id ="'+@id+'"><div class="ipweditable">The quick brown fox jumped.</div></div>')
+      @el = $('<div class="ipwtextwidget widgetcontainer" id ="'+@id+'" title="Text" ><div class="ipweditable">The quick brown fox jumped.</div></div>')
       idx = '#' + @id
       @parent.append @el
       @el.css
