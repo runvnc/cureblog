@@ -21,11 +21,15 @@
       pages.find('.pagesmenu li').on('click', function(ev) {
         var name;
         name = $(this).text();
+        $('.activenav').removeClass('activenav');
+        $(this).addClass('activenav');
         pages.find('.pagescontent').hide();
         pages.find(".page-" + name).show();
         $('.activewidget').removeClass('activewidget');
         return pages.find(".page-" + name).addClass('activewidget');
       });
+      pages.find('.pagecontent').draggable();
+      pages.find('.pagescontent').resizable();
       try {
         pages.find('.pagesmenu li').draggable();
       } catch (e) {

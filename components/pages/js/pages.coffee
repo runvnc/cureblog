@@ -14,11 +14,14 @@ class PagesWidget
     pages.find('.pagesmenu li').off 'click'      
     pages.find('.pagesmenu li').on 'click', (ev) ->
       name = $(this).text()        
+      $('.activenav').removeClass 'activenav'
+      $(this).addClass 'activenav'      
       pages.find('.pagescontent').hide()
       pages.find(".page-#{name}").show()
       $('.activewidget').removeClass 'activewidget'
       pages.find(".page-#{name}").addClass 'activewidget'
-    
+    pages.find('.pagecontent').draggable()
+    pages.find('.pagescontent').resizable()
     try
       pages.find('.pagesmenu li').draggable()
     catch e
@@ -80,6 +83,7 @@ $ ->
   $('#page').on 'click', (ev) ->
     if ev.target.id is 'page'
       $('.activewidget').removeClass 'activewidget'
+      
       $('#page').addClass 'activewidget'
     
     

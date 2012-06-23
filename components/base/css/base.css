@@ -3,6 +3,11 @@ body, td, th, div, li, p, #page {
 }
 
 
+.activewidget {
+  border: 1px solid orange; 
+  box-shadow: inset 1px 1px 1px 1px orange;
+}
+
 #container {
   position: relative;
 }

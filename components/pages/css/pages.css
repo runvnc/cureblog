@@ -2,10 +2,20 @@
   /* width: 150px; */
 }
 
+.ui-draggable {
+  cursor: grab; 
+}
+
 .addpage {
   display: none;
   left: 15%;
   position: fixed;
+}
+
+
+.activenav {
+  background-color: #000;
+  color: #fff;
 }
 
 .pagesicon {
@@ -18,7 +28,7 @@
   position: absolute;
   width: 800px;
   height: 800px;
-   
+  border: 1px dashed #e2e2e2;  
 }
 
 .movepages {
@@ -59,7 +69,7 @@
 
 .pagesmenu li:hover {
   color: #fff;
-  background-color: #000;
+  background-color: #555;
 }
 
 

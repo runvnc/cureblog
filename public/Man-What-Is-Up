@@ -1,0 +1,351 @@
+<head><meta charset="utf-8"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>OIC</title><link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lekton|Droid+Sans|Lato|Arvo|Cabin|Playfair+Display|PT+Sans|Corben|Ubuntu|Droid+Sans+Mono|Josefin+Sans|Lobster|Asap|Droid+Serif|Hammersmith+One|Vollkorn|Raleway:100|Goudy+Bookletter+1911|Inconsolata|Allerta|Crimson+Text|Dancing+Script|Allan:700|Cardo|Molengo|Nobile|Changa+One|Abril+Fatface|UnifrakturMaguntia"><style>body,td,th,div,li,p,#page{font-family:Ubuntu,sans-serif}.activewidget{border:1px solid orange;box-shadow:inset 1px 1px 1px 1px orange}#container{position:relative}#editorui{display:none}#page{position:relative;min-height:700px;width:1150px;margin-left:auto;margin-right:auto}html,body,body div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,figure,footer,header,hgroup,menu,nav,section,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}article,aside,figure,footer,header,hgroup,nav,section{display:block}img,object,embed{max-width:100%}html{overflow-y:scroll}ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}a{margin:0;padding:0;vertical-align:baseline;background:transparent}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted #000;cursor:help}table{border-collapse:collapse;border-spacing:0}th{font-weight:bold;vertical-align:bottom}td{font-weight:normal;vertical-align:top}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}input[type="radio"]{vertical-align:text-bottom}input[type="checkbox"]{vertical-align:bottom;*vertical-align:baseline}.ie6 input{vertical-align:text-bottom}select,input,textarea{font:99% sans-serif}table{font-size:inherit;font:100%}a:hover,a:active{outline:0}small{font-size:85%}strong,th{font-weight:bold}td,td img{vertical-align:top}sub,sup{font-size:75%;line-height:0;position:relative}sup{top:-0.5em}sub{bottom:-0.25em}pre,code,kbd,samp{font-family:monospace,sans-serif}.clickable,label,input[type=button],input[type=submit],button{cursor:pointer}button,input,select,textarea{margin:0}button{width:auto;overflow:visible}.ie7 img{-ms-interpolation-mode:bicubic}.ie6 html{filter:expression(document.execCommand("BackgroundImageCache",false,true))}.clearfix:before,.clearfix:after{content:"\0020";display:block;height:0;overflow:hidden}.clearfix:after{clear:both}.clearfix{zoom:1}#loginout{cursor:pointer;position:absolute;left:15%}#fileman{display:none}.fmselected{background-color:blue;color:white}.fmitem{-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.fmdir.fmselected{background-color:#146cc9}#filecontrols{float:left;width:330px;margin-right:15px}#loadfromurl{width:330px}#uploadform{display:none}#upframe{height:75px;overflow:hidden}#fsroot li{cursor:pointer}#refreshdir{margin-left:50px}.fmupdir{background-color:#f5efb3}.fmdir{background-color:#f5efb3}#fileswin{height:250px;background-color:#fff;overflow:auto}.addpage{display:none;left:15%;position:fixed}.activenav{background-color:#000;color:#fff}.pagesicon{width:19px}.pagesall{position:absolute;width:800px;height:800px;border:1px dashed #e2e2e2}.movepages{display:none;position:absolute;z-index:10;right:10px;width:32px;height:32px;background-image:url('images/move.png')}.pagesmenu{float:left;margin-left:-5%}.pagescontent{width:800px;height:800px;position:relative}.pagescontainer{position:relative;margin-left:150px;width:800px;height:800px}.pagesmenu li{cursor:pointer;font-family:Ubuntu;font-size:16pt;font-weight:bold;margin-bottom:15px}.pagesmenu li:hover{color:#fff;background-color:#555}.pgtoolwidget,.toolwidget{cursor:hand;cursor:grab;cursor:-moz-grab;cursor:-webkit-grab;background-color:#eee;font-family:Arial,Helvetica,sans-serif;font-size:10pt;text-align:center;border:1px dotted #000;height:25px;padding:4px;color:#606060;background:#fff;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ededed));background:-moz-linear-gradient(top,#fff,#ededed);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');margin-left:10px}.pageddataicon{width:19px}.pageddataall{position:absolute;padding:15px;margin:15px;width:600px;height:300px}.recorditem{cursor:pointer}.recordhead{text-align:left}.pgdtoolwidget{height:25px;padding-bottom:4px}.movehandle{float:right;width:32px;height:32px;background-image:url('images/move.png')}.editcontrols{display:none}.toggletop{margin-left:auto;margin-right:auto;width:50px;cursor:pointer}.pgdtoolwidget{cursor:hand;cursor:grab;cursor:-moz-grab;cursor:-webkit-grab;background-color:#eee;font-family:Arial,Helvetica,sans-serif;font-size:10pt;text-align:center;border:1px dotted #000;height:25px;padding:4px;color:#606060;background:#fff;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ededed));background:-moz-linear-gradient(top,#fff,#ededed);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');margin-left:10px}.pageddataall .widgetcontent{border:1px dotted #ccc;position:relative;width:100%;height:100%}.pagedlist li{cursor:pointer}.pagedlist{height:75px;overflow:auto}.htmlfieldicon{width:19px}.htmlfieldall{position:absolute;padding:15px;margin:15px;border:1px dotted #aaa}.rename{float:right;cursor:pointer;font-size:8pt}.fieldname{float:right;margin-left:5px;font-size:8pt}.htmlfieldscontent{position:relative}.htmlfieldscontainer{position:relative;margin-left:150px}.htmlfieldmenu li{cursor:pointer;font-family:Ubuntu;font-size:16pt;font-weight:bold;margin-bottom:15px}.htmlfieldmenu li:hover{color:#fff;background-color:#000}.htmlfieldtoolwidget{cursor:hand;cursor:grab;cursor:-moz-grab;cursor:-webkit-grab;background-color:#eee;font-family:Arial,Helvetica,sans-serif;font-size:10pt;text-align:center;border:1px dotted #000;height:25px;padding:4px;color:#606060;background:#fff;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ededed));background:-moz-linear-gradient(top,#fff,#ededed);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');margin-left:10px}.textfieldicon{width:19px}.texthtmleditarea{display:none}.textfieldall{position:absolute;padding:15px;margin:15px;border:1px dotted #aaa}.rename{float:right;cursor:pointer;font-size:8pt}.fieldname{float:right;margin-left:5px;font-size:8pt}.textfieldscontent{position:relative}.textfieldscontainer{position:relative;margin-left:150px}.textfieldmenu li{cursor:pointer;font-family:Ubuntu;font-size:16pt;font-weight:bold;margin-bottom:15px}.textfieldmenu li:hover{color:#fff;background-color:#000}.texttoolwidget{cursor:hand;cursor:grab;cursor:-moz-grab;cursor:-webkit-grab;background-color:#eee;font-family:Arial,Helvetica,sans-serif;font-size:10pt;text-align:center;border:1px dotted #000;height:25px;padding:4px;color:#606060;background:#fff;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ededed));background:-moz-linear-gradient(top,#fff,#ededed);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');margin-left:10px}.emailsicon{width:19px;height:17px}.emailsall{position:absolute;padding:15px;margin:15px}.emailssmenu{float:left}.emailsscontent{position:relative}.emailsscontainer{position:relative;margin-left:150px}.emailsmenu li{cursor:pointer;font-family:Ubuntu;font-size:16pt;font-weight:bold;margin-bottom:15px}.emailsmenu li:hover{color:#fff;background-color:#000}.emailswidget{cursor:hand;cursor:grab;cursor:-moz-grab;cursor:-webkit-grab;background-color:#eee;font-family:Arial,Helvetica,sans-serif;font-size:10pt;text-align:center;border:1px dotted #000;height:25px;padding:4px;color:#606060;background:#fff;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ededed));background:-moz-linear-gradient(top,#fff,#ededed);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');margin-left:10px}.datefieldicon{width:19px}.datehtmleditarea{display:none}.datefieldall{position:absolute;padding:15px;margin:15px;border:1px dotted #aaa}.rename{float:right;cursor:pointer;font-size:8pt}.fieldname{float:right;margin-left:5px;font-size:8pt}.datefieldscontent{position:relative}.datefieldscontainer{position:relative;margin-left:150px}.datefieldmenu li{cursor:pointer;font-family:Ubuntu;font-size:16pt;font-weight:bold;margin-bottom:15px}.datefieldmenu li:hover{color:#fff;background-color:#000}.datetoolwidget{cursor:hand;cursor:grab;cursor:-moz-grab;cursor:-webkit-grab;background-color:#eee;font-family:Arial,Helvetica,sans-serif;font-size:10pt;text-align:center;border:1px dotted #000;height:25px;padding:4px;color:#606060;background:#fff;background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#ededed));background:-moz-linear-gradient(top,#fff,#ededed);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff',endColorstr='#ededed');margin-left:10px}</style><script type="text/javascript" src="//localhost:3000/socket.io/socket.io.js"></script></head><body><script type="text/template">which is </script><!-- <div id="container"> -->
+  <div id="page" class="activewidget">
+    
+    
+    
+    
+    
+    
+    
+  <div class="pagesall ui-draggable" style="position: absolute; left: 63px; top: 44px; ">
+    <div class="movepages" style="display: none; "></div>
+    <ul class="pagesmenu">
+      <li style="position: relative; left: 47px; top: 55px; " class="ui-draggable">Home</li>
+      <li style="position: relative; left: 49px; top: 139px; " class="ui-draggable">About</li>
+    <li style="position: relative; left: 48px; top: 28px; " class="ui-draggable activenav">Blog</li></ul>
+    <button class="addpage black button" style="display: inline-block; ">Add Page</button>
+    <div class="pagescontainer">
+      <div class="page-Home pagescontent ui-resizable" style="top: 0px; left: 0px; width: 839px; height: 727px; display: none; ">
+        
+      </div>
+      <div class="page-About pagescontent ui-resizable" style="display: none; ">
+        
+      </div>
+    <div class="pagescontent page-dfgdfg ui-resizable" style="display: none; "></div><div class="pagescontent page-Blog ui-resizable" style="display: block; "><div class="pageddataall ui-draggable ui-resizable" style="position: absolute; top: 156px; left: 45px; width: 715px; height: 319px; " data-collection="Blog">
+    <div class="pagedtop" style="display: none; ">
+      <input type="text" class="pagedtype" placeholder="Record type">
+      <div class="movehandle">&nbsp;</div>
+      <br>
+      <button class="addpaged button black">Add Record</button> <br>
+      <div class="pagedlist"></div>      
+    </div>
+    <div class="toggletop">↕</div>
+    <div class="editcontrols">
+      <button class="button black savepaged">Save</button>
+    </div>
+    
+    <div class="widgetcontent activewidget" style="display: block; ">
+    <div class="htmlfieldall field ui-resizable ui-draggable" style="position: absolute; width: 424px; height: 24px; left: 0px; top: 110px; " data-fieldname="article">
+    <div class="fieldname">article</div>
+    <div class="rename">rename</div>
+    <div class="htmleditarea">Rich Text Field</div>
+  </div> <!-- pagesall --><div class="textfieldall field ui-resizable ui-draggable" style="position: absolute; width: 354px; height: 27px; left: 1px; top: 39px; " data-fieldname="title">
+    <div class="fieldname">title</div>
+    <div class="rename">rename</div>
+    <input class="textinput" type="text" style="display: none; ">
+    <div class="texthtmldisplay"></div>
+    <div class="texthtmleditarea" style="display: block; ">{{title}}</div>
+  </div> <!-- pagesall --><div class="datefieldall field ui-resizable ui-draggable" style="position: absolute; width: 382px; height: 10px; left: 0px; top: -7px; " data-fieldname="modified">
+    <div class="fieldname">modified</div>
+    <div class="rename">rename</div>
+    <input class="dateinput" type="datetime-local" style="display: none; ">
+    <div class="datetimedisplay"></div>
+    <div class="datetimeeditarea"><div>{{modified}}</div></div>
+  </div> <!-- pagesall --></div>
+    <ul class="displays"></ul>
+  </div><div class="ipwtextwidget widgetcontainer ui-resizable ui-draggable" id="d691e5f8-54f5-2a24-ffaa-9eba40908e87" style="position: absolute; width: 311px; height: 67px; left: 371px; top: 53px; "><div class="ipweditable">The quick brown fox jumped.</div></div></div></div>
+  </div> <!-- pagesall -->
+  
+  
+  
+  
+  
+  </div> 
+<!-- </div> -->
+
+<div id="debuglog"><pre id="logmsgs"></pre></div>
+
+<div id="editorui">
+
+<div id="widgets"></div>
+
+<div id="objs" class="grad1">
+
+<img id="oic" src="/images/oic.png">
+  
+<ul id="objlist"></ul>
+
+<input id="advtoggle" type="checkbox">&nbsp;Advanced<br>
+
+  <div id="advanced">  
+    <div id="advobjs">
+    </div>
+    
+    <ul id="advobjlist"></ul>  
+  
+  </div>  
+  
+  
+  
+</div>
+  
+  
+
+<div class="demo">  
+  <div id="nav">
+    Select component: <br>
+    <div class="editornotes">
+      ✓ = active <br>
+      (drag to change load order) <br>
+      (hover over arrow for menu) <br>
+    </div>
+    <ul id="components">    
+    </ul>
+    <button id="savewidget" class="button black">Save</button>
+  </div> 
+
+  <div id="dialogcontent">
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1">Browser</a></li>
+        <li><a href="#tabs-2">HTML</a></li>
+        <li><a href="#tabs-3">CSS</a></li>
+        <li><a href="#tabs-4">Node.js</a></li>
+        <li><a href="#tabs-5">Package.json</a></li>
+        <li><a href="#tabs-6">JS/CSS Files</a></li>
+        <li><a href="#tabs-7">Publish</a></li>
+      </ul>
+      <div id="tabs-1">
+        <input type="hidden" id="widgetname">
+        CoffeeScript: <br>
+        <textarea id="browser"></textarea>
+      </div>
+      <div id="tabs-2">
+          HTML: <br>
+          <textarea id="html"></textarea>
+      </div>
+      <div id="tabs-3">
+          CSS: <br>
+          <textarea id="css"></textarea>
+      </div>
+      <div id="tabs-4">
+          CoffeeScript: <br>
+          <textarea id="nodejs"></textarea>
+      </div>
+      <div id="tabs-5">
+          Package.json: <br>
+         <textarea id="package"></textarea> 
+      </div>
+      <div id="tabs-6">
+        One filename per line. * at end = include in static page <br><br>
+        
+        <div class="scriptsdiv">
+          <div class="settingshead">Scripts:</div>
+          <textarea id="scriptlist"></textarea>          
+        </div>
+        
+        <div class="stylesdiv">
+          <div class="styleshead">Styles:</div>
+          <textarea id="stylelist"></textarea>
+        </div>
+      </div>
+      <div id="tabs-7">
+        <strong>Publish Component</strong><br><br>
+        <div class="gituser">
+          GitHub username: <br>
+          <input type="text" id="gituser"> 
+        </div>
+        <div class="gitrepo">
+          <br>
+          Create an empty Github repo <strong>(but be sure to include a description)</strong> and enter the name below.<br><br>
+          Name of GitHub repo: (excluding username)<br>
+          <input type="text" id="gitrepo">
+        </div>        
+        <div style="clear: both;"></div><br>
+        <button id="publish" class="button black">Publish</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="pubmsg"></span>
+      </div>        
+    </div>
+  </div> <!-- dialogcontent -->
+  
+  
+</div><!-- End demo -->
+
+</div> <!-- editorui -->
+<a id="loginout">Login</a>
+<div id="pluginauto" style="display: none;">
+  <input type="text" id="inp" placeholder="Type to search by plugin name or description">
+  <ul id="matches"></ul>
+  <br><div id="plugindonemsg"></div>
+  
+  <ul id="pluginlist"></ul>
+  <pre><code id="installmsg"></code></pre>
+  <button id="updateactive" class="button black">Save Changes</button>
+</div><!-- trees -->
+<script type="text/template" id="ipwtexttemplate">
+  <li>
+    <div class="ipwtexttool designwidget toolbutton">
+      <div class="ipwtexticon" data-name="text"><img src="/images/text.png"/></div> 
+    </div>
+  </li>
+</script>
+
+<div id="fileman">
+  <div id="filecontrols">
+    <input type="text" id="loadfromurl" placeholder="URL of file to download and uncompress">
+    <button id="getlink" class="button black">Download</button>
+    <iframe id="upframe" src="/dyn/upframe"></iframe>
+    <button id="refreshdir" class="button black">Refresh</button> <br><br>
+    <button id="deletesel" class="button black">Delete Selected</button><br>
+    <button id="copysel" class="button black">Copy Selected</button><br>
+    <button id="cutsel" class="button black">Cut Selected</button><br>
+    <button id="pastefiles" class="button black">Paste Files</button>
+  </div>
+  
+  <div id="fileswin">
+    <ul id="fsroot"></ul>
+  </div>
+</div>
+
+<script type="text/template" id="imagetemplate">
+  <li>
+    <div class="imgwrapper">
+      <div id="imginsert" class="imagetool designwidget toolbutton">
+        <div class="imageicon" data-name="image"><img src="/images/image2.png"/></div>
+      </div>
+    </div>
+  </li>
+</script><script type="text/template" id="pageswidgettemplate">
+  <div class="pagesall">
+    <div class="movepages"></div>
+    <ul class="pagesmenu">
+      <li>Home</li>
+      <li>About</li>
+    </ul>
+    <button class="addpage black button">Add Page</button>
+    <div class="pagescontainer">
+      <div class="page-Home pagescontent">
+        
+      </div>
+      <div class="page-About pagescontent">
+        
+      </div>
+    </div>
+  </div> <!-- pagesall -->
+</script>
+
+
+<script type="text/template" id="pagestemplate">
+  <li>
+    <div class="pageswrapper">
+      <div id="makepages" class="pageswidget pgtoolwidget designwidget">
+        <div class="pagesicon" data-name="pages"><img src="/images/tabs.png"/></div>
+        
+      </div>
+    </div>
+  </li>
+</script><script type="text/template" id="pageddatawidgettemplate">
+  <div class="pageddataall">
+    <div class="pagedtop">
+      <input type="text" class="pagedtype" placeholder="Record type"/>
+      <div class="movehandle">&nbsp;</div>
+      <br/>
+      <button class="addpaged button black">Add Record</button> <br/>
+      <div class="pagedlist"></div>      
+    </div>
+    <div class="toggletop">↕</div>
+    <div class="editcontrols">
+      <button class="button black savepaged">Save</button>
+    </div>
+    
+    <div class="widgetcontent">
+    </div>
+    <ul class="displays"></ul>
+  </div> 
+</script>
+
+
+<script type="text/template" id="pageddatatemplate">
+  <li>
+    <div class="pageddatawrapper">
+      <div id="makepageddata" class="pageddatawidget pgdtoolwidget designwidget">
+        <div class="pageddataicon" data-name="pageddata"><img src="/images/form.png"/></div>
+        
+      </div>
+    </div>
+  </li>
+</script><script type="text/template" id="htmlfieldwidgettemplate">
+  <div class="htmlfieldall field">
+    <div class="fieldname"></div>
+    <div class="rename">rename</div>
+    <div class="htmleditarea">Rich Text Field</div>
+  </div> <!-- pagesall -->
+</script>
+
+
+<script type="text/template" id="htmlfieldtemplate">
+  <li>
+    <div class="htmlfieldswrapper">
+      <div id="makehtmlfields" class="htmlfieldwidget htmlfieldtoolwidget designwidget">
+        <div class="htmlfieldicon" data-name="htmlfield"><img src="/images/article.png"/></div>
+        
+      </div>
+    </div>
+  </li>
+</script><script type="text/template" id="textfieldwidgettemplate">
+  <div class="textfieldall field">
+    <div class="fieldname"></div>
+    <div class="rename">rename</div>
+    <input class="textinput" type="text"/>
+    <div class="texthtmldisplay"></div>
+    <div class="texthtmleditarea">Rich Text Field</div>
+  </div> <!-- pagesall -->
+</script>
+
+
+<script type="text/template" id="textfieldtemplate">
+  <li>
+    <div class="textfieldswrapper">
+      <div id="maketextfields" class="textfieldwidget texttoolwidget designwidget">
+        <div class="textfieldicon" data-name="textfield"><img src="/images/input.png"/></div>
+        
+      </div>
+    </div>
+  </li>
+</script><script type="text/template" id="emailswidgettemplate">
+  <div class="emailsall">
+    <input type="email" class="saveemail"/>    
+  </div> <!-- pagesall -->
+</script>
+
+
+<script type="text/template" id="emailstemplate">
+  <li>
+    <div class="emailswrapper">
+      <div id="makeemails" class="emailswidget toolwidget designwidget">
+        <div class="emailsicon" data-name="emailcollector"><img src="/images/emails.png"/></div>
+  
+      </div>
+    </div>
+  </li>
+</script><script type="text/template" id="datefieldwidgettemplate">
+  <div class="datefieldall field">
+    <div class="fieldname"></div>
+    <div class="rename">rename</div>
+    <input class="dateinput" type="datetime-local"/>
+    <div class="datetimedisplay"></div>
+    <div class="datetimeeditarea">Datetime</div>
+  </div> <!-- pagesall -->
+</script>
+
+
+<script type="date/template" id="datefieldtemplate">
+  <li>
+    <div class="datefieldswrapper">
+      <div id="makedatefields" class="datefieldwidget datetoolwidget designwidget">
+        <div class="datefieldicon" data-name="datefield"><img src="/images/datetime.png"/></div>
+        
+      </div>
+    </div>
+  </li>
+</script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script><script src="/nowjs/now.js"></script><script src="js/combined1340419888099.js"></script></body>

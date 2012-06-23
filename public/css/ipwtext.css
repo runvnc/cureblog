@@ -12,4 +12,15 @@
 
 .ipwtextwidget {
   z-index: 5; 
+
+  cursor:hand;
+  cursor:grab;
+  cursor:-moz-grab;
+  cursor:-webkit-grab;    
+
 }
+
+.ipweditable {
+  cursor: text; 
+}
+
