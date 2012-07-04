@@ -42,9 +42,9 @@
         var pagename;
         pagename = prompt('Page name:');
         pages.find('.pagesmenu').append('<li>' + pagename + '</li>');
-        pages.find('.pagescontainer').append('<div class=\"pagescontent page-' + pagename + '\"></div>');
-        return pages.find('.pagesmenu li').draggable();
+        return pages.find('.pagescontainer').append('<div class=\"pagescontent page-' + pagename + '\"></div>');
       });
+      pages.find('.pagesmenu li').draggable();
       pages.find('.pagesmenu:first-child').trigger('click');
       try {
         pages.draggable({
