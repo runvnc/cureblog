@@ -20,11 +20,12 @@ class PagesWidget
       pages.find(".page-#{name}").show()
       $('.activewidget').removeClass 'activewidget'
       pages.find(".page-#{name}").addClass 'activewidget'
-    pages.find('.pagecontent').draggable()
-    pages.find('.pagescontent').resizable()
-    try
-      pages.find('.pagesmenu li').draggable()
-    catch e
+    if window.loggedIn
+      pages.find('.pagecontent').draggable()
+      pages.find('.pagescontent').resizable()
+      try
+        pages.find('.pagesmenu li').draggable()
+      catch e
     
     pages.find('.addpage').off 'click'
     pages.find('.addpage').on 'click', ->
@@ -62,7 +63,18 @@ class PagesTool
           p.top = ev.pageY - $('#page')[0].offsetTop
         new PagesWidget(p, false)
     
+if not window.saveFilters? then window.saveFilters = []
     
+window.saveFilters.push (sel) ->      
+  $(sel).find('.ui-resizable-handle').remove()    
+  $(document).find('.activewidget').removeClass('activewidget')
+  $('#page').removeClass 'activewidget'
+  $('body *').removeClass 'loggedIn'
+  $(sel).find('.addpage').remove()
+  $('body *').removeClass('loggedin')
+  $(sel).removeClass('loggedin')   
+  
+  
 $ ->
   $('.movepages').hide()
   $('.pagesall').each ->    
@@ -76,14 +88,18 @@ $ ->
     if window.loggedIn
       $('.addpage').show()
       $('.movepages').show()
+      $('body *').addClass 'loggedin'
+      $('#page').on 'click', (ev) ->
+        if ev.target.id is 'page'
+          $('.activewidget').removeClass 'activewidget'
+          
+          $('#page').addClass 'activewidget'      
+          
+          
       window.PagesTool = new PagesTool()
     else
       $('.addpage').hide()
     
-  $('#page').on 'click', (ev) ->
-    if ev.target.id is 'page'
-      $('.activewidget').removeClass 'activewidget'
-      
-      $('#page').addClass 'activewidget'
+
     
     

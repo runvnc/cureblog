@@ -28,12 +28,14 @@
         $('.activewidget').removeClass('activewidget');
         return pages.find(".page-" + name).addClass('activewidget');
       });
-      pages.find('.pagecontent').draggable();
-      pages.find('.pagescontent').resizable();
-      try {
-        pages.find('.pagesmenu li').draggable();
-      } catch (e) {
+      if (window.loggedIn) {
+        pages.find('.pagecontent').draggable();
+        pages.find('.pagescontent').resizable();
+        try {
+          pages.find('.pagesmenu li').draggable();
+        } catch (e) {
 
+        }
       }
       pages.find('.addpage').off('click');
       pages.find('.addpage').on('click', function() {
@@ -91,6 +93,18 @@
 
   })();
 
+  if (!(window.saveFilters != null)) window.saveFilters = [];
+
+  window.saveFilters.push(function(sel) {
+    $(sel).find('.ui-resizable-handle').remove();
+    $(document).find('.activewidget').removeClass('activewidget');
+    $('#page').removeClass('activewidget');
+    $('body *').removeClass('loggedIn');
+    $(sel).find('.addpage').remove();
+    $('body *').removeClass('loggedin');
+    return $(sel).removeClass('loggedin');
+  });
+
   $(function() {
     $('.movepages').hide();
     $('.pagesall').each(function() {
@@ -101,19 +115,20 @@
         return text = new PagesWidget($(this).position(), true, $(this));
       }
     });
-    $(document).bind('sessionState', function(user) {
+    return $(document).bind('sessionState', function(user) {
       if (window.loggedIn) {
         $('.addpage').show();
         $('.movepages').show();
+        $('body *').addClass('loggedin');
+        $('#page').on('click', function(ev) {
+          if (ev.target.id === 'page') {
+            $('.activewidget').removeClass('activewidget');
+            return $('#page').addClass('activewidget');
+          }
+        });
         return window.PagesTool = new PagesTool();
       } else {
         return $('.addpage').hide();
-      }
-    });
-    return $('#page').on('click', function(ev) {
-      if (ev.target.id === 'page') {
-        $('.activewidget').removeClass('activewidget');
-        return $('#page').addClass('activewidget');
       }
     });
   });

@@ -19,10 +19,11 @@ body, td, th, div, li, p, #page {
   width: 100%;
 }
 
-.activewidget {
-  border: 1px solid orange; 
-  box-shadow: inset 1px 1px 1px 1px orange;
-}
+
+.loggedin .activewidget {
+  border: 1px dashed #222; 
+  box-shadow: inset 1px 1px 1px 1px #222;
+} 
 
 #container {
   position: relative;

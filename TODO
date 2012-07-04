@@ -45,7 +45,7 @@ DONE textfield
  in data entry mode needs to change into a text input box
  then save its text to the record on blur
 
-generate static pages
+DONE generate static pages
   whenever a paged data record is saved
   use phantomjs to access that page
   and then store a cached version
@@ -56,5 +56,12 @@ generate static pages
 
 provide links to static pages on design
   probably when in edit mode
+
+
+DONE text needs to be a widget rather than a tool
+
+DONE each text needs a drag handle that appears on hover
+
+
 
  

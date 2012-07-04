@@ -24,7 +24,7 @@
   /* height: 30px; */
 }
 
-.pagesall {
+.loggedin .pagesall {
   position: absolute;
   width: 800px;
   height: 800px;

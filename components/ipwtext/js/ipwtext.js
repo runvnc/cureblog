@@ -6,14 +6,14 @@
   IPWTextWidget = (function() {
 
     function IPWTextWidget(parent, x, y, id) {
-      var idx, oFCKeditor;
+      var hoveroff, hoveron, idx, oFCKeditor;
       this.parent = parent;
       this.x = x;
       this.y = y;
       this.id = id;
       if (!(this.id != null)) {
         this.id = guid();
-        this.el = $('<div class="ipwtextwidget widgetcontainer" id ="' + this.id + '" title="Text" ><div class="ipweditable">The quick brown fox jumped.</div></div>');
+        this.el = $('<div class="ipwtextwidget widgetcontainer" id ="' + this.id + '" ><div class="textmove"></div><div class="ipweditable">The quick brown fox jumped...&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/><br/></div></div>');
         idx = '#' + this.id;
         this.parent.append(this.el);
         this.el.css({
@@ -25,13 +25,19 @@
         this.el = $(this.id);
         idx = '#' + this.id;
       }
-      console.log('its on there');
       $(idx).resizable();
       $(idx).draggable({
         stop: function(ev) {
           return ev.stopPropagation();
         }
       });
+      hoveron = function() {
+        if (!window.alreadyEditing) return $(this).find('.textmove').show();
+      };
+      hoveroff = function() {
+        return $(this).find('.textmove').hide();
+      };
+      $(idx).hover(hoveron, hoveroff);
       oFCKeditor = new FCKeditor('editor1');
       oFCKeditor.ToolbarSet = 'Simple';
       oFCKeditor.BasePath = "/js/";
@@ -41,6 +47,7 @@
         submit: 'save',
         cancel: 'cancel',
         onEdit: function(content) {
+          $(idx).find('.textmove').hide();
           return window.alreadyEditing = true;
         },
         onSubmit: function(content) {
@@ -59,8 +66,7 @@
   IPWTextTool = (function() {
 
     function IPWTextTool() {
-      var btn, data, widget, widgethtml,
-        _this = this;
+      var btn, data, widget, widgethtml;
       this.active = false;
       widgethtml = $('#ipwtexttemplate').html();
       widget = $(widgethtml);
@@ -70,33 +76,20 @@
         name: 'text'
       };
       btn.data('widget', data);
-      $('.ipwtexttool').live('click', function() {
-        if (!_this.active) {
-          _this.boxShadow = $('.ipwtexttool.toolbutton').css('boxShadow');
-          $('.ipwtexttool.toolbutton').css('boxShadow', 'none');
-          $('.ipwtexttool.toolbutton').addClass('active');
-          return _this.active = true;
-        } else {
-          $('.ipwtexttool.toolbutton').css('boxShadow', _this.boxShadow);
-          $('.ipwtexttool.toolbutton').removeClass('active');
-          return _this.active = false;
+      widget.draggable({
+        helper: 'clone',
+        stop: function(ev, ui) {
+          var p;
+          p = {};
+          if (ev.offsetX != null) {
+            p.left = ev.offsetX;
+            p.top = ev.offsetY;
+          } else {
+            p.left = ev.pageX - $(ev.target).offsetLeft;
+            p.top = ev.pageY - $(ev.target).offsetTop;
+          }
+          return new IPWTextWidget($('.activewidget'), p.left, p.top);
         }
-      });
-      $('#page, .pagescontent, .widgetcontent').bind('click', function(ev) {
-        var ispage, iswidget, text, x, y;
-        ispage = ev.target.className.indexOf('pagescontent') >= 0;
-        iswidget = ev.target.className.indexOf('widgetcontent') >= 0;
-        if (!(ev.target === $('#page')[0] || ispage || iswidget)) return;
-        if (window.alreadyEditing) return;
-        if ($('#editor1___Frame').is(':visible')) return;
-        if (ev.offsetX != null) {
-          x = ev.offsetX;
-          y = ev.offsetY;
-        } else {
-          x = ev.pageX - $(ev.target).offsetLeft;
-          y = ev.pageY - $(ev.target).offsetTop;
-        }
-        if (_this.active) return text = new IPWTextWidget($(ev.target), x, y);
       });
       $('#objlist').append(widget);
     }
