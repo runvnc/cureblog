@@ -31,7 +31,7 @@
   border: 1px dashed #e2e2e2;  
 }
 
-.movepages {
+.movepages, .movepagesli {
   display: none;
   position: absolute;
   z-index: 10;

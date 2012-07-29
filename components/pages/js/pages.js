@@ -4,7 +4,7 @@
   PagesWidget = (function() {
 
     function PagesWidget(position, exists, widget) {
-      var pages, pageshtml;
+      var hoveroff, hoveron, pages, pageshtml;
       console.log('position.top is ' + position.top);
       console.log('position.left is ' + position.left);
       if (!exists) {
@@ -29,14 +29,24 @@
         return pages.find(".page-" + name).addClass('activewidget');
       });
       if (window.loggedIn) {
-        pages.find('.pagecontent').draggable();
+        pages.find('.pagescontent').draggable();
         pages.find('.pagescontent').resizable();
         try {
-          pages.find('.pagesmenu li').draggable();
+
         } catch (e) {
 
         }
       }
+      pages.find('.pagesmenu li').draggable({
+        handle: '.movepagesli'
+      });
+      hoveron = function() {
+        return $(this).find('.movepagesli').show();
+      };
+      hoveroff = function() {
+        return $(this).find('.movepagesli').hide();
+      };
+      pages.find('.pagesmenu li').hover(hoveron, hoveroff);
       pages.find('.addpage').off('click');
       pages.find('.addpage').on('click', function() {
         var pagename;
@@ -44,7 +54,6 @@
         pages.find('.pagesmenu').append('<li>' + pagename + '</li>');
         return pages.find('.pagescontainer').append('<div class=\"pagescontent page-' + pagename + '\"></div>');
       });
-      pages.find('.pagesmenu li').draggable();
       pages.find('.pagesmenu:first-child').trigger('click');
       try {
         pages.draggable({
@@ -100,7 +109,7 @@
     $(document).find('.activewidget').removeClass('activewidget');
     $('#page').removeClass('activewidget');
     $('body *').removeClass('loggedIn');
-    $(sel).find('.addpage').remove();
+    $(sel).find('.addpage').hide();
     $('body *').removeClass('loggedin');
     return $(sel).removeClass('loggedin');
   });

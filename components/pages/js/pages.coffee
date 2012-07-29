@@ -21,19 +21,26 @@ class PagesWidget
       $('.activewidget').removeClass 'activewidget'
       pages.find(".page-#{name}").addClass 'activewidget'
     if window.loggedIn
-      pages.find('.pagecontent').draggable()
+      pages.find('.pagescontent').draggable()
       pages.find('.pagescontent').resizable()
       try
-        pages.find('.pagesmenu li').draggable()
+
       catch e
-    
+        
+    pages.find('.pagesmenu li').draggable
+      handle: '.movepagesli'
+    hoveron = ->
+      $(this).find('.movepagesli').show()
+    hoveroff = ->
+      $(this).find('.movepagesli').hide()
+    pages.find('.pagesmenu li').hover hoveron, hoveroff
     pages.find('.addpage').off 'click'
     pages.find('.addpage').on 'click', ->
       pagename = prompt 'Page name:' 
       pages.find('.pagesmenu').append '<li>'+pagename+'</li>'
       pages.find('.pagescontainer').append '<div class=\"pagescontent page-'+pagename+'\"></div>'
       
-    pages.find('.pagesmenu li').draggable()
+    
     pages.find('.pagesmenu:first-child').trigger 'click'
     try
       pages.draggable({handle: '.movepages'})
@@ -70,7 +77,7 @@ window.saveFilters.push (sel) ->
   $(document).find('.activewidget').removeClass('activewidget')
   $('#page').removeClass 'activewidget'
   $('body *').removeClass 'loggedIn'
-  $(sel).find('.addpage').remove()
+  $(sel).find('.addpage').hide()
   $('body *').removeClass('loggedin')
   $(sel).removeClass('loggedin')   
   
@@ -85,6 +92,7 @@ $ ->
   
   
   $(document).bind 'sessionState', (user) ->
+    
     if window.loggedIn
       $('.addpage').show()
       $('.movepages').show()

@@ -30,16 +30,18 @@ class PagedDataWidget
           record = @newblank()
           now.dbinsert @pageddata.attr('data-collection'), record, =>
             @listrecords()
-        @pageddata.find('.toggletop').off 'click'
-        @pageddata.find('.toggletop').on 'click', =>
-          @pageddata.find('.pagedtop').toggle 100
-          @pageddata.find('.widgetcontent').toggle 100
+        #@pageddata.find('.toggletop').off 'click'
+        #@pageddata.find('.toggletop').on 'click', =>
+        #  @pageddata.find('.pagedtop').toggle 100
+        #  @pageddata.find('.widgetcontent').toggle 100
         @pageddata.find('.savepaged').off 'click'
         @pageddata.find('.savepaged').on 'click', =>
           @save()
         @listrecords()
-        @pageddata.find('.widgetcontent').hide()
-        @pageddata.find('.pagedtop').show()
+        #@pageddata.find('.widgetcontent').hide()
+        #@pageddata.find('.pagedtop').show()
+        @pageddata.find('.pgdatatabs').tabs()
+        
       else
         @displaymode()
         if not window.location.hash? or window.location.hash.length < 3
@@ -49,7 +51,7 @@ class PagedDataWidget
       $(window).bind 'hashchange', =>
         @checkHash()  
 
-      @checkHash()      
+      @checkHash()  
       
     catch e
       console.log e

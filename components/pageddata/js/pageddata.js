@@ -43,18 +43,12 @@
               return _this.listrecords();
             });
           });
-          this.pageddata.find('.toggletop').off('click');
-          this.pageddata.find('.toggletop').on('click', function() {
-            _this.pageddata.find('.pagedtop').toggle(100);
-            return _this.pageddata.find('.widgetcontent').toggle(100);
-          });
           this.pageddata.find('.savepaged').off('click');
           this.pageddata.find('.savepaged').on('click', function() {
             return _this.save();
           });
           this.listrecords();
-          this.pageddata.find('.widgetcontent').hide();
-          this.pageddata.find('.pagedtop').show();
+          this.pageddata.find('.pgdatatabs').tabs();
         } else {
           this.displaymode();
           if (!(window.location.hash != null) || window.location.hash.length < 3) {
