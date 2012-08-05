@@ -27,8 +27,10 @@ class PagedDataWidget
           @pageddata.find('.pagedtype').val @pageddata.attr('data-collection')
         @pageddata.find('.addpaged').off 'click'
         @pageddata.find('.addpaged').on 'click', =>
+          
           record = @newblank()
           now.dbinsert @pageddata.attr('data-collection'), record, =>
+            alert 'callinf lisr'
             @listrecords()
         #@pageddata.find('.toggletop').off 'click'
         #@pageddata.find('.toggletop').on 'click', =>
@@ -146,6 +148,7 @@ class PagedDataWidget
     @pageddata.find('.editcontrols').show()
     @pageddata.find('.pagedtop').hide 100
     @pageddata.find('.widgetcontent').show 100
+    @pageddata.find('#templatehead').text('Post Entry').trigger 'click'
     @pageddata.find('.field').each ->
       widget = $(this).data 'widget'
       widget.edit record
@@ -219,6 +222,7 @@ class PagedDataTool
 $ ->
   $(document).bind 'sessionState', (user) ->
     if window.loggedIn
+      $('.designonly').show()
       window.PagedDataTool = new PagedDataTool()
       window.saveFilters.push (sel) ->      
         $(sel).find('.pagedlist li').remove()  
@@ -234,5 +238,6 @@ if not window.saveFilters?
   
 window.saveFilters.push (sel) ->      
   $(sel).find('.pagedlist table').remove()
+  $(sel).find('.designonly').hide()
   
   

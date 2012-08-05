@@ -37,9 +37,13 @@
 
         }
       }
-      pages.find('.pagesmenu li').draggable({
-        handle: '.movepagesli'
-      });
+      try {
+        pages.find('.pagesmenu li').draggable({
+          handle: '.movepagesli'
+        });
+      } catch (e) {
+
+      }
       hoveron = function() {
         return $(this).find('.movepagesli').show();
       };

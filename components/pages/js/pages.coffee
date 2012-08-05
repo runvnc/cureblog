@@ -26,9 +26,12 @@ class PagesWidget
       try
 
       catch e
-        
-    pages.find('.pagesmenu li').draggable
-      handle: '.movepagesli'
+    
+    try
+      pages.find('.pagesmenu li').draggable
+        handle: '.movepagesli'
+    catch e
+    
     hoveron = ->
       $(this).find('.movepagesli').show()
     hoveroff = ->

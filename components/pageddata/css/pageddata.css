@@ -2,6 +2,10 @@
    width: 19px;
 }
 
+.pagedtype {
+   display: none; 
+}
+
 .pageddataall {
   position: absolute;
   padding: 15px;
@@ -10,6 +14,25 @@
   height: 300px;
  }
 
+.pgdatatabs {
+  position: relative;
+  height: 100%;
+  width: 100%;
+} 
+
+#pgtab2 {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+
+.pgdatacontent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+}
 
 .recorditem {
   cursor: pointer;  

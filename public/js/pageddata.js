@@ -40,6 +40,7 @@
             var record;
             record = _this.newblank();
             return now.dbinsert(_this.pageddata.attr('data-collection'), record, function() {
+              alert('callinf lisr');
               return _this.listrecords();
             });
           });
@@ -194,6 +195,7 @@
       this.pageddata.find('.editcontrols').show();
       this.pageddata.find('.pagedtop').hide(100);
       this.pageddata.find('.widgetcontent').show(100);
+      this.pageddata.find('#templatehead').text('Post Entry').trigger('click');
       return this.pageddata.find('.field').each(function() {
         var widget;
         widget = $(this).data('widget');
@@ -301,6 +303,7 @@
   $(function() {
     return $(document).bind('sessionState', function(user) {
       if (window.loggedIn) {
+        $('.designonly').show();
         window.PagedDataTool = new PagedDataTool();
         window.saveFilters.push(function(sel) {
           return $(sel).find('.pagedlist li').remove();
@@ -320,7 +323,8 @@
   if (!(window.saveFilters != null)) window.saveFilters = [];
 
   window.saveFilters.push(function(sel) {
-    return $(sel).find('.pagedlist table').remove();
+    $(sel).find('.pagedlist table').remove();
+    return $(sel).find('.designonly').hide();
   });
 
 }).call(this);

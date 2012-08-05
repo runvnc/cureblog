@@ -31,7 +31,7 @@
   border: 1px dashed #e2e2e2;  
 }
 
-.movepages, .movepagesli {
+.movepages {
   display: none;
   position: absolute;
   z-index: 10;
@@ -39,6 +39,16 @@
   width: 32px;
   height: 32px;
   background-image: url('images/move.png');
+}
+
+.movepagesli {
+ display: none;
+ position: absolute;
+ right: 0px;
+ top: 0px;
+ width: 32px;
+ height: 32px;
+ background-image: url('images/move.png');  
 }
 
 .pagesmenu {
