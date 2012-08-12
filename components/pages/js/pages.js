@@ -45,10 +45,10 @@
 
       }
       hoveron = function() {
-        return $(this).find('.movepagesli').show();
+        if (window.loggedIn) return $(this).find('.movepagesli').show();
       };
       hoveroff = function() {
-        return $(this).find('.movepagesli').hide();
+        if (window.loggedIn) return $(this).find('.movepagesli').hide();
       };
       pages.find('.pagesmenu li').hover(hoveron, hoveroff);
       pages.find('.addpage').off('click');
@@ -115,7 +115,8 @@
     $('body *').removeClass('loggedIn');
     $(sel).find('.addpage').hide();
     $('body *').removeClass('loggedin');
-    return $(sel).removeClass('loggedin');
+    $(sel).removeClass('loggedin');
+    return $(sel).find('.movepagesli').hide();
   });
 
   $(function() {

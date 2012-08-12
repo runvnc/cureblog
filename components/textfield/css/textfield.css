@@ -8,6 +8,9 @@
   
 }
 
+.textinput {
+  width: 420px; 
+}
 
 .texthtmleditarea {
   display: none; 

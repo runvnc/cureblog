@@ -13,6 +13,8 @@ class PagedDataWidget
     try
       pageddata = @pageddata
       if window.loggedIn
+        @pageddata.find('.movehandle').show()
+        @pageddata.find('.editcontrols').hide()
         @pageddata.draggable
           handle: '.movehandle'
         @pageddata.resizable()
@@ -26,12 +28,11 @@ class PagedDataWidget
         if @pageddata.attr('data-collection')?
           @pageddata.find('.pagedtype').val @pageddata.attr('data-collection')
         @pageddata.find('.addpaged').off 'click'
-        @pageddata.find('.addpaged').on 'click', =>
-          
+        @pageddata.find('.addpaged').on 'click', =>          
           record = @newblank()
           now.dbinsert @pageddata.attr('data-collection'), record, =>
-            alert 'callinf lisr'
             @listrecords()
+            @edit record
         #@pageddata.find('.toggletop').off 'click'
         #@pageddata.find('.toggletop').on 'click', =>
         #  @pageddata.find('.pagedtop').toggle 100
@@ -121,7 +122,10 @@ class PagedDataWidget
     obj
     
   designmode: ->
+    console.log 'designmode'
     @pageddata.find('.editcontrols').hide()
+    @pageddata.find('.movehandle').show()
+    console.log @pageddata.find('.movehandle')
     @pageddata.find('.field').each ->
       widget = $(this).data 'widget'
       widget.designmode @record
@@ -133,8 +137,8 @@ class PagedDataWidget
     now.dbupdate @col, criteria, @record, =>      
       @listrecords()
       @designmode()
-      @pageddata.find('.widgetcontent').hide()
-      @pageddata.find('.pagedtop').show()
+      @pageddata.find('#templatehead').text('Template')
+      @pageddata.find('#postshead').trigger 'click'
       now.cachePage '/'
       title = @record['title']
       if title?
@@ -172,8 +176,7 @@ class PagedDataWidget
       @records = records
       fields = @fieldlist @records
       str += '<table><tr>'
-      for fieldname, val of fields
-        str += '<th class=\"recordhead\">'+fieldname+'</th>'
+      str += '<th class=\"recordhead\">Title</th>'
       str += '</tr>'
       for record in records
         id = record['_id']        
@@ -239,5 +242,6 @@ if not window.saveFilters?
 window.saveFilters.push (sel) ->      
   $(sel).find('.pagedlist table').remove()
   $(sel).find('.designonly').hide()
+  $(sel).find('.movehandle').hide()
   
   

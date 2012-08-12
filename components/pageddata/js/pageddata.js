@@ -19,6 +19,8 @@
       try {
         pageddata = this.pageddata;
         if (window.loggedIn) {
+          this.pageddata.find('.movehandle').show();
+          this.pageddata.find('.editcontrols').hide();
           this.pageddata.draggable({
             handle: '.movehandle'
           });
@@ -40,8 +42,8 @@
             var record;
             record = _this.newblank();
             return now.dbinsert(_this.pageddata.attr('data-collection'), record, function() {
-              alert('callinf lisr');
-              return _this.listrecords();
+              _this.listrecords();
+              return _this.edit(record);
             });
           });
           this.pageddata.find('.savepaged').off('click');
@@ -158,7 +160,10 @@
     };
 
     PagedDataWidget.prototype.designmode = function() {
+      console.log('designmode');
       this.pageddata.find('.editcontrols').hide();
+      this.pageddata.find('.movehandle').show();
+      console.log(this.pageddata.find('.movehandle'));
       return this.pageddata.find('.field').each(function() {
         var widget;
         widget = $(this).data('widget');
@@ -177,8 +182,8 @@
         var title;
         _this.listrecords();
         _this.designmode();
-        _this.pageddata.find('.widgetcontent').hide();
-        _this.pageddata.find('.pagedtop').show();
+        _this.pageddata.find('#templatehead').text('Template');
+        _this.pageddata.find('#postshead').trigger('click');
         now.cachePage('/');
         title = _this.record['title'];
         if (title != null) {
@@ -227,10 +232,7 @@
         _this.records = records;
         fields = _this.fieldlist(_this.records);
         str += '<table><tr>';
-        for (fieldname in fields) {
-          val = fields[fieldname];
-          str += '<th class=\"recordhead\">' + fieldname + '</th>';
-        }
+        str += '<th class=\"recordhead\">Title</th>';
         str += '</tr>';
         for (_i = 0, _len = records.length; _i < _len; _i++) {
           record = records[_i];
@@ -324,7 +326,8 @@
 
   window.saveFilters.push(function(sel) {
     $(sel).find('.pagedlist table').remove();
-    return $(sel).find('.designonly').hide();
+    $(sel).find('.designonly').hide();
+    return $(sel).find('.movehandle').hide();
   });
 
 }).call(this);

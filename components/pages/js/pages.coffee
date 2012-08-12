@@ -31,11 +31,13 @@ class PagesWidget
       pages.find('.pagesmenu li').draggable
         handle: '.movepagesli'
     catch e
-    
+        
     hoveron = ->
-      $(this).find('.movepagesli').show()
+      if window.loggedIn
+        $(this).find('.movepagesli').show()
     hoveroff = ->
-      $(this).find('.movepagesli').hide()
+      if window.loggedIn
+        $(this).find('.movepagesli').hide()
     pages.find('.pagesmenu li').hover hoveron, hoveroff
     pages.find('.addpage').off 'click'
     pages.find('.addpage').on 'click', ->
@@ -83,6 +85,7 @@ window.saveFilters.push (sel) ->
   $(sel).find('.addpage').hide()
   $('body *').removeClass('loggedin')
   $(sel).removeClass('loggedin')   
+  $(sel).find('.movepagesli').hide()
   
   
 $ ->
@@ -100,6 +103,7 @@ $ ->
       $('.addpage').show()
       $('.movepages').show()
       $('body *').addClass 'loggedin'
+
       $('#page').on 'click', (ev) ->
         if ev.target.id is 'page'
           $('.activewidget').removeClass 'activewidget'

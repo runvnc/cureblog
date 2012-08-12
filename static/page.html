@@ -76,6 +76,28 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
    <!-- pagesall -->
   
   
@@ -147,33 +169,44 @@
   
   
   
-  <div class="pagesall ui-draggable" style="position: absolute; left: 136px; top: 31px; ">
+   <!-- pagesall -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="pagesall ui-draggable" style="position: absolute; top: 58px; left: 149px; ">
     <div class="movepages" style="display: block; "></div>
     <ul class="pagesmenu">
-      <li style="position: relative; left: -1px; top: 0px; " class="ui-draggable activenav">Home <div class="movepagesli" style="display: none; "></div></li>
+      <li style="position: relative; left: 2px; top: 1px; " class="ui-draggable activenav">Home <div class="movepagesli" style="display: none; "></div></li>
       <li style="position: relative; " class="ui-draggable">About <div class="movepagesli" style="display: none; "></div></li>
     </ul>
     <button class="addpage black button" style="display: none; ">Add Page</button>
     <div class="pagescontainer">
       <div class="page-Home pagescontent ui-draggable ui-resizable" style="display: block; ">
         
-      <div class="pageddataall ui-draggable ui-resizable" data-collection="Blog" style="position: absolute; left: 20px; top: -1px; ">
+      <div class="pageddataall ui-draggable ui-resizable" data-collection="Blog" style="position: absolute; top: -27px; left: -5px; width: 780px; height: 518px; ">
     <div class="pgdatatabs ui-tabs ui-widget ui-widget-content ui-corner-all">
       <ul class="designonly ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="display: none; ">
-        <li class="ui-state-default ui-corner-top"><a href="#pagedtop">Posts</a></li>
-        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#pgtab2" id="templatehead">Template</a></li>
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"><a href="#pagedtop" id="postshead">Posts</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="#pgtab2" id="templatehead">Template</a></li>
       </ul>
       
-      <div id="pagedtop" class="designonly ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" style="display: none; ">        
+      <div id="pagedtop" class="designonly ui-tabs-panel ui-widget-content ui-corner-bottom" style="display: none; ">        
         <input type="text" class="pagedtype" placeholder="Record type" value="Blog">
-        <div class="movehandle">&nbsp;</div>
+        <div class="movehandle" style="display: none; ">&nbsp;</div>
         <br>
         <button class="addpaged button black">Add Post</button>
         <a class="changetype" href="javascript:changetype()">Change post type</a><br>
         <div class="pagedlist"></div>      
       </div>
 
-      <div id="pgtab2" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+      <div id="pgtab2" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
         <div class="editcontrols designonly" style="display: none; ">
          <button class="button black savepaged">Save</button>
         </div>
@@ -188,7 +221,7 @@
         <input class="dateinput" type="datetime-local" style="display: none; ">
         <div class="datetimedisplay"></div>
         <div class="datetimeeditarea">{{modified}}</div>
-        </div> <!-- pagesall --><div class="textfieldall field ui-resizable ui-draggable" style="position: absolute; width: 332px; height: 10px; left: -3px; top: 40px; " data-fieldname="title">
+        </div> <!-- pagesall --><div class="textfieldall field ui-resizable ui-draggable" style="position: absolute; width: 522px; height: 10px; left: -3px; top: 40px; " data-fieldname="title">
         <div class="fieldname">title</div>
         <div class="rename">rename</div>
         <input class="textinput" type="text" style="display: none; ">
@@ -213,6 +246,17 @@
       </div>
     </div>
   </div> <!-- pagesall -->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
