@@ -32,10 +32,8 @@ class TextFieldWidget
     
   showname: ->
     name = @obj.attr 'data-fieldname'
-    @obj.find('.fieldname').html name
-    template = @textfield.find('.texthtmleditarea').html()
-    newhtml = template.replace /\{\{[a-z0-9]*\}\}/i, '{{'+name+'}}'
-    @textfield.find('.texthtmleditarea').html newhtml
+    @obj.find('.texthtmldisplay').html '{{' + name + '}}'
+
     
   blank: =>
     'New'
@@ -43,20 +41,14 @@ class TextFieldWidget
   edit: (record) ->
     name = @obj.attr 'data-fieldname'
     @textfield.find('.textinput').show()
-    @textfield.find('.texthtmleditarea').hide()
     @textfield.find('.textinput').val record[name]
-    @textfield.find('.texthtmleditarea').hide()
     @textfield.find('.textinput').off 'blur'
     @textfield.find('.textinput').on 'blur', ->
       record[name] = $(this).val()
 
   display: (record) ->  
-    name = @obj.attr 'data-fieldname'
-    template = @textfield.find('.texthtmleditarea').html()
-    
-    newhtml = template.replace '{{'+name+'}}', record[name]
-    @textfield.find('.texthtmldisplay').html newhtml
-    @textfield.find('.texthtmleditarea').hide()
+    name = @obj.attr 'data-fieldname'        
+    @textfield.find('.texthtmldisplay').html '{{'+name+'}}'
     @textfield.find('.rename,.fieldname').hide()
     @textfield.css 'border', 'none'
     
@@ -64,25 +56,17 @@ class TextFieldWidget
   designmode: ->    
     name = @obj.attr 'data-fieldname'
     @textfield.find('.textinput').hide()
-    currhtml = @textfield.find('.texthtmleditarea').html()
+    @textfield.find('.fieldnameinp').change =>
+      @textfield.attr 'data-fieldname', @textfield.find('.fieldnameinp').val() 
+      @showname()
+    @textfield.find('.menudrop').click =>
+      @textfield.find('.menudrop').toggleClass 'open'
+      @textfield.find('.options').toggle()
+      
+    currhtml = "currhtml"
     if currhtml.indexOf('{{') < 0 or currhtml.indexOf('{{undefined}}') > 0
-      @textfield.find('.texthtmleditarea').html '{{' + name + '}}'
-    @textfield.find('.texthtmleditarea').show()
-    oFCKeditor = new FCKeditor('editor1')
-    oFCKeditor.ToolbarSet = 'Simple'
-    oFCKeditor.BasePath = "/js/"       
+      @textfield.find('.texthtmldisplay').html '{{' + name + '}}'
 
-    @textfield.find('.texthtmleditarea').editable
-      type: 'wysiwyg'
-      editor: oFCKeditor       
-      submit:'save',
-      cancel:'cancel'
-      onEdit: (content) ->
-        window.alreadyEditing = true
-      onSubmit: (content) ->               
-        window.alreadyEditing = false
-      onCancel: (content) ->
-        window.alreadyEditing = false    
   
 class TextFieldTool
   constructor: ->

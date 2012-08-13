@@ -1,0 +1,85 @@
+.QrTable{
+	border-collapse: collapse;
+}
+
+.QrTable .QrLabel {
+	background-color:#FDD;
+	min-width:50px;
+	height:24px;
+	text-align:center;
+}
+
+.QrTable .QrLabelSelected {
+	background-color:#CFC;
+	min-width:50px;
+	height:24px;
+	text-align:center;
+}
+
+.QrTable .QrCell {
+	height:22px;
+	background-color:#FFF;
+}
+
+.QrTable .QrCell DIV {
+	margin:0px;
+	margin-top:1px;
+	margin-bottom:1px;
+	background-color:#FFF;
+	
+	font-size:10.5pt;
+	font-family:sans-serif;
+}
+
+.QrTable .QrCellSelected {
+	height:22px;
+	background-color:#CFC;
+}
+.QrTable .QrCellSelected INPUT {
+	background-color:#CFC;
+}
+
+.QrTable .QrCellSelected DIV {
+	margin:0px;
+	margin-top:1px;
+	margin-bottom:1px;
+	background-color:#CFC;
+	
+	font-size:10.5pt;
+	font-family:sans-serif;
+}
+
+.QrTable .QrCellHighSelected {
+	height:22px;
+	background-color:#CFC;
+}
+.QrTable .QrCellHighSelected INPUT {
+	background-color:#FFFFFF;
+}
+
+.QrTable .QrCellHighSelected DIV {
+	margin:0px;
+	margin-top:1px;
+	margin-bottom:1px;
+	background-color:#FFFFFF;
+}
+
+.QrTable TD {
+	width:80px;
+	padding:0px;
+	padding-right:1px;
+	padding-left :1px;
+	text-align:right;
+	
+	font-size:10.5pt;
+	font-family:sans-serif;
+}
+
+
+.QrTable INPUT {
+	border-width:0px;
+	text-align:right;
+	font-size:10.5pt;
+	font-family:sans-serif;
+	width:100%;
+}

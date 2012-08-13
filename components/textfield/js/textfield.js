@@ -40,12 +40,9 @@
     }
 
     TextFieldWidget.prototype.showname = function() {
-      var name, newhtml, template;
+      var name;
       name = this.obj.attr('data-fieldname');
-      this.obj.find('.fieldname').html(name);
-      template = this.textfield.find('.texthtmleditarea').html();
-      newhtml = template.replace(/\{\{[a-z0-9]*\}\}/i, '{{' + name + '}}');
-      return this.textfield.find('.texthtmleditarea').html(newhtml);
+      return this.obj.find('.texthtmldisplay').html('{{' + name + '}}');
     };
 
     TextFieldWidget.prototype.blank = function() {
@@ -56,9 +53,7 @@
       var name;
       name = this.obj.attr('data-fieldname');
       this.textfield.find('.textinput').show();
-      this.textfield.find('.texthtmleditarea').hide();
       this.textfield.find('.textinput').val(record[name]);
-      this.textfield.find('.texthtmleditarea').hide();
       this.textfield.find('.textinput').off('blur');
       return this.textfield.find('.textinput').on('blur', function() {
         return record[name] = $(this).val();
@@ -66,43 +61,30 @@
     };
 
     TextFieldWidget.prototype.display = function(record) {
-      var name, newhtml, template;
+      var name;
       name = this.obj.attr('data-fieldname');
-      template = this.textfield.find('.texthtmleditarea').html();
-      newhtml = template.replace('{{' + name + '}}', record[name]);
-      this.textfield.find('.texthtmldisplay').html(newhtml);
-      this.textfield.find('.texthtmleditarea').hide();
+      this.textfield.find('.texthtmldisplay').html('{{' + name + '}}');
       this.textfield.find('.rename,.fieldname').hide();
       return this.textfield.css('border', 'none');
     };
 
     TextFieldWidget.prototype.designmode = function() {
-      var currhtml, name, oFCKeditor;
+      var currhtml, name,
+        _this = this;
       name = this.obj.attr('data-fieldname');
       this.textfield.find('.textinput').hide();
-      currhtml = this.textfield.find('.texthtmleditarea').html();
-      if (currhtml.indexOf('{{') < 0 || currhtml.indexOf('{{undefined}}') > 0) {
-        this.textfield.find('.texthtmleditarea').html('{{' + name + '}}');
-      }
-      this.textfield.find('.texthtmleditarea').show();
-      oFCKeditor = new FCKeditor('editor1');
-      oFCKeditor.ToolbarSet = 'Simple';
-      oFCKeditor.BasePath = "/js/";
-      return this.textfield.find('.texthtmleditarea').editable({
-        type: 'wysiwyg',
-        editor: oFCKeditor,
-        submit: 'save',
-        cancel: 'cancel',
-        onEdit: function(content) {
-          return window.alreadyEditing = true;
-        },
-        onSubmit: function(content) {
-          return window.alreadyEditing = false;
-        },
-        onCancel: function(content) {
-          return window.alreadyEditing = false;
-        }
+      this.textfield.find('.fieldnameinp').change(function() {
+        _this.textfield.attr('data-fieldname', _this.textfield.find('.fieldnameinp').val());
+        return _this.showname();
       });
+      this.textfield.find('.menudrop').click(function() {
+        _this.textfield.find('.menudrop').toggleClass('open');
+        return _this.textfield.find('.options').toggle();
+      });
+      currhtml = "currhtml";
+      if (currhtml.indexOf('{{') < 0 || currhtml.indexOf('{{undefined}}') > 0) {
+        return this.textfield.find('.texthtmldisplay').html('{{' + name + '}}');
+      }
     };
 
     return TextFieldWidget;

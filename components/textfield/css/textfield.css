@@ -2,6 +2,36 @@
   /* width: 150px; */
 }
 
+.menudrop {
+  float: right; 
+  z-index: 510;
+  padding-top: 3px;
+  padding-right: 2px;
+  cursor: pointer;
+}
+
+.menudrop.open {
+  transform:rotate(-90deg);
+  -ms-transform:rotate(-90deg); /* IE 9 */
+  -moz-transform:rotate(-90deg); /* Firefox */
+  -webkit-transform:rotate(-90deg); /* Safari and Chrome */
+  -o-transform:rotate(-90deg); /* Opera */   
+}
+
+.texthtmldisplay {
+  float: left;  
+}
+
+.options {
+  position: absolute;
+  z-index: 5900;
+  padding: 5px;
+  left: 96%;
+  top: 18px;
+  background-color: rgba(255,255,255,0.9);
+  display: none;
+}
+
 .textfieldicon {
   
   width: 19px;
@@ -17,9 +47,10 @@
 }
 
 .textfieldall {
-  position: absolute;
-  padding: 15px;
-  margin: 15px;
+  position: absolute;  
+  padding-bottom: 19px;
+  padding-right: 5px;
+  margin: 0px;
   border: 1px dotted #aaa; 
  }
 

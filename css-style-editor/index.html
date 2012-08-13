@@ -1,0 +1,1122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CSS Style Editor - CSS Portal</title>
+	<style type="text/css" media="all">@import "../style/style.css";</style>
+	<link rel="stylesheet" type="text/css" href="style/qreditor.css" />
+  	<link rel="stylesheet" type="text/css" href="style/qrtable.css" />
+  	<link rel="stylesheet" type="text/css" href="style/qrpulldown.css" />
+<style type="text/css"> <!--
+
+.QrCSSDesignerPad{
+	margin-top:40px;
+}
+
+.QrCSSDesignerPadLeft{
+	width:150px;
+}
+
+--></style>
+<script type="text/javascript" src="style/qrxpcom.js"></script>
+<script type="text/javascript" src="style/qrcpicker.js"></script>
+<script type="text/javascript" src="style/qrcpulldown.js"></script>
+<script type="text/javascript" src="style/qrcspinner.js"></script>
+<script type="text/javascript" src="style/setup.js"></script>
+
+<script type="text/javascript" src="move.js"></script>
+
+	<!--[if lt IE 7]>
+	<style type="text/css">@import "../style/ie.css";</style>
+	<script src="../script/DD_belatedPNG.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		DD_belatedPNG.fix('#wrapcontentinner, #placemainmenu, .dropdowntop, .dropdownbottom, img');
+	</script>
+	<![endif]-->
+
+	<!--[if IE 7]><style type="text/css">@import "../style/ie7.css";</style><![endif]-->
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/ddaccordion.js"></script>
+<script type="text/javascript" src="../script/accordion.js"></script>
+<script src="../script/twitter.js" type="text/javascript"></script>
+<script src="../script/gettwitter.js" type="text/javascript"></script>
+</head>
+<body onscroll="move_box()" onload="initialize_toolbox_variables()">
+<div id="container">
+	<div id="wrapglossy">
+		<div id="wrapcontentinner">
+			<div id="wrapper">
+				<div id="header">	
+	<a href="http://www.cssportal.com" class="replace" id="logo"><span></span>CSS Portal</a>
+	<ul id="topmenu">
+		<li><div style="margin-top:5px;margin-right:60px;"><script type="text/javascript"><!--
+google_ad_client = "pub-1356719463849900";
+/* CSSPortal Bottom */
+google_ad_slot = "7929496539";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div></li>
+	</ul>
+
+</div>
+<div id="placemainmenu">
+	<ul id="mainmenu">
+		<li><a href="http://www.cssportal.com">Home</a></li>
+		<li><a href="#">CSS Resources</a>
+			<div class="dropdown1">
+				<div class="dropdowntop"></div>
+				<div class="dropdownbottom">
+					<ul class="menudrop1">
+						<li><a href="http://www.cssportal.com/css-books/">CSS Books</a></li>
+						<li><a href="http://www.cssportal.com/css3-color-names/">CSS3 Color Names</a></li>
+						<li><a href="http://www.cssportal.com/css-hacks/">CSS Hacks</a></li>
+						<li><a href="http://www.cssportal.com/news/">CSS News</a></li>
+						<li><a href="http://www.cssportal.com/css-properties/">CSS Properties</a></li>
+						<li><a href="http://www.cssportal.com/css-quiz/">CSS Quiz</a></li>
+						<li><a href="http://www.cssportal.com/software/">CSS Software</a></li>
+						<li><a href="http://www.cssportal.com/css-snippets/">CSS Snippets</a></li>
+						<li><a href="http://www.cssportal.com/css-templates/">CSS Templates</a></li>
+						<li><a href="http://www.cssportal.com/tutorials/">CSS Tutorials</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</li>
+		<li><a href="#">CSS Tools</a>
+			<div class="dropdown1">
+				<div class="dropdowntop"></div>
+				<div class="dropdownbottom">
+					<ul class="menudrop1">
+						<li><a href="http://www.cssportal.com/css-validator/">CSS Validator</a></li>
+						<li><a href="http://www.cssportal.com/css-font-preview/">CSS Font Preview</a></li>
+						<li><a href="http://www.cssportal.com/format-css/">Format CSS Code</a></li>
+						<li><a href="http://www.cssportal.com/css-optimize/">Optimize CSS Code</a></li>
+						<li><a href="http://www.cssportal.com/online-css-editor/">Online CSS Editor</a></li>
+						<li><a href="http://www.cssportal.com/css-style-editor/">Visual Style Editor</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div></li>
+		<li><a href="#">CSS Examples</a><div class="dropdown1">
+				<div class="dropdowntop"></div>
+				<div class="dropdownbottom">
+					<ul class="menudrop1">
+						<li><a href="http://www.cssportal.com/css3-preview/">CSS3 Preview</a></li>
+						<li><a href="http://www.cssportal.com/css3-shapes/">CSS3 Shapes</a></li>
+						<li><a href="http://www.cssportal.com/graphics/">Graphics</a></li>
+						<li><a href="http://www.cssportal.com/hyperlinks/">Hyperlinks</a></li>
+						<li><a href="http://www.cssportal.com/form-elements/">Form Elements</a></li>
+						<li><a href="http://www.cssportal.com/horizontal-menus/">Horizontal Menus</a></li>
+						<li><a href="http://www.cssportal.com/vertical-menus/">Vertical Menus</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</li>
+		<li><a href="#">Online Generators</a>
+			<div class="dropdown1">
+				<div class="dropdowntop"></div>
+				<div class="dropdownbottom">
+					<ul class="menudrop1">
+						<li><a href="http://www.cssportal.com/button-maker/">Button Maker</a></li>
+						<li><a href="http://www.cssportal.com/layout-generator/">Layout Generator</a></li>
+						<li><a href="http://www.cssportal.com/css-menu-generator/">CSS Menu Generator</a></li>
+						<li><a href="http://www.cssportal.com/css-rounded-corners/">Rounded Corners (CSS)</a></li>
+						<li><a href="http://www.cssportal.com/css3-rounded-corner/">CSS3 Rounded Corners</a></li>
+						<li><a href="http://www.cssportal.com/css3-button-generator/">CSS3 Button Generator</a></li>
+						<li><a href="http://www.cssportal.com/css3-text-shadow-generator/">CSS3 Text Shadow Generator</a></li>
+						<li><a href="http://www.cssportal.com/css3-box-shadow-generator/">CSS3 Box Shadow Generator</a></li>
+						<li><a href="http://www.cssportal.com/css3-menu-generator/">CSS3 Menu Generator</a></li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div></li>
+		<li><a href="http://www.cssportal.com/contact.htm">Contact Us</a></li>
+		<li><a href="http://www.cssportal.com/donate.htm">Donate</a></li>
+		<li><a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4bee5fe86a143d63"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4bee5fe86a143d63"></script></li>
+	</ul>
+</div>				<div id="content">
+					<div id="maincontent_val">
+						<div id="results">
+							<h1>CSS Style Editor</h1>
+							<p>CSS Style Editor, with this tool you can visually 
+							see what effect a certain property has on a style. 
+							Just select any property on the left hand side to 
+							see what effect it will have in the box below.&nbsp; To 
+							clear the form, click on &#39;Start Again&#39; </p>
+							<form>
+<div style="float:right; position:relative; right:100px;" id="tool_box_area">
+<div style="width:350px;height:400px;">
+
+<div style="background-image:url('style/grid.gif'); padding:20px; margin:20px; width:350px;">
+<div id="target">
+CSSPortal CSS Style Editor<br/>
+<br/>
+Select styles from the left to see effects here.
+</div>
+</div>
+
+<textarea id="output" rows="7" style=" margin:20px; width:390px; border:1px solid gray;"></textarea>
+<p style="margin-left:20px;">Click <img alt="" src="style/extimg/arrowclose.gif" width="16" height="16" /> to view more options.</p><br /><br />
+
+<input type="reset" value="Start Again" onclick="history.go()" />
+</div>
+</div>
+
+<table class="QrCSSDesignerPad">
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>color : </p>
+	</td><td><script type="text/javascript"><!--
+var cp = new QrColorPicker("black");
+cp.render();
+connectCSS(cp,"color");
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>background-color : </p>
+	</td><td><script type="text/javascript"><!--
+var cp = new QrColorPicker("transparent");
+cp.render();
+connectCSS(cp,"background-color");
+--></script></td></tr>
+
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+<tr><td><img id="border-width#switch" src="style/extimg/arrowclose.gif" onclick="collapseSwitch('border-width');" width="16" height="16" /></td><td class="QrCSSDesignerPadLeft">
+	<p>border-width : </p>
+	</td><td><span id="border-width"><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+var override = new Array;
+override["border-top-width"]   = "";
+override["border-left-width"]   = "";
+override["border-right-width"]   = "";
+override["border-bottom-width"]   = "";
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"border-width",override);
+--></script></span></td></tr>
+
+<tr id="border-top-width" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-top-width : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"border-top-width");
+--></script></span></td></tr>
+<tr id="border-left-width" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-left-width : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"border-left-width");
+--></script></td></tr>
+<tr id="border-right-width" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-right-width : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"border-right-width");
+--></script></td></tr>
+
+<tr id="border-bottom-width" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-bottom-width : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"border-bottom-width");
+--></script></td></tr>
+
+
+<tr><td><img id="border-color#switch" src="style/extimg/arrowclose.gif" onclick="collapseSwitch('border-color');" width="16" height="16" /></td><td class="QrCSSDesignerPadLeft">
+	<p>border-color : </p>
+	</td><td><span id="border-color"><script type="text/javascript"><!--
+var cp = new QrColorPicker("transparent");
+cp.render();
+var override = new Array;
+override["border-top-color"]   = "";
+override["border-left-color"]   = "";
+override["border-right-color"]   = "";
+override["border-bottom-color"]   = "";
+connectCSS(cp,"border-color",override);
+--></script></span></td></tr>
+
+
+<tr id="border-top-color" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-top-color : </p>
+	</td><td><script type="text/javascript"><!--
+var cp = new QrColorPicker("transparent");
+cp.render();
+connectCSS(cp,"border-top-color");
+--></script></td></tr>
+<tr id="border-left-color" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-left-color : </p>
+	</td><td><script type="text/javascript"><!--
+var cp = new QrColorPicker("transparent");
+cp.render();
+connectCSS(cp,"border-left-color");
+--></script></td></tr>
+
+<tr id="border-right-color" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-right-color : </p>
+	</td><td><script type="text/javascript"><!--
+var cp = new QrColorPicker("transparent");
+cp.render();
+connectCSS(cp,"border-right-color");
+--></script></td></tr>
+<tr id="border-bottom-color" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-bottom-color : </p>
+	</td><td><script type="text/javascript"><!--
+var cp = new QrColorPicker("transparent");
+cp.render();
+connectCSS(cp,"border-bottom-color");
+--></script></td></tr>
+
+<tr><td><img id="border-style#switch" src="style/extimg/arrowclose.gif" onclick="collapseSwitch('border-style');" width="16" height="16" /></td><td class="QrCSSDesignerPadLeft">
+	<p>border-style : </p>
+	</td><td><span id="border-style"><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addStyle(style){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:10px;height:10px;border-width:3px;border-style:"+style+";border-color:red' align='middle'/> "+style,style);
+}
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;border-width:3px;border-style:none;border-color:red;' align='middle'/> none","none");
+addStyle("solid");
+addStyle("double");
+addStyle("groove");
+addStyle("ridge");
+addStyle("inset");
+addStyle("outset");
+addStyle("dashed");
+addStyle("dotted");
+var override = new Array;
+override["border-top-style"]   = "";
+override["border-left-style"]   = "";
+override["border-right-style"]   = "";
+override["border-bottom-style"]   = "";
+connectCSS(pl,"border-style", override);
+
+
+--></script></span></td></tr>
+
+
+<tr id="border-top-style" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-top-style : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addStyle(style){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:10px;height:10px;border-width:3px;border-style:"+style+";border-color:red' align='middle'/> "+style,style);
+}
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;border-width:3px;border-style:none;border-color:red;' align='middle'/> none","none");
+addStyle("solid");
+addStyle("double");
+addStyle("groove");
+addStyle("ridge");
+addStyle("inset");
+addStyle("outset");
+addStyle("dashed");
+addStyle("dotted");
+connectCSS(pl,"border-top-style");
+
+--></script></td></tr>
+
+<tr id="border-left-style" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-left-style : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addStyle(style){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:10px;height:10px;border-width:3px;border-style:"+style+";border-color:red' align='middle'/> "+style,style);
+}
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;border-width:3px;border-style:none;border-color:red;' align='middle'/> none","none");
+addStyle("solid");
+addStyle("double");
+addStyle("groove");
+addStyle("ridge");
+addStyle("inset");
+addStyle("outset");
+addStyle("dashed");
+addStyle("dotted");
+connectCSS(pl,"border-left-style");
+
+--></script></td></tr>
+
+<tr id="border-right-style" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-right-style : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addStyle(style){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:10px;height:10px;border-width:3px;border-style:"+style+";border-color:red' align='middle'/> "+style,style);
+}
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;border-width:3px;border-style:none;border-color:red;' align='middle'/> none","none");
+addStyle("solid");
+addStyle("double");
+addStyle("groove");
+addStyle("ridge");
+addStyle("inset");
+addStyle("outset");
+addStyle("dashed");
+addStyle("dotted");
+connectCSS(pl,"border-right-style");
+
+--></script></td></tr>
+
+<tr id="border-bottom-style" style="display:none;"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>border-bottom-style : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addStyle(style){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:10px;height:10px;border-width:3px;border-style:"+style+";border-color:red' align='middle'/> "+style,style);
+}
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;border-width:3px;border-style:none;border-color:red;' align='middle'/> none","none");
+addStyle("solid");
+addStyle("double");
+addStyle("groove");
+addStyle("ridge");
+addStyle("inset");
+addStyle("outset");
+addStyle("dashed");
+addStyle("dotted");
+connectCSS(pl,"border-bottom-style");
+
+--></script></td></tr>
+
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>width : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"width");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>height : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"height");
+
+--></script></td></tr>
+
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>overflow : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("visible");
+addItem("hidden");
+addItem("scroll");
+addItem("auto");
+connectCSS(pl,"overflow");
+
+--></script></td></tr>
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+
+
+<tr><td><img id="padding#switch" src="style/extimg/arrowclose.gif" onclick="collapseSwitch('padding');" width="16" height="16" /></td><td class="QrCSSDesignerPadLeft">
+	<p>padding : </p>
+	</td><td><span id="padding"><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+var override = new Array;
+override["padding-top"]   = "";
+override["padding-left"]   = "";
+override["padding-right"]   = "";
+override["padding-bottom"]   = "";
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"padding",override);
+
+--></script></span></td></tr>
+
+<tr id="padding-top" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>padding-top : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"padding-top");
+
+--></script></td></tr>
+<tr id="padding-left" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>padding-left : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"padding-left");
+
+--></script></td></tr>
+<tr id="padding-right" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>padding-right : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"padding-right");
+
+--></script></td></tr>
+<tr id="padding-bottom" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>padding-bottom : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"padding-bottom");
+
+--></script></td></tr>
+
+
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+<tr><td><img id="margin#switch" src="style/extimg/arrowclose.gif" onclick="collapseSwitch('margin');" width="16" height="16" /></td><td class="QrCSSDesignerPadLeft">
+	<p>margin : </p>
+	</td><td><span id="margin"><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+var override = new Array;
+override["margin-top"]   = "";
+override["margin-left"]   = "";
+override["margin-right"]   = "";
+override["margin-bottom"]   = "";
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"margin",override);
+--></script></span></td></tr>
+
+<tr id="margin-top" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>margin-top :</p>
+&nbsp;</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"margin-top");
+
+--></script></td></tr>
+<tr id="margin-left" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>margin-left : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"margin-left");
+
+--></script></td></tr>
+
+<tr id="margin-right" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>margin-right :</p>
+&nbsp;</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"margin-right");
+
+--></script></td></tr>
+<tr id="margin-bottom" style="display:none"><td></td><td class="QrCSSDesignerPadLeft">
+	<p>margin-bottom :</p>
+&nbsp;</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent();
+connectCSS2(pl,tan,"margin-bottom");
+
+--></script></td></tr>
+
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>font-family : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addFont(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> <span style='font-family:"+fontname+"'>"+fontname+"</span>",fontname);
+}
+addFont("serif");
+addFont("sans-serif");
+addFont("cursive");
+addFont("fantasy");
+addFont("monospace");
+connectCSS(pl,"font-family");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>font-size : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addFont(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> <span style='font-family:"+fontname+"'>"+fontname+"</span>",fontname);
+}
+addFont("9pt");
+addFont("10pt");
+addFont("12pt");
+addFont("14pt");
+addFont("16pt");
+addFont("xx-small");
+addFont("x-small");
+addFont("small");
+addFont("large");
+addFont("x-large");
+addFont("xx-large");
+connectCSS(pl,"font-size");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>font-weight : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("normal");
+addItem("bold");
+addItem("600");
+addItem("900");
+connectCSS(pl,"font-weight");
+
+--></script></td></tr>
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>font-style : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("normal");
+addItem("italic");
+addItem("oblique");
+connectCSS(pl,"font-style");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>font-variant : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("normal");
+addItem("small-caps");
+connectCSS(pl,"font-variant");
+
+--></script></td></tr>
+
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>line-height : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner(100);
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("%");
+connectCSS2(pl,tan,"line-height");
+--></script></td></tr>
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>clear : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("left");
+addItem("right");
+addItem("both");
+addItem("none");
+connectCSS(pl,"clear");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>float : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("left");
+addItem("right");
+addItem("none");
+connectCSS(pl,"float");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>text-align : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("left");
+addItem("right");
+addItem("center");
+addItem("justify");
+connectCSS(pl,"text-align");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>text-decoration : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("none");
+addItem("underline");
+addItem("overline");
+addItem("underline overline");
+addItem("line-through");
+addItem("blink");
+connectCSS(pl,"text-decoration");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>text-indent : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("em");
+connectCSS2(pl,tan,"text-indent");
+--></script></td></tr>
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>letter-spacing : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("px");
+connectCSS2(pl,tan,"letter-spacing");
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>word-spacing : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("px");
+connectCSS2(pl,tan,"word-spacing");
+--></script></td></tr>
+
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>text-transform : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("none");
+addItem("capitalize");
+addItem("lowercase");
+addItem("uppercase");
+connectCSS(pl,"text-transform");
+
+--></script></td></tr>
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>vertical-align : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("baseline");
+addItem("top");
+addItem("middle");
+addItem("bottom");
+addItem("text-top");
+addItem("text-bottom");
+addItem("super");
+addItem("sub");
+addItem("3em");
+addItem("30%");
+connectCSS(pl,"vertical-align");
+
+--></script></td></tr>
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>background-image : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("url(style/resize-box.gif)");
+connectCSS(pl,"background-image");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>background-repeat : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("repeat");
+addItem("repeat-x");
+addItem("repeat-y");
+addItem("no-repeat");
+connectCSS(pl,"background-repeat");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>background-position : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("left");
+addItem("right");
+addItem("top");
+addItem("left top");
+addItem("right bottom");
+addItem("30% 50%");
+connectCSS(pl,"background-position");
+
+--></script></td></tr>
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>background-attachment : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(item){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+item,item);
+}
+addItem("fixed");
+addItem("scroll");
+connectCSS(pl,"background-attachment");
+
+--></script></td></tr>
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>display : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("");
+addItem("none");
+addItem("block");
+addItem("inline");
+addItem("run-in");
+addItem("compact");
+addItem("list-item");
+addItem("marker");
+connectCSS(pl,"display");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>visibility : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("");
+addItem("visible");
+addItem("hidden");
+connectCSS(pl,"visibility");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>position : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("static");
+addItem("relative");
+addItem("absolute");
+addItem("fixed");
+connectCSS(pl,"position");
+
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>top : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("px");
+connectCSS2(pl,tan,"top");
+--></script></td></tr>
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>left : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("px");
+connectCSS2(pl,tan,"left");
+--></script></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>right : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("px");
+connectCSS2(pl,tan,"right");
+--></script></td></tr>
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>bottom : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+--></script><script type="text/javascript"><!--
+var tan = createTaniComponent("px");
+connectCSS2(pl,tan,"bottom");
+--></script></td></tr>
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>z-index : </p>
+	</td><td><script type="text/javascript"><!--
+var pl = new QrSpinner;
+pl.render();
+connectCSS(pl,"z-index");
+--></script></td></tr>
+
+
+
+
+<tr><td colspan="3" align="center"><hr /></td></tr>
+
+<tr><td></td><td class="QrCSSDesignerPadLeft">
+	<p>cursor : </p>
+	</td><td><script type="text/javascript"><!--
+
+var pl = new QrPulldown;
+pl.render();
+
+function addItem(fontname){
+	pl.addItem("<img src='style/transparentpixel.gif' style='width:16px;height:16px;' align='middle'/> "+fontname,fontname);
+}
+addItem("crosshair");
+addItem("default");
+addItem("pointer");
+addItem("move");
+addItem("text");
+addItem("wait");
+addItem("help");
+addItem("n-resize");
+addItem("s-resize");
+addItem("w-resize");
+addItem("e-resize");
+addItem("ne-resize");
+addItem("nw-resize");
+addItem("se-resize");
+addItem("sw-resize");
+connectCSS(pl,"cursor");
+
+--></script></td></tr>
+</table>
+
+</form>
+							<p>
+<br /><br />
+Code provided by <a rel="nofollow" target="_blank" href="http://www.qrone.org">www.qrone.org</a></p>
+						</div>
+							<div style="text-align:center;"><hr /><p>
+								<script type="text/javascript"><!--
+google_ad_client = "pub-1356719463849900";
+/* CSSPortal Bottom */
+google_ad_slot = "7929496539";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</p>
+							<hr />						
+							</div>
+						</div>
+					</div>
+					&nbsp;<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footerwrapper">
+					<div id="footer">
+					<div id="placetwitter">
+						<p id="texttwitter">
+							<img src="http://www.cssportal.com/images/loading.gif" alt="Loading" /> Loading Twitter
+						</p>
+						<div id="icontwitter"><a href="http://twitter.com/cssportal">Follow Us on Twitter</a></div>
+					</div>
+					<div id="footerright">
+						<div class="footer1">
+							<ul class="menufooter">
+								<li><a href="http://www.buywebtemplates.net">Web Templates</a></li>
+								<li><a href="http://www.ivalidation.net">Validate CSS &amp; HTML Code</a></li>
+								<li><a href="http://www.ewebtemplate.com">Web Templates</a></li>
+							</ul>
+						</div>
+						<div class="footer1">
+							<ul class="menufooter">
+								<li><a href="http://www.cssportal.com/news/">CSS News</a></li>
+								<li><a href="http://www.cssportal.com/css-validator/">CSS Validator</a></li>
+								<li><a href="http://www.cssportal.com/layout-generator/">CSS Layout Generator</a></li>
+								<li><a href="http://www.cssportal.com/donate.htm">Donate to CSSPortal</a></li>
+							</ul>
+						</div>
+						<div class="footer1">
+							<ul class="menufooter">
+								<li><a href="http://www.cssportal.com/css-properties/">CSS Properties</a></li>
+								<li><a href="http://www.cssportal.com/css-templates/">Free CSS Templates</a></li>
+								<li><a href="http://www.cssportal.com/contact.htm">Contact Us</a></li>
+								<li><a href="http://www.cssportal.com/privacy.htm">Privacy Policy</a></li>
+							</ul>
+						</div>
+						<div class="clear"></div>
+						<div id="footerbottom">
+							<h5>Copyright &copy; 2012 - CSS Portal</h5>
+							<a href="#" class="linktop">Back to Top</a>
+						</div>
+					</div>					
+				</div>
+	</div></div>
+</body>
+</html>
