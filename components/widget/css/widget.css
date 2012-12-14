@@ -1,0 +1,66 @@
+.widgetwrapper {
+  /* width: 150px; */
+}
+
+.widgeticon {
+  /* background-image: url('images/email_icon.png'); */
+  width: 19px;
+  height: 17px;
+}
+
+.widgetsall {
+  position: absolute;
+  padding: 15px;
+  margin: 15px;
+ }
+
+.widgetmenu {
+  float: left; 
+}
+
+.widgetscontent {
+
+  position: relative;
+}
+
+.widgetcontainer {
+  position: relative;
+  margin-left: 150px;
+
+}
+
+.widgetmenu li {
+  cursor: pointer; 
+  font-family: Ubuntu;
+  font-size: 16pt;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.widgetmenu li:hover {
+  color: #fff;
+  background-color: #000;
+}
+
+
+.widgettool {
+  cursor:hand;
+  cursor:grab;
+  cursor:-moz-grab;
+  cursor:-webkit-grab;  
+  background-color: #eee;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  text-align: center;
+  border: 1px dotted #000;
+
+  height: 25px;
+  padding: 4px; 
+
+  color: #606060;
+  background: #fff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+  background: -moz-linear-gradient(top,  #fff,  #ededed);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed'); 
+  margin-left: 10px;
+}

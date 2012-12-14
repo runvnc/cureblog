@@ -11,5 +11,6 @@ pageddata
 htmlfield
 textfield
 groove
-emailcollector
 datefield
+widget
+emailcollector

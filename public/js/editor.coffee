@@ -23,7 +23,7 @@ editWidget = (widget) ->
   editorcss.setValue widget.css
   $('#stylelist').text widget.styles
   $('#scriptlist').text widget.scripts
-  $('#package').text widget.package
+  $('#package').text widget.pckg
 
 initeditortabs =  ->
   if initialized then return
@@ -247,7 +247,7 @@ $ ->
       nodejs:  editornodejs.getValue()
       styles: $('#stylelist').val()
       scripts: $('#scriptlist').val()
-      package: $('#package').val()
+      pckg: $('#package').val()
 
     now.saveWidgetData data, (compileout) ->
       if compileout? and compileout.length > 8

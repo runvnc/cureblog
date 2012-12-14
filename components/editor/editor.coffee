@@ -9,9 +9,9 @@ path = require 'path'
 everyone.now.getWidgetData = (name, callback) ->
   try
     if path.existsSync "components/#{name}/package.json"
-      package = fs.readFileSync "components/#{name}/package.json", 'utf8'
+      pckg = fs.readFileSync "components/#{name}/package.json", 'utf8'
     else
-      package = ''
+      pckg = ''
 
     data =
       name: name
@@ -22,7 +22,7 @@ everyone.now.getWidgetData = (name, callback) ->
       css: fs.readFileSync "components/#{name}/css/#{name}.css", 'utf8'
       scripts: fs.readFileSync "components/#{name}/scripts", 'utf8'
       styles: fs.readFileSync "components/#{name}/styles", 'utf8'
-      package: package 
+      pckg: pckg
       
     callback data
   catch e
@@ -36,8 +36,12 @@ everyone.now.saveWidgetData = (data, callback) ->
   fs.writeFileSync "components/#{name}/#{name}.coffee", data.nodejs, 'utf8'
   fs.writeFileSync "components/#{name}/css/#{name}.css", data.css, 'utf8'
   fs.writeFileSync "components/#{name}/#{name}.html", data.html, 'utf8'
+  if data.pckg? and data.pckg isnt ''
+    fs.writeFileSync "components/#{name}/package.json", data.pckg, 'utf8'  
+  else
+    console.log 'data.pckg was undefined/black'
   waitforinstall = false
-  if data.package isnt ''
+  if data.pckg isnt ''
     console.log 'executing npm install'
     waitforinstall = true
     childproc.exec "cd components/#{name};npm install", (er, o, e) ->
@@ -57,10 +61,7 @@ everyone.now.saveWidgetData = (data, callback) ->
         callback(o + "\n" + e + "\n" + o2 + "\n" + e2)
     
   fs.writeFileSync "components/#{name}/scripts", data.scripts, 'utf8'
-  fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'  
-  if data.package isnt ''
-    fs.writeFileSync "components/#{name}/package.json", data.package, 'utf8'  
-    
+  fs.writeFileSync "components/#{name}/styles", data.styles, 'utf8'     
 
 
 everyone.now.listComponents = (callback) ->

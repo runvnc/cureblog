@@ -1,0 +1,28 @@
+#!/bin/bash
+# this way is best if you want to stay up to date
+# or submit patches to node or npm
+
+cd $HOME
+
+mkdir $HOME/local
+echo 'export PATH=$HOME/local/bin:$PATH' >> $HOME/.bashrc
+echo 'export PATH=$HOME/local/bin:$PATH' >> $HOME/.zshrc
+
+. $HOME/.bashrc
+. $HOME/.zshrc
+
+
+# could also fork, and then clone your own fork instead of the official one
+
+git clone git://github.com/joyent/node.git
+cd node
+git checkout v0.6.17
+git pull origin master
+
+./configure --prefix=$HOME/local
+ make install
+cd ..
+
+git clone git://github.com/isaacs/npm.git
+cd npm
+make install # or `make link` for bleeding edge
